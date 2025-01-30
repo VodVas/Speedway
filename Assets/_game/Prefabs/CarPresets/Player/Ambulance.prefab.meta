@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e152826c111aacc448a099997067f18a
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 193251
+  packageName: Arcade Vehicle Physics
+  packageVersion: 1.2
+  assetPath: Assets/Ash Assets/Arcade Vehicle Physics/Prefabs/Ambulance.prefab
+  uploadId: 706265
