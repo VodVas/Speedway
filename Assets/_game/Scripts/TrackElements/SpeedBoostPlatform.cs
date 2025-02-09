@@ -1,4 +1,3 @@
-using ArcadeVP;
 using UnityEngine;
 
 public class SpeedBoostPlatform : MonoBehaviour
@@ -8,9 +7,9 @@ public class SpeedBoostPlatform : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out ArcadeVehicleControllerBase vehicle))
+        if (other.TryGetComponent(out ISpeedBoostable speedBoostable))
         {
-            vehicle.ApplySpeedBoost(boostAmount, duration);
+            speedBoostable.ApplySpeedBoost(boostAmount, duration);
         }
     }
 }

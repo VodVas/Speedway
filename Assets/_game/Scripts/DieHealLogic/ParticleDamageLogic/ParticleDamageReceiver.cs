@@ -4,8 +4,6 @@ public class ParticleDamageReceiver : MonoBehaviour
 {
     private DamageHandler _damageHandler;
 
-
-
     private void Awake()
     {
         _damageHandler = GetComponent<DamageHandler>();
@@ -32,7 +30,6 @@ public class ParticleDamageReceiver : MonoBehaviour
     {
         if (_damageHandler != null)
         {
-            Debug.LogWarning("ApplyDamage");
             _damageHandler.TakeDamage(damageAmount);
         }
     }

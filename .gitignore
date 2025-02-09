@@ -40,7 +40,18 @@
 /[Aa]ssets/vFolders*
 /[Aa]ssets/WebGLTemplates*
 /[Aa]ssets/YandexGame*
-
+/[Aa]ssets/Barmetler*
+/[Aa]ssets/GogoGaga*
+/[Aa]ssets/MeshCombiner*
+/[Aa]ssets/Packages*
+/[Aa]ssets/Resources*
+/[Aa]ssets/Rope*
+/[Aa]ssets/Snow Blizzard Effects Mobile*
+/[Aa]ssets/Speed Lines*
+/[Aa]ssets/Standard Assets*
+/[Aa]ssets/StuntRacingPack*
+/[Aa]ssets/StylizedWater*
+/[Aa]ssets/Tiny Giant Studio*
 
 # Visual Studio cache directory
 .vs/

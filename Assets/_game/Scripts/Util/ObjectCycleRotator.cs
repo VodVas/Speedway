@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class ObjectCycleRotator : MonoBehaviour
 {
-    private float _speedX;
-    private float _speedY;
-    private float _speedZ;
+    [SerializeField] private float _speedX;
+    [SerializeField] private float _speedY;
+    [SerializeField] private float _speedZ;
 
     private void Update()
     {

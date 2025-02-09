@@ -19,6 +19,8 @@ public class VehiclePartsExploder : MonoBehaviour, ITerminatable, IResettable
     private void Awake()
     {
         _wait = new WaitForSeconds(_delay);
+        _childRigidbodies = GetComponentsInChildren<Rigidbody>();
+        _childCount = _childRigidbodies.Length;
     }
 
     private void OnEnable()

@@ -31,6 +31,6 @@ public abstract class Vehicle : MonoBehaviour
 
     public void SpawnParts()
     {
-        _vehiclesPartsSpawner.StartSpawn(transform.position + Vector3.up * 2f, GetType());
+        _vehiclesPartsSpawner.StartSpawn(transform.position, GetType());
     }
 }
