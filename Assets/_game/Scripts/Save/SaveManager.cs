@@ -2,18 +2,24 @@
 using YG;
 using Zenject;
 using System.Collections.Generic;
+using System;
 
 public class SaveManager : IInitializable
 {
     public int Money
     {
         get => YandexGame.savesData.money;
-        private set => YandexGame.savesData.money = value;
+        private set
+        {
+            YandexGame.savesData.money = value;
+            OnMoneyChanged?.Invoke();
+        }
     }
 
     public List<int> PurchasedCarIDs => YandexGame.savesData.purchasedCarIDs;
+    public List<PurchasedUpgrade> PurchasedUpgrades => YandexGame.savesData.purchasedUpgrades;
 
-    public SaveManager() { }
+    public event Action OnMoneyChanged;
 
     public void Initialize()
     {
@@ -23,11 +29,14 @@ public class SaveManager : IInitializable
 
         if (YandexGame.savesData.isFirstSession)
         {
+            // Можно дать стартовые деньги и прочие параметры
             YandexGame.savesData.isFirstSession = false;
-            //YandexGame.savesData.money = 1500;
-            // YandexGame.SaveProgress();
+            // Money = 1500; // пример
+            // SaveProgress();
         }
     }
+
+    #region Деньги
 
     public bool TrySpendMoney(int amount)
     {
@@ -56,6 +65,10 @@ public class SaveManager : IInitializable
         Money += amount;
     }
 
+    #endregion
+
+    #region Машины
+
     public void AddCar(int carId)
     {
         if (!PurchasedCarIDs.Contains(carId))
@@ -69,9 +82,34 @@ public class SaveManager : IInitializable
         return PurchasedCarIDs.Contains(carId);
     }
 
+    #endregion
+
+    #region Апгрейды
+
+    public bool HasCarUpgrade(int carId, int upgradeId)
+    {
+        for (int i = 0; i < PurchasedUpgrades.Count; i++)
+        {
+            if (PurchasedUpgrades[i].carId == carId && PurchasedUpgrades[i].upgradeId == upgradeId)
+                return true;
+        }
+        return false;
+    }
+
+    public void AddCarUpgrade(int carId, int upgradeId)
+    {
+        if (!HasCarUpgrade(carId, upgradeId))
+        {
+            PurchasedUpgrade record = new PurchasedUpgrade { carId = carId, upgradeId = upgradeId };
+            PurchasedUpgrades.Add(record);
+        }
+    }
+
+    #endregion
+
     public void Save()
     {
         YandexGame.SaveProgress();
-        Debug.Log("[SaveManager] Сохранение завершено!");
+        Debug.Log("[SaveManager] Сохранение выполнено!");
     }
 }
