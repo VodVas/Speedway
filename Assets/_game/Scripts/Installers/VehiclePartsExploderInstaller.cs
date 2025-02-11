@@ -25,7 +25,7 @@ public class VehiclePartsExploderInstaller : MonoInstaller
         {
             { typeof(BUGgy), _buggyParts },
             { typeof(HotRod), _hotRodParts },
-            { typeof(Crossroad), _crossroadParts },
+            { typeof(Outlander), _crossroadParts },
             { typeof(Mustang), _mustangParts },
             { typeof(RedNeck), _redNeckParts },
             { typeof(NewsVan), _newsVanParts },

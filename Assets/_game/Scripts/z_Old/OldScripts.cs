@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class OldScripts
 {
     #region EnemySpawner
@@ -667,6 +669,340 @@ public class OldScripts
     //        _currentIndex = -1;
 
     //        SwitchToNextObject();
+    //    }
+    //}
+
+    #endregion
+
+    #region CarShop
+
+    //public class CarShop : MonoBehaviour
+    //{
+    //    [SerializeField] private Wallet _wallet = null;
+    //    [SerializeField] private CarCatalog _carCatalog = null;
+    //    [SerializeField] private ObjectSwitcher _objectSwitcher = null;
+
+    //    [Header("TextMeshPro References")]
+    //    [SerializeField] private TextMeshPro _carNameText = null;
+    //    [SerializeField] private TextMeshPro _carPriceText = null;
+    //    [SerializeField] private TextMeshPro _playerMoneyText = null;
+
+    //    [Header("Parameters")]
+    //    [SerializeField] private TextMeshPro _SpeedText = null;
+    //    [SerializeField] private TextMeshPro _AccelerationText = null;
+    //    [SerializeField] private TextMeshPro _TurnText = null;
+    //    [SerializeField] private TextMeshPro _ArmorText = null;
+    //    [SerializeField] private TextMeshPro _WeaponText = null;
+
+    //    public event Action<int> CarPurchased;
+
+    //    private void Awake()
+    //    {
+    //        if (_wallet == null)
+    //        {
+    //            Debug.LogError("Shop: Wallet не назначен!", this);
+    //            enabled = false;
+    //            return;
+    //        }
+
+    //        if (_carCatalog == null)
+    //        {
+    //            Debug.LogError("Shop: CarCatalog не назначен!", this);
+    //            enabled = false;
+    //            return;
+    //        }
+
+    //        if (_objectSwitcher == null)
+    //        {
+    //            Debug.LogError("Shop: ObjectSwitcher не назначен!", this);
+    //            enabled = false;
+    //            return;
+    //        }
+
+    //        if (_carNameText == null || _carPriceText == null || _playerMoneyText == null || _SpeedText == null || _AccelerationText == null || _TurnText == null || _ArmorText == null || _WeaponText == null)
+    //        {
+    //            Debug.LogError("Shop: не все поля TextMeshPro заполнены!", this);
+    //            enabled = false;
+    //            return;
+    //        }
+
+    //        _objectSwitcher.Init();
+    //        UpdateUI();
+    //    }
+
+    //    public void BuyCurrentCar()
+    //    {
+    //        if (_carCatalog.GetCount() == 0)
+    //        {
+    //            Debug.Log("Shop: Все машины уже куплены!");
+    //            return;
+    //        }
+
+    //        int currentIndex = _objectSwitcher.GetCurrentIndex();
+
+    //        CarData data = _carCatalog.GetCarData(currentIndex);
+
+    //        if (data == null)
+    //        {
+    //            Debug.LogError("Shop: CarData = null или некорректный индекс.", this);
+    //            return;
+    //        }
+
+    //        int price = data.Price;
+
+    //        if (_wallet.TrySpendMoney(price))
+    //        {
+    //            Debug.Log($"Shop: Куплена машина '{data.CarName}' за {price}.");
+
+    //            CarPurchased?.Invoke(currentIndex);
+
+    //            _carCatalog.RemoveCarAtIndex(currentIndex);
+    //            _objectSwitcher.RemoveCarAtIndex(currentIndex);
+
+    //            UpdateUI();
+    //        }
+    //        else
+    //        {
+    //            Debug.Log("Shop: Недостаточно денег!");
+    //        }
+    //    }
+
+    //    public void SwitchNextCar()
+    //    {
+    //        if (_carCatalog.GetCount() == 0)
+    //        {
+    //            Debug.Log("Shop: Все машины уже куплены!");
+    //            return;
+    //        }
+
+    //        _objectSwitcher.SwitchToNextObject();
+    //        UpdateUI();
+    //    }
+
+    //    public void SwitchPreviousCar()
+    //    {
+    //        if (_carCatalog.GetCount() == 0)
+    //        {
+    //            Debug.Log("Shop: Все машины уже куплены!");
+    //            return;
+    //        }
+
+    //        _objectSwitcher.SwitchToPreviousObject();
+    //        UpdateUI();
+    //    }
+
+    //    private void UpdateUI()
+    //    {
+    //        if (_carCatalog.GetCount() == 0)
+    //        {
+    //            _carNameText.text = "Машин нет!";
+    //            _carPriceText.text = "0";
+    //            _SpeedText.text = "0";
+    //            _AccelerationText.text = "0";
+    //            _TurnText.text = "0";
+    //            _ArmorText.text = "0";
+    //            _WeaponText.text = "0";
+    //            _playerMoneyText.text = _wallet.CurrentMoney.ToString();
+    //            return;
+    //        }
+
+    //        int idx = _objectSwitcher.GetCurrentIndex();
+
+    //        if (idx < 0 || idx >= _carCatalog.GetCount())
+    //        {
+    //            Debug.LogError("Shop: текущий индекс недопустим!", this);
+    //            return;
+    //        }
+
+    //        var carData = _carCatalog.GetCarData(idx);
+
+    //        if (carData != null)
+    //        {
+    //            _carNameText.text = carData.CarName;
+    //            _carPriceText.text = carData.Price.ToString();
+    //            _SpeedText.text = carData.Speed.ToString();
+    //            _AccelerationText.text = carData.Acceleration.ToString();
+    //            _TurnText.text = carData.Turn.ToString();
+    //            _ArmorText.text = carData.Armor.ToString();
+    //            _WeaponText.text = carData.Weapon.ToString();
+    //        }
+    //        else
+    //        {
+    //            _carNameText.text = "Машина не найдена";
+    //            _carPriceText.text = "0";
+    //        }
+
+    //        _playerMoneyText.text = _wallet.CurrentMoney.ToString();
+    //    }
+    //}
+
+    #endregion
+
+    #region Waller
+
+    //public class Wallet : MonoBehaviour
+    //{
+    //    [SerializeField] private int _startMoney = 1500;
+
+    //    private int _currentMoney;
+
+    //    private void Awake()
+    //    {
+    //        _currentMoney = _startMoney;
+    //    }
+
+    //    public int CurrentMoney => _currentMoney;
+
+    //    public bool TrySpendMoney(int amount)
+    //    {
+    //        if (amount < 0)
+    //        {
+    //            Debug.LogError("Wallet: сумма для списания не может быть отрицательной!", this);
+
+    //            return false;
+    //        }
+
+    //        if (_currentMoney >= amount)
+    //        {
+    //            _currentMoney -= amount;
+    //            return true;
+    //        }
+
+    //        return false;
+    //    }
+
+    //    public void AddMoney(int amount)
+    //    {
+    //        if (amount < 0)
+    //        {
+    //            Debug.LogError("Wallet: сумма для добавления не может быть отрицательной!", this);
+    //            return;
+    //        }
+    //        _currentMoney += amount;
+    //    }
+    //}
+
+    #endregion
+
+    #region CarShop2
+
+    //public class CarShop : MonoBehaviour
+    //{
+    //    [SerializeField] private CarCatalog _carCatalog = null;
+    //    [SerializeField] private ObjectSwitcher _objectSwitcher = null;
+
+    //    [Inject] private SaveManager _saveManager;
+    //    private CarShopUI _carShopUI;
+
+    //    private void Awake()
+    //    {
+    //        if (_carCatalog == null || _objectSwitcher == null)
+    //        {
+    //            Debug.LogError("Shop: Не назначены необходимые компоненты!", this);
+    //            enabled = false;
+    //            return;
+    //        }
+
+    //        _carShopUI = GetComponent<CarShopUI>();
+
+    //        if (_carShopUI == null)
+    //        {
+    //            Debug.LogError("Shop: CarShopUI не найден!", this);
+    //            enabled = false;
+    //            return;
+    //        }
+
+    //        _objectSwitcher.Init();
+    //        UpdateUI();
+    //    }
+
+    //    public void BuyCurrentCar()
+    //    {
+    //        if (_carCatalog.GetCount() == 0)
+    //        {
+    //            Debug.Log("Shop: Все машины уже куплены!");
+    //            return;
+    //        }
+
+    //        int currentIndex = _objectSwitcher.GetCurrentIndex();
+    //        CarData data = _carCatalog.GetCarData(currentIndex);
+
+    //        if (data == null)
+    //        {
+    //            Debug.LogError("Shop: CarData = null или некорректный индекс.", this);
+    //            return;
+    //        }
+
+    //        int price = data.Price;
+
+    //        if (_saveManager.TrySpendMoney(price))
+    //        {
+    //            Debug.Log($"Shop: Куплена машина '{data.CarName}' за {price}.");
+
+    //            _saveManager.AddCar(data.Id);
+    //            _carCatalog.RemoveCarAtIndex(currentIndex);
+    //            _objectSwitcher.RemoveCarAtIndex(currentIndex);
+
+    //            _saveManager.Save();
+
+    //            UpdateUI();
+    //        }
+    //        else
+    //        {
+    //            Debug.Log("Shop: Недостаточно денег!");
+    //        }
+    //    }
+
+    //    public void SwitchNextCar()
+    //    {
+    //        if (_carCatalog.GetCount() == 0)
+    //        {
+    //            Debug.Log("Shop: Все машины уже куплены!");
+    //            return;
+    //        }
+
+    //        _objectSwitcher.SwitchToNextObject();
+    //        UpdateUI();
+    //    }
+
+    //    public void SwitchPreviousCar()
+    //    {
+    //        if (_carCatalog.GetCount() == 0)
+    //        {
+    //            Debug.Log("Shop: Все машины уже куплены!");
+    //            return;
+    //        }
+
+    //        _objectSwitcher.SwitchToPreviousObject();
+    //        UpdateUI();
+    //    }
+
+    //    private void UpdateUI()
+    //    {
+    //        if (_carCatalog.GetCount() == 0)
+    //        {
+    //            _carShopUI.DisplayNoCarsAvailable();
+    //            return;
+    //        }
+
+    //        int idx = _objectSwitcher.GetCurrentIndex();
+    //        if (idx < 0 || idx >= _carCatalog.GetCount())
+    //        {
+    //            Debug.LogError("Shop: текущий индекс недопустим!", this);
+    //            return;
+    //        }
+
+    //        var carData = _carCatalog.GetCarData(idx);
+    //        if (carData != null)
+    //        {
+    //            _carShopUI.DisplayCarData(carData);
+    //        }
+    //        else
+    //        {
+    //            _carShopUI.DisplayCarNotFound();
+    //        }
+
+    //        _carShopUI.UpdatePlayerMoney(_saveManager.Money);
     //    }
     //}
 

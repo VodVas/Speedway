@@ -1,64 +1,47 @@
-using System;
-using TMPro;
 using UnityEngine;
+using Zenject;
 
 public class CarShop : MonoBehaviour
 {
-    [SerializeField] private Wallet _wallet = null;
     [SerializeField] private CarCatalog _carCatalog = null;
     [SerializeField] private ObjectSwitcher _objectSwitcher = null;
 
-    [Header("TextMeshPro References")]
-    [SerializeField] private TextMeshPro _carNameText = null;
-    [SerializeField] private TextMeshPro _carPriceText = null;
-    [SerializeField] private TextMeshPro _playerMoneyText = null;
-
-    [Header("Parameters")]
-    [SerializeField] private TextMeshPro _SpeedText = null;
-    [SerializeField] private TextMeshPro _AccelerationText = null;
-    [SerializeField] private TextMeshPro _TurnText = null;
-    [SerializeField] private TextMeshPro _ArmorText = null;
-    [SerializeField] private TextMeshPro _WeaponText = null;
-
-    public event Action<int> CarPurchased;
+    [Inject] private SaveManager _saveManager;
+    private CarShopUI _carShopUI;
 
     private void Awake()
     {
-        if (_wallet == null)
+        if (_carCatalog == null || _objectSwitcher == null)
         {
-            Debug.LogError("Shop: Wallet не назначен!", this);
+            Debug.LogError("Shop: Не назначены необходимые компоненты!", this);
             enabled = false;
             return;
         }
 
-        if (_carCatalog == null)
+        _carShopUI = GetComponent<CarShopUI>();
+        if (_carShopUI == null)
         {
-            Debug.LogError("Shop: CarCatalog не назначен!", this);
+            Debug.LogError("Shop: CarShopUI не найден!", this);
             enabled = false;
             return;
         }
 
-        if (_objectSwitcher == null)
-        {
-            Debug.LogError("Shop: ObjectSwitcher не назначен!", this);
-            enabled = false;
-            return;
-        }
+        RemoveAlreadyPurchasedCars();
 
-        if (_carNameText == null || _carPriceText == null || _playerMoneyText == null || _SpeedText == null || _AccelerationText == null || _TurnText == null || _ArmorText == null || _WeaponText == null)
-        {
-            Debug.LogError("Shop: не все поля TextMeshPro заполнены!", this);
-            enabled = false;
-            return;
-        }
+        _objectSwitcher.Init();
 
         UpdateUI();
     }
 
     public void BuyCurrentCar()
     {
-        int currentIndex = _objectSwitcher.GetCurrentIndex();
+        if (_carCatalog.GetCount() == 0)
+        {
+            Debug.Log("Shop: Все машины уже куплены!");
+            return;
+        }
 
+        int currentIndex = _objectSwitcher.GetCurrentIndex();
         CarData data = _carCatalog.GetCarData(currentIndex);
 
         if (data == null)
@@ -69,14 +52,14 @@ public class CarShop : MonoBehaviour
 
         int price = data.Price;
 
-        if (_wallet.TrySpendMoney(price))
+        if (_saveManager.TrySpendMoney(price))
         {
             Debug.Log($"Shop: Куплена машина '{data.CarName}' за {price}.");
 
-            CarPurchased?.Invoke(currentIndex);
-
+            _saveManager.AddCar(data.Id);
             _carCatalog.RemoveCarAtIndex(currentIndex);
             _objectSwitcher.RemoveCarAtIndex(currentIndex);
+            _saveManager.Save();
 
             UpdateUI();
         }
@@ -88,46 +71,73 @@ public class CarShop : MonoBehaviour
 
     public void SwitchNextCar()
     {
-        _objectSwitcher.SwitchToNextObject();
+        if (_carCatalog.GetCount() == 0)
+        {
+            Debug.Log("Shop: Все машины уже куплены!");
+            return;
+        }
 
+        _objectSwitcher.SwitchToNextObject();
         UpdateUI();
     }
 
     public void SwitchPreviousCar()
     {
-        _objectSwitcher.SwitchToPreviousObject();
+        if (_carCatalog.GetCount() == 0)
+        {
+            Debug.Log("Shop: Все машины уже куплены!");
+            return;
+        }
 
+        _objectSwitcher.SwitchToPreviousObject();
         UpdateUI();
     }
 
     private void UpdateUI()
     {
-        int idx = _objectSwitcher.GetCurrentIndex();
-
-        if (idx < 0 || idx >= _carCatalog.GetCount())
+        if (_carCatalog.GetCount() == 0)
         {
-            Debug.LogError("Shop: текущий индекс недопустим!", this); //TODO: при покупке всех доступных машин вылезает ошибка конца списка
+            _carShopUI.DisplayNoCarsAvailable();
             return;
         }
 
-        var carData = _carCatalog.GetCarData(idx);
+        int idx = _objectSwitcher.GetCurrentIndex();
+        if (idx < 0 || idx >= _carCatalog.GetCount())
+        {
+            Debug.LogError("Shop: текущий индекс недопустим!", this);
+            return;
+        }
 
+        CarData carData = _carCatalog.GetCarData(idx);
         if (carData != null)
         {
-            _carNameText.text = carData.CarName;
-            _carPriceText.text = carData.Price.ToString();
-            _SpeedText.text = carData.Speed.ToString();
-            _AccelerationText.text = carData.Acceleration.ToString();
-            _TurnText.text = carData.Turn.ToString();
-            _ArmorText.text = carData.Armor.ToString();
-            _WeaponText.text = carData.Weapon.ToString();
+            _carShopUI.DisplayCarData(carData);
         }
         else
         {
-            _carNameText.text = "Машина не найдена";
-            _carPriceText.text = "0";
+            _carShopUI.DisplayCarNotFound();
         }
 
-        _playerMoneyText.text = _wallet.CurrentMoney.ToString();
+        _carShopUI.UpdatePlayerMoney(_saveManager.Money);
+    }
+
+    private void RemoveAlreadyPurchasedCars()
+    {
+        for (int i = _carCatalog.GetCount() - 1; i >= 0; i--)
+        {
+            CarData data = _carCatalog.GetCarData(i);
+
+            if (data == null)
+            {
+                Debug.LogError($"Shop: В каталоге на индексе {i} нет CarData!", this);
+                continue;
+            }
+
+            if (_saveManager.HasCar(data.Id))
+            {
+                _carCatalog.RemoveCarAtIndex(i);
+                _objectSwitcher.RemoveCarAtIndex(i);
+            }
+        }
     }
 }

@@ -1,7 +1,5 @@
-using System;
 using UnityEngine;
 
-[Serializable]
 public class CarData : MonoBehaviour
 {
     [field: SerializeField] public string CarName { get; private set; } = "Noname";

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-internal sealed class CarCatalog : MonoBehaviour
+public class CarCatalog : MonoBehaviour
 {
     [SerializeField] private List<CarData> _cars = null;
 

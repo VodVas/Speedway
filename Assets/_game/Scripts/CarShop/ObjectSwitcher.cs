@@ -19,7 +19,7 @@ public class ObjectSwitcher : MonoBehaviour
         Init();
     }
 
-    internal void SwitchToNextObject()
+    public void SwitchToNextObject()
     {
         if (_currentIndex >= 0 && _currentIndex < _objectsToSwitch.Count)
         {
@@ -31,7 +31,7 @@ public class ObjectSwitcher : MonoBehaviour
         _objectsToSwitch[_currentIndex].SetActive(true);
     }
 
-    internal void SwitchToPreviousObject()
+    public void SwitchToPreviousObject()
     {
         if (_currentIndex >= 0 && _currentIndex < _objectsToSwitch.Count)
         {
@@ -43,18 +43,29 @@ public class ObjectSwitcher : MonoBehaviour
         _objectsToSwitch[_currentIndex].SetActive(true);
     }
 
-    internal void Init()
+    public void Init()
     {
+        if (_objectsToSwitch.Count == 0)
+        {
+            Debug.LogWarning("ObjectSwitcher: список объектов пуст!", this);
+            return;
+        }
+
+        foreach (var obj in _objectsToSwitch)
+        {
+            obj.SetActive(false);
+        }
+
         _currentIndex = 0;
-        SwitchToNextObject();
+        _objectsToSwitch[_currentIndex].SetActive(true);
     }
 
-    internal int GetCurrentIndex()
+    public int GetCurrentIndex()
     {
         return _currentIndex;
     }
 
-    internal void RemoveCarAtIndex(int index)
+    public void RemoveCarAtIndex(int index)
     {
         if (index < 0 || index >= _objectsToSwitch.Count)
         {
