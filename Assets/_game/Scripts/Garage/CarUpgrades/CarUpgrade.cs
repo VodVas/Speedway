@@ -2,14 +2,11 @@ using UnityEngine;
 
 public class CarUpgrade : MonoBehaviour
 {
-    [SerializeField] private int _upgradeId = 0;
-    [SerializeField] private string _upgradeName = "Engine";
-    [SerializeField] private int _price = 100;
     [SerializeField] private GameObject _upgradeRoot = null;
 
-    public int UpgradeId => _upgradeId;
-    public string UpgradeName => _upgradeName;
-    public int Price => _price;
+    [field: SerializeField] public int UpgradeId { get; private set; } = 0;
+    [field: SerializeField] public string UpgradeName { get; private set; } = "Engine";
+    [field: SerializeField] public int Price { get; private set; } = 100;
 
     private void Awake()
     {

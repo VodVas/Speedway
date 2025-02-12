@@ -1,14 +1,14 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class CarUpgrades : MonoBehaviour
 {
     [SerializeField] private List<CarUpgrade> _upgrades;
-    [SerializeField] private int _carId = 0;
+
+    [field: SerializeField] public int CarId { get; private set; } = 0;
 
     public IReadOnlyList<CarUpgrade> Upgrades => _upgrades;
-
-    public int CarId => _carId;
 
     private void Awake()
     {
@@ -19,14 +19,15 @@ public class CarUpgrades : MonoBehaviour
         }
     }
 
-    public void InitializePurchasedUpgrades(System.Func<int, int, bool> hasCarUpgrade)
+    public void InitializePurchasedUpgrades(Func<int, int, bool> hasCarUpgrade)
     {
         if (_upgrades == null || _upgrades.Count == 0) return;
 
         for (int i = 0; i < _upgrades.Count; i++)
         {
             CarUpgrade upgrade = _upgrades[i];
-            bool purchased = hasCarUpgrade(_carId, upgrade.UpgradeId);
+            bool purchased = hasCarUpgrade(CarId, upgrade.UpgradeId);
+
             upgrade.SetActive(purchased);
         }
     }

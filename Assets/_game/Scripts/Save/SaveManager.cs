@@ -36,7 +36,7 @@ public class SaveManager : IInitializable
         }
     }
 
-    #region Деньги
+    #region Money
 
     public bool TrySpendMoney(int amount)
     {
@@ -67,7 +67,7 @@ public class SaveManager : IInitializable
 
     #endregion
 
-    #region Машины
+    #region Cars
 
     public void AddCar(int carId)
     {
@@ -84,7 +84,7 @@ public class SaveManager : IInitializable
 
     #endregion
 
-    #region Апгрейды
+    #region Upgrades
 
     public bool HasCarUpgrade(int carId, int upgradeId)
     {
@@ -93,6 +93,7 @@ public class SaveManager : IInitializable
             if (PurchasedUpgrades[i].carId == carId && PurchasedUpgrades[i].upgradeId == upgradeId)
                 return true;
         }
+
         return false;
     }
 
