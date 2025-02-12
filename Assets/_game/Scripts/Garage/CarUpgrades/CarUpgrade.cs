@@ -2,11 +2,22 @@ using UnityEngine;
 
 public class CarUpgrade : MonoBehaviour
 {
+    public enum CarUpgradeType
+    {
+        Weapon,
+        Speed,
+        Acceleration,
+        Turn,
+        Health
+    }
+
     [SerializeField] private GameObject _upgradeRoot = null;
 
     [field: SerializeField] public int UpgradeId { get; private set; } = 0;
     [field: SerializeField] public string UpgradeName { get; private set; } = "Engine";
     [field: SerializeField] public int Price { get; private set; } = 100;
+    [field: SerializeField] public CarUpgradeType UpgradeType { get; private set; } = CarUpgradeType.Weapon;
+    [field: SerializeField] public float UpgradeValue { get; private set; } = 5f;
 
     private void Awake()
     {

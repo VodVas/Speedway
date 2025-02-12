@@ -20839,6 +20839,10 @@ GameObject:
   - component: {fileID: 8043166241563538501}
   - component: {fileID: 6489769149825360164}
   - component: {fileID: 8918773829499585275}
+  - component: {fileID: 3429649895274201089}
+  - component: {fileID: 9113476145744468773}
+  - component: {fileID: 2011014045938942890}
+  - component: {fileID: 313647291299393105}
   m_Layer: 7
   m_Name: BUGgy
   m_TagString: Untagged
@@ -21280,6 +21284,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17026eaf83004634f85357ee5686985f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3429649895274201089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7785104520783736772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17026eaf83004634f85357ee5686985f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9113476145744468773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7785104520783736772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e405327d714e3e6428f4f2edde7939eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2011014045938942890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7785104520783736772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 431bedef999631d4bbc0fdd931be678c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <RacerId>k__BackingField: 0
+--- !u!114 &313647291299393105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7785104520783736772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3295322f6c6f07a499f99601c77db7e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _upgrades:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  <CarId>k__BackingField: 0
 --- !u!1 &8728708258273903365
 GameObject:
   m_ObjectHideFlags: 0
@@ -21664,6 +21722,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5841434483916455534, guid: c27d602dadf567a4ea306c40543331ea, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9199809879219965247, guid: c27d602dadf567a4ea306c40543331ea, type: 3}
       propertyPath: lengthInSec
       value: 7
@@ -21724,16 +21786,43 @@ PrefabInstance:
       propertyPath: EmissionModule.rateOverTime.scalar
       value: 7
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5089618616263635892, guid: c27d602dadf567a4ea306c40543331ea, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1752639783993144, guid: c27d602dadf567a4ea306c40543331ea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7595912739509947056}
   m_SourcePrefab: {fileID: 100100000, guid: c27d602dadf567a4ea306c40543331ea, type: 3}
 --- !u!4 &4570466618499280224 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4880926231600578, guid: c27d602dadf567a4ea306c40543331ea, type: 3}
   m_PrefabInstance: {fileID: 4574768823115952290}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4574216885216071578 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1752639783993144, guid: c27d602dadf567a4ea306c40543331ea, type: 3}
+  m_PrefabInstance: {fileID: 4574768823115952290}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7595912739509947056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4574216885216071578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd1a88443a8dd7747999369742051677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _upgradeRoot: {fileID: 4574216885216071578}
+  <UpgradeId>k__BackingField: 3
+  <UpgradeName>k__BackingField: "\u041B\u0435\u0433\u043A\u0438\u0439 \u043F\u0443\u043B\u0435\u043C\u0435\u0442"
+  <Price>k__BackingField: 100
+  <UpgradeType>k__BackingField: 0
+  <UpgradeValue>k__BackingField: 0
 --- !u!1001 &8075229166524453680
 PrefabInstance:
   m_ObjectHideFlags: 0

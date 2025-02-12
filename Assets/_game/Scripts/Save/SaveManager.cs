@@ -21,6 +21,12 @@ public class SaveManager : IInitializable
 
     public event Action OnMoneyChanged;
 
+    public int LastUsedCarId
+    {
+        get => YandexGame.savesData.lastUsedCarId;
+        set => YandexGame.savesData.lastUsedCarId = value;
+    }
+
     public void Initialize()
     {
         Debug.Log("[SaveManager] Initialize() → Загружаем сохранения из YandexGame");

@@ -6,7 +6,7 @@ public class Racer : MonoBehaviour
     private const string ErrorNewPositionInvalid = "Racer: Position must be greater than zero.";
     private const string ErrorCheckpointIndexInvalid = "Racer: CheckpointIndex must be greater than zero.";
 
-    [SerializeField] private int _racerId = 0;
+    [field: SerializeField] public int RacerId { get; set; } = 0;
 
     private int _position = 0;
     private int _lastCheckpoint = -1;
@@ -19,7 +19,7 @@ public class Racer : MonoBehaviour
         ValidateData();
     }
 
-    public int RacerId => _racerId;
+    //public int RacerId => _racerId;
     public int Position => _position;
     public int LastCheckpoint => _lastCheckpoint;
     public int PreviousPosition => _previousPosition;
@@ -72,7 +72,7 @@ public class Racer : MonoBehaviour
 
     private void ValidateData()
     {
-        if (_racerId < 1)
+        if (RacerId < 1)
         {
             Debug.LogError(ErrorRacerIdInvalid, this);
             enabled = false;

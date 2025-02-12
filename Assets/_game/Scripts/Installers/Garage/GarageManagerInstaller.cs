@@ -3,10 +3,12 @@ using Zenject;
 
 public class GarageManagerInstaller : MonoInstaller
 {
-    [SerializeField] private GarageManager _garageManager;
+    [SerializeField] private GarageNavigator _garageManager;
+    [SerializeField] private GarageCarOverview _garageCarOverview;
 
     public override void InstallBindings()
     {
-        Container.Bind<GarageManager>().FromInstance(_garageManager).NonLazy();
+        Container.Bind<GarageNavigator>().FromInstance(_garageManager).NonLazy();
+        Container.Bind<GarageCarOverview>().FromInstance(_garageCarOverview).NonLazy();
     }
 }

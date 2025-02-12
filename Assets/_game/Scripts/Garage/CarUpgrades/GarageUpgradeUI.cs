@@ -18,7 +18,7 @@ public class GarageUpgradeUI : MonoBehaviour
     [SerializeField] private Button _prevCarButton;
 
     [Inject] private SaveManager _saveManager;
-    [Inject] private GarageManager _garageManager;
+    [Inject] private GarageNavigator _garageManager;
 
     private int _currentUpgradeIndex = 0;
 

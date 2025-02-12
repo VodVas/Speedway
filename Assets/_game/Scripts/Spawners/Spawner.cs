@@ -16,7 +16,7 @@ public abstract class Spawner<T> : MonoBehaviour where T : MonoBehaviour, ITermi
 
     private void OnDisable()
     {
-        _objectPool.Clear();
+        _objectPool?.Clear();
     }
 
     protected abstract Vector3 GetSpawnPosition();

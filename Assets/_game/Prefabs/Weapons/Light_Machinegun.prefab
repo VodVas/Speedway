@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 33643014597647316}
   - component: {fileID: 23313579631644386}
   - component: {fileID: 4307841311962949028}
-  - component: {fileID: 1931510755786292276}
   m_Layer: 0
   m_Name: Light_Machinegun
   m_TagString: Untagged
@@ -100,27 +99,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <DamageAmount>k__BackingField: 5
   <ParticleShoot>k__BackingField: {fileID: 9210720965052734979}
---- !u!135 &1931510755786292276
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1752639783993144}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 20
-  m_Center: {x: 0, y: -1.5, z: 0}
 --- !u!1001 &9012690446653320997
 PrefabInstance:
   m_ObjectHideFlags: 0
