@@ -11068,7 +11068,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 431bedef999631d4bbc0fdd931be678c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _racerId: 6
+  <RacerId>k__BackingField: 0
 --- !u!114 &7357691613112788093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21472,7 +21472,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 5841434483916455534, guid: c27d602dadf567a4ea306c40543331ea, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5841434483916455534, guid: c27d602dadf567a4ea306c40543331ea, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public sealed class GarageCarOverview : MonoBehaviour
+public class GarageCarOverview : MonoBehaviour
 {
     [SerializeField] private List<GarageCarItem> _garageCars = null;
 
