@@ -10,6 +10,7 @@ public sealed class CarModUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _modPriceText;
     [SerializeField] private TextMeshProUGUI _countText;
     [SerializeField] private TextMeshProUGUI _feedbackText;
+    [SerializeField] private TextMeshProUGUI _modEffectText;
     [SerializeField] private Button _buyButton;
 
     [Header("Buttons")]
@@ -23,7 +24,7 @@ public sealed class CarModUI : MonoBehaviour
     private void Awake()
     {
         if (_modNameText == null || _modPriceText == null || _countText == null ||
-            _feedbackText == null || _buyButton == null || _nextButton == null || _prevButton == null)
+            _feedbackText == null || _buyButton == null || _nextButton == null || _prevButton == null || _modEffectText == null)
         {
             Debug.LogError("[CarModUI] Ссылки на UI-элементы не настроены!", this);
             enabled = false;
@@ -49,6 +50,7 @@ public sealed class CarModUI : MonoBehaviour
             _feedbackText.text = "Модификаций нет";
             _modNameText.text = "-";
             _modPriceText.text = "-";
+            _modEffectText.text = "";
             _countText.text = "0/5";
             _buyButton.interactable = false;
             return;
@@ -60,6 +62,7 @@ public sealed class CarModUI : MonoBehaviour
             _feedbackText.text = "Список пуст";
             _modNameText.text = "-";
             _modPriceText.text = "-";
+            _modEffectText.text = "";
             _countText.text = "0/5";
             _buyButton.interactable = false;
             return;
@@ -72,6 +75,7 @@ public sealed class CarModUI : MonoBehaviour
             _feedbackText.text = "Ошибка модификации";
             _modNameText.text = "-";
             _modPriceText.text = "-";
+            _modEffectText.text = "";
             _countText.text = "0/5";
             _buyButton.interactable = false;
             return;
@@ -83,6 +87,25 @@ public sealed class CarModUI : MonoBehaviour
         int carId = modsComp.CarId;
         int purchasedCount = _save.GetCarModificationCount(carId, mod.ModificationId);
         _countText.text = $"{purchasedCount}/5";
+
+        string effectDescription = "";
+
+        switch (mod.Type)
+        {
+            case CarModification.ModificationType.Speed:
+                effectDescription = $"Скорость +{mod.Value}";
+                break;
+            case CarModification.ModificationType.Acceleration:
+                effectDescription = $"Ускорение +{mod.Value}";
+                break;
+            case CarModification.ModificationType.Turn:
+                effectDescription = $"Маневры +{mod.Value}";
+                break;
+            case CarModification.ModificationType.Health:
+                effectDescription = $"Броня +{mod.Value}";
+                break;
+        }
+        _modEffectText.text = effectDescription;
 
         if (purchasedCount >= 5)
         {
