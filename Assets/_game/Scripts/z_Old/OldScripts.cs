@@ -1619,4 +1619,261 @@ public class OldScripts
 
     #endregion
 
+    #region GarageCarOverview
+
+    //public class GarageCarOverview : MonoBehaviour
+    //{
+    //    [SerializeField] private List<GarageCarItem> _garageCars = null;
+
+    //    [Inject] private SaveManager _saveManager = null;
+
+    //    private CarShowcase _carShowcase = null;
+
+    //    public CarUpgrades CurrentCarUpgrades => _carShowcase?.GetCurrentCarUpgrades();
+
+    //    private void Awake()
+    //    {
+    //        if (_garageCars == null)
+    //        {
+    //            Debug.LogError("GarageCarOverview: список _garageCars не назначен.", this);
+    //            enabled = false;
+    //            return;
+    //        }
+
+    //        if (_garageCars.Count == 0)
+    //        {
+    //            Debug.LogError("GarageCarOverview: список _garageCars пуст.", this);
+    //            enabled = false;
+    //            return;
+    //        }
+
+    //        if (_saveManager == null)
+    //        {
+    //            Debug.LogError("GarageCarOverview: _saveManager не назначен.", this);
+    //            enabled = false;
+    //            return;
+    //        }
+
+    //        HideAllCars();
+    //    }
+
+    //    private void Start()
+    //    {
+    //        _carShowcase = new CarShowcase(_garageCars, _saveManager);
+
+    //        int firstIndex = _carShowcase.FindFirstPurchasedCarIndex();
+
+    //        if (firstIndex < 0)
+    //        {
+    //            Debug.LogWarning("GarageCarOverview: нет купленных машин.", this);
+    //            return;
+    //        }
+
+    //        _carShowcase.SetCurrentIndex(firstIndex);
+
+    //        ShowCar(firstIndex);
+    //    }
+
+    //    public void ShowNextPurchasedCar()
+    //    {
+    //        if (_carShowcase == null)
+    //            return;
+
+    //        int newIndex = _carShowcase.MoveToNextPurchased();
+
+    //        if (newIndex >= 0)
+    //        {
+    //            ShowCar(newIndex);
+    //        }
+    //        else
+    //        {
+    //            Debug.LogWarning("GarageCarOverview: нет купленных машин для переключения.", this);
+    //        }
+    //    }
+
+    //    public void ShowPreviousPurchasedCar()
+    //    {
+    //        if (_carShowcase == null)
+    //            return;
+
+    //        int newIndex = _carShowcase.MoveToPreviousPurchased();
+    //        if (newIndex >= 0)
+    //        {
+    //            ShowCar(newIndex);
+    //        }
+    //        else
+    //        {
+    //            Debug.LogWarning("GarageCarOverview: нет купленных машин для переключения.", this);
+    //        }
+    //    }
+
+    //    public CarUpgrades RetrieveCurrentCarUpgrades()
+    //    {
+    //        return CurrentCarUpgrades;
+    //    }
+
+    //    private void ShowCar(int index)
+    //    {
+    //        HideAllCars();
+
+    //        GarageCarItem carItem = _carShowcase.GetCurrentCarItem();
+
+    //        if (carItem == null)
+    //        {
+    //            Debug.LogError($"ShowCar: Не удалось получить машину по индексу {index}.", this);
+    //            return;
+    //        }
+
+    //        if (carItem.carObject != null)
+    //        {
+    //            carItem.carObject.SetActive(true);
+    //        }
+
+    //        if (carItem.carUpgrades != null)
+    //        {
+    //            carItem.carUpgrades.InitializePurchasedUpgrades(_saveManager.HasCarUpgrade);
+    //        }
+
+    //        _carShowcase.SaveLastUsedCarId(carItem.carId);
+    //    }
+
+    //    private void HideAllCars()
+    //    {
+    //        for (int i = 0; i < _garageCars.Count; i++)
+    //        {
+    //            if (_garageCars[i].carObject != null)
+    //            {
+    //                _garageCars[i].carObject.SetActive(false);
+    //            }
+    //        }
+    //    }
+    //}
+
+    #endregion
+
+    #region "Garage" CarShowcase
+
+    //internal sealed class CarShowcase
+    //{
+    //    private readonly List<GarageCarItem> _cars;
+    //    private readonly SaveManager _saveManager;
+    //    private int _currentIndex = -1;
+
+    //    internal CarShowcase(List<GarageCarItem> cars, SaveManager saveManager)
+    //    {
+    //        if (cars == null)
+    //        {
+    //            Debug.LogError("CarShowcase: список машин (cars) = null.");
+    //            throw new System.ArgumentNullException(nameof(cars));
+    //        }
+    //        if (cars.Count == 0)
+    //        {
+    //            Debug.LogError("CarShowcase: список машин (cars) пуст.");
+    //            throw new System.ArgumentException("Cars list is empty.");
+    //        }
+    //        if (saveManager == null)
+    //        {
+    //            Debug.LogError("CarShowcase: saveManager = null.");
+    //            throw new System.ArgumentNullException(nameof(saveManager));
+    //        }
+
+    //        _cars = cars;
+    //        _saveManager = saveManager;
+    //    }
+
+    //    internal int CurrentIndex => _currentIndex;
+
+    //    internal int FindFirstPurchasedCarIndex()
+    //    {
+    //        for (int i = 0; i < _cars.Count; i++)
+    //        {
+    //            if (_saveManager.HasCar(_cars[i].carId))
+    //            {
+    //                return i;
+    //            }
+    //        }
+    //        return -1;
+    //    }
+
+    //    internal void SetCurrentIndex(int index)
+    //    {
+    //        if (index < 0 || index >= _cars.Count)
+    //        {
+    //            Debug.LogError($"CarShowcase: некорректный индекс {index} для SetCurrentIndex.");
+    //            throw new System.ArgumentOutOfRangeException(nameof(index));
+    //        }
+    //        _currentIndex = index;
+    //    }
+
+    //    internal int MoveToNextPurchased()
+    //    {
+    //        if (_currentIndex < 0)
+    //            return -1;
+
+    //        int newIndex = _currentIndex;
+
+    //        do
+    //        {
+    //            newIndex = (newIndex + 1) % _cars.Count;
+    //        }
+    //        while (!_saveManager.HasCar(_cars[newIndex].carId) && newIndex != _currentIndex);
+
+    //        if (!_saveManager.HasCar(_cars[newIndex].carId))
+    //        {
+    //            return -1;
+    //        }
+
+    //        _currentIndex = newIndex;
+
+    //        return _currentIndex;
+    //    }
+
+    //    internal int MoveToPreviousPurchased()
+    //    {
+    //        if (_currentIndex < 0)
+    //            return -1;
+
+    //        int newIndex = _currentIndex;
+
+    //        do
+    //        {
+    //            newIndex = (newIndex - 1 + _cars.Count) % _cars.Count;
+    //        }
+    //        while (!_saveManager.HasCar(_cars[newIndex].carId) && newIndex != _currentIndex);
+
+    //        if (!_saveManager.HasCar(_cars[newIndex].carId))
+    //        {
+    //            return -1;
+    //        }
+
+    //        _currentIndex = newIndex;
+
+    //        return _currentIndex;
+    //    }
+
+    //    internal void SaveLastUsedCarId(int carId)
+    //    {
+    //        _saveManager.LastUsedCarId = carId;
+    //        _saveManager.Save();
+    //    }
+
+    //    internal CarUpgrades GetCurrentCarUpgrades()
+    //    {
+    //        if (_currentIndex < 0 || _currentIndex >= _cars.Count)
+    //        {
+    //            return null;
+    //        }
+    //        return _cars[_currentIndex].carUpgrades;
+    //    }
+
+    //    internal GarageCarItem GetCurrentCarItem()
+    //    {
+    //        if (_currentIndex < 0 || _currentIndex >= _cars.Count)
+    //            return null;
+
+    //        return _cars[_currentIndex];
+    //    }
+    //}
+
+    #endregion
 }

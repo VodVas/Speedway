@@ -6,7 +6,7 @@ public class RaceCarSelector : MonoBehaviour
 {
     [SerializeField] private List<RaceCarItem> _allCarsInRace;
 
-    [Inject] private SaveManager _saveManager;
+    [Inject] private SaveService _saveManager;
     private Racer _playerRacer;
 
     private void Start()
@@ -78,9 +78,46 @@ public class RaceCarSelector : MonoBehaviour
 
         if (item.carUpgrades != null)
         {
+            // Инициализация и применение купленных апгрейдов
             item.carUpgrades.InitializePurchasedUpgrades(_saveManager.HasCarUpgrade);
+            item.carUpgrades.ApplyPurchasedStats(
+                _saveManager.HasCarUpgrade,
+                item.carObject.GetComponent<ArcadeVP.ArcadeVehicleController>(), // Убедитесь, что у вас правильный контроллер
+                item.carObject.GetComponent<Health>()
+            );
         }
 
+        if (item.carModifications != null)
+        {
+            // Инициализация и применение купленных модификаций
+            item.carModifications.InitializePurchasedMods(_saveManager.GetCarModificationCount);
+            item.carModifications.ApplyPurchasedMods(
+                _saveManager.GetCarModificationCount,
+                item.carObject.GetComponent<ArcadeVP.ArcadeVehicleController>(), // Убедитесь, что у вас правильный контроллер
+                item.carObject.GetComponent<Health>()
+            );
+        }
+
+        // Установка игрока-гонщика
         _playerRacer = item.carObject.GetComponent<Racer>();
     }
 }
+
+
+
+
+
+
+//    private void ActivateCar(int index)
+//    {
+//        RaceCarItem item = _allCarsInRace[index];
+//        item.carObject.SetActive(true);
+
+//        if (item.carUpgrades != null)
+//        {
+//            item.carUpgrades.InitializePurchasedUpgrades(_saveManager.HasCarUpgrade);
+//        }
+
+//        _playerRacer = item.carObject.GetComponent<Racer>();
+//    }
+//}

@@ -6,6 +6,6 @@ public class ProjectInstaller : ScriptableObjectInstaller<ProjectInstaller>
 {
     public override void InstallBindings()
     {
-        Container.Bind<SaveManager>().AsSingle().NonLazy();
+        Container.Bind<SaveService>().AsSingle().NonLazy();
     }
 }

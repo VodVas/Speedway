@@ -6,7 +6,7 @@ public class CarShop : MonoBehaviour
     [SerializeField] private CarCatalog _carCatalog = null;
     [SerializeField] private ObjectSwitcher _objectSwitcher = null;
 
-    [Inject] private SaveManager _saveManager;
+    [Inject] private SaveService _saveManager;
     private CarShopUI _carShopUI;
 
     private void Awake()

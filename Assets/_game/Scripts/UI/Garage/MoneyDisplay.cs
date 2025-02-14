@@ -6,7 +6,7 @@ public class MoneyDisplay : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI moneyText;
 
-    [Inject] private SaveManager _saveManager;
+    [Inject] private SaveService _saveManager;
 
     private void Start()
     {

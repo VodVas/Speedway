@@ -6,7 +6,7 @@ public class GarageNavigator : MonoBehaviour
 {
     [SerializeField] private List<GarageCarItem> _garageCars;
 
-    [Inject] private SaveManager _saveManager;
+    [Inject] private SaveService _saveManager;
     private int _currentIndex = -1;
 
     private void Start()
@@ -61,8 +61,25 @@ public class GarageNavigator : MonoBehaviour
                 carItem.carUpgrades.InitializePurchasedUpgrades(_saveManager.HasCarUpgrade);
             }
 
+            if (carItem.carModifications != null)
+            {
+                carItem.carModifications.InitializePurchasedMods(_saveManager.GetCarModificationCount);
+            }
+
             SetLastUsedCarId(carItem.carId);
         }
+
+        //if (carItem.carObject != null)
+        //{
+        //    carItem.carObject.SetActive(true);
+
+        //    if (carItem.carUpgrades != null)
+        //    {
+        //        carItem.carUpgrades.InitializePurchasedUpgrades(_saveManager.HasCarUpgrade);
+        //    }
+
+        //    SetLastUsedCarId(carItem.carId);
+        //}
     }
 
     public void NextCar()
@@ -89,6 +106,15 @@ public class GarageNavigator : MonoBehaviour
         while (!_saveManager.HasCar(_garageCars[_currentIndex].carId));
 
         ShowCar(_currentIndex);
+    }
+
+    public CarModifications GetCurrentCarModifications()
+    {
+        if (_currentIndex < 0 || _currentIndex >= _garageCars.Count)
+        {
+            return null;
+        }
+        return _garageCars[_currentIndex].carModifications;
     }
 
     public CarUpgrades GetCurrentCarUpgrades()
