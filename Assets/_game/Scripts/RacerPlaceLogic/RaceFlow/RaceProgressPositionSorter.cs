@@ -1,6 +1,6 @@
 using System;
 
-internal sealed class RaceProgressPositionSorter
+public class RaceProgressPositionSorter
 {
     public void SortRacers(ref Racer[] racers)
     {

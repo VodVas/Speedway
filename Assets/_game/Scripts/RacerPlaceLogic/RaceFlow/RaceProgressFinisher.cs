@@ -1,6 +1,6 @@
 using UnityEngine;
 
-internal sealed class RaceProgressFinisher
+public class RaceProgressFinisher
 {
     public void PrintFinalResults(Racer[] racers, Racer finishingRacer)
     {

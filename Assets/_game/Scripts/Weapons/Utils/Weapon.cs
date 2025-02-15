@@ -5,30 +5,10 @@ public abstract class Weapon : MonoBehaviour, IWeapon
     [field: SerializeField, Range(0, 100)] public float DamageAmount { get; private set; } = 10;
     [field: SerializeField] protected ParticleSystem ParticleShoot { get; private set; }
 
-    //public bool IsActive { get; private set; }
-
-    //private void Awake()
-    //{
-    //    SetActive(true);
-    //}
-
     protected virtual void Update()
     {
         HandleShooting();
     }
-
-    //public void SetActive(bool isActive)
-    //{
-    //    if (IsActive != isActive)
-    //    {
-    //        IsActive = isActive;
-    //    }
-
-    //    if (IsActive == false)
-    //    {
-    //        StopParticleEffect();
-    //    }
-    //}
 
     protected virtual void HandleShooting()
     {

@@ -1,9 +1,6 @@
-using System;
-using TMPro;
 using UnityEngine;
-using Zenject;
 
-internal sealed class RaceProgressCheckpointLogic
+public class RaceProgressCheckpointLogic
 {
     private const string IgnoreCheckpointLog = "Игнорируем пересечение {0}, ждали {1}";
 

@@ -25,7 +25,7 @@ MonoBehaviour:
   Exposure: 1.8
   LUTEnabled: 0
   LUT: {fileID: 0}
-  LUTIntensity: 0.24
+  LUTIntensity: 0.34
   ColorsAmount: 32
   ChromaticAbberationEnabled: 0
   ColorsShiftAmount: 0.0262
@@ -37,7 +37,7 @@ MonoBehaviour:
   BloomBlurTextureResolutionDivider: 10
   BloomBlurIterations: 3
   FilterTextureResolutionDivider: 1
-  BloomIntensity: 0.78
+  BloomIntensity: 0.46
   BloomThreshold: 0.12
   BloomSoftThreshold: 2.15
   BloomDebugView: 0

@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class StraightShootingWeapon : Weapon
 {
+    [field: SerializeField] public bool IsMediumMachineGun { get; private set; } = false;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out Vehicle _))

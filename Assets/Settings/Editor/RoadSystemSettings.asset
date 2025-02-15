@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: RoadSystemSettings
   m_EditorClassIdentifier: 
   roadSettings:
-    drawBoundingBoxes: 0
+    drawBoundingBoxes: 1
     useRayCast: 1
     copyHitNormal: 0
     newRoadPrefab: {fileID: 5069528466591191570, guid: 4772468768a9b1e49b55b9f20cd8d6cc, type: 3}
   intersectionSettings:
     newIntersectionPrefab: {fileID: 1523091806577088016, guid: c59d778336a0d4f4fbf7f92086d9c551, type: 3}
-  drawNavigatorDebug: 0
+  drawNavigatorDebug: 1
   drawNavigatorDebugPoints: 0
   autoCalculateNavigator: 0

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-internal sealed class RaceProgressInitializer
+public class RaceProgressInitializer
 {
     private const string WarningNoPlayerCar = "[RaceFlowInitializer] Нет активной машины игрока (Racer)!";
 

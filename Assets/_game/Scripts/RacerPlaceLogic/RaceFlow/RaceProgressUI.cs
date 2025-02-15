@@ -4,7 +4,8 @@ using UnityEngine;
 internal sealed class RaceProgressUI
 {
     private readonly TextMeshProUGUI _playerPositionText;
-    private const string PositionFormat = "Ваша позиция: {0}";
+    //private const string PositionFormat = "Ваша позиция: {0}";
+    private const string PositionFormat = "{0} / 6";
 
     public RaceProgressUI(TextMeshProUGUI playerPositionText)
     {

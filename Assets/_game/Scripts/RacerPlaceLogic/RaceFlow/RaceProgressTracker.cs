@@ -2,7 +2,7 @@ using UnityEngine;
 using TMPro;
 using Zenject;
 
-internal sealed class RaceProgressTracker : MonoBehaviour
+public class RaceProgressTracker : MonoBehaviour
 {
     private const string NoCheckpointsError = "RaceFlow: список чекпоинтов пуст!";
     private const string NoPlayerFoundError = "RaceFlow: Racer игрока не найден!";

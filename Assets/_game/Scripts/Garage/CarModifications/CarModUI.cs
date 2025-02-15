@@ -110,7 +110,7 @@ public sealed class CarModUI : MonoBehaviour
         if (purchasedCount >= 5)
         {
             _buyButton.interactable = false;
-            _feedbackText.text = "Достигнут лимит (5 из 5)";
+            _feedbackText.text = "Достигнут лимит";
         }
         else
         {

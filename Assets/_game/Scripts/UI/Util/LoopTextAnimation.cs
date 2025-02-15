@@ -13,7 +13,7 @@ public class LoopTextAnimation : MonoBehaviour
 
     private List<int> _targetLetterIndices = new List<int>();
     private List<List<int>> _targetWordsList = new List<List<int>>();
-    private TextMeshProUGUI _text;
+    private TextMeshPro _text;
     private Color[] _originalColors;
     private WaitForSeconds _wait;
 
@@ -26,7 +26,7 @@ public class LoopTextAnimation : MonoBehaviour
     private void Awake()
     {
         _wait = new WaitForSeconds(_letterDelay);
-        _text = GetComponent<TextMeshProUGUI>();
+        _text = GetComponent<TextMeshPro>();
 
         if (_text == null)
         {

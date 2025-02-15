@@ -18,6 +18,7 @@ public class CarUpgrade : MonoBehaviour
     [field: SerializeField] public int Price { get; private set; } = 100;
     [field: SerializeField] public CarUpgradeType UpgradeType { get; private set; } = CarUpgradeType.Weapon;
     [field: SerializeField] public float UpgradeValue { get; private set; } = 5f;
+    [field: SerializeField] public string UpgradeDescription { get; private set; } = string.Empty;
 
     private void Awake()
     {

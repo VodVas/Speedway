@@ -3,12 +3,11 @@ using UnityEngine;
 public class ParticleDamageReceiver : MonoBehaviour
 {
     private DamageHandler _damageHandler;
+    protected IWeapon LastWeaponUsed; //TODO: поменять на закрытое
 
-    private void Awake()
+    protected virtual void Awake()
     {
         _damageHandler = GetComponent<DamageHandler>();
-
-        OnAwake();
     }
 
     private void OnParticleCollision(GameObject other)
@@ -17,13 +16,10 @@ public class ParticleDamageReceiver : MonoBehaviour
 
         if (weapon != null)
         {
-            ApplyDamage(weapon.DamageAmount);
-            HandleAdditionalEffects(weapon);
-        }
-    }
+            LastWeaponUsed = weapon;
 
-    protected virtual void OnAwake()
-    {
+            ApplyDamage(weapon.DamageAmount);
+        }
     }
 
     protected virtual void ApplyDamage(float damageAmount)
@@ -49,9 +45,5 @@ public class ParticleDamageReceiver : MonoBehaviour
         }
 
         return null;
-    }
-
-    protected virtual void HandleAdditionalEffects(IWeapon weapon)
-    {
     }
 }

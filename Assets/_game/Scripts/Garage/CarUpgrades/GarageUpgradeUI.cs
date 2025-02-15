@@ -9,13 +9,15 @@ public class GarageUpgradeUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _upgradeNameText;
     [SerializeField] private TextMeshProUGUI _upgradePriceText;
     [SerializeField] private TextMeshProUGUI _feedbackText;
-    [SerializeField] private Button _buyButton;
+    [SerializeField] private TextMeshProUGUI _upgradeEffectText;
+    [SerializeField] private TextMeshProUGUI _upgradeDescriptionText;
 
     [Header("Buttons")]
     [SerializeField] private Button _nextUpgradeButton;
     [SerializeField] private Button _prevUpgradeButton;
     [SerializeField] private Button _nextCarButton;
     [SerializeField] private Button _prevCarButton;
+    [SerializeField] private Button _buyButton;
 
     [Inject] private SaveService _saveManager;
     [Inject] private GarageNavigator _garageManager;
@@ -58,6 +60,8 @@ public class GarageUpgradeUI : MonoBehaviour
         {
             _upgradeNameText.text = "-";
             _upgradePriceText.text = "-";
+            _upgradeEffectText.text = "";
+            _upgradeDescriptionText.text = "";
             _buyButton.interactable = false;
             return;
         }
@@ -68,6 +72,27 @@ public class GarageUpgradeUI : MonoBehaviour
 
         _upgradeNameText.text = upgrade.UpgradeName;
         _upgradePriceText.text = upgrade.Price.ToString();
+
+        string effectDescription = "";
+
+        switch (upgrade.UpgradeType)
+        {
+            case CarUpgrade.CarUpgradeType.Weapon:
+                effectDescription = $"Урон {upgrade.UpgradeValue}";
+                break;
+            case CarUpgrade.CarUpgradeType.Acceleration:
+                effectDescription = $"Ускорение +{upgrade.UpgradeValue}";
+                break;
+            case CarUpgrade.CarUpgradeType.Turn:
+                effectDescription = $"Поворот +{upgrade.UpgradeValue}";
+                break;
+            case CarUpgrade.CarUpgradeType.Health:
+                effectDescription = $"Броня +{upgrade.UpgradeValue}";
+                break;
+        }
+
+        _upgradeEffectText.text = effectDescription;
+        _upgradeDescriptionText.text = upgrade.UpgradeDescription;
 
         if (_saveManager.HasCarUpgrade(carUpgrades.CarId, upgrade.UpgradeId))
         {
