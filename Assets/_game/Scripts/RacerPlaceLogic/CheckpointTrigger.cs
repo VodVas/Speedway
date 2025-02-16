@@ -3,7 +3,7 @@ using UnityEngine;
 public class CheckpointTrigger : MonoBehaviour
 {
     [SerializeField] private int _checkpointIndex = 0;
-    [SerializeField] private RaceProgressTracker _raceFlow = null;
+    [SerializeField] private RaceProgressTracker _raceProgressTracker = null;
 
     private const string ErrorRaceManagerNull = "CheckpointTrigger: RaceManager is empty";
     private const string ErrorCheckpointIndexInvalid = "CheckpointTrigger: CheckpointIndex must be grater than zero.";
@@ -15,19 +15,16 @@ public class CheckpointTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Racer racer = other.GetComponent<Racer>();
-
-        if (racer == null)
+        if (other.TryGetComponent(out Racer racer))
         {
-            return;
+            _raceProgressTracker?.HandleTriggerEnter(racer, _checkpointIndex);
         }
 
-        _raceFlow?.HandleTriggerEnter(racer, _checkpointIndex);
     }
 
     private void ValidateData()
     {
-        if (_raceFlow == null)
+        if (_raceProgressTracker == null)
         {
             Debug.LogError(ErrorRaceManagerNull, this);
             enabled = false;
@@ -38,6 +35,7 @@ public class CheckpointTrigger : MonoBehaviour
         {
             Debug.LogError(ErrorCheckpointIndexInvalid, this);
             enabled = false;
+            return;
         }
     }
 }

@@ -5088,15 +5088,13 @@ ParticleSystemRenderer:
   m_RenderAlignment: 0
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
+  m_UseCustomVertexStreams: 0
   m_EnableGPUInstancing: 0
   m_ApplyActiveColorSpace: 0
   m_AllowRoll: 1
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
-  m_UseCustomVertexStreams: 0
   m_VertexStreams: 0001030405
-  m_UseCustomTrailVertexStreams: 0
-  m_TrailVertexStreams: 00010304
   m_Mesh: {fileID: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
@@ -10023,15 +10021,13 @@ ParticleSystemRenderer:
   m_RenderAlignment: 0
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
+  m_UseCustomVertexStreams: 0
   m_EnableGPUInstancing: 0
   m_ApplyActiveColorSpace: 0
   m_AllowRoll: 1
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
-  m_UseCustomVertexStreams: 0
   m_VertexStreams: 0001030405
-  m_UseCustomTrailVertexStreams: 0
-  m_TrailVertexStreams: 00010304
   m_Mesh: {fileID: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
@@ -14894,15 +14890,13 @@ ParticleSystemRenderer:
   m_RenderAlignment: 0
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
+  m_UseCustomVertexStreams: 0
   m_EnableGPUInstancing: 0
   m_ApplyActiveColorSpace: 0
   m_AllowRoll: 1
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
-  m_UseCustomVertexStreams: 0
   m_VertexStreams: 0001030405
-  m_UseCustomTrailVertexStreams: 0
-  m_TrailVertexStreams: 00010304
   m_Mesh: {fileID: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
@@ -19848,15 +19842,13 @@ ParticleSystemRenderer:
   m_RenderAlignment: 0
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
+  m_UseCustomVertexStreams: 0
   m_EnableGPUInstancing: 0
   m_ApplyActiveColorSpace: 0
   m_AllowRoll: 1
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
-  m_UseCustomVertexStreams: 0
   m_VertexStreams: 0001030405
-  m_UseCustomTrailVertexStreams: 0
-  m_TrailVertexStreams: 00010304
   m_Mesh: {fileID: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
@@ -21374,6 +21366,8 @@ GameObject:
   - component: {fileID: 6474192528231050284}
   - component: {fileID: 6747411855963175551}
   - component: {fileID: 8442395898647866002}
+  - component: {fileID: 6981224516998537910}
+  - component: {fileID: 1117888605583089809}
   m_Layer: 7
   m_Name: EnemyRedneck
   m_TagString: Untagged
@@ -21762,13 +21756,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5cb22d331ef7d64796f917c6a455a32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _circuits:
-  - {fileID: 0}
-  progressStyle: 0
+  Circuit: {fileID: 0}
   lookAheadForTargetOffset: 20
   lookAheadForTargetFactor: 0.1
+  lookAheadForSpeedOffset: 10
+  lookAheadForSpeedFactor: 0.2
+  progressStyle: 0
+  pointToPointThreshold: 4
+  target: {fileID: 0}
   progressDistance: 0
-  _target: {fileID: 8560548902285985688}
 --- !u!114 &5852477592158999896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21842,6 +21838,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0139568bfb78d84a8b1cbc3f3a835a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6981224516998537910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9218016205699770542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 431bedef999631d4bbc0fdd931be678c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <RacerId>k__BackingField: 3
+--- !u!114 &1117888605583089809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9218016205699770542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f79030890a6bd144fba34c9ec3772c3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _colliders:
+  - {fileID: 6135844607246386331}
+  - {fileID: 7712027331899128787}
+  - {fileID: 1232011970858134332}
+  - {fileID: 5346241602357210519}
 --- !u!1001 &686609360870863435
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21914,6 +21940,11 @@ PrefabInstance:
 --- !u!4 &687335800938395645 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4147184425305526, guid: fc6eccd426715e541a5b8ea274ce0591, type: 3}
+  m_PrefabInstance: {fileID: 686609360870863435}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &7712027331899128787 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 7098179255730243992, guid: fc6eccd426715e541a5b8ea274ce0591, type: 3}
   m_PrefabInstance: {fileID: 686609360870863435}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &828328507988470014
@@ -22217,6 +22248,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1970ab1ab31e6504d9eb5df2e068d319, type: 3}
+--- !u!65 &1232011970858134332 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 1902256543885968322, guid: 1970ab1ab31e6504d9eb5df2e068d319, type: 3}
+  m_PrefabInstance: {fileID: 828328507988470014}
+  m_PrefabAsset: {fileID: 0}
 --- !u!198 &4178611797478755714 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 3639956512962585980, guid: 1970ab1ab31e6504d9eb5df2e068d319, type: 3}
@@ -22322,6 +22358,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6581772567753908080, guid: 3067c6e9d6d3f21488ed41b3913a0a85, type: 3}
   m_PrefabInstance: {fileID: 1752935828131560626}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &5346241602357210519 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 5936315712434639141, guid: 3067c6e9d6d3f21488ed41b3913a0a85, type: 3}
+  m_PrefabInstance: {fileID: 1752935828131560626}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2515313752998407835
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22382,6 +22423,11 @@ PrefabInstance:
 --- !u!4 &2520159425531638617 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4880926231600578, guid: e325368d51ad2ad4d89cb23fe1b75488, type: 3}
+  m_PrefabInstance: {fileID: 2515313752998407835}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &6135844607246386331 stripped
+SphereCollider:
+  m_CorrespondingSourceObject: {fileID: 8633073524203137536, guid: e325368d51ad2ad4d89cb23fe1b75488, type: 3}
   m_PrefabInstance: {fileID: 2515313752998407835}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5874531143113702654

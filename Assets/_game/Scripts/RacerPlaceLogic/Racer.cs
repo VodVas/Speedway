@@ -19,7 +19,6 @@ public class Racer : MonoBehaviour
         ValidateData();
     }
 
-    //public int RacerId => _racerId;
     public int Position => _position;
     public int LastCheckpoint => _lastCheckpoint;
     public int PreviousPosition => _previousPosition;

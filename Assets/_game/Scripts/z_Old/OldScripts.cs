@@ -1,4 +1,4 @@
-public class OldScripts
+п»їpublic class OldScripts
 {
     #region EnemySpawner
 
@@ -544,7 +544,7 @@ public class OldScripts
     //        }
     //    }
 
-    //    private void Update() // TODO: в конутину и раз в несколько кадров или в FixedUpdate
+    //    private void Update() // TODO: РІ РєРѕРЅСѓС‚РёРЅСѓ Рё СЂР°Р· РІ РЅРµСЃРєРѕР»СЊРєРѕ РєР°РґСЂРѕРІ РёР»Рё РІ FixedUpdate
     //    {
     //        for (int i = 0; i < _vehicles.Length; i++)
     //        {
@@ -698,28 +698,28 @@ public class OldScripts
     //    {
     //        if (_wallet == null)
     //        {
-    //            Debug.LogError("Shop: Wallet не назначен!", this);
+    //            Debug.LogError("Shop: Wallet РЅРµ РЅР°Р·РЅР°С‡РµРЅ!", this);
     //            enabled = false;
     //            return;
     //        }
 
     //        if (_carCatalog == null)
     //        {
-    //            Debug.LogError("Shop: CarCatalog не назначен!", this);
+    //            Debug.LogError("Shop: CarCatalog РЅРµ РЅР°Р·РЅР°С‡РµРЅ!", this);
     //            enabled = false;
     //            return;
     //        }
 
     //        if (_objectSwitcher == null)
     //        {
-    //            Debug.LogError("Shop: ObjectSwitcher не назначен!", this);
+    //            Debug.LogError("Shop: ObjectSwitcher РЅРµ РЅР°Р·РЅР°С‡РµРЅ!", this);
     //            enabled = false;
     //            return;
     //        }
 
     //        if (_carNameText == null || _carPriceText == null || _playerMoneyText == null || _SpeedText == null || _AccelerationText == null || _TurnText == null || _ArmorText == null || _WeaponText == null)
     //        {
-    //            Debug.LogError("Shop: не все поля TextMeshPro заполнены!", this);
+    //            Debug.LogError("Shop: РЅРµ РІСЃРµ РїРѕР»СЏ TextMeshPro Р·Р°РїРѕР»РЅРµРЅС‹!", this);
     //            enabled = false;
     //            return;
     //        }
@@ -732,7 +732,7 @@ public class OldScripts
     //    {
     //        if (_carCatalog.GetCount() == 0)
     //        {
-    //            Debug.Log("Shop: Все машины уже куплены!");
+    //            Debug.Log("Shop: Р’СЃРµ РјР°С€РёРЅС‹ СѓР¶Рµ РєСѓРїР»РµРЅС‹!");
     //            return;
     //        }
 
@@ -742,7 +742,7 @@ public class OldScripts
 
     //        if (data == null)
     //        {
-    //            Debug.LogError("Shop: CarData = null или некорректный индекс.", this);
+    //            Debug.LogError("Shop: CarData = null РёР»Рё РЅРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ РёРЅРґРµРєСЃ.", this);
     //            return;
     //        }
 
@@ -750,7 +750,7 @@ public class OldScripts
 
     //        if (_wallet.TrySpendMoney(price))
     //        {
-    //            Debug.Log($"Shop: Куплена машина '{data.CarName}' за {price}.");
+    //            Debug.Log($"Shop: РљСѓРїР»РµРЅР° РјР°С€РёРЅР° '{data.CarName}' Р·Р° {price}.");
 
     //            CarPurchased?.Invoke(currentIndex);
 
@@ -761,7 +761,7 @@ public class OldScripts
     //        }
     //        else
     //        {
-    //            Debug.Log("Shop: Недостаточно денег!");
+    //            Debug.Log("Shop: РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РґРµРЅРµРі!");
     //        }
     //    }
 
@@ -769,7 +769,7 @@ public class OldScripts
     //    {
     //        if (_carCatalog.GetCount() == 0)
     //        {
-    //            Debug.Log("Shop: Все машины уже куплены!");
+    //            Debug.Log("Shop: Р’СЃРµ РјР°С€РёРЅС‹ СѓР¶Рµ РєСѓРїР»РµРЅС‹!");
     //            return;
     //        }
 
@@ -781,7 +781,7 @@ public class OldScripts
     //    {
     //        if (_carCatalog.GetCount() == 0)
     //        {
-    //            Debug.Log("Shop: Все машины уже куплены!");
+    //            Debug.Log("Shop: Р’СЃРµ РјР°С€РёРЅС‹ СѓР¶Рµ РєСѓРїР»РµРЅС‹!");
     //            return;
     //        }
 
@@ -793,7 +793,7 @@ public class OldScripts
     //    {
     //        if (_carCatalog.GetCount() == 0)
     //        {
-    //            _carNameText.text = "Машин нет!";
+    //            _carNameText.text = "РњР°С€РёРЅ РЅРµС‚!";
     //            _carPriceText.text = "0";
     //            _SpeedText.text = "0";
     //            _AccelerationText.text = "0";
@@ -808,7 +808,7 @@ public class OldScripts
 
     //        if (idx < 0 || idx >= _carCatalog.GetCount())
     //        {
-    //            Debug.LogError("Shop: текущий индекс недопустим!", this);
+    //            Debug.LogError("Shop: С‚РµРєСѓС‰РёР№ РёРЅРґРµРєСЃ РЅРµРґРѕРїСѓСЃС‚РёРј!", this);
     //            return;
     //        }
 
@@ -826,7 +826,7 @@ public class OldScripts
     //        }
     //        else
     //        {
-    //            _carNameText.text = "Машина не найдена";
+    //            _carNameText.text = "РњР°С€РёРЅР° РЅРµ РЅР°Р№РґРµРЅР°";
     //            _carPriceText.text = "0";
     //        }
 
@@ -855,7 +855,7 @@ public class OldScripts
     //    {
     //        if (amount < 0)
     //        {
-    //            Debug.LogError("Wallet: сумма для списания не может быть отрицательной!", this);
+    //            Debug.LogError("Wallet: СЃСѓРјРјР° РґР»СЏ СЃРїРёСЃР°РЅРёСЏ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РѕС‚СЂРёС†Р°С‚РµР»СЊРЅРѕР№!", this);
 
     //            return false;
     //        }
@@ -873,7 +873,7 @@ public class OldScripts
     //    {
     //        if (amount < 0)
     //        {
-    //            Debug.LogError("Wallet: сумма для добавления не может быть отрицательной!", this);
+    //            Debug.LogError("Wallet: СЃСѓРјРјР° РґР»СЏ РґРѕР±Р°РІР»РµРЅРёСЏ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РѕС‚СЂРёС†Р°С‚РµР»СЊРЅРѕР№!", this);
     //            return;
     //        }
     //        _currentMoney += amount;
@@ -896,7 +896,7 @@ public class OldScripts
     //    {
     //        if (_carCatalog == null || _objectSwitcher == null)
     //        {
-    //            Debug.LogError("Shop: Не назначены необходимые компоненты!", this);
+    //            Debug.LogError("Shop: РќРµ РЅР°Р·РЅР°С‡РµРЅС‹ РЅРµРѕР±С…РѕРґРёРјС‹Рµ РєРѕРјРїРѕРЅРµРЅС‚С‹!", this);
     //            enabled = false;
     //            return;
     //        }
@@ -905,7 +905,7 @@ public class OldScripts
 
     //        if (_carShopUI == null)
     //        {
-    //            Debug.LogError("Shop: CarShopUI не найден!", this);
+    //            Debug.LogError("Shop: CarShopUI РЅРµ РЅР°Р№РґРµРЅ!", this);
     //            enabled = false;
     //            return;
     //        }
@@ -918,7 +918,7 @@ public class OldScripts
     //    {
     //        if (_carCatalog.GetCount() == 0)
     //        {
-    //            Debug.Log("Shop: Все машины уже куплены!");
+    //            Debug.Log("Shop: Р’СЃРµ РјР°С€РёРЅС‹ СѓР¶Рµ РєСѓРїР»РµРЅС‹!");
     //            return;
     //        }
 
@@ -927,7 +927,7 @@ public class OldScripts
 
     //        if (data == null)
     //        {
-    //            Debug.LogError("Shop: CarData = null или некорректный индекс.", this);
+    //            Debug.LogError("Shop: CarData = null РёР»Рё РЅРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ РёРЅРґРµРєСЃ.", this);
     //            return;
     //        }
 
@@ -935,7 +935,7 @@ public class OldScripts
 
     //        if (_saveManager.TrySpendMoney(price))
     //        {
-    //            Debug.Log($"Shop: Куплена машина '{data.CarName}' за {price}.");
+    //            Debug.Log($"Shop: РљСѓРїР»РµРЅР° РјР°С€РёРЅР° '{data.CarName}' Р·Р° {price}.");
 
     //            _saveManager.AddCar(data.Id);
     //            _carCatalog.RemoveCarAtIndex(currentIndex);
@@ -947,7 +947,7 @@ public class OldScripts
     //        }
     //        else
     //        {
-    //            Debug.Log("Shop: Недостаточно денег!");
+    //            Debug.Log("Shop: РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РґРµРЅРµРі!");
     //        }
     //    }
 
@@ -955,7 +955,7 @@ public class OldScripts
     //    {
     //        if (_carCatalog.GetCount() == 0)
     //        {
-    //            Debug.Log("Shop: Все машины уже куплены!");
+    //            Debug.Log("Shop: Р’СЃРµ РјР°С€РёРЅС‹ СѓР¶Рµ РєСѓРїР»РµРЅС‹!");
     //            return;
     //        }
 
@@ -967,7 +967,7 @@ public class OldScripts
     //    {
     //        if (_carCatalog.GetCount() == 0)
     //        {
-    //            Debug.Log("Shop: Все машины уже куплены!");
+    //            Debug.Log("Shop: Р’СЃРµ РјР°С€РёРЅС‹ СѓР¶Рµ РєСѓРїР»РµРЅС‹!");
     //            return;
     //        }
 
@@ -986,7 +986,7 @@ public class OldScripts
     //        int idx = _objectSwitcher.GetCurrentIndex();
     //        if (idx < 0 || idx >= _carCatalog.GetCount())
     //        {
-    //            Debug.LogError("Shop: текущий индекс недопустим!", this);
+    //            Debug.LogError("Shop: С‚РµРєСѓС‰РёР№ РёРЅРґРµРєСЃ РЅРµРґРѕРїСѓСЃС‚РёРј!", this);
     //            return;
     //        }
 
@@ -1384,7 +1384,7 @@ public class OldScripts
     //            int expectedCheckpointIndex = (racer.LastCheckpoint + 1) % totalCp;
     //            if (checkpointIndex != expectedCheckpointIndex)
     //            {
-    //                Debug.Log($"Игнорируем пересечение {checkpointIndex}, ждали {expectedCheckpointIndex}");
+    //                Debug.Log($"РРіРЅРѕСЂРёСЂСѓРµРј РїРµСЂРµСЃРµС‡РµРЅРёРµ {checkpointIndex}, Р¶РґР°Р»Рё {expectedCheckpointIndex}");
     //                return;
     //            }
     //        }
@@ -1419,7 +1419,7 @@ public class OldScripts
 
     //        if (racer == null)
     //        {
-    //            Debug.LogWarning("[RaceProgressTracker] Нет активной машины игрока (Racer)!");
+    //            Debug.LogWarning("[RaceProgressTracker] РќРµС‚ Р°РєС‚РёРІРЅРѕР№ РјР°С€РёРЅС‹ РёРіСЂРѕРєР° (Racer)!");
     //            return;
     //        }
 
@@ -1506,7 +1506,7 @@ public class OldScripts
     //    {
     //        _raceFinished = true;
 
-    //        Debug.Log("Гонка завершена! Итоговые результаты:");
+    //        Debug.Log("Р“РѕРЅРєР° Р·Р°РІРµСЂС€РµРЅР°! РС‚РѕРіРѕРІС‹Рµ СЂРµР·СѓР»СЊС‚Р°С‚С‹:");
 
     //        for (int i = 0; i < _racers.Length; i++)
     //        {
@@ -1515,10 +1515,10 @@ public class OldScripts
     //            if (racer == null)
     //                continue;
 
-    //            Debug.Log($"Место: {i + 1} | RacerID: {racer.RacerId} | Круги: {racer.LapsCompleted}");
+    //            Debug.Log($"РњРµСЃС‚Рѕ: {i + 1} | RacerID: {racer.RacerId} | РљСЂСѓРіРё: {racer.LapsCompleted}");
     //        }
 
-    //        Debug.Log($"Игрок с ID {finishingRacer.RacerId} закончил гонку на месте {finishingRacer.Position}.");
+    //        Debug.Log($"РРіСЂРѕРє СЃ ID {finishingRacer.RacerId} Р·Р°РєРѕРЅС‡РёР» РіРѕРЅРєСѓ РЅР° РјРµСЃС‚Рµ {finishingRacer.Position}.");
 
     //        foreach (var racer in _racers)
     //        {
@@ -1536,7 +1536,7 @@ public class OldScripts
     //            return;
     //        }
 
-    //        string positionText = $"Ваша позиция: {_playerRacer.Position}";
+    //        string positionText = $"Р’Р°С€Р° РїРѕР·РёС†РёСЏ: {_playerRacer.Position}";
     //        _playerPositionText.text = positionText;
     //    }
 
@@ -1630,21 +1630,21 @@ public class OldScripts
     //    {
     //        if (_garageCars == null)
     //        {
-    //            Debug.LogError("GarageCarOverview: список _garageCars не назначен.", this);
+    //            Debug.LogError("GarageCarOverview: СЃРїРёСЃРѕРє _garageCars РЅРµ РЅР°Р·РЅР°С‡РµРЅ.", this);
     //            enabled = false;
     //            return;
     //        }
 
     //        if (_garageCars.Count == 0)
     //        {
-    //            Debug.LogError("GarageCarOverview: список _garageCars пуст.", this);
+    //            Debug.LogError("GarageCarOverview: СЃРїРёСЃРѕРє _garageCars РїСѓСЃС‚.", this);
     //            enabled = false;
     //            return;
     //        }
 
     //        if (_saveManager == null)
     //        {
-    //            Debug.LogError("GarageCarOverview: _saveManager не назначен.", this);
+    //            Debug.LogError("GarageCarOverview: _saveManager РЅРµ РЅР°Р·РЅР°С‡РµРЅ.", this);
     //            enabled = false;
     //            return;
     //        }
@@ -1660,7 +1660,7 @@ public class OldScripts
 
     //        if (firstIndex < 0)
     //        {
-    //            Debug.LogWarning("GarageCarOverview: нет купленных машин.", this);
+    //            Debug.LogWarning("GarageCarOverview: РЅРµС‚ РєСѓРїР»РµРЅРЅС‹С… РјР°С€РёРЅ.", this);
     //            return;
     //        }
 
@@ -1682,7 +1682,7 @@ public class OldScripts
     //        }
     //        else
     //        {
-    //            Debug.LogWarning("GarageCarOverview: нет купленных машин для переключения.", this);
+    //            Debug.LogWarning("GarageCarOverview: РЅРµС‚ РєСѓРїР»РµРЅРЅС‹С… РјР°С€РёРЅ РґР»СЏ РїРµСЂРµРєР»СЋС‡РµРЅРёСЏ.", this);
     //        }
     //    }
 
@@ -1698,7 +1698,7 @@ public class OldScripts
     //        }
     //        else
     //        {
-    //            Debug.LogWarning("GarageCarOverview: нет купленных машин для переключения.", this);
+    //            Debug.LogWarning("GarageCarOverview: РЅРµС‚ РєСѓРїР»РµРЅРЅС‹С… РјР°С€РёРЅ РґР»СЏ РїРµСЂРµРєР»СЋС‡РµРЅРёСЏ.", this);
     //        }
     //    }
 
@@ -1715,7 +1715,7 @@ public class OldScripts
 
     //        if (carItem == null)
     //        {
-    //            Debug.LogError($"ShowCar: Не удалось получить машину по индексу {index}.", this);
+    //            Debug.LogError($"ShowCar: РќРµ СѓРґР°Р»РѕСЃСЊ РїРѕР»СѓС‡РёС‚СЊ РјР°С€РёРЅСѓ РїРѕ РёРЅРґРµРєСЃСѓ {index}.", this);
     //            return;
     //        }
 
@@ -1758,12 +1758,12 @@ public class OldScripts
     //    {
     //        if (cars == null)
     //        {
-    //            Debug.LogError("CarShowcase: список машин (cars) = null.");
+    //            Debug.LogError("CarShowcase: СЃРїРёСЃРѕРє РјР°С€РёРЅ (cars) = null.");
     //            throw new System.ArgumentNullException(nameof(cars));
     //        }
     //        if (cars.Count == 0)
     //        {
-    //            Debug.LogError("CarShowcase: список машин (cars) пуст.");
+    //            Debug.LogError("CarShowcase: СЃРїРёСЃРѕРє РјР°С€РёРЅ (cars) РїСѓСЃС‚.");
     //            throw new System.ArgumentException("Cars list is empty.");
     //        }
     //        if (saveManager == null)
@@ -1794,7 +1794,7 @@ public class OldScripts
     //    {
     //        if (index < 0 || index >= _cars.Count)
     //        {
-    //            Debug.LogError($"CarShowcase: некорректный индекс {index} для SetCurrentIndex.");
+    //            Debug.LogError($"CarShowcase: РЅРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ РёРЅРґРµРєСЃ {index} РґР»СЏ SetCurrentIndex.");
     //            throw new System.ArgumentOutOfRangeException(nameof(index));
     //        }
     //        _currentIndex = index;
@@ -1910,6 +1910,127 @@ public class OldScripts
     //        {
     //            transform.position += Vector3.down * _speed * Time.deltaTime;
     //        }
+    //    }
+    //}
+
+    #endregion
+
+    #region SaveService
+
+    //public class SaveService : IInitializable
+    //{
+    //    public int Money
+    //    {
+    //        get => YandexGame.savesData.money;
+    //        private set
+    //        {
+    //            YandexGame.savesData.money = value;
+    //            OnMoneyChanged?.Invoke();
+    //        }
+    //    }
+
+    //    public List<int> PurchasedCarIDs => YandexGame.savesData.purchasedCarIDs;
+    //    public List<PurchasedUpgrade> PurchasedUpgrades => YandexGame.savesData.purchasedUpgrades;
+
+    //    public event Action OnMoneyChanged;
+
+    //    public int LastUsedCarId
+    //    {
+    //        get => YandexGame.savesData.lastUsedCarId;
+    //        set => YandexGame.savesData.lastUsedCarId = value;
+    //    }
+
+    //    public void Initialize()
+    //    {
+    //        Debug.Log("[SaveManager] Initialize() в†’ Р—Р°РіСЂСѓР¶Р°РµРј СЃРѕС…СЂР°РЅРµРЅРёСЏ РёР· YandexGame");
+
+    //        YandexGame.LoadProgress();
+
+    //        if (YandexGame.savesData.isFirstSession)
+    //        {
+    //            // РњРѕР¶РЅРѕ РґР°С‚СЊ СЃС‚Р°СЂС‚РѕРІС‹Рµ РґРµРЅСЊРіРё Рё РїСЂРѕС‡РёРµ РїР°СЂР°РјРµС‚СЂС‹
+    //            YandexGame.savesData.isFirstSession = false;
+    //            // Money = 1500; // РїСЂРёРјРµСЂ
+    //            // SaveProgress();
+    //        }
+    //    }
+
+    //    #region Money
+
+    //    public bool TrySpendMoney(int amount)
+    //    {
+    //        if (amount < 0)
+    //        {
+    //            Debug.LogError("[SaveManager] РќРµР»СЊР·СЏ СЃРїРёСЃС‹РІР°С‚СЊ РѕС‚СЂРёС†Р°С‚РµР»СЊРЅСѓСЋ СЃСѓРјРјСѓ!");
+    //            return false;
+    //        }
+
+    //        if (Money >= amount)
+    //        {
+    //            Money -= amount;
+    //            return true;
+    //        }
+    //        return false;
+    //    }
+
+    //    public void AddMoney(int amount)
+    //    {
+    //        if (amount < 0)
+    //        {
+    //            Debug.LogError("[SaveManager] РќРµР»СЊР·СЏ РґРѕР±Р°РІР»СЏС‚СЊ РѕС‚СЂРёС†Р°С‚РµР»СЊРЅСѓСЋ СЃСѓРјРјСѓ!");
+    //            return;
+    //        }
+
+    //        Money += amount;
+    //    }
+
+    //    #endregion
+
+    //    #region Cars
+
+    //    public void AddCar(int carId)
+    //    {
+    //        if (!PurchasedCarIDs.Contains(carId))
+    //        {
+    //            PurchasedCarIDs.Add(carId);
+    //        }
+    //    }
+
+    //    public bool HasCar(int carId)
+    //    {
+    //        return PurchasedCarIDs.Contains(carId);
+    //    }
+
+    //    #endregion
+
+    //    #region Upgrades
+
+    //    public bool HasCarUpgrade(int carId, int upgradeId)
+    //    {
+    //        for (int i = 0; i < PurchasedUpgrades.Count; i++)
+    //        {
+    //            if (PurchasedUpgrades[i].carId == carId && PurchasedUpgrades[i].upgradeId == upgradeId)
+    //                return true;
+    //        }
+
+    //        return false;
+    //    }
+
+    //    public void AddCarUpgrade(int carId, int upgradeId)
+    //    {
+    //        if (!HasCarUpgrade(carId, upgradeId))
+    //        {
+    //            PurchasedUpgrade record = new PurchasedUpgrade { carId = carId, upgradeId = upgradeId };
+    //            PurchasedUpgrades.Add(record);
+    //        }
+    //    }
+
+    //    #endregion
+
+    //    public void Save()
+    //    {
+    //        YandexGame.SaveProgress();
+    //        Debug.Log("[SaveManager] РЎРѕС…СЂР°РЅРµРЅРёРµ РІС‹РїРѕР»РЅРµРЅРѕ!");
     //    }
     //}
 

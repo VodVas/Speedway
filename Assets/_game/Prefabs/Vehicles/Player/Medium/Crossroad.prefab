@@ -5051,15 +5051,13 @@ ParticleSystemRenderer:
   m_RenderAlignment: 0
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
+  m_UseCustomVertexStreams: 0
   m_EnableGPUInstancing: 0
   m_ApplyActiveColorSpace: 0
   m_AllowRoll: 1
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
-  m_UseCustomVertexStreams: 0
   m_VertexStreams: 0001030405
-  m_UseCustomTrailVertexStreams: 0
-  m_TrailVertexStreams: 00010304
   m_Mesh: {fileID: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
@@ -10123,15 +10121,13 @@ ParticleSystemRenderer:
   m_RenderAlignment: 0
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
+  m_UseCustomVertexStreams: 0
   m_EnableGPUInstancing: 0
   m_ApplyActiveColorSpace: 0
   m_AllowRoll: 1
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
-  m_UseCustomVertexStreams: 0
   m_VertexStreams: 0001030405
-  m_UseCustomTrailVertexStreams: 0
-  m_TrailVertexStreams: 00010304
   m_Mesh: {fileID: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
@@ -10616,7 +10612,6 @@ GameObject:
   - component: {fileID: 6221771313540498548}
   - component: {fileID: 1448758846658353943}
   - component: {fileID: 6010563739403624029}
-  - component: {fileID: 7357691613112788093}
   m_Layer: 7
   m_Name: Crossroad
   m_TagString: Untagged
@@ -11069,18 +11064,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <RacerId>k__BackingField: 0
---- !u!114 &7357691613112788093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5389964055449079453}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a608c6d18e96504595d52ee10fe27d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5446440045703327335
 GameObject:
   m_ObjectHideFlags: 0
@@ -16150,15 +16133,13 @@ ParticleSystemRenderer:
   m_RenderAlignment: 0
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
+  m_UseCustomVertexStreams: 0
   m_EnableGPUInstancing: 0
   m_ApplyActiveColorSpace: 0
   m_AllowRoll: 1
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
-  m_UseCustomVertexStreams: 0
   m_VertexStreams: 0001030405
-  m_UseCustomTrailVertexStreams: 0
-  m_TrailVertexStreams: 00010304
   m_Mesh: {fileID: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
@@ -21340,15 +21321,13 @@ ParticleSystemRenderer:
   m_RenderAlignment: 0
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
+  m_UseCustomVertexStreams: 0
   m_EnableGPUInstancing: 0
   m_ApplyActiveColorSpace: 0
   m_AllowRoll: 1
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
-  m_UseCustomVertexStreams: 0
   m_VertexStreams: 0001030405
-  m_UseCustomTrailVertexStreams: 0
-  m_TrailVertexStreams: 00010304
   m_Mesh: {fileID: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
@@ -21410,14 +21389,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7571881956174698426, guid: 1ad7bb54d79e6514ba86e3016730c8ce, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1579042256172754, guid: 1ad7bb54d79e6514ba86e3016730c8ce, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7873003583241248789}
   m_SourcePrefab: {fileID: 100100000, guid: 1ad7bb54d79e6514ba86e3016730c8ce, type: 3}
 --- !u!4 &302291389313529395 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4147184425305526, guid: 1ad7bb54d79e6514ba86e3016730c8ce, type: 3}
+  m_PrefabInstance: {fileID: 306050973402149765}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &304788593045374295 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1579042256172754, guid: 1ad7bb54d79e6514ba86e3016730c8ce, type: 3}
+  m_PrefabInstance: {fileID: 306050973402149765}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7873003583241248789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304788593045374295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93c1116da1ec9c34a89b998dda90f3df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <DamageAmount>k__BackingField: 10
+  <ParticleShoot>k__BackingField: {fileID: 6220999923332076489}
+--- !u!198 &6220999923332076489 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5938596190533509196, guid: 1ad7bb54d79e6514ba86e3016730c8ce, type: 3}
   m_PrefabInstance: {fileID: 306050973402149765}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4775560276150479188
@@ -21543,13 +21550,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7571881956174698426, guid: 1ad7bb54d79e6514ba86e3016730c8ce, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1579042256172754, guid: 1ad7bb54d79e6514ba86e3016730c8ce, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1625212621749989783}
   m_SourcePrefab: {fileID: 100100000, guid: 1ad7bb54d79e6514ba86e3016730c8ce, type: 3}
+--- !u!198 &109727476959667942 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5938596190533509196, guid: 1ad7bb54d79e6514ba86e3016730c8ce, type: 3}
+  m_PrefabInstance: {fileID: 6048322524494366378}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6044198615302669084 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4147184425305526, guid: 1ad7bb54d79e6514ba86e3016730c8ce, type: 3}
   m_PrefabInstance: {fileID: 6048322524494366378}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6046761358177382520 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1579042256172754, guid: 1ad7bb54d79e6514ba86e3016730c8ce, type: 3}
+  m_PrefabInstance: {fileID: 6048322524494366378}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1625212621749989783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6046761358177382520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93c1116da1ec9c34a89b998dda90f3df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <DamageAmount>k__BackingField: 10
+  <ParticleShoot>k__BackingField: {fileID: 109727476959667942}

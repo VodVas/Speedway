@@ -11,11 +11,13 @@ public class RaceProgressTracker : MonoBehaviour
     [SerializeField] private Transform[] _checkpoints = null;
     [SerializeField] private Racer[] _racers = null;
     [SerializeField] private TextMeshProUGUI _playerPositionText = null;
+    [SerializeField] private TextMeshProUGUI _playerLapsText = null;
     [SerializeField] private int _playerId = 6;
     [SerializeField] private int _totalLaps = 3;
 
-    [Inject] private RaceCarSelector _raceCarManager = null;
-    private RaceProgressUI _userInterface;
+    [Inject] private RaceCarSelector _raceCarSelector = null;
+    private RaceProgressPositionUI _raceProgressPosition;
+    private RaceProgressUILaps _raceProgressUILaps;
     private RaceProgressInitializer _initializer;
     private RaceProgressPositionSorter _positionSorter;
     private RaceProgressCheckpointLogic _checkpointLogic;
@@ -31,10 +33,11 @@ public class RaceProgressTracker : MonoBehaviour
             return;
         }
 
-        _initializer = new RaceProgressInitializer(_racers, _playerId, _raceCarManager);
+        _initializer = new RaceProgressInitializer(_racers, _playerId, _raceCarSelector);
+        _raceProgressUILaps = new RaceProgressUILaps(_playerLapsText);
         _positionSorter = new RaceProgressPositionSorter();
         _finisher = new RaceProgressFinisher();
-        _userInterface = new RaceProgressUI(_playerPositionText);
+        _raceProgressPosition = new RaceProgressPositionUI(_playerPositionText);
         _checkpointLogic = new RaceProgressCheckpointLogic(_totalLaps);
     }
 
@@ -51,7 +54,7 @@ public class RaceProgressTracker : MonoBehaviour
             Debug.LogWarning(NoPlayerFoundError, this);
         }
 
-        _userInterface.UpdatePlayerUI(_playerRacer);
+        _raceProgressPosition.UpdatePlayerUI(_playerRacer);
     }
 
     public void HandleTriggerEnter(Racer racer, int checkpointIndex)
@@ -85,10 +88,20 @@ public class RaceProgressTracker : MonoBehaviour
             }
         }
 
-        UpdatePositionsAround(racer);
+        UpdatePositionsAround();
+        UpdateLapCounter();
     }
 
-    private void UpdatePositionsAround(Racer updatedRacer)
+    private void UpdateLapCounter()
+    {
+        if (_playerRacer != null)
+        {
+            int currentLap = _playerRacer.LapsCompleted + 1;
+            _raceProgressUILaps.UpdateLapCounter(currentLap, _totalLaps);
+        }
+    }
+
+    private void UpdatePositionsAround()
     {
         _positionSorter.SortRacers(ref _racers);
 
@@ -110,7 +123,7 @@ public class RaceProgressTracker : MonoBehaviour
 
                 if (ReferenceEquals(currentRacer, _playerRacer))
                 {
-                    _userInterface.UpdatePlayerUI(_playerRacer);
+                    _raceProgressPosition.UpdatePlayerUI(_playerRacer);
                 }
             }
         }
@@ -153,7 +166,7 @@ public class RaceProgressTracker : MonoBehaviour
             return false;
         }
 
-        if (_raceCarManager == null)
+        if (_raceCarSelector == null)
         {
             Debug.LogError("RaceFlow: RaceCarManager (внедрённый) не назначен!", this);
             return false;

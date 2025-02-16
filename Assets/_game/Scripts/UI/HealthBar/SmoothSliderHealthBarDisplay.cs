@@ -15,4 +15,9 @@ public class SmoothSliderHealthBarDisplay : SmoothHealthBarBase
     {
         _slider.value = value;
     }
+
+    public void Initialize(Health targetHealth)
+    {
+        BindHealth(targetHealth);
+    }
 }

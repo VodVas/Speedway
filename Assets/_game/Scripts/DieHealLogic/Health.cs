@@ -4,6 +4,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [field: SerializeField, Range(1, 1000)] public float Max { get; private set; } = 100;
+
     public float Value { get; private set; }
 
     public event Action<float> Changed;

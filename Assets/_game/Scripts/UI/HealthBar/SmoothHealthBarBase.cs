@@ -4,7 +4,7 @@ using UnityEngine;
 public abstract class SmoothHealthBarBase : MonoBehaviour
 {
     [SerializeField] private Health _health;
-    [SerializeField] private float _smoothSpeed = 0.3f;
+    [SerializeField] private float _smoothSpeed = 1f;
 
     private float _currentValue;
     private float _targetValue;
@@ -12,17 +12,86 @@ public abstract class SmoothHealthBarBase : MonoBehaviour
 
     private void Awake()
     {
-        _currentValue = _health.Value / _health.Max;
-        _targetValue = _currentValue;
-
-        SetInstantValue(_currentValue);
+        if (_health != null)
+        {
+            _currentValue = CalculateNormalizedHealth(_health);
+            _targetValue = _currentValue;
+            SetInstantValue(_currentValue);
+        }
+        else
+        {
+            _currentValue = 0f;
+            _targetValue = 0f;
+            SetInstantValue(0f);
+        }
     }
 
     private void OnEnable()
     {
-        _health.Changed += OnHealthChanged;
+        if (_health != null)
+        {
+            _health.Changed += OnHealthChanged;
+            UpdateHealthBarInstant();
+        }
+    }
 
-        UpdateHealthBarInstant();
+    private void OnDisable()
+    {
+        if (_health != null)
+        {
+            _health.Changed -= OnHealthChanged;
+        }
+
+        if (_fillingCoroutine != null)
+        {
+            StopCoroutine(_fillingCoroutine);
+
+            _fillingCoroutine = null;
+        }
+    }
+
+    public bool BindHealth(Health newHealth)
+    {
+        if (newHealth == null)
+        {
+            Debug.LogError("[SmoothHealthBarBase] BindHealth: newHealth is null.", this);
+            enabled = false;
+            return false;
+        }
+
+        if (_health != null)
+        {
+            _health.Changed -= OnHealthChanged;
+        }
+
+        _health = newHealth;
+
+        if (isActiveAndEnabled)
+        {
+            _health.Changed += OnHealthChanged;
+            ApplyInstantUpdate();
+        }
+
+        return true;
+    }
+
+    private void ApplyInstantUpdate()
+    {
+        _currentValue = CalculateNormalizedHealth(_health);
+        _targetValue = _currentValue;
+        SetInstantValue(_currentValue);
+    }
+
+    private float CalculateNormalizedHealth(Health health)
+    {
+        if (health.Max <= 0f)
+        {
+            Debug.LogError("[SmoothHealthBarBase] Health.Max <= 0 Ч некорректное значение!", this);
+            enabled = false;
+            return 0f;
+        }
+
+        return health.Value / health.Max;
     }
 
     private void UpdateHealthBarInstant()
@@ -33,21 +102,6 @@ public abstract class SmoothHealthBarBase : MonoBehaviour
         SetInstantValue(_currentValue);
     }
 
-    private void OnDisable()
-    {
-        _health.Changed -= OnHealthChanged;
-
-        if (_fillingCoroutine != null)
-        {
-            StopCoroutine(_fillingCoroutine);
-
-            _fillingCoroutine = null;
-        }
-    }
-
-    protected abstract void SetInstantValue(float value);
-
-    protected abstract void SetDisplayValue(float value);
 
     private void OnHealthChanged(float normalized)
     {
@@ -78,4 +132,8 @@ public abstract class SmoothHealthBarBase : MonoBehaviour
 
         _fillingCoroutine = null;
     }
+
+    protected abstract void SetInstantValue(float value);
+
+    protected abstract void SetDisplayValue(float value);
 }

@@ -662,7 +662,15 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 198097232184664602, guid: 91f767b549533eb4b896cd368ed1a008, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198097232184664602, guid: 91f767b549533eb4b896cd368ed1a008, type: 3}
       propertyPath: EmissionModule.rateOverTime.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198307641502024698, guid: 91f767b549533eb4b896cd368ed1a008, type: 3}
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198307641502024698, guid: 91f767b549533eb4b896cd368ed1a008, type: 3}
@@ -693,9 +701,17 @@ PrefabInstance:
       propertyPath: lengthInSec
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 198547307272618652, guid: 91f767b549533eb4b896cd368ed1a008, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 198594480793666700, guid: 91f767b549533eb4b896cd368ed1a008, type: 3}
       propertyPath: moveWithTransform
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198736734031831898, guid: 91f767b549533eb4b896cd368ed1a008, type: 3}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198736734031831898, guid: 91f767b549533eb4b896cd368ed1a008, type: 3}
       propertyPath: moveWithTransform
@@ -878,6 +894,10 @@ PrefabInstance:
     - target: {fileID: 198594480793666700, guid: 91f767b549533eb4b896cd368ed1a008, type: 3}
       propertyPath: moveWithTransform
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198736734031831898, guid: 91f767b549533eb4b896cd368ed1a008, type: 3}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198736734031831898, guid: 91f767b549533eb4b896cd368ed1a008, type: 3}
       propertyPath: moveWithTransform

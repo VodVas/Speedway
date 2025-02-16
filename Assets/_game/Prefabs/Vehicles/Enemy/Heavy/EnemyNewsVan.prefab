@@ -4853,15 +4853,13 @@ ParticleSystemRenderer:
   m_RenderAlignment: 0
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
+  m_UseCustomVertexStreams: 0
   m_EnableGPUInstancing: 0
   m_ApplyActiveColorSpace: 0
   m_AllowRoll: 1
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
-  m_UseCustomVertexStreams: 0
   m_VertexStreams: 0001030405
-  m_UseCustomTrailVertexStreams: 0
-  m_TrailVertexStreams: 00010304
   m_Mesh: {fileID: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
@@ -5299,6 +5297,8 @@ GameObject:
   - component: {fileID: 5037469892743673158}
   - component: {fileID: 7685817797942330885}
   - component: {fileID: 1607766776923128547}
+  - component: {fileID: 8267749093314106189}
+  - component: {fileID: 1430033249692068584}
   m_Layer: 7
   m_Name: EnemyNewsVan
   m_TagString: Untagged
@@ -5687,13 +5687,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5cb22d331ef7d64796f917c6a455a32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _circuits:
-  - {fileID: 0}
-  progressStyle: 0
+  Circuit: {fileID: 0}
   lookAheadForTargetOffset: 20
   lookAheadForTargetFactor: 0.1
+  lookAheadForSpeedOffset: 10
+  lookAheadForSpeedFactor: 0.2
+  progressStyle: 0
+  pointToPointThreshold: 4
+  target: {fileID: 0}
   progressDistance: 0
-  _target: {fileID: 8040846681399838751}
 --- !u!114 &683213781127345255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5767,6 +5769,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0139568bfb78d84a8b1cbc3f3a835a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8267749093314106189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098983355447542071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 431bedef999631d4bbc0fdd931be678c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <RacerId>k__BackingField: 5
+--- !u!114 &1430033249692068584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098983355447542071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f79030890a6bd144fba34c9ec3772c3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _colliders:
+  - {fileID: 3444385648647579123}
+  - {fileID: 833754002022706356}
+  - {fileID: 348359621226451352}
+  - {fileID: 8191160945906116623}
 --- !u!1 &1460982898689835258
 GameObject:
   m_ObjectHideFlags: 0
@@ -11570,15 +11602,13 @@ ParticleSystemRenderer:
   m_RenderAlignment: 0
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
+  m_UseCustomVertexStreams: 0
   m_EnableGPUInstancing: 0
   m_ApplyActiveColorSpace: 0
   m_AllowRoll: 1
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
-  m_UseCustomVertexStreams: 0
   m_VertexStreams: 0001030405
-  m_UseCustomTrailVertexStreams: 0
-  m_TrailVertexStreams: 00010304
   m_Mesh: {fileID: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
@@ -16639,15 +16669,13 @@ ParticleSystemRenderer:
   m_RenderAlignment: 0
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
+  m_UseCustomVertexStreams: 0
   m_EnableGPUInstancing: 0
   m_ApplyActiveColorSpace: 0
   m_AllowRoll: 1
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
-  m_UseCustomVertexStreams: 0
   m_VertexStreams: 0001030405
-  m_UseCustomTrailVertexStreams: 0
-  m_TrailVertexStreams: 00010304
   m_Mesh: {fileID: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
@@ -21593,15 +21621,13 @@ ParticleSystemRenderer:
   m_RenderAlignment: 0
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
+  m_UseCustomVertexStreams: 0
   m_EnableGPUInstancing: 0
   m_ApplyActiveColorSpace: 0
   m_AllowRoll: 1
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
-  m_UseCustomVertexStreams: 0
   m_VertexStreams: 0001030405
-  m_UseCustomTrailVertexStreams: 0
-  m_TrailVertexStreams: 00010304
   m_Mesh: {fileID: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
@@ -22277,6 +22303,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1970ab1ab31e6504d9eb5df2e068d319, type: 3}
+--- !u!65 &833754002022706356 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 1902256543885968322, guid: 1970ab1ab31e6504d9eb5df2e068d319, type: 3}
+  m_PrefabInstance: {fileID: 1293723758676406134}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4814490742550789355 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5991119240705774493, guid: 1970ab1ab31e6504d9eb5df2e068d319, type: 3}
@@ -22356,6 +22387,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1970ab1ab31e6504d9eb5df2e068d319, type: 3}
+--- !u!65 &348359621226451352 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 1902256543885968322, guid: 1970ab1ab31e6504d9eb5df2e068d319, type: 3}
+  m_PrefabInstance: {fileID: 2212308677446505050}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5590946466029896135 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5991119240705774493, guid: 1970ab1ab31e6504d9eb5df2e068d319, type: 3}
@@ -22430,6 +22466,11 @@ PrefabInstance:
 --- !u!4 &6635753412782204518 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4085705748484183282, guid: 1ad96c5ac322521429097b4b89b5ced1, type: 3}
+  m_PrefabInstance: {fileID: 7252406360876511892}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &8191160945906116623 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 1515848656033061531, guid: 1ad96c5ac322521429097b4b89b5ced1, type: 3}
   m_PrefabInstance: {fileID: 7252406360876511892}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8958360813461065188
@@ -22540,6 +22581,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <DamageAmount>k__BackingField: 10
   <ParticleShoot>k__BackingField: {fileID: 5853822300717072226}
+  <IsMediumMachineGun>k__BackingField: 0
 --- !u!114 &4286459441793447526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22554,6 +22596,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <DamageAmount>k__BackingField: 10
   <ParticleShoot>k__BackingField: {fileID: 3629315638617632861}
+  <IsMediumMachineGun>k__BackingField: 0
 --- !u!65 &3444385648647579123
 BoxCollider:
   m_ObjectHideFlags: 0
