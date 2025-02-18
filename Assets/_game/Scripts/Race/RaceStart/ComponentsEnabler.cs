@@ -19,12 +19,14 @@ public class ComponentsEnabler : MonoBehaviour
 
     private void OnEnable()
     {
-        _raceStartTimeCounter.Started += EnableComponent;
+        if (_raceStartTimeCounter != null)
+            _raceStartTimeCounter.Started += EnableComponent;
     }
 
     private void OnDisable()
     {
-        _raceStartTimeCounter.Started -= EnableComponent;
+        if (_raceStartTimeCounter != null)
+            _raceStartTimeCounter.Started -= EnableComponent;
     }
 
     private void EnableComponent()

@@ -5487,6 +5487,100 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1868234579354367876}
+--- !u!1 &3904746755636534765
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 417319313491994887}
+  - component: {fileID: 7714546566584899523}
+  m_Layer: 0
+  m_Name: Point Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &417319313491994887
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3904746755636534765}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.18245225, y: -0, z: -0, w: 0.98321474}
+  m_LocalPosition: {x: -0.24000001, y: 1.72, z: 12.63}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2177156114484612286}
+  m_LocalEulerAnglesHint: {x: 21.025, y: 0, z: 0}
+--- !u!108 &7714546566584899523
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3904746755636534765}
+  m_Enabled: 1
+  serializedVersion: 10
+  m_Type: 0
+  m_Shape: 0
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 5.67
+  m_Range: 20
+  m_SpotAngle: 15
+  m_InnerSpotAngle: 1
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!1 &4738211767925507625
 GameObject:
   m_ObjectHideFlags: 0
@@ -5789,6 +5883,7 @@ Transform:
   - {fileID: 6852013069317440501}
   - {fileID: 4570466618499280224}
   - {fileID: 8078967297255757446}
+  - {fileID: 417319313491994887}
   m_Father: {fileID: 5017500968541852711}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5651431259818616108
@@ -20835,6 +20930,7 @@ GameObject:
   - component: {fileID: 313647291299393105}
   - component: {fileID: 6722239252132758335}
   - component: {fileID: 6139536787476898767}
+  - component: {fileID: 3665944663926844222}
   m_Layer: 7
   m_Name: BUGgy
   m_TagString: Untagged
@@ -20996,6 +21092,10 @@ MonoBehaviour:
   carVelocity: {x: 0, y: 0, z: 0}
   skidWidth: 0.20510253
   BodyTilt: 10
+  <SkidMarksFadeDuration>k__BackingField: 2
+  _baseDriftMultiplier: 1
+  _driftInterval: 2
+  _driftScorePerInterval: 100
 --- !u!54 &4648728008574791811
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -21337,6 +21437,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletHoleUI: {fileID: 0}
+--- !u!114 &3665944663926844222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7785104520783736772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f79030890a6bd144fba34c9ec3772c3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _colliders:
+  - {fileID: 7956780509354593996}
+  _playerWeapon:
+  - {fileID: 6390235629283538277}
 --- !u!1 &8728708258273903365
 GameObject:
   m_ObjectHideFlags: 0
@@ -21823,6 +21939,11 @@ MonoBehaviour:
   <UpgradeType>k__BackingField: 0
   <UpgradeValue>k__BackingField: 0
   <UpgradeDescription>k__BackingField: 
+--- !u!135 &7956780509354593996 stripped
+SphereCollider:
+  m_CorrespondingSourceObject: {fileID: 5841434483916455534, guid: c27d602dadf567a4ea306c40543331ea, type: 3}
+  m_PrefabInstance: {fileID: 4574768823115952290}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8075229166524453680
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21884,6 +22005,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abb0ad16da5431947b1852de369865a4, type: 3}
+--- !u!114 &6390235629283538277 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2935880037543257685, guid: abb0ad16da5431947b1852de369865a4, type: 3}
+  m_PrefabInstance: {fileID: 8075229166524453680}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93c1116da1ec9c34a89b998dda90f3df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8078967297255757446 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4147184425305526, guid: abb0ad16da5431947b1852de369865a4, type: 3}
