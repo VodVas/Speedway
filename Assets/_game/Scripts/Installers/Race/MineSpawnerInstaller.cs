@@ -6,7 +6,6 @@ using Zenject;
 public class MineSpawnerInstaller : MonoInstaller
 {
     [SerializeField] private Detonator _mine;
-    [SerializeField] private MineSpawner _mineSpawner;
 
     public override void InstallBindings()
     {
@@ -22,6 +21,5 @@ public class MineSpawnerInstaller : MonoInstaller
         };
 
         Container.Bind<IFactory<Detonator>>().To<Factory<Detonator>>().AsSingle().WithArguments(mines);
-        Container.Bind<MineSpawner>().FromInstance(_mineSpawner).AsSingle();
     }
 }

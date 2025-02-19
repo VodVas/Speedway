@@ -10,6 +10,7 @@ public class RaceCarSelector : MonoBehaviour
     [Inject] private SmoothSliderHealthBarDisplay _healthBarDisplay;
     [Inject] private UiCarBinder _uiCarBinder = null;
     [Inject] private SaveService _saveManager;
+    [Inject] private DriftScoreUIDisplayer _driftScoreUIDisplayer;
     private Racer _playerRacer;
 
     private void Start()
@@ -27,11 +28,6 @@ public class RaceCarSelector : MonoBehaviour
     public Racer GetPlayerRacer()
     {
         return _playerRacer;
-    }
-
-    public IReadOnlyList<RaceCarItem> GetAllCars()
-    {
-        return _allCarsInRace.AsReadOnly();
     }
 
     private void DeactivateAllCars()
@@ -128,6 +124,15 @@ public class RaceCarSelector : MonoBehaviour
             var carTransform = item.carObject.transform;
 
             _uiCarBinder.BindPlayerCar(rigidbody, health, carTransform);
+        }
+
+        if (item.carObject.TryGetComponent<ArcadeVehicleController>(out var driftCar))
+        {
+            _driftScoreUIDisplayer.SetPlayerCar(driftCar);
+        }
+        else
+        {
+            Debug.LogWarning("[RaceCarSelector] ArcadeVehicleController не найден. Дрифт-UI не будет обновляться для машины игрока.");
         }
     }
 }

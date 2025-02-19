@@ -6,9 +6,9 @@ public class RaceProgressInitializer
 
     private readonly Racer[] _racers;
     private readonly int _playerId;
-    private readonly RaceCarSelector _raceCarManager;
+    private readonly RaceCarSelector _raceCarSelector;
 
-    public RaceProgressInitializer(Racer[] racers, int playerId, RaceCarSelector raceCarManager)
+    public RaceProgressInitializer(Racer[] racers, int playerId, RaceCarSelector raceCarSelector)
     {
         if (racers == null || racers.Length == 0)
         {
@@ -20,19 +20,19 @@ public class RaceProgressInitializer
             Debug.LogError("[RaceFlowInitializer] Некорректный playerId < 0, отключаем скрипт.");
         }
 
-        if (raceCarManager == null)
+        if (raceCarSelector == null)
         {
             Debug.LogError("[RaceFlowInitializer] RaceCarManager не назначен, отключаем скрипт.");
         }
 
         _racers = racers;
         _playerId = playerId;
-        _raceCarManager = raceCarManager;
+        _raceCarSelector = raceCarSelector;
     }
 
     public void InsertPlayerCarIntoRacers()
     {
-        Racer racer = _raceCarManager.GetPlayerRacer();
+        Racer racer = _raceCarSelector.GetPlayerRacer();
 
         if (racer == null)
         {

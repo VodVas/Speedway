@@ -44,7 +44,7 @@ public class PlayerDamageReceiverForBulletUI : ParticleDamageReceiver
 
         if (weapon is StraightShootingWeapon straight)
         {
-            return straight.IsMediumMachineGun;
+            return straight.IsBulletWeapon;
         }
 
         return false;

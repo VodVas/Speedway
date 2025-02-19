@@ -8,16 +8,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_game/Scenes/StartMenu.unity
     guid: 195a333ea7942fc44895745efceee9d3
-  - enabled: 1
-    path: Assets/_game/Scenes/CarShop.unity
-    guid: bbd5a7925ab0143469cdc44eca85cb0d
-  - enabled: 1
-    path: Assets/_game/Scenes/Garage.unity
-    guid: 25c7ca3a9568e754dbc399aa8b1a480a
-  - enabled: 1
-    path: Assets/_game/Scenes/Level1.unity
-    guid: 75e733d133a609247933f8e698f823dc
-  - enabled: 1
-    path: Assets/_game/Scenes/HubWorld1.unity
-    guid: a2f4ab1ab60383548b97078f0f470404
   m_configObjects: {}

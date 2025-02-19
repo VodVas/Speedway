@@ -9,16 +9,9 @@ public class UiCarBinder : MonoBehaviour
 
     private void Awake()
     {
-        if (_speedDisplay == null || _healthUpdater == null || _minimapDisplay == null)
+        if (_speedDisplay == null || _healthUpdater == null)
         {
             Debug.LogError("[UiCarBinder] Не все ссылки на UI скрипты назначены!", this);
-            enabled = false;
-            return;
-        }
-
-        if (_playerIconPrefab == null)
-        {
-            Debug.LogError("[UiCarBinder] _playerIconPrefab не назначен!", this);
             enabled = false;
             return;
         }
@@ -44,6 +37,9 @@ public class UiCarBinder : MonoBehaviour
             _healthUpdater.enabled = false;
         }
 
-        _minimapDisplay.RegisterRacer(playerTransform, _playerIconPrefab);
+        if (_minimapDisplay != null && _playerIconPrefab != null)
+        {
+            _minimapDisplay.RegisterRacer(playerTransform, _playerIconPrefab);
+        }
     }
 }
