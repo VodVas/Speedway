@@ -1,12 +1,13 @@
 using TMPro;
 using UnityEngine;
+using YG;
 using Zenject;
 
 public class MoneyDisplay : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI moneyText;
 
-    [Inject] private SaveService _saveManager;
+    //[Inject] private SaveService _saveManager;
 
     private void Start()
     {
@@ -15,16 +16,16 @@ public class MoneyDisplay : MonoBehaviour
 
     private void OnEnable()
     {
-        _saveManager.OnMoneyChanged += UpdateMoneyDisplay;
+        YandexGame.savesData.OnMoneyChanged += UpdateMoneyDisplay;
     }
 
     private void OnDisable()
     {
-        _saveManager.OnMoneyChanged -= UpdateMoneyDisplay;
+        YandexGame.savesData.OnMoneyChanged -= UpdateMoneyDisplay;
     }
 
     public void UpdateMoneyDisplay()
     {
-        moneyText.text = $"{_saveManager.Money}";
+        moneyText.text = $"{YandexGame.savesData.Money}";
     }
 }

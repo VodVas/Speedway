@@ -1,6 +1,6 @@
 using UnityEngine;
 using TMPro;
-using Zenject;
+using Reflex.Attributes;
 
 public class RaceProgressTracker : MonoBehaviour
 {

@@ -3,16 +3,13 @@ using UnityEngine;
 
 public sealed class MinimapDisplay : MonoBehaviour
 {
-    private const int MIN_UPDATE_INTERVAL = 1;
-
+    [SerializeField] private int _minUpdateInterval = 1;
     [SerializeField] private RectTransform _mapRect = null;
     [SerializeField] private Vector2 _scale = new Vector2(0.1f, 0.1f);
     [SerializeField] private int _updateInterval = 5;
 
-    // Списки гонщиков и иконок
     private readonly List<Transform> _racerTransforms = new List<Transform>();
     private readonly List<RectTransform> _racerIcons = new List<RectTransform>();
-
     private int _frameCounter;
 
     public MinimapDisplay() { }
@@ -33,19 +30,14 @@ public sealed class MinimapDisplay : MonoBehaviour
             return;
         }
 
-        if (_updateInterval < MIN_UPDATE_INTERVAL)
+        if (_updateInterval < _minUpdateInterval)
         {
-            Debug.LogError($"[MinimapDisplay] _updateInterval не может быть меньше {MIN_UPDATE_INTERVAL}!");
+            Debug.LogError($"[MinimapDisplay] _updateInterval не может быть меньше {_minUpdateInterval}!");
             enabled = false;
             return;
         }
     }
 
-    /// <summary>
-    /// Зарегистрировать нового гонщика со своей иконкой.
-    /// </summary>
-    /// <param name="racerTransform">Transform гонщика</param>
-    /// <param name="racerIcon">Иконка на UI</param>
     public void RegisterRacer(Transform racerTransform, RectTransform racerIcon)
     {
         if (racerTransform == null || racerIcon == null)
@@ -102,12 +94,9 @@ public sealed class MinimapDisplay : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Позволяет выставить интервал обновления миникарты.
-    /// </summary>
     public void SetUpdateInterval(int newInterval)
     {
-        if (newInterval < MIN_UPDATE_INTERVAL)
+        if (newInterval < _minUpdateInterval)
         {
             Debug.LogError($"[MinimapDisplay] Недопустимое значение интервала: {newInterval}");
             enabled = false;

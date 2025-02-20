@@ -34,7 +34,10 @@ public class LoopTextAnimation : MonoBehaviour
             enabled = false;
             return;
         }
+    }
 
+    private void Start()
+    {
         _originalColors = new Color[_text.textInfo.characterCount];
 
         for (int i = 0; i < _text.textInfo.characterCount; i++)
@@ -54,6 +57,7 @@ public class LoopTextAnimation : MonoBehaviour
 
     private void OnEnable()
     {
+        _text.ForceMeshUpdate();
         UpdateTargetList();
 
         if (_targetType == TargetType.letters)

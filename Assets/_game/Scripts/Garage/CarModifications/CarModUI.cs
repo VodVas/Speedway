@@ -2,9 +2,12 @@ using UnityEngine;
 using Zenject;
 using TMPro;
 using UnityEngine.UI;
+using YG;
 
 public sealed class CarModUI : MonoBehaviour
 {
+    [SerializeField] private GarageNavigator _navigator;
+
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI _modNameText;
     [SerializeField] private TextMeshProUGUI _modPriceText;
@@ -17,8 +20,7 @@ public sealed class CarModUI : MonoBehaviour
     [SerializeField] private Button _nextButton;
     [SerializeField]private Button _prevButton;
 
-    [Inject] private SaveService _save;
-    [Inject] private GarageNavigator _navigator;
+    //[Inject] private SaveService _save;
     private int _currentIndex;
 
     private void Awake()
@@ -85,7 +87,7 @@ public sealed class CarModUI : MonoBehaviour
         _modPriceText.text = mod.Price.ToString();
 
         int carId = modsComp.CarId;
-        int purchasedCount = _save.GetCarModificationCount(carId, mod.ModificationId);
+        int purchasedCount = YandexGame.savesData.GetCarModificationCount(carId, mod.ModificationId);
         _countText.text = $"{purchasedCount}/5";
 
         string effectDescription = "";
@@ -143,17 +145,17 @@ public sealed class CarModUI : MonoBehaviour
         }
 
         int carId = modsComp.CarId;
-        int alreadyBought = _save.GetCarModificationCount(carId, mod.ModificationId);
+        int alreadyBought = YandexGame.savesData.GetCarModificationCount(carId, mod.ModificationId);
         if (alreadyBought >= 5)
         {
             _feedbackText.text = "Уже куплено максимум (5)";
             return;
         }
 
-        if (_save.TrySpendMoney(mod.Price))
+        if (YandexGame.savesData.TrySpendMoney(mod.Price))
         {
-            _save.AddCarModification(carId, mod.ModificationId);
-            _save.Save();
+            YandexGame.savesData.AddCarModification(carId, mod.ModificationId);
+            YandexGame.SaveProgress();
             _feedbackText.text = $"Куплено: {mod.ModificationName}";
         }
         else

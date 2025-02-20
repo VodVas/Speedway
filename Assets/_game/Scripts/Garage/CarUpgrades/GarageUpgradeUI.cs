@@ -2,6 +2,7 @@ using UnityEngine;
 using Zenject;
 using TMPro;
 using UnityEngine.UI;
+using YG;
 
 public class GarageUpgradeUI : MonoBehaviour
 {
@@ -19,8 +20,8 @@ public class GarageUpgradeUI : MonoBehaviour
     [SerializeField] private Button _prevCarButton;
     [SerializeField] private Button _buyButton;
 
-    [Inject] private SaveService _saveManager;
-    [Inject] private GarageNavigator _garageManager;
+    //[Inject] private SaveService _saveManager;
+    [SerializeField] private GarageNavigator _garageManager;
 
     private int _currentUpgradeIndex = 0;
 
@@ -94,7 +95,7 @@ public class GarageUpgradeUI : MonoBehaviour
         _upgradeEffectText.text = effectDescription;
         _upgradeDescriptionText.text = upgrade.UpgradeDescription;
 
-        if (_saveManager.HasCarUpgrade(carUpgrades.CarId, upgrade.UpgradeId))
+        if (YandexGame.savesData.HasCarUpgrade(carUpgrades.CarId, upgrade.UpgradeId))
         {
             _buyButton.interactable = false;
             _feedbackText.text = "Уже куплено!";
@@ -107,7 +108,7 @@ public class GarageUpgradeUI : MonoBehaviour
 
         foreach (var carUpgrade in carUpgrades.Upgrades)
         {
-            if (!_saveManager.HasCarUpgrade(carUpgrades.CarId, carUpgrade.UpgradeId))
+            if (!YandexGame.savesData.HasCarUpgrade(carUpgrades.CarId, carUpgrade.UpgradeId))
             {
                 carUpgrade.SetActive(false);
             }
@@ -128,16 +129,16 @@ public class GarageUpgradeUI : MonoBehaviour
         CarUpgrade upgrade = carUpgrades.Upgrades[_currentUpgradeIndex];
         int carId = carUpgrades.CarId;
 
-        if (_saveManager.HasCarUpgrade(carId, upgrade.UpgradeId))
+        if (YandexGame.savesData.HasCarUpgrade(carId, upgrade.UpgradeId))
         {
             _feedbackText.text = "Уже куплено!";
             return;
         }
 
-        if (_saveManager.TrySpendMoney(upgrade.Price))
+        if (YandexGame.savesData.TrySpendMoney(upgrade.Price))
         {
-            _saveManager.AddCarUpgrade(carId, upgrade.UpgradeId);
-            _saveManager.Save();
+            YandexGame.savesData.AddCarUpgrade(carId, upgrade.UpgradeId);
+            YandexGame.SaveProgress();
 
             upgrade.SetActive(true);
 

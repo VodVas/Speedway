@@ -1,36 +1,100 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SceneLoader : MonoBehaviour
 {
-    [SerializeField] private int _sceneIndex;
+    [SerializeField] private string _sceneName ;
 
-    public void LoadScene(int sceneIndex)
+    private Button _button;
+
+    private void Awake()
     {
-        if (sceneIndex >= 0 && sceneIndex < SceneManager.sceneCountInBuildSettings)
+        _button = GetComponent<Button>();
+
+        if (_button == null)
         {
-            SceneManager.LoadScene(sceneIndex);
+            Debug.LogError("SceneLoader requires a Button component to be attached to the same GameObject.");
+            enabled = false;
+            return;
         }
-        else
+
+        ValidateSceneName();
+    }
+
+    private void OnEnable()
+    {
+        _button.onClick.AddListener(LoadScene);
+    }
+
+    private void OnDisable()
+    {
+        _button.onClick.RemoveListener(LoadScene);
+    }
+
+    public void LoadScene()
+    {
+        if (string.IsNullOrEmpty(_sceneName))
         {
-            Debug.LogError("Неверный индекс сцены!");
+            Debug.LogError("Scene name is not set.");
+            return;
+        }
+
+        SceneManager.LoadScene(_sceneName);
+    }
+
+    private void ValidateSceneName()
+    {
+        if (string.IsNullOrEmpty(_sceneName))
+        {
+            Debug.LogError("Scene name is not set");
+            enabled = false;
+            return;
         }
     }
 
-    public void LoadSceneByName(string sceneName)
+    public void SetSceneName(string sceneName)
     {
         if (string.IsNullOrEmpty(sceneName))
         {
-            Debug.LogError("Имя сцены не указано!");
+            Debug.LogError("Scene name cannot be null or empty.");
             return;
         }
 
-        if (SceneManager.GetSceneByName(sceneName).isLoaded)
-        {
-            Debug.LogWarning($"Сцена \"{sceneName}\" уже загружена.");
-            return;
-        }
-
-        SceneManager.LoadScene(sceneName);
+        _sceneName = sceneName;
     }
 }
+
+//public class SceneLoader : MonoBehaviour
+//{
+//    [SerializeField] private int _sceneIndex;
+
+//    public void LoadScene(int sceneIndex)
+//    {
+//        if (sceneIndex >= 0 && sceneIndex < SceneManager.sceneCountInBuildSettings)
+//        {
+//            SceneManager.LoadScene(sceneIndex);
+//        }
+//        else
+//        {
+//            Debug.LogError("Неверный индекс сцены!");
+//        }
+//    }
+
+//    public void LoadSceneByName(string sceneName)
+//    {
+//        if (string.IsNullOrEmpty(sceneName))
+//        {
+//            Debug.LogError("Имя сцены не указано!");
+//            return;
+//        }
+
+//        if (SceneManager.GetSceneByName(sceneName).isLoaded)
+//        {
+//            Debug.LogWarning($"Сцена \"{sceneName}\" уже загружена.");
+//            return;
+//        }
+
+//        SceneManager.LoadScene(sceneName);
+//    }
+//}

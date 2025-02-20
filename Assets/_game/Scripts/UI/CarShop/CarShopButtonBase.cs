@@ -6,7 +6,7 @@ public abstract class CarButtonBase : MonoBehaviour
 {
     protected const string InvalidButtonMessage = "Button component is missing on the game object.";
 
-    [Inject] private CarShop _ñarShop;
+    [SerializeField] private CarShop _ñarShop;
 
     private Button _button;
 

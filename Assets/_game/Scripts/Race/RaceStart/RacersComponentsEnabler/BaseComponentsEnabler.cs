@@ -5,7 +5,7 @@ public abstract class BaseComponentsEnabler : MonoBehaviour
 {
     [SerializeField] private Collider[] _colliders;
 
-    [Inject] protected RaceStartTimeCounter _raceStartTimeCounter;
+    [Inject] private RaceStartTimeCounter _raceStartTimeCounter;
 
     protected virtual void Awake()
     {

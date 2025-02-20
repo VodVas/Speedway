@@ -433,7 +433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 962d780cad6b94845ac4344abf307c43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AicarController: {fileID: 5754259961062187801}
+  _aiCarController: {fileID: 0}
 --- !u!96 &7157123565470396324
 TrailRenderer:
   serializedVersion: 3
@@ -5648,7 +5648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 962d780cad6b94845ac4344abf307c43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AicarController: {fileID: 5754259961062187801}
+  _aiCarController: {fileID: 0}
 --- !u!96 &8932774820250980737
 TrailRenderer:
   serializedVersion: 3
@@ -11505,7 +11505,7 @@ GameObject:
   - component: {fileID: 4064005859056119094}
   - component: {fileID: 7363758083488722631}
   - component: {fileID: 6987870841187307194}
-  - component: {fileID: 3033673254001102906}
+  - component: {fileID: 5421297674960081569}
   m_Layer: 7
   m_Name: EnemyCrossroad 1
   m_TagString: Untagged
@@ -11690,6 +11690,12 @@ MonoBehaviour:
   SpeedAI: 1
   brakeAI: 0
   brakeAngle: 30
+  <SkidMarksFadeDuration>k__BackingField: 2
+  _speedStepForMultiplier: 20
+  _speedMultiplierPerStep: 0.5
+  _baseDriftMultiplier: 1
+  _driftInterval: 1
+  _driftScorePerInterval: 50
 --- !u!82 &2232328064359365191
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11894,6 +11900,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5cb22d331ef7d64796f917c6a455a32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stuckDistanceThreshold: 1
+  stuckSpeedThreshold: 0.5
   Circuit: {fileID: 0}
   lookAheadForTargetOffset: 20
   lookAheadForTargetFactor: 0.1
@@ -11989,7 +11997,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <RacerId>k__BackingField: 4
---- !u!114 &3033673254001102906
+--- !u!114 &5421297674960081569
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11998,7 +12006,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7178219083886076778}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f79030890a6bd144fba34c9ec3772c3a, type: 3}
+  m_Script: {fileID: 11500000, guid: 114fa042277be7b4aabfd31a6934e20d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _colliders:
@@ -12006,6 +12014,8 @@ MonoBehaviour:
   - {fileID: 7987453859872213648}
   - {fileID: 4047362991838949185}
   - {fileID: 4769348962126029069}
+  _raceStartTimeCounter: {fileID: 0}
+  _aiController: {fileID: 0}
 --- !u!1 &7659724291733931011
 GameObject:
   m_ObjectHideFlags: 0
@@ -12136,7 +12146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 962d780cad6b94845ac4344abf307c43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AicarController: {fileID: 5754259961062187801}
+  _aiCarController: {fileID: 0}
 --- !u!96 &241328359999478010
 TrailRenderer:
   serializedVersion: 3
@@ -17328,7 +17338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 962d780cad6b94845ac4344abf307c43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AicarController: {fileID: 5754259961062187801}
+  _aiCarController: {fileID: 0}
 --- !u!96 &170982404199266686
 TrailRenderer:
   serializedVersion: 3

@@ -1,6 +1,8 @@
 using UnityEngine;
 using Zenject;
+using UnityEngine.Scripting;
 
+[Preserve]
 public class GarageManagerInstaller : MonoInstaller
 {
     [SerializeField] private GarageNavigator _garageManager;

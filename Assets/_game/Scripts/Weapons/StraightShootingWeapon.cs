@@ -4,6 +4,10 @@ public class StraightShootingWeapon : Weapon
 {
     [field: SerializeField] public bool IsBulletWeapon { get; private set; } = false;
 
+    protected override void Update()
+    {
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out Vehicle _))

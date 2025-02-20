@@ -6,13 +6,13 @@ public class Racer : MonoBehaviour
     private const string ErrorNewPositionInvalid = "Racer: Position must be greater than zero.";
     private const string ErrorCheckpointIndexInvalid = "Racer: CheckpointIndex must be greater than zero.";
 
-    [field: SerializeField] public int RacerId { get; set; } = 0;
-
     private int _position = 0;
     private int _lastCheckpoint = -1;
     private int _previousPosition = 0;
     private int _lapsCompleted = 0;
     private bool _hasFinished = false;
+
+    [field: SerializeField] public int RacerId { get; set; } = 0;
 
     private void Awake()
     {

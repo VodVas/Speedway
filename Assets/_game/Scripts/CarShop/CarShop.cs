@@ -1,4 +1,5 @@
 using UnityEngine;
+using YG;
 using Zenject;
 
 public class CarShop : MonoBehaviour
@@ -6,7 +7,7 @@ public class CarShop : MonoBehaviour
     [SerializeField] private CarCatalog _carCatalog = null;
     [SerializeField] private ObjectSwitcher _objectSwitcher = null;
 
-    [Inject] private SaveService _saveManager;
+    //[Inject] private SaveService _saveManager;
     private CarShopUI _carShopUI;
 
     private void Awake()
@@ -52,14 +53,14 @@ public class CarShop : MonoBehaviour
 
         int price = data.Price;
 
-        if (_saveManager.TrySpendMoney(price))
+        if (YandexGame.savesData.TrySpendMoney(price))
         {
             Debug.Log($"Shop: Куплена машина '{data.CarName}' за {price}.");
 
-            _saveManager.AddCar(data.Id);
+            YandexGame.savesData.AddCar(data.Id);
             _carCatalog.RemoveCarAtIndex(currentIndex);
             _objectSwitcher.RemoveCarAtIndex(currentIndex);
-            _saveManager.Save();
+            YandexGame.SaveProgress();
 
             UpdateUI();
         }
@@ -118,7 +119,7 @@ public class CarShop : MonoBehaviour
             _carShopUI.DisplayCarNotFound();
         }
 
-        _carShopUI.UpdatePlayerMoney(_saveManager.Money);
+        _carShopUI.UpdatePlayerMoney(YandexGame.savesData.Money);
     }
 
     private void RemoveAlreadyPurchasedCars()
@@ -133,7 +134,7 @@ public class CarShop : MonoBehaviour
                 continue;
             }
 
-            if (_saveManager.HasCar(data.Id))
+            if (YandexGame.savesData.HasCar(data.Id))
             {
                 _carCatalog.RemoveCarAtIndex(i);
                 _objectSwitcher.RemoveCarAtIndex(i);

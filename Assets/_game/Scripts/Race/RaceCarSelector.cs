@@ -1,16 +1,17 @@
 using UnityEngine;
-using Zenject;
+using Reflex.Attributes;
 using System.Collections.Generic;
 using ArcadeVP;
+using YG;
 
 public class RaceCarSelector : MonoBehaviour
 {
     [SerializeField] private List<RaceCarItem> _allCarsInRace;
+    [SerializeField] private UiCarBinder _uiCarBinder = null;
 
     [Inject] private SmoothSliderHealthBarDisplay _healthBarDisplay;
-    [Inject] private UiCarBinder _uiCarBinder = null;
-    [Inject] private SaveService _saveManager;
     [Inject] private DriftScoreUIDisplayer _driftScoreUIDisplayer;
+
     private Racer _playerRacer;
 
     private void Start()
@@ -43,7 +44,7 @@ public class RaceCarSelector : MonoBehaviour
 
     private void ActivateLastUsedCar()
     {
-        int lastCarId = _saveManager.LastUsedCarId;
+        int lastCarId = YandexGame.savesData.GetLastUsedCarId();
 
         if (lastCarId < 0)
         {
@@ -97,9 +98,9 @@ public class RaceCarSelector : MonoBehaviour
 
         if (item.carUpgrades != null)
         {
-            item.carUpgrades.InitializePurchasedUpgrades(_saveManager.HasCarUpgrade);
+            item.carUpgrades.InitializePurchasedUpgrades(YandexGame.savesData.HasCarUpgrade);
             item.carUpgrades.ApplyPurchasedStats(
-                _saveManager.HasCarUpgrade,
+                YandexGame.savesData.HasCarUpgrade,
                 item.carObject.GetComponent<ArcadeVehicleController>(),
                 item.carObject.GetComponent<Health>()
             );
@@ -107,9 +108,9 @@ public class RaceCarSelector : MonoBehaviour
 
         if (item.carModifications != null)
         {
-            item.carModifications.InitializePurchasedMods(_saveManager.GetCarModificationCount);
+            item.carModifications.InitializePurchasedMods(YandexGame.savesData.GetCarModificationCount);
             item.carModifications.ApplyPurchasedMods(
-                _saveManager.GetCarModificationCount,
+                YandexGame.savesData.GetCarModificationCount,
                 item.carObject.GetComponent<ArcadeVehicleController>(),
                 item.carObject.GetComponent<Health>()
             );
@@ -126,7 +127,7 @@ public class RaceCarSelector : MonoBehaviour
             _uiCarBinder.BindPlayerCar(rigidbody, health, carTransform);
         }
 
-        if (item.carObject.TryGetComponent<ArcadeVehicleController>(out var driftCar))
+        if (item.carObject.TryGetComponent<ArcadeVehicleController>(out var driftCar) && _driftScoreUIDisplayer != null)
         {
             _driftScoreUIDisplayer.SetPlayerCar(driftCar);
         }

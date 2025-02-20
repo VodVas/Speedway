@@ -1,6 +1,8 @@
 using UnityEngine;
 using Zenject;
+using UnityEngine.Scripting;
 
+[Preserve]
 public class CarShopInstaller : MonoInstaller
 {
     [SerializeField] private CarShop _carShop;

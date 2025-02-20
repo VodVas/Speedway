@@ -1,12 +1,13 @@
 using UnityEngine;
 using Zenject;
 using System.Collections.Generic;
+using YG;
 
 public class GarageNavigator : MonoBehaviour
 {
     [SerializeField] private List<GarageCarItem> _garageCars;
 
-    [Inject] private SaveService _saveManager;
+    //[Inject] private SaveService _saveManager;
     private int _currentIndex = -1;
 
     private void Start()
@@ -33,7 +34,7 @@ public class GarageNavigator : MonoBehaviour
     {
         for (int i = 0; i < _garageCars.Count; i++)
         {
-            if (_saveManager.HasCar(_garageCars[i].carId))
+            if (YandexGame.savesData.HasCar(_garageCars[i].carId))
             {
                 return i;
             }
@@ -58,12 +59,12 @@ public class GarageNavigator : MonoBehaviour
 
             if (carItem.carUpgrades != null)
             {
-                carItem.carUpgrades.InitializePurchasedUpgrades(_saveManager.HasCarUpgrade);
+                carItem.carUpgrades.InitializePurchasedUpgrades(YandexGame.savesData.HasCarUpgrade);
             }
 
             if (carItem.carModifications != null)
             {
-                carItem.carModifications.InitializePurchasedMods(_saveManager.GetCarModificationCount);
+                carItem.carModifications.InitializePurchasedMods(YandexGame.savesData.GetCarModificationCount);
             }
 
             SetLastUsedCarId(carItem.carId);
@@ -90,7 +91,7 @@ public class GarageNavigator : MonoBehaviour
         {
             _currentIndex = (_currentIndex + 1) % _garageCars.Count;
         }
-        while (!_saveManager.HasCar(_garageCars[_currentIndex].carId));
+        while (!YandexGame.savesData.HasCar(_garageCars[_currentIndex].carId));
 
         ShowCar(_currentIndex);
     }
@@ -103,7 +104,7 @@ public class GarageNavigator : MonoBehaviour
         {
             _currentIndex = (_currentIndex - 1 + _garageCars.Count) % _garageCars.Count;
         } 
-        while (!_saveManager.HasCar(_garageCars[_currentIndex].carId));
+        while (!YandexGame.savesData.HasCar(_garageCars[_currentIndex].carId));
 
         ShowCar(_currentIndex);
     }
@@ -127,7 +128,7 @@ public class GarageNavigator : MonoBehaviour
 
     private void SetLastUsedCarId(int carId)
     {
-        _saveManager.LastUsedCarId = carId;
-        _saveManager.Save(); // TODO: возможно перенести на кнопку перехода на гонку
+        YandexGame.savesData.SetLastUsedCarId(carId);// = carId;
+        YandexGame.SaveProgress(); // TODO: перенести на кнопку перехода на гонку
     }
 }

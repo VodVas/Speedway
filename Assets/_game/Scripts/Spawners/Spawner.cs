@@ -1,7 +1,7 @@
 using UnityEngine.Pool;
 using UnityEngine;
-using Zenject;
 using System;
+using Reflex.Attributes;
 
 public abstract class Spawner<T> : MonoBehaviour where T : MonoBehaviour, ITerminatable
 {

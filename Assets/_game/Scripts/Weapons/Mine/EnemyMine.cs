@@ -1,7 +1,7 @@
 using ArcadeVP;
 using UnityEngine;
 
-public class EnemyMine : Weapon
+public class EnemyMine : Weapon //TODO: исправить particle
 {
     [SerializeField] private ArcadeAiVehicleController _carController;
 
@@ -10,6 +10,10 @@ public class EnemyMine : Weapon
     private void Awake()
     {
         _mineSpawner = GetComponent<MineSpawner>();
+    }
+
+    protected override void Update()
+    {
     }
 
     private void OnTriggerEnter(Collider other)

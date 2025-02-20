@@ -3,7 +3,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Zenject;
+using Reflex.Attributes;
 
 public class RaceStartTimeCounter : MonoBehaviour
 {
@@ -11,8 +11,8 @@ public class RaceStartTimeCounter : MonoBehaviour
     [SerializeField] private float _lightDuration = 0.5f;
     [SerializeField] private TextMeshProUGUI _countText;
     [SerializeField] private Image[] _lights;
-    [SerializeField] private GameObject _UICounter;
 
+    [Inject] private GameObject _UICounter;
     [Inject] private AiStuckHelper _aiStuckHelper;
     private float _second = 1f;
     private WaitForSeconds _wait;

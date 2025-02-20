@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 962d780cad6b94845ac4344abf307c43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AicarController: {fileID: 1835968466386203353}
+  _aiCarController: {fileID: 0}
 --- !u!96 &4038258645021975690
 TrailRenderer:
   serializedVersion: 3
@@ -5298,7 +5298,7 @@ GameObject:
   - component: {fileID: 7685817797942330885}
   - component: {fileID: 1607766776923128547}
   - component: {fileID: 8267749093314106189}
-  - component: {fileID: 1430033249692068584}
+  - component: {fileID: 7177189055853873218}
   m_Layer: 7
   m_Name: EnemyNewsVan
   m_TagString: Untagged
@@ -5483,6 +5483,12 @@ MonoBehaviour:
   SpeedAI: 1
   brakeAI: 0
   brakeAngle: 30
+  <SkidMarksFadeDuration>k__BackingField: 2
+  _speedStepForMultiplier: 20
+  _speedMultiplierPerStep: 0.5
+  _baseDriftMultiplier: 1
+  _driftInterval: 1
+  _driftScorePerInterval: 50
 --- !u!82 &5852325812725011262
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5687,6 +5693,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5cb22d331ef7d64796f917c6a455a32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stuckDistanceThreshold: 1
+  stuckSpeedThreshold: 0.5
   Circuit: {fileID: 0}
   lookAheadForTargetOffset: 20
   lookAheadForTargetFactor: 0.1
@@ -5782,7 +5790,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <RacerId>k__BackingField: 5
---- !u!114 &1430033249692068584
+--- !u!114 &7177189055853873218
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5791,7 +5799,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1098983355447542071}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f79030890a6bd144fba34c9ec3772c3a, type: 3}
+  m_Script: {fileID: 11500000, guid: 114fa042277be7b4aabfd31a6934e20d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _colliders:
@@ -5799,6 +5807,8 @@ MonoBehaviour:
   - {fileID: 833754002022706356}
   - {fileID: 348359621226451352}
   - {fileID: 8191160945906116623}
+  _raceStartTimeCounter: {fileID: 0}
+  _aiController: {fileID: 1835968466386203353}
 --- !u!1 &1460982898689835258
 GameObject:
   m_ObjectHideFlags: 0
@@ -6796,7 +6806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 962d780cad6b94845ac4344abf307c43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AicarController: {fileID: 1835968466386203353}
+  _aiCarController: {fileID: 0}
 --- !u!96 &2325808491625224821
 TrailRenderer:
   serializedVersion: 3
@@ -11863,7 +11873,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 962d780cad6b94845ac4344abf307c43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AicarController: {fileID: 1835968466386203353}
+  _aiCarController: {fileID: 0}
 --- !u!96 &674020669430485282
 TrailRenderer:
   serializedVersion: 3
@@ -16815,7 +16825,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 962d780cad6b94845ac4344abf307c43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AicarController: {fileID: 1835968466386203353}
+  _aiCarController: {fileID: 0}
 --- !u!96 &6078406242849264639
 TrailRenderer:
   serializedVersion: 3
@@ -22581,7 +22591,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <DamageAmount>k__BackingField: 10
   <ParticleShoot>k__BackingField: {fileID: 5853822300717072226}
-  <IsMediumMachineGun>k__BackingField: 0
+  <IsBulletWeapon>k__BackingField: 0
 --- !u!114 &4286459441793447526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22596,7 +22606,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <DamageAmount>k__BackingField: 10
   <ParticleShoot>k__BackingField: {fileID: 3629315638617632861}
-  <IsMediumMachineGun>k__BackingField: 0
+  <IsBulletWeapon>k__BackingField: 0
 --- !u!65 &3444385648647579123
 BoxCollider:
   m_ObjectHideFlags: 0

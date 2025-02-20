@@ -876,7 +876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a894aef4a25c92e4ea388005050b9b3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sceneIndex: 2
+  _sceneName: Garage
 --- !u!114 &498249764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -920,19 +920,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 498249761}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 498249763}
-        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &504047137
 GameObject:
   m_ObjectHideFlags: 0
@@ -1099,7 +1087,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a894aef4a25c92e4ea388005050b9b3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sceneIndex: 3
+  _sceneName: BattleIslend
 --- !u!114 &519407128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1143,19 +1131,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 519407125}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 519407127}
-        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &652924076
 GameObject:
   m_ObjectHideFlags: 0
@@ -1694,7 +1670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a894aef4a25c92e4ea388005050b9b3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sceneIndex: 1
+  _sceneName: CarShop
 --- !u!114 &997068330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1738,19 +1714,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 997068327}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 997068329}
-        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1036947823
 GameObject:
   m_ObjectHideFlags: 0
@@ -2768,7 +2732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a894aef4a25c92e4ea388005050b9b3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sceneIndex: 5
+  _sceneName: DeadlyDrift
 --- !u!114 &2026986216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2812,19 +2776,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2026986213}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2026986215}
-        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 5
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

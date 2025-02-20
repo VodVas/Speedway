@@ -1,15 +1,17 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Zenject;
+using Reflex.Core;
+using Reflex.Injectors;
 
 public class Factory<T> : IFactory<T> where T : MonoBehaviour
 {
-    private readonly DiContainer _container;
+    private readonly Container _container;
     private readonly Dictionary<Type, T> _prefabs;
 
-    public Factory(DiContainer container, Dictionary<Type, T> prefabs)
+    public Factory(Container container, Dictionary<Type, T> prefabs)
     {
+        Debug.Log($"[Factory<{typeof(T).Name}>] Constructor called.");
         _container = container ?? throw new ArgumentNullException(nameof(container));
         _prefabs = prefabs ?? throw new ArgumentNullException(nameof(prefabs));
     }
@@ -18,7 +20,8 @@ public class Factory<T> : IFactory<T> where T : MonoBehaviour
     {
         if (_prefabs.TryGetValue(type, out T prefab))
         {
-            T obj = _container.InstantiatePrefabForComponent<T>(prefab, position, Quaternion.identity, null);
+            T obj = UnityEngine.Object.Instantiate(prefab, position, Quaternion.identity);
+            GameObjectInjector.InjectRecursive(obj.gameObject, _container);
 
             return obj;
         }
