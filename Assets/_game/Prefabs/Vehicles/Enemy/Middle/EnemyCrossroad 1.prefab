@@ -347,7 +347,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -1.0558746, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1082380604695087950}
@@ -433,7 +433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 962d780cad6b94845ac4344abf307c43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _aiCarController: {fileID: 0}
+  _aiCarController: {fileID: 5754259961062187801}
 --- !u!96 &7157123565470396324
 TrailRenderer:
   serializedVersion: 3
@@ -5394,7 +5394,6 @@ Transform:
   - {fileID: 2031012677306847148}
   - {fileID: 926392675468401742}
   - {fileID: 5913781934979789849}
-  - {fileID: 2185799708251509518}
   m_Father: {fileID: 1082380604695087950}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8511071512105073581
@@ -5404,7 +5403,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3293767121519749140}
-  m_Mesh: {fileID: 4300000, guid: 98dcbdb5e6b8a37418ce675d3850053b, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 91c0343e75c8c93458a064a61874debc, type: 2}
 --- !u!23 &201292899108145412
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5648,7 +5647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 962d780cad6b94845ac4344abf307c43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _aiCarController: {fileID: 0}
+  _aiCarController: {fileID: 5754259961062187801}
 --- !u!96 &8932774820250980737
 TrailRenderer:
   serializedVersion: 3
@@ -12014,7 +12013,6 @@ MonoBehaviour:
   - {fileID: 7987453859872213648}
   - {fileID: 4047362991838949185}
   - {fileID: 4769348962126029069}
-  _raceStartTimeCounter: {fileID: 0}
   _aiController: {fileID: 0}
 --- !u!1 &7659724291733931011
 GameObject:
@@ -12146,7 +12144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 962d780cad6b94845ac4344abf307c43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _aiCarController: {fileID: 0}
+  _aiCarController: {fileID: 5754259961062187801}
 --- !u!96 &241328359999478010
 TrailRenderer:
   serializedVersion: 3
@@ -17208,89 +17206,6 @@ Transform:
   - {fileID: 4025265250866052787}
   m_Father: {fileID: 5528348555398374874}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &8635412057328271285
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2185799708251509518}
-  - component: {fileID: 3949105740214524740}
-  - component: {fileID: 7763267596295202661}
-  m_Layer: 0
-  m_Name: SM_Veh_Car_Medium_SteeringW
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2185799708251509518
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8635412057328271285}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.17531171, y: -0, z: -0, w: 0.984513}
-  m_LocalPosition: {x: -0.43101847, y: 1.175357, z: 0.29930818}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6282991087440531273}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &3949105740214524740
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8635412057328271285}
-  m_Mesh: {fileID: 4300008, guid: 98dcbdb5e6b8a37418ce675d3850053b, type: 3}
---- !u!23 &7763267596295202661
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8635412057328271285}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 7c26cf0bfe31c4247ad0de127e8e305f, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &8940932530076765632
 GameObject:
   m_ObjectHideFlags: 0
@@ -17338,7 +17253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 962d780cad6b94845ac4344abf307c43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _aiCarController: {fileID: 0}
+  _aiCarController: {fileID: 5754259961062187801}
 --- !u!96 &170982404199266686
 TrailRenderer:
   serializedVersion: 3

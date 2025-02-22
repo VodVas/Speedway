@@ -7,6 +7,7 @@ public class UIScope : MonoBehaviour, IInstaller
     [SerializeField] private SmoothSliderHealthBarDisplay _healthBarDisplay = null;
     [SerializeField] private DriftScoreUIDisplayer _driftScoreUIDisplayer = null;
     [SerializeField] private GameObject _uiCounter = null;
+    [SerializeField] private BulletHoleUI _bulletHoleUI = null;
 
     private const string ErrorMissingField = "[UIInstaller] Не все поля назначены в инспекторе!";
 
@@ -29,5 +30,6 @@ public class UIScope : MonoBehaviour, IInstaller
         builder.AddSingleton(_healthBarDisplay, typeof(SmoothSliderHealthBarDisplay));
         builder.AddSingleton(_driftScoreUIDisplayer, typeof(DriftScoreUIDisplayer));
         builder.AddSingleton(_uiCounter, typeof(GameObject));
+        builder.AddSingleton(_bulletHoleUI, typeof(BulletHoleUI));
     }
 }

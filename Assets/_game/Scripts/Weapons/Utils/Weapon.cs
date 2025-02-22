@@ -20,7 +20,7 @@ public abstract class Weapon : MonoBehaviour, IWeapon
 
     protected virtual void PlayParticleEffect()
     {
-        if (ParticleShoot.isPlaying == false)
+        if (ParticleShoot.isPlaying == false && ParticleShoot != null)
         {
             ParticleShoot.Play();
         }
@@ -28,7 +28,7 @@ public abstract class Weapon : MonoBehaviour, IWeapon
 
     protected virtual void StopParticleEffect()
     {
-        if (ParticleShoot.isPlaying)
+        if (ParticleShoot.isPlaying && ParticleShoot != null)
         {
             ParticleShoot.Stop();
         }

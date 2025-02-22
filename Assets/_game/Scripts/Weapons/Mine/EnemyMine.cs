@@ -1,7 +1,7 @@
 using ArcadeVP;
 using UnityEngine;
 
-public class EnemyMine : Weapon //TODO: исправить particle
+public class EnemyMine : Weapon
 {
     [SerializeField] private ArcadeAiVehicleController _carController;
 

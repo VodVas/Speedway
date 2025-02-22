@@ -1,5 +1,5 @@
 using UnityEngine;
-using Zenject;
+using Reflex.Attributes;
 
 public abstract class BaseComponentsEnabler : MonoBehaviour
 {

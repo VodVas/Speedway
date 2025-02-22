@@ -1,3 +1,4 @@
+using Reflex.Attributes;
 using UnityEngine;
 
 [RequireComponent(typeof(DamageHandler))]
@@ -5,7 +6,7 @@ public class PlayerDamageReceiverForBulletUI : ParticleDamageReceiver
 {
     private const string InvalidReferenceError = "[PlayerDamageReceiverForBulletUI] Не назначен BulletHoleUI!";
 
-    [SerializeField] private BulletHoleUI _bulletHoleUI = null;
+    [Inject] private BulletHoleUI _bulletHoleUI = null;
 
     protected override void Awake()
     {

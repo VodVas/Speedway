@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33060235408764446}
   - component: {fileID: 23517646549092750}
   - component: {fileID: 2935880037543257685}
+  - component: {fileID: 6280618663913463853}
   m_Layer: 0
   m_Name: Player_Middle_MachineGun
   m_TagString: Untagged
@@ -99,6 +100,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <DamageAmount>k__BackingField: 5
   <ParticleShoot>k__BackingField: {fileID: 5938210353809411638}
+--- !u!114 &6280618663913463853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579042256172754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd1a88443a8dd7747999369742051677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _upgradeRoot: {fileID: 1579042256172754}
+  <UpgradeId>k__BackingField: 3
+  <UpgradeName>k__BackingField: "\u0421\u0440\u0435\u0434\u043D\u0438\u0439 \u043F\u0443\u043B\u0435\u043C\u0435\u0442"
+  <Price>k__BackingField: 100
+  <UpgradeType>k__BackingField: 0
+  <UpgradeValue>k__BackingField: 0
+  <UpgradeDescription>k__BackingField: 
 --- !u!1001 &5812649695790043498
 PrefabInstance:
   m_ObjectHideFlags: 0

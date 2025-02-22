@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LogLevel: 1
   ScrollWheelSensitivity: 1
-  ExtractedFilesLocation: ExtractedMeshes/
+  ExtractedFilesLocation: Assets/ExtractedMeshes
   LogFilePaths: 0
   DisableOnHierarchyChange: 1
   TriggerSelectLinked: 115
-  MaxSelectLinkedDuration: 10
+  MaxSelectLinkedDuration: 2
   ShowSelectLinkedFailedPopup: 1
   SelectionColorAlpha: 0.5
   WarnAboutOldSelections: 1
   ClearOldSelectionsAutomatically: 0
-  WindowPosition: {x: 39, y: 199.5}
+  WindowPosition: {x: 11, y: 195.5}

@@ -1302,11 +1302,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 295786417126003796, guid: f65170bd5d5614c42a091c24c0f8104c, type: 3}
+      propertyPath: _carData
+      value: 
+      objectReference: {fileID: 957795094}
+    - target: {fileID: 295786417126003796, guid: f65170bd5d5614c42a091c24c0f8104c, type: 3}
+      propertyPath: _upgrades.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2772663455805223529, guid: f65170bd5d5614c42a091c24c0f8104c, type: 3}
       propertyPath: <Price>k__BackingField
       value: 1000
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4402404028893395742, guid: f65170bd5d5614c42a091c24c0f8104c, type: 3}
+    - {fileID: 295786417126003796, guid: f65170bd5d5614c42a091c24c0f8104c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2705,7 +2715,17 @@ PrefabInstance:
       propertyPath: <CarName>k__BackingField
       value: "\u0410\u0443\u0442\u043B\u044D\u043D\u0434\u0435\u0440"
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 4185539122061110517, guid: 6ab5e36b96200d54f9bfd6968bc577de, type: 3}
+      propertyPath: _carData
+      value: 
+      objectReference: {fileID: 305828605}
+    - target: {fileID: 4185539122061110517, guid: 6ab5e36b96200d54f9bfd6968bc577de, type: 3}
+      propertyPath: _upgrades.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4185539122061110517, guid: 6ab5e36b96200d54f9bfd6968bc577de, type: 3}
+    - {fileID: 85973605064224798, guid: 6ab5e36b96200d54f9bfd6968bc577de, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3348,6 +3368,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 485951439}
     m_Modifications:
+    - target: {fileID: 554993376468911087, guid: e549a013ced6f0844aa2693cb6163d10, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2628916534808373712, guid: e549a013ced6f0844aa2693cb6163d10, type: 3}
       propertyPath: m_Name
       value: MoneyPanel
@@ -3432,6 +3456,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7258200050430500401, guid: e549a013ced6f0844aa2693cb6163d10, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3445,6 +3473,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 485951439}
     m_Modifications:
+    - target: {fileID: 1430237058398345280, guid: 17ee745245c251f44bb1460670f3f48c, type: 3}
+      propertyPath: "_\u0441arShop"
+      value: 
+      objectReference: {fileID: 675932404}
     - target: {fileID: 6034467435122575218, guid: 17ee745245c251f44bb1460670f3f48c, type: 3}
       propertyPath: m_Name
       value: BuyButton

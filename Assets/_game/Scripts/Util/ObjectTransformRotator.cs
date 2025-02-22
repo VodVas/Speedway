@@ -1,5 +1,5 @@
+using Reflex.Attributes;
 using UnityEngine;
-using Zenject;
 
 public class ObjectTransformRotator : MonoBehaviour
 {

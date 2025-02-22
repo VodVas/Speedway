@@ -1,0 +1,128 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5805024981204222922
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8646258845355881783}
+  - component: {fileID: 368208125497363500}
+  - component: {fileID: 4736960573484873734}
+  - component: {fileID: 3313001091252634319}
+  - component: {fileID: 2956651774202410672}
+  - component: {fileID: 6484509871263786133}
+  - component: {fileID: 8307430709457517976}
+  m_Layer: 0
+  m_Name: SceneScope
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8646258845355881783
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5805024981204222922}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &368208125497363500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5805024981204222922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fd1482e4a9dee141aecc5bcd0a4f0f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4736960573484873734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5805024981204222922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 157badf6e4430a14eba9f59f73f4a6e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _uiCarBinder: {fileID: 0}
+  _healthBarDisplay: {fileID: 0}
+  _driftScoreUIDisplayer: {fileID: 0}
+  _uiCounter: {fileID: 0}
+--- !u!114 &3313001091252634319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5805024981204222922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecb7fbd57984ca14098d4617c55b7ba9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _obj: {fileID: 0}
+  _aiStuckHelper: {fileID: 0}
+--- !u!114 &2956651774202410672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5805024981204222922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f38ebde707c7d6f40bc969ba47499333, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _raceCarSelector: {fileID: 0}
+  _raceStartTimeCounter: {fileID: 0}
+--- !u!114 &6484509871263786133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5805024981204222922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ee345f6b86462a4981f31bc3c8b6925, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mine: {fileID: -1992446241266495529, guid: 6e9aa83c48c045d4284788e85be5968c, type: 3}
+--- !u!114 &8307430709457517976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5805024981204222922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 328fff165da788b488d5b1905333bf36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buggyParts: {fileID: -1194179997049540176, guid: e75141853805bbb4682bfa8ef695da53, type: 3}
+  _hotRodParts: {fileID: 2507954918357388446, guid: 44ca3109a331c9c4590076e63084f25d, type: 3}
+  _crossroadParts: {fileID: 5165306991865775812, guid: b5a12040c0ec62f4cbabe14c5e81ec04, type: 3}
+  _mustangParts: {fileID: 1559927462919996004, guid: d2caa5f0ff6806b43a346a3fd3877455, type: 3}
+  _redNeckParts: {fileID: 624464446070063052, guid: 428ae509b806ad34dac4a5e6c3fd77e4, type: 3}
+  _newsVanParts: {fileID: 5868475140483715000, guid: 0c23e96709fac1a4681bdffaa9ae5309, type: 3}
+  _elvisParts: {fileID: 231065053580264977, guid: ade3ad31b9590984e9bc9572ccb6da00, type: 3}
+  _tubParts: {fileID: 2498865438934783005, guid: ec01bc76dff6a294a901ed6bb05ce16c, type: 3}
