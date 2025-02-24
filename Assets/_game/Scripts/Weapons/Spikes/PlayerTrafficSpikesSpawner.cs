@@ -1,11 +1,13 @@
 using ArcadeVP;
 using UnityEngine;
 
-public class PlayerTrafficSpikesSpawner : MonoBehaviour
+public class PlayerTrafficSpikesSpawner : MonoBehaviour, IWeapon
 {
     [SerializeField] private Transform _spikes;
     [SerializeField] private ArcadeVehicleController _carController;
     [SerializeField] private float _offSetY = 0.3f;
+
+    public float DamageAmount => 0;
 
     private void Update()
     {

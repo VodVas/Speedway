@@ -1,144 +1,186 @@
+using System.Collections;
 using UnityEngine;
 using YG;
-using Zenject;
 
+[RequireComponent(typeof(CarShopUI))]
 public class CarShop : MonoBehaviour
 {
-    [SerializeField] private CarCatalog _carCatalog = null;
-    [SerializeField] private ObjectSwitcher _objectSwitcher = null;
+    [SerializeField] private CarInstancePool _carInstancePool = null;
 
-    //[Inject] private SaveService _saveManager;
     private CarShopUI _carShopUI;
+    private CarPurchaseValidator _purchaseValidator;
+    private CarSelectionCycler _selectionCycler;
 
     private void Awake()
     {
-        if (_carCatalog == null || _objectSwitcher == null)
-        {
-            Debug.LogError("Shop: Не назначены необходимые компоненты!", this);
-            enabled = false;
-            return;
-        }
-
         _carShopUI = GetComponent<CarShopUI>();
-        if (_carShopUI == null)
+
+        if (_carInstancePool == null || _carShopUI == null)
         {
-            Debug.LogError("Shop: CarShopUI не найден!", this);
+            Debug.LogError("[CarShopUIMediator] Не назначены компоненты!", this);
             enabled = false;
             return;
         }
+    }
 
-        RemoveAlreadyPurchasedCars();
+    private IEnumerator Start()
+    {
+        yield return StartCoroutine(_carInstancePool.SpawnAllCars());
 
-        _objectSwitcher.Init();
+        _purchaseValidator = new CarPurchaseValidator(_carInstancePool.SpawnedInstances);
+
+        if (_purchaseValidator.AvailableCarIndices.Count > 0)
+        {
+            _selectionCycler = new CarSelectionCycler(_carInstancePool, _purchaseValidator);
+
+            _selectionCycler.SetCarActive(true);
+        }
+        else
+        {
+            Debug.Log("[CarShopUIMediator] Все машины уже куплены или недоступны.");
+        }
 
         UpdateUI();
     }
 
     public void BuyCurrentCar()
     {
-        if (_carCatalog.GetCount() == 0)
+        if (_purchaseValidator == null || _selectionCycler == null)
+            return;
+
+        if (_purchaseValidator.AvailableCarIndices.Count == 0)
         {
-            Debug.Log("Shop: Все машины уже куплены!");
+            Debug.Log("[CarShopUIMediator] Нет доступных машин для покупки!");
             return;
         }
 
-        int currentIndex = _objectSwitcher.GetCurrentIndex();
-        CarData data = _carCatalog.GetCarData(currentIndex);
+        bool canBuy = _purchaseValidator.TryBuyCar(_selectionCycler.CurrentIndex);
 
-        if (data == null)
+        if (canBuy)
         {
-            Debug.LogError("Shop: CarData = null или некорректный индекс.", this);
-            return;
-        }
-
-        int price = data.Price;
-
-        if (YandexGame.savesData.TrySpendMoney(price))
-        {
-            Debug.Log($"Shop: Куплена машина '{data.CarName}' за {price}.");
-
+            CarData data = _selectionCycler.GetCurrentCarData();
+            _selectionCycler.SetCarActive(false);
             YandexGame.savesData.AddCar(data.Id);
-            _carCatalog.RemoveCarAtIndex(currentIndex);
-            _objectSwitcher.RemoveCarAtIndex(currentIndex);
             YandexGame.SaveProgress();
+
+            _purchaseValidator.RecalculateAvailability();
+            _selectionCycler.RevalidateCurrentIndex();
+
+            if (_purchaseValidator.AvailableCarIndices.Count > 0)
+            {
+                _selectionCycler.SetCarActive(true);
+            }
+            else
+            {
+                Debug.Log("[CarShopUIMediator] Все машины куплены, больше ничего нет.");
+            }
 
             UpdateUI();
         }
         else
         {
-            Debug.Log("Shop: Недостаточно денег!");
+            Debug.Log("[CarShopUIMediator] Недостаточно денег или ошибка в покупке.");
         }
+
+        UpdateUI();
     }
+
+
+    //public void BuyCurrentCar()
+    //{
+    //    if (_purchaseValidator == null || _selectionCycler == null)
+    //        return;
+
+    //    if (_purchaseValidator.AvailableCarIndices.Count == 0)
+    //    {
+    //        Debug.Log("[CarShopUIMediator] Нет доступных машин для покупки!");
+    //        return;
+    //    }
+
+    //    bool canBuy = _purchaseValidator.TryBuyCar(_selectionCycler.CurrentIndex);
+
+    //    if (canBuy)
+    //    {
+    //        CarData data = _selectionCycler.GetCurrentCarData();
+    //        YandexGame.savesData.AddCar(data.Id);
+    //        YandexGame.SaveProgress();
+
+    //        Debug.Log($"[CarShopUIMediator] Машина '{data.CarName}' куплена за {data.Price}.");
+
+    //        _purchaseValidator.RecalculateAvailability();
+    //        _selectionCycler.RevalidateCurrentIndex();
+
+    //        if (_purchaseValidator.AvailableCarIndices.Count > 0)
+    //        {
+    //            _selectionCycler.SetCarActive(true);
+    //        }
+    //        else
+    //        {
+    //            Debug.Log("[CarShopUIMediator] Все машины куплены, больше ничего нет.");
+    //        }
+    //    }
+    //    else
+    //    {
+    //        Debug.Log("[CarShopUIMediator] Недостаточно денег или ошибка в покупке.");
+    //    }
+
+    //    UpdateUI();
+    //}
 
     public void SwitchNextCar()
     {
-        if (_carCatalog.GetCount() == 0)
-        {
-            Debug.Log("Shop: Все машины уже куплены!");
+        if (_purchaseValidator == null || _selectionCycler == null)
             return;
+
+        if (_purchaseValidator.AvailableCarIndices.Count > 1)
+        {
+            _selectionCycler.SwitchCar(1);
+        }
+        else
+        {
+            Debug.Log("[CarShopUIMediator] Нет других машин, чтобы переключиться вперёд.");
         }
 
-        _objectSwitcher.SwitchToNextObject();
         UpdateUI();
     }
 
     public void SwitchPreviousCar()
     {
-        if (_carCatalog.GetCount() == 0)
-        {
-            Debug.Log("Shop: Все машины уже куплены!");
+        if (_purchaseValidator == null || _selectionCycler == null)
             return;
+
+        if (_purchaseValidator.AvailableCarIndices.Count > 1)
+        {
+            _selectionCycler.SwitchCar(-1);
+        }
+        else
+        {
+            Debug.Log("[CarShopUIMediator] Нет других машин, чтобы переключиться назад.");
         }
 
-        _objectSwitcher.SwitchToPreviousObject();
         UpdateUI();
     }
 
     private void UpdateUI()
     {
-        if (_carCatalog.GetCount() == 0)
+        if (_carShopUI == null)
+            return;
+
+        if (_purchaseValidator == null || _purchaseValidator.AvailableCarIndices.Count == 0)
         {
             _carShopUI.DisplayNoCarsAvailable();
             return;
         }
 
-        int idx = _objectSwitcher.GetCurrentIndex();
-        if (idx < 0 || idx >= _carCatalog.GetCount())
+        CarData currentCar = _selectionCycler?.GetCurrentCarData();
+
+        if (currentCar == null)
         {
-            Debug.LogError("Shop: текущий индекс недопустим!", this);
+            _carShopUI.DisplayCarNotFound();
             return;
         }
 
-        CarData carData = _carCatalog.GetCarData(idx);
-        if (carData != null)
-        {
-            _carShopUI.DisplayCarData(carData);
-        }
-        else
-        {
-            _carShopUI.DisplayCarNotFound();
-        }
-
+        _carShopUI.DisplayCarData(currentCar);
         _carShopUI.UpdatePlayerMoney(YandexGame.savesData.Money);
-    }
-
-    private void RemoveAlreadyPurchasedCars()
-    {
-        for (int i = _carCatalog.GetCount() - 1; i >= 0; i--)
-        {
-            CarData data = _carCatalog.GetCarData(i);
-
-            if (data == null)
-            {
-                Debug.LogError($"Shop: В каталоге на индексе {i} нет CarData!", this);
-                continue;
-            }
-
-            if (YandexGame.savesData.HasCar(data.Id))
-            {
-                _carCatalog.RemoveCarAtIndex(i);
-                _objectSwitcher.RemoveCarAtIndex(i);
-            }
-        }
     }
 }

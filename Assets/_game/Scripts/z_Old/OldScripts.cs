@@ -2132,4 +2132,428 @@ public class OldScripts
     //}
 
     #endregion
+
+    #region CarUpgrades
+
+    //public class CarUpgrades : MonoBehaviour
+    //{
+    //    [SerializeField] private List<CarUpgrade> _upgrades;
+
+    //    [field: SerializeField] public int CarId { get; private set; } = 0;
+
+    //    public IReadOnlyList<CarUpgrade> Upgrades => _upgrades;
+
+    //    private void Awake()
+    //    {
+    //        if (_upgrades == null)
+    //        {
+    //            Debug.LogError($"CarUpgrades: список _upgrades не назначен на {name}", this);
+    //            enabled = false;
+    //        }
+    //    }
+
+    //    public void InitializePurchasedUpgrades(Func<int, int, bool> hasCarUpgrade)
+    //    {
+    //        if (_upgrades == null || _upgrades.Count == 0) return;
+
+    //        for (int i = 0; i < _upgrades.Count; i++)
+    //        {
+    //            CarUpgrade upgrade = _upgrades[i];
+    //            bool purchased = hasCarUpgrade(CarId, upgrade.UpgradeId);
+
+    //            upgrade.SetActive(purchased);
+    //        }
+    //    }
+
+    //    public void ApplyPurchasedStats( Func<int, int, bool> hasCarUpgrade, ArcadeVehicleController controller, Health health)
+    //    {
+    //        if (controller == null)
+    //        {
+    //            Debug.LogWarning($"CarUpgrades({CarId}): контроллер не задан, не к чему применять!");
+    //            return;
+    //        }
+
+    //        if (_upgrades == null || _upgrades.Count == 0) return;
+
+    //        for (int i = 0; i < _upgrades.Count; i++)
+    //        {
+    //            CarUpgrade upgrade = _upgrades[i];
+    //            bool purchased = hasCarUpgrade(CarId, upgrade.UpgradeId);
+
+    //            if (purchased)
+    //            {
+    //                //upgrade.SetActive(true); // Под вопросом - итак включено уже в гонке
+
+    //                switch (upgrade.UpgradeType)
+    //                {
+    //                    case CarUpgradeType.Speed:
+    //                        controller.SetMaxSpeed(controller.GetMaxSpeed() + upgrade.UpgradeValue);
+    //                        Debug.Log("SetMaxSpeed");
+    //                        break;
+
+    //                    case CarUpgradeType.Acceleration:
+    //                        controller.SetAcceleration(controller.GetAcceleration() + upgrade.UpgradeValue);
+    //                        Debug.Log("SetAcceleration");
+    //                        break;
+
+    //                    case CarUpgradeType.Turn:
+    //                        controller.SetTurn(controller.GetTurn() + upgrade.UpgradeValue);
+    //                        Debug.Log("SetTurn");
+    //                        break;
+
+    //                    case CarUpgradeType.Health:
+    //                        if (health != null)
+    //                        {
+    //                            float newMax = health.Max + upgrade.UpgradeValue;
+    //                            health.Init(newMax);
+    //                        }
+    //                        break;
+
+    //                    case CarUpgradeType.Weapon:
+
+    //                        break;
+    //                }
+    //            }
+    //        }
+    //    }
+    //}
+
+    #endregion
+
+    #region CarModifications
+
+    //public sealed class CarModifications : MonoBehaviour
+    //{
+    //    [field: SerializeField] public int CarId { get; private set; } = 0;
+
+    //    [SerializeField] private List<CarModification> _modifications = new List<CarModification>();
+    //    private void Awake()
+    //    {
+    //        if (CarId < 0)
+    //        {
+    //            Debug.LogError($"[CarModifications] Неверный CarId: {CarId}", this);
+    //            enabled = false;
+    //            return;
+    //        }
+    //        if (_modifications == null)
+    //        {
+    //            Debug.LogError($"[CarModifications] Список _modifications не назначен на {name}", this);
+    //            enabled = false;
+    //            return;
+    //        }
+    //    }
+
+    //    public IReadOnlyList<CarModification> GetAll()
+    //    {
+    //        return _modifications;
+    //    }
+    //    public void InitializePurchasedMods(Func<int, int, int> getCarModCount)
+    //    {
+    //        if (_modifications == null || _modifications.Count == 0)
+    //        {
+    //            return;
+    //        }
+    //        for (int i = 0; i < _modifications.Count; i++)
+    //        {
+    //            CarModification cm = _modifications[i];
+    //            if (cm == null)
+    //            {
+    //                continue;
+    //            }
+    //        }
+    //    }
+    //    public void ApplyPurchasedMods(
+    //        Func<int, int, int> getCarModCount,
+    //        ArcadeVP.ArcadeVehicleController mover,
+    //        Health health
+    //    )
+    //    {
+    //        if (mover == null)
+    //        {
+    //            Debug.LogWarning($"[CarModifications({CarId})] ArcadeVehicleMover не указан — не к чему применять!", this);
+    //            return;
+    //        }
+
+    //        if (_modifications == null || _modifications.Count == 0)
+    //        {
+    //            return;
+    //        }
+
+    //        for (int i = 0; i < _modifications.Count; i++)
+    //        {
+    //            CarModification mod = _modifications[i];
+    //            if (mod == null)
+    //            {
+    //                continue;
+    //            }
+
+    //            int timesBought = getCarModCount(CarId, mod.ModificationId);
+    //            if (timesBought == 0)
+    //            {
+    //                continue;
+    //            }
+
+    //            float totalBonus = mod.Value * timesBought;
+
+    //            switch (mod.Type)
+    //            {
+    //                case CarModification.ModificationType.Speed:
+    //                    mover.SetMaxSpeed(mover.GetMaxSpeed() + totalBonus);
+    //                    break;
+
+    //                case CarModification.ModificationType.Acceleration:
+    //                    mover.SetAcceleration(mover.GetAcceleration() + totalBonus);
+    //                    break;
+
+    //                case CarModification.ModificationType.Turn:
+    //                    mover.SetTurn(mover.GetTurn() + totalBonus);
+    //                    break;
+
+    //                case CarModification.ModificationType.Health:
+    //                    if (health != null)
+    //                    {
+    //                        float newMax = health.Max + totalBonus;
+    //                        health.Init(newMax);
+    //                    }
+    //                    break;
+    //            }
+    //        }
+    //    }
+    //}
+
+    #endregion
+
+    #region ObjectSwitcher
+
+    //public class ObjectSwitcher : MonoBehaviour
+    //{
+    //    [SerializeField] private List<GameObject> _carPrefabs;
+    //    [SerializeField] private Transform _spawnPoint;
+    //    [SerializeField] private CarInstanceModifier _shopOptimizer;
+
+    //    private List<GameObject> _allCars = new();
+    //    private List<int> _availableCarIndices = new();
+    //    private int _currentDisplayedIndex = -1;
+
+    //    public int GetAvailableCarsCount() => _availableCarIndices.Count;
+    //    public void SwitchToNextCar() => SwitchCar(1);
+    //    public void SwitchToPreviousCar() => SwitchCar(-1);
+
+    //    public void BuyCurrentCar()
+    //    {
+    //        if (_availableCarIndices.Count == 0 || _currentDisplayedIndex < 0) return;
+
+    //        int boughtIndex = _availableCarIndices[_currentDisplayedIndex];
+    //        CarData data = _allCars[boughtIndex].GetComponent<CarData>();
+
+    //        if (data != null && YandexGame.savesData.TrySpendMoney(data.Price))
+    //        {
+    //            SetActiveCar(boughtIndex, false);
+    //            YandexGame.savesData.AddCar(data.Id);
+    //            YandexGame.SaveProgress();
+
+    //            int previousListIndex = _currentDisplayedIndex;
+
+    //            CalculateAvailableCars();
+
+    //            if (_availableCarIndices.Count > 0)
+    //            {
+    //                _currentDisplayedIndex = previousListIndex >= _availableCarIndices.Count ? _availableCarIndices.Count - 1 : Mathf.Clamp(previousListIndex, 0, _availableCarIndices.Count - 1);
+
+    //                SetActiveCar(_availableCarIndices[_currentDisplayedIndex], true);
+    //            }
+    //            else
+    //            {
+    //                _currentDisplayedIndex = -1;
+    //            }
+    //        }
+    //    }
+
+    //    public CarData GetCurrentCarData()
+    //    {
+    //        if (_availableCarIndices.Count == 0 || _currentDisplayedIndex < 0)
+    //            return null;
+
+    //        return _allCars[_availableCarIndices[_currentDisplayedIndex]].GetComponent<CarData>();
+    //    }
+
+    //    public IEnumerator InitializeCars()
+    //    {
+    //        foreach (GameObject prefab in _carPrefabs)
+    //        {
+    //            GameObject carInstance = Instantiate(prefab, _spawnPoint.position, Quaternion.identity, _spawnPoint);
+    //            _shopOptimizer.OptimizeCar(carInstance);
+    //            carInstance.SetActive(false);
+    //            _allCars.Add(carInstance);
+
+    //            yield return null;
+    //        }
+
+    //        CalculateAvailableCars();
+
+    //        if (_availableCarIndices.Count > 0)
+    //        {
+    //            _currentDisplayedIndex = 0;
+    //            SetActiveCar(_availableCarIndices[_currentDisplayedIndex], true);
+    //        }
+    //    }
+
+    //    private void CalculateAvailableCars()
+    //    {
+    //        _availableCarIndices.Clear();
+
+    //        for (int i = 0; i < _allCars.Count; i++)
+    //        {
+    //            CarData data = _allCars[i].GetComponent<CarData>();
+    //            if (data != null && !YandexGame.savesData.HasCar(data.Id))
+    //            {
+    //                _availableCarIndices.Add(i);
+    //            }
+    //        }
+    //    }
+
+    //    private void SwitchCar(int direction)
+    //    {
+    //        if (_availableCarIndices.Count == 0) return;
+
+    //        SetActiveCar(_availableCarIndices[_currentDisplayedIndex], false);
+
+    //        _currentDisplayedIndex = (_currentDisplayedIndex + direction + _availableCarIndices.Count) % _availableCarIndices.Count;
+
+    //        SetActiveCar(_availableCarIndices[_currentDisplayedIndex], true);
+    //    }
+
+    //    private void SetActiveCar(int index, bool state)
+    //    {
+    //        GameObject car = _allCars[index];
+    //        car.transform.position = _spawnPoint.position;
+    //        car.SetActive(state);
+    //    }
+    //}
+
+    #endregion
+
+    #region GarageNavigator
+
+    //public class GarageNavigator : MonoBehaviour
+    //{
+    //    [SerializeField] private List<GarageCarItem> _garageCars;
+
+    //    private int _currentIndex = -1;
+
+    //    private void Start()
+    //    {
+    //        foreach (var car in _garageCars)
+    //        {
+    //            if (car.carObject != null)
+    //                car.carObject.SetActive(false);
+    //        }
+
+    //        _currentIndex = FindFirstPurchasedCarIndex();
+
+    //        if (_currentIndex >= 0)
+    //        {
+    //            ShowCar(_currentIndex);
+    //        }
+    //        else
+    //        {
+    //            Debug.LogWarning("Нет купленных машин.");
+    //        }
+    //    }
+
+    //    private int FindFirstPurchasedCarIndex()
+    //    {
+    //        for (int i = 0; i < _garageCars.Count; i++)
+    //        {
+    //            if (YandexGame.savesData.HasCar(_garageCars[i].carId))
+    //            {
+    //                return i;
+    //            }
+    //        }
+
+    //        return -1;
+    //    }
+
+    //    private void ShowCar(int index)
+    //    {
+    //        for (int i = 0; i < _garageCars.Count; i++)
+    //        {
+    //            if (_garageCars[i].carObject != null)
+    //                _garageCars[i].carObject.SetActive(false);
+    //        }
+
+    //        var carItem = _garageCars[index];
+
+    //        if (carItem.carObject != null)
+    //        {
+    //            carItem.carObject.SetActive(true);
+
+    //            if (carItem.carUpgrades != null)
+    //            {
+    //                carItem.carUpgrades.InitializePurchasedUpgrades(YandexGame.savesData.HasCarUpgrade);
+    //            }
+
+    //            if (carItem.carModifications != null)
+    //            {
+    //                carItem.carModifications.InitializePurchasedMods(YandexGame.savesData.GetCarModificationCount);
+    //            }
+
+    //            SetLastUsedCarId(carItem.carId);
+    //        }
+    //    }
+
+    //    public void NextCar()
+    //    {
+    //        if (_currentIndex < 0) return;
+
+    //        do
+    //        {
+    //            _currentIndex = (_currentIndex + 1) % _garageCars.Count;
+    //        }
+    //        while (!YandexGame.savesData.HasCar(_garageCars[_currentIndex].carId));
+
+    //        ShowCar(_currentIndex);
+    //    }
+
+    //    public void PrevCar()
+    //    {
+    //        if (_currentIndex < 0) return;
+
+    //        do
+    //        {
+    //            _currentIndex = (_currentIndex - 1 + _garageCars.Count) % _garageCars.Count;
+    //        } 
+    //        while (!YandexGame.savesData.HasCar(_garageCars[_currentIndex].carId));
+
+    //        ShowCar(_currentIndex);
+    //    }
+
+    //    public CarModifications GetCurrentCarModifications()
+    //    {
+    //        if (_currentIndex < 0 || _currentIndex >= _garageCars.Count)
+    //        {
+    //            return null;
+    //        }
+    //        return _garageCars[_currentIndex].carModifications;
+    //    }
+
+    //    public CarUpgrades GetCurrentCarUpgrades()
+    //    {
+    //        if (_currentIndex < 0 || _currentIndex >= _garageCars.Count)
+    //            return null;
+
+    //        return _garageCars[_currentIndex].carUpgrades;
+    //    }
+
+    //    private void SetLastUsedCarId(int carId)
+    //    {
+    //        YandexGame.savesData.SetLastUsedCarId(carId);
+    //        YandexGame.SaveProgress();
+    //    }
+    //}
+
+    #endregion
+
+
+
 }

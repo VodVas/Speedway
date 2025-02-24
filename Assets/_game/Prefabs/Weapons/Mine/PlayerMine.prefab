@@ -70,7 +70,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: d82630c95af72ef439a97df3f1f4d651, type: 2}
     - target: {fileID: 919132149155446097, guid: 0af722fbdf049e242bc60843ff33a4de, type: 3}
       propertyPath: m_Name
-      value: Mine
+      value: PlayerMine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -79,6 +79,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0af722fbdf049e242bc60843ff33a4de, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8395642282010236618}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0af722fbdf049e242bc60843ff33a4de, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5279509126061734645}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0af722fbdf049e242bc60843ff33a4de, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4309477019507736182}
   m_SourcePrefab: {fileID: 100100000, guid: 0af722fbdf049e242bc60843ff33a4de, type: 3}
 --- !u!1 &3744891625858109000 stripped
 GameObject:
@@ -99,3 +105,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <DamageAmount>k__BackingField: 10
   <ParticleShoot>k__BackingField: {fileID: 0}
+  _carController: {fileID: 0}
+--- !u!114 &5279509126061734645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3744891625858109000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b136468e0a057146b32134eb9d8d93a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4309477019507736182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3744891625858109000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd1a88443a8dd7747999369742051677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _upgradeRoot: {fileID: 3744891625858109000}
+  <UpgradeId>k__BackingField: 5
+  <UpgradeName>k__BackingField: "\u041C\u0438\u043D\u0430"
+  <Price>k__BackingField: 100
+  <UpgradeType>k__BackingField: 0
+  <UpgradeValue>k__BackingField: 0
+  <UpgradeDescription>k__BackingField: 
