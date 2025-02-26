@@ -20697,7 +20697,6 @@ GameObject:
   - component: {fileID: 8464278123909766430}
   - component: {fileID: 6171596264493998451}
   - component: {fileID: -7643575984500602575}
-  - component: {fileID: -7343032078853447165}
   m_Layer: 7
   m_Name: Mustang
   m_TagString: Untagged
@@ -21103,19 +21102,6 @@ MonoBehaviour:
   <Turn>k__BackingField: 0
   <Armor>k__BackingField: 0
   <Weapon>k__BackingField: 0
---- !u!114 &-7343032078853447165
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7833795945110750458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba3f705ccb346704ca093ea1d1b5ebd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Guid>k__BackingField: 554399778c9030447acebbb5b621c48a
 --- !u!1 &7976212291689167540
 GameObject:
   m_ObjectHideFlags: 0
@@ -21481,7 +21467,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1579042256172754, guid: 1ad7bb54d79e6514ba86e3016730c8ce, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4147184425305526, guid: 1ad7bb54d79e6514ba86e3016730c8ce, type: 3}
       propertyPath: m_LocalPosition.x
@@ -21547,7 +21533,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1752639783993144, guid: c27d602dadf567a4ea306c40543331ea, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4880926231600578, guid: c27d602dadf567a4ea306c40543331ea, type: 3}
       propertyPath: m_LocalPosition.x
@@ -21613,7 +21599,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1579042256172754, guid: 1ad7bb54d79e6514ba86e3016730c8ce, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4147184425305526, guid: 1ad7bb54d79e6514ba86e3016730c8ce, type: 3}
       propertyPath: m_LocalPosition.x

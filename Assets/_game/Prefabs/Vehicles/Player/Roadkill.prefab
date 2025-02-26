@@ -16865,7 +16865,6 @@ GameObject:
   - component: {fileID: 3873483554222187812}
   - component: {fileID: 4106532843089911301}
   - component: {fileID: -7721658343553488550}
-  - component: {fileID: 7297542649115982834}
   m_Layer: 7
   m_Name: Roadkill
   m_TagString: Untagged
@@ -17271,19 +17270,6 @@ MonoBehaviour:
   <Turn>k__BackingField: 0
   <Armor>k__BackingField: 0
   <Weapon>k__BackingField: 0
---- !u!114 &7297542649115982834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8019414115580497968}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba3f705ccb346704ca093ea1d1b5ebd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Guid>k__BackingField: b88244a3982d4f846bd5b69138a841e8
 --- !u!1 &8222193240031561260
 GameObject:
   m_ObjectHideFlags: 0
@@ -22483,7 +22469,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1646432114360032, guid: dd404c768a9323b4fb42bd3f8ea5c2fe, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4285322397440598, guid: dd404c768a9323b4fb42bd3f8ea5c2fe, type: 3}
       propertyPath: m_LocalScale.x
@@ -22561,7 +22547,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1579042256172754, guid: 1ad7bb54d79e6514ba86e3016730c8ce, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4147184425305526, guid: 1ad7bb54d79e6514ba86e3016730c8ce, type: 3}
       propertyPath: m_LocalScale.x
@@ -22631,7 +22617,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1579042256172754, guid: 1ad7bb54d79e6514ba86e3016730c8ce, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4147184425305526, guid: 1ad7bb54d79e6514ba86e3016730c8ce, type: 3}
       propertyPath: m_LocalScale.x
@@ -22701,7 +22687,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1277969264105640, guid: 402e88e58c7fa2845af94861c722f035, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4330984924424482, guid: 402e88e58c7fa2845af94861c722f035, type: 3}
       propertyPath: m_LocalPosition.x
@@ -22767,7 +22753,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1752639783993144, guid: c27d602dadf567a4ea306c40543331ea, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4880926231600578, guid: c27d602dadf567a4ea306c40543331ea, type: 3}
       propertyPath: m_LocalPosition.x

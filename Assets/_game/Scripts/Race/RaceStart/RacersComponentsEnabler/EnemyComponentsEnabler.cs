@@ -5,15 +5,9 @@ public class EnemyComponentsEnabler : BaseComponentsEnabler
 {
     [SerializeField] private ArcadeAiVehicleController _aiController;
 
-    protected override void Awake()
-    {
-        _aiController = GetComponent<ArcadeAiVehicleController>();
-    }
-
     protected override void EnableComponents()
     {
-        EnableColliders();
-
-        _aiController.enabled = true;
+        if (_aiController != null)
+            _aiController.enabled = true;
     }
 }

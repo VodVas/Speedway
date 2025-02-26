@@ -1,9 +1,8 @@
-using Reflex.Attributes;
 using UnityEngine;
 
 public class ObjectTransformRotator : MonoBehaviour
 {
-    [Inject] private Transform _obj;
+    [SerializeField] private Transform _obj;
 
     private void Update()
     {

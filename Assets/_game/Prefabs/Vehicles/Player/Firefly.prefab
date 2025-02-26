@@ -20796,7 +20796,6 @@ GameObject:
   - component: {fileID: 2431018475624848110}
   - component: {fileID: 5313408000619727843}
   - component: {fileID: 6890260279206210499}
-  - component: {fileID: -7269425450898956707}
   m_Layer: 7
   m_Name: Firefly
   m_TagString: Untagged
@@ -21202,19 +21201,6 @@ MonoBehaviour:
   <Turn>k__BackingField: 0
   <Armor>k__BackingField: 0
   <Weapon>k__BackingField: 0
---- !u!114 &-7269425450898956707
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9009873335138353216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba3f705ccb346704ca093ea1d1b5ebd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Guid>k__BackingField: 55d747b6266389747b430be79e720224
 --- !u!1 &9013190717414690714
 GameObject:
   m_ObjectHideFlags: 0
@@ -21312,7 +21298,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1752639783993144, guid: c27d602dadf567a4ea306c40543331ea, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4880926231600578, guid: c27d602dadf567a4ea306c40543331ea, type: 3}
       propertyPath: m_LocalPosition.x

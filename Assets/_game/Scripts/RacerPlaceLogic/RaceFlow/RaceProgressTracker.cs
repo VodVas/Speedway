@@ -1,6 +1,5 @@
 using UnityEngine;
 using TMPro;
-using Reflex.Attributes;
 
 public class RaceProgressTracker : MonoBehaviour
 {
@@ -14,8 +13,8 @@ public class RaceProgressTracker : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _playerLapsText = null;
     [SerializeField] private int _playerId = 6;
     [SerializeField] private int _totalLaps = 3;
+    [SerializeField] private RaceCarSelector _raceCarSelector = null;
 
-    [Inject] private RaceCarSelector _raceCarSelector = null;
     private RaceProgressPositionUI _raceProgressPosition;
     private RaceProgressUILaps _raceProgressUILaps;
     private RaceProgressInitializer _initializer;
@@ -168,7 +167,7 @@ public class RaceProgressTracker : MonoBehaviour
 
         if (_raceCarSelector == null)
         {
-            Debug.LogError("RaceFlow: RaceCarManager (внедрённый) не назначен!", this);
+            Debug.LogError("RaceFlow: RaceCarManager не назначен!", this);
             return false;
         }
 

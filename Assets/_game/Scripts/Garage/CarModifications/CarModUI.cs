@@ -1,5 +1,4 @@
 using UnityEngine;
-using Zenject;
 using TMPro;
 using UnityEngine.UI;
 using YG;
@@ -20,7 +19,6 @@ public sealed class CarModUI : MonoBehaviour
     [SerializeField] private Button _nextButton;
     [SerializeField]private Button _prevButton;
 
-    //[Inject] private SaveService _save;
     private int _currentIndex;
 
     private void Awake()
@@ -42,6 +40,18 @@ public sealed class CarModUI : MonoBehaviour
 
         _currentIndex = 0;
         UpdateUI();
+    }
+
+    private void OnEnable()
+    {
+        if (_navigator != null)
+            _navigator.OnGarageReady += UpdateUI;
+    }
+
+    private void OnDisable()
+    {
+        if (_navigator != null)
+            _navigator.OnGarageReady -= UpdateUI;
     }
 
     private void UpdateUI()

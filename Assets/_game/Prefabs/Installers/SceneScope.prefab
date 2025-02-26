@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 8646258845355881783}
   - component: {fileID: 368208125497363500}
   - component: {fileID: 4736960573484873734}
-  - component: {fileID: 3313001091252634319}
-  - component: {fileID: 2956651774202410672}
   - component: {fileID: 6484509871263786133}
   - component: {fileID: 8307430709457517976}
+  - component: {fileID: 8936724569114032865}
   m_Layer: 0
   m_Name: SceneScope
   m_TagString: Untagged
@@ -65,34 +64,7 @@ MonoBehaviour:
   _healthBarDisplay: {fileID: 0}
   _driftScoreUIDisplayer: {fileID: 0}
   _uiCounter: {fileID: 0}
---- !u!114 &3313001091252634319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5805024981204222922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ecb7fbd57984ca14098d4617c55b7ba9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _obj: {fileID: 0}
-  _aiStuckHelper: {fileID: 0}
---- !u!114 &2956651774202410672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5805024981204222922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f38ebde707c7d6f40bc969ba47499333, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _raceCarSelector: {fileID: 0}
-  _raceStartTimeCounter: {fileID: 0}
+  _bulletHoleUI: {fileID: 0}
 --- !u!114 &6484509871263786133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,3 +98,17 @@ MonoBehaviour:
   _newsVanParts: {fileID: 5868475140483715000, guid: 0c23e96709fac1a4681bdffaa9ae5309, type: 3}
   _elvisParts: {fileID: 231065053580264977, guid: ade3ad31b9590984e9bc9572ccb6da00, type: 3}
   _tubParts: {fileID: 2498865438934783005, guid: ec01bc76dff6a294a901ed6bb05ce16c, type: 3}
+--- !u!114 &8936724569114032865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5805024981204222922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f38ebde707c7d6f40bc969ba47499333, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _aiStuckHelper: {fileID: 0}
+  _timeCounter: {fileID: 0}

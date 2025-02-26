@@ -20883,7 +20883,6 @@ GameObject:
   - component: {fileID: 6096339873154188092}
   - component: {fileID: 9140210080556483410}
   - component: {fileID: -4095136710609828555}
-  - component: {fileID: 3042843908479356840}
   m_Layer: 7
   m_Name: Nova
   m_TagString: Untagged
@@ -21290,19 +21289,6 @@ MonoBehaviour:
   <Turn>k__BackingField: 0
   <Armor>k__BackingField: 0
   <Weapon>k__BackingField: 0
---- !u!114 &3042843908479356840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7944223924628639976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba3f705ccb346704ca093ea1d1b5ebd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Guid>k__BackingField: 50708335e4c927d4cb87232d1abc4656
 --- !u!1 &8184277012495656009
 GameObject:
   m_ObjectHideFlags: 0
@@ -21659,7 +21645,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1579042256172754, guid: 1ad7bb54d79e6514ba86e3016730c8ce, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4147184425305526, guid: 1ad7bb54d79e6514ba86e3016730c8ce, type: 3}
       propertyPath: m_LocalPosition.x
@@ -21725,7 +21711,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1752639783993144, guid: c27d602dadf567a4ea306c40543331ea, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4880926231600578, guid: c27d602dadf567a4ea306c40543331ea, type: 3}
       propertyPath: m_LocalPosition.x

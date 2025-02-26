@@ -1,5 +1,4 @@
 using UnityEngine;
-using Zenject;
 using TMPro;
 using UnityEngine.UI;
 using YG;
@@ -20,8 +19,7 @@ public class GarageUpgradeUI : MonoBehaviour
     [SerializeField] private Button _prevCarButton;
     [SerializeField] private Button _buyButton;
 
-    //[Inject] private SaveService _saveManager;
-    [SerializeField] private GarageNavigator _garageManager;
+    [SerializeField] private GarageNavigator _navigator;
 
     private int _currentUpgradeIndex = 0;
 
@@ -29,6 +27,18 @@ public class GarageUpgradeUI : MonoBehaviour
     {
         SetupButtons();
         UpdateUI();
+    }
+
+    private void OnEnable()
+    {
+        if (_navigator != null)
+            _navigator.OnGarageReady += UpdateUI;
+    }
+
+    private void OnDisable()
+    {
+        if (_navigator != null)
+            _navigator.OnGarageReady -= UpdateUI;
     }
 
     private void SetupButtons()
@@ -39,7 +49,7 @@ public class GarageUpgradeUI : MonoBehaviour
 
         _nextCarButton.onClick.AddListener(() =>
         {
-            _garageManager.NextCar();
+            _navigator.NextCar();
             _currentUpgradeIndex = 0;
 
             UpdateUI();
@@ -47,7 +57,7 @@ public class GarageUpgradeUI : MonoBehaviour
 
         _prevCarButton.onClick.AddListener(() =>
         {
-            _garageManager.PrevCar();
+            _navigator.PrevCar();
             _currentUpgradeIndex = 0;
 
             UpdateUI();
@@ -56,7 +66,7 @@ public class GarageUpgradeUI : MonoBehaviour
 
     private void UpdateUI()
     {
-        var carUpgrades = _garageManager.GetCurrentCarUpgrades();
+        var carUpgrades = _navigator.GetCurrentCarUpgrades();
         if (carUpgrades == null || carUpgrades.Upgrades.Count == 0)
         {
             _upgradeNameText.text = "-";
@@ -123,7 +133,7 @@ public class GarageUpgradeUI : MonoBehaviour
 
     private void OnBuyUpgrade()
     {
-        var carUpgrades = _garageManager.GetCurrentCarUpgrades();
+        var carUpgrades = _navigator.GetCurrentCarUpgrades();
         if (carUpgrades == null) return;
 
         CarUpgrade upgrade = carUpgrades.Upgrades[_currentUpgradeIndex];
@@ -154,7 +164,7 @@ public class GarageUpgradeUI : MonoBehaviour
 
     private void OnNextUpgrade()
     {
-        var carUpgrades = _garageManager.GetCurrentCarUpgrades();
+        var carUpgrades = _navigator.GetCurrentCarUpgrades();
 
         if (carUpgrades == null || carUpgrades.Upgrades.Count == 0)
             return;
@@ -166,7 +176,7 @@ public class GarageUpgradeUI : MonoBehaviour
 
     private void OnPrevUpgrade()
     {
-        var carUpgrades = _garageManager.GetCurrentCarUpgrades();
+        var carUpgrades = _navigator.GetCurrentCarUpgrades();
 
         if (carUpgrades == null || carUpgrades.Upgrades.Count == 0)
             return;

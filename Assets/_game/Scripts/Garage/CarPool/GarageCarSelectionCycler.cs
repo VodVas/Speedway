@@ -4,7 +4,7 @@ public class GarageCarSelectionCycler
 {
     private readonly GarageCarInstancePool _pool;
 
-    public int CurrentIndex { get; private set; } = 0;
+    public int CurrentIndex { get; private set; }
 
     public GarageCarSelectionCycler(GarageCarInstancePool pool)
     {
@@ -14,6 +14,27 @@ public class GarageCarSelectionCycler
         {
             CurrentIndex = -1;
         }
+        else
+        {
+            CurrentIndex = 0;
+        }
+    }
+
+    public void SetCurrentIndex(int newIndex)
+    {
+        if (_pool.SpawnedCars.Count == 0)
+        {
+            CurrentIndex = -1;
+            return;
+        }
+
+        if (newIndex < 0 || newIndex >= _pool.SpawnedCars.Count)
+        {
+            Debug.LogWarning("[GarageCarSelectionCycler] Некорректный индекс, пропускаем.");
+            return;
+        }
+
+        CurrentIndex = newIndex;
     }
 
     public void SwitchCar(int direction)
@@ -34,7 +55,7 @@ public class GarageCarSelectionCycler
             return;
 
         var instance = _pool.SpawnedCars[CurrentIndex];
-        instance.transform.position = _pool.GarageSpawnPoint.position; // При желании можно менять позицию
+        instance.transform.position = _pool.GarageSpawnPoint.position;
         instance.gameObject.SetActive(state);
     }
 
@@ -44,6 +65,7 @@ public class GarageCarSelectionCycler
             return null;
 
         GameObject carObj = _pool.SpawnedCars[CurrentIndex];
+
         if (carObj == null)
             return null;
 

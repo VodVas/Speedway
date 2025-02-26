@@ -1,39 +1,38 @@
-using UnityEngine;
 using Reflex.Attributes;
+using UnityEngine;
 
 public abstract class BaseComponentsEnabler : MonoBehaviour
 {
     [SerializeField] private Collider[] _colliders;
 
-    [Inject] private RaceStartTimeCounter _raceStartTimeCounter;
+    [Inject] private RaceStartTimeCounter _raceTimer;
 
-    protected virtual void Awake()
+    [Inject]
+    private void InjectDependencies(RaceStartTimeCounter raceTimer)
     {
-    }
-
-    private void OnEnable()
-    {
-        if (_raceStartTimeCounter != null)
-            _raceStartTimeCounter.Started += EnableComponents;
+        _raceTimer = raceTimer;
+        _raceTimer.Started += OnRaceStarted;
     }
 
     private void OnDisable()
     {
-        if (_raceStartTimeCounter != null)
-            _raceStartTimeCounter.Started -= EnableComponents;
+        if (_raceTimer != null)
+        {
+            _raceTimer.Started -= OnRaceStarted;
+        }
+    }
+
+    private void OnRaceStarted()
+    {
+        EnableComponents();
+        EnableColliders();
     }
 
     protected void EnableColliders()
     {
-        if (_colliders.Length > 0)
+        foreach (var collider in _colliders)
         {
-            foreach (var collider in _colliders)
-            {
-                if (collider != null)
-                {
-                    collider.enabled = true;
-                }
-            }
+            collider.enabled = true;
         }
     }
 

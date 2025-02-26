@@ -1,15 +1,13 @@
 using ArcadeVP;
 using UnityEngine;
 
-public class PlayerTrafficSpikesSpawner : MonoBehaviour, IWeapon
+public class PlayerTrafficSpikesSpawner : Weapon, IWeapon
 {
     [SerializeField] private Transform _spikes;
     [SerializeField] private ArcadeVehicleController _carController;
     [SerializeField] private float _offSetY = 0.3f;
 
-    public float DamageAmount => 0;
-
-    private void Update()
+    protected override void Update()
     {
         if (Input.GetKeyDown(KeyCode.C) && _carController.IsGrounded())
         {

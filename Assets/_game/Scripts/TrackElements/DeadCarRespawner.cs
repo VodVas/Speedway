@@ -18,7 +18,7 @@ public class DeadCarRespawner : MonoBehaviour
             {
                 if (_vehicle[i].TryGetComponent(out DamageHandler damageHandler))
                 {
-                    damageHandler.Died += OnEnemyDied;
+                    damageHandler.Died += OnVehicleDied;
                 }
             }
         }
@@ -26,6 +26,7 @@ public class DeadCarRespawner : MonoBehaviour
         {
             Debug.LogWarning("List is empty!");
             enabled = false;
+            return;
         }
     }
 
@@ -37,13 +38,13 @@ public class DeadCarRespawner : MonoBehaviour
             {
                 if (_vehicle[i].TryGetComponent(out DamageHandler damageHandler))
                 {
-                    damageHandler.Died -= OnEnemyDied;
+                    damageHandler.Died -= OnVehicleDied;
                 }
             }
         }
     }
 
-    private void OnEnemyDied(Vehicle vehicle)
+    private void OnVehicleDied(Vehicle vehicle)
     {
         vehicle.SetPosition();
 

@@ -1,9 +1,9 @@
+using Reflex.Attributes;
 using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Reflex.Attributes;
 
 public class RaceStartTimeCounter : MonoBehaviour
 {
@@ -14,52 +14,42 @@ public class RaceStartTimeCounter : MonoBehaviour
 
     [Inject] private GameObject _UICounter;
     [Inject] private AiStuckHelper _aiStuckHelper;
-    private float _second = 1f;
-    private WaitForSeconds _wait;
-    private WaitForSeconds _waitLightDuration;
 
     public event Action Started;
 
-    private void Awake()
-    {
-        _wait = new WaitForSeconds(_second);
-        _waitLightDuration = new WaitForSeconds(_lightDuration);
-    }
-
-    private void Start()
+    public void Awake()
     {
         StartCoroutine(Countdown());
     }
 
     private IEnumerator Countdown()
     {
-        yield return _wait;
+        yield return new WaitForSeconds(1f);
 
         for (int i = _countdownDuration; i > 0; i--)
         {
             _countText.text = $"{i}";
-
             SetLightsEnabled(true);
-
-            yield return _waitLightDuration;
-
+            yield return new WaitForSeconds(_lightDuration);
             SetLightsEnabled(false);
-
-            yield return _wait;
+            yield return new WaitForSeconds(1f);
         }
 
+        FinalizeCountdown();
+    }
+
+    private void FinalizeCountdown()
+    {
         _UICounter.SetActive(false);
         _aiStuckHelper.enabled = true;
-        _countText.text = "";
-
+        _countText.text = string.Empty;
         Started?.Invoke();
+        Debug.Log("Started?.Invoke();");
     }
 
     private void SetLightsEnabled(bool enabled)
     {
         foreach (var image in _lights)
-        {
             image.enabled = enabled;
-        }
     }
 }

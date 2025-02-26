@@ -1,13 +1,10 @@
 using TMPro;
 using UnityEngine;
 using YG;
-using Zenject;
 
 public class MoneyDisplay : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI moneyText;
-
-    //[Inject] private SaveService _saveManager;
 
     private void Start()
     {

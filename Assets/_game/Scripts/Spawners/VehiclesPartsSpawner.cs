@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 
-
 public class VehiclesPartsSpawner : Spawner<VehiclePartsExploder>
 {
     private Vector3 _cachedPosition;

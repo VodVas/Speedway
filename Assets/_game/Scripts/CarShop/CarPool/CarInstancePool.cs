@@ -4,28 +4,57 @@ using UnityEngine;
 
 public class CarInstancePool : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> _carPrefabs;
-    [SerializeField] private CarInstanceModifier _physicsOptimizer;
+    [SerializeField] private List<GameObject> _carPrefabs = null;
+    [SerializeField] private ComponentsCleaner _physicsCleaner = null;
 
     [field: SerializeField] public Transform SpawnPoint { get; private set; }
 
-    private List<GameObject> _spawnedInstances = new List<GameObject>();
+    private readonly List<GameObject> _spawnedInstances = new List<GameObject>();
 
     public List<GameObject> SpawnedInstances => _spawnedInstances;
     public GameObject GetCarInstance(int index) => _spawnedInstances[index];
-    public List<GameObject> GetAllCarsList() => _spawnedInstances;
-    public int TotalCars => _spawnedInstances.Count;
+
+    private void Awake()
+    {
+        if (_carPrefabs == null)
+        {
+            Debug.LogError("[CarInstancePool] _carPrefabs is null!", this);
+            enabled = false;
+            return;
+        }
+        if (SpawnPoint == null)
+        {
+            Debug.LogError("[CarInstancePool] SpawnPoint is not assigned!", this);
+            enabled = false;
+            return;
+        }
+        if (_physicsCleaner == null)
+        {
+            Debug.LogError("[CarInstancePool] CarPhysicsCleaner is not assigned!", this);
+            enabled = false;
+            return;
+        }
+    }
 
     public IEnumerator SpawnAllCars()
     {
         _spawnedInstances.Clear();
 
-        foreach (var prefab in _carPrefabs)
+        for (int i = 0; i < _carPrefabs.Count; i++)
         {
-            var instance = Instantiate(prefab, SpawnPoint);
-            _physicsOptimizer.OptimizeCar(instance);
+            GameObject prefab = _carPrefabs[i];
+            if (prefab == null)
+            {
+                Debug.LogWarning($"[CarInstancePool] Prefab at index {i} is null!", this);
+                continue;
+            }
+
+            GameObject instance = Instantiate(prefab, SpawnPoint);
+
+            _physicsCleaner.RemoveAllPhysicsComponents(instance);
             instance.SetActive(false);
             _spawnedInstances.Add(instance);
+
             yield return null;
         }
     }

@@ -1,35 +1,29 @@
 using ArcadeVP;
 using UnityEngine;
 
+[RequireComponent(typeof(ArcadeVehicleController))]
 public class PlayerComponentsEnabler : BaseComponentsEnabler
 {
-    [SerializeField] private MonoBehaviour[] _playerWeapon;
+    [SerializeField] private Weapon[] _playerWeapon;
 
     private ArcadeVehicleController _carController;
 
-    protected override void Awake()
+    private void Awake()
     {
         _carController = GetComponent<ArcadeVehicleController>();
     }
 
     protected override void EnableComponents()
     {
+        if (_carController != null)
+            _carController.enabled = true;
+
         EnableColliders();
 
-        if (_playerWeapon.Length > 0)
+        foreach (var weapon in _playerWeapon)
         {
-            foreach (var weapon in _playerWeapon)
-            {
-                if (weapon != null)
-                {
-                    weapon.enabled = true;
-                }
-            }
-        }
-
-        if (_carController != null)
-        {
-            _carController.enabled = true;
+            if (weapon != null)
+                weapon.enabled = true;
         }
     }
 }
