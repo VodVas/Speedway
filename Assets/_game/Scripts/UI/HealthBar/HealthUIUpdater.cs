@@ -2,9 +2,10 @@ using TMPro;
 using UnityEngine;
 
 
-public sealed class HealthUIUpdater : MonoBehaviour
+public class HealthUIUpdater : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _healthText = null;
+
     private Health _health = null;
 
     private void Awake()
@@ -16,7 +17,6 @@ public sealed class HealthUIUpdater : MonoBehaviour
             return;
         }
 
-        // Если _health уже назначен в инспекторе — подпишемся
         if (_health != null)
         {
             SubscribeHealth(_health);
@@ -32,7 +32,6 @@ public sealed class HealthUIUpdater : MonoBehaviour
             return;
         }
 
-        // Отписываемся от старого
         if (_health != null)
         {
             _health.Changed -= UpdateHealthDisplay;
@@ -65,30 +64,3 @@ public sealed class HealthUIUpdater : MonoBehaviour
         }
     }
 }
-
-
-
-
-
-//public class HealthUIUpdater : MonoBehaviour
-//{
-//    [SerializeField] private Health _health;
-//    [SerializeField] private TextMeshProUGUI _healthText;
-
-//    private void Awake()
-//    {
-//        _health.Changed += UpdateHealthDisplay;
-
-//        UpdateHealthDisplay(_health.Value / _health.Max);
-//    }
-
-//    private void OnDisable()
-//    {
-//        _health.Changed -= UpdateHealthDisplay;
-//    }
-
-//    private void UpdateHealthDisplay(float healthPercentage)
-//    {
-//        _healthText.text = $"{_health.Value}";
-//    }
-//}

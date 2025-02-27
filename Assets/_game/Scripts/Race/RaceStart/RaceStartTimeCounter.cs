@@ -44,7 +44,6 @@ public class RaceStartTimeCounter : MonoBehaviour
         _aiStuckHelper.enabled = true;
         _countText.text = string.Empty;
         Started?.Invoke();
-        Debug.Log("Started?.Invoke();");
     }
 
     private void SetLightsEnabled(bool enabled)

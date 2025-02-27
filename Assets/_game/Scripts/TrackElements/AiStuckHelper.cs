@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class AiStuckHelper : MonoBehaviour
 {
-    [SerializeField] private ArcadeAiVehicleController[] _vehicles = default;
     [SerializeField] private Transform[] _respawnPoints = default;
     [SerializeField] private float _offsetY = 5f;
     [SerializeField] private float _minSpeed = 20f;
@@ -13,43 +12,29 @@ public class AiStuckHelper : MonoBehaviour
     [SerializeField] private float _maxHeightToStuck = -10f;
     [SerializeField] private float _checkInterval = 0.5f;
 
+    private ArcadeAiVehicleController[] _vehicles = default;
     private float[] _stuckTimers;
     private Dictionary<ArcadeAiVehicleController, WaypointProgressTracker> _trackerMap;
     private WaitForSeconds _wait;
+
+
+
 
     private void Awake()
     {
         _wait = new WaitForSeconds(_checkInterval);
 
-        if (_vehicles == null || _vehicles.Length == 0)
-        {
-            Debug.LogError($"AiStuckHelper: поле _vehicles не заполнено или пустое.", this);
-            enabled = false;
-            return;
-        }
+        _vehicles = _vehicles != null ? _vehicles : new ArcadeAiVehicleController[0];
 
-        if (_respawnPoints == null || _respawnPoints.Length == 0)
-        {
-            Debug.LogWarning($"AiStuckHelper: в поле _respawnPoints нет точек респауна!", this);
-        }
-
+        _trackerMap = new Dictionary<ArcadeAiVehicleController, WaypointProgressTracker>();
         _stuckTimers = new float[_vehicles.Length];
 
         for (int i = 0; i < _vehicles.Length; i++)
         {
-            _stuckTimers[i] = 0f;
-        }
-
-        _trackerMap = new Dictionary<ArcadeAiVehicleController, WaypointProgressTracker>(_vehicles.Length);
-
-        for (int i = 0; i < _vehicles.Length; i++)
-        {
             ArcadeAiVehicleController ai = _vehicles[i];
-
             if (ai == null) continue;
 
             WaypointProgressTracker tracker = ai.GetComponent<WaypointProgressTracker>();
-
             if (tracker != null)
             {
                 _trackerMap[ai] = tracker;
@@ -57,10 +42,60 @@ public class AiStuckHelper : MonoBehaviour
         }
     }
 
+
+
+
+
+    //private void Awake()
+    //{
+    //    _wait = new WaitForSeconds(_checkInterval);
+
+    //    if (_vehicles == null || _vehicles.Length == 0)
+    //    {
+    //        Debug.LogError($"AiStuckHelper: поле _vehicles не заполнено или пустое.", this);
+    //        enabled = false;
+    //        return;
+    //    }
+
+    //    if (_respawnPoints == null || _respawnPoints.Length == 0)
+    //    {
+    //        Debug.LogWarning($"AiStuckHelper: в поле _respawnPoints нет точек респауна!", this);
+    //    }
+
+    //    _stuckTimers = new float[_vehicles.Length];
+
+    //    for (int i = 0; i < _vehicles.Length; i++)
+    //    {
+    //        _stuckTimers[i] = 0f;
+    //    }
+
+    //    _trackerMap = new Dictionary<ArcadeAiVehicleController, WaypointProgressTracker>(_vehicles.Length);
+
+    //    for (int i = 0; i < _vehicles.Length; i++)
+    //    {
+    //        ArcadeAiVehicleController ai = _vehicles[i];
+    //        if (ai == null) continue;
+
+    //        WaypointProgressTracker tracker = ai.GetComponent<WaypointProgressTracker>();
+    //        if (tracker != null)
+    //        {
+    //            _trackerMap[ai] = tracker;
+    //        }
+    //    }
+    //}
+
     private void Start()
     {
-        StartCoroutine(CheckStuckRoutine());
+        if (_vehicles.Length > 0)
+        {
+            StartCoroutine(CheckStuckRoutine());
+        }
     }
+
+    //private void Start()
+    //{
+    //    StartCoroutine(CheckStuckRoutine());
+    //}
 
     private IEnumerator CheckStuckRoutine()
     {
@@ -70,13 +105,13 @@ public class AiStuckHelper : MonoBehaviour
             {
                 ArcadeAiVehicleController vehicle = _vehicles[i];
 
-                if (vehicle == null) continue;
+                if (vehicle == null)
+                    continue;
 
                 if (vehicle.carBody.position.y < _maxHeightToStuck)
                 {
                     TeleportStuckVehicle(vehicle);
                     _stuckTimers[i] = 0f;
-
                     continue;
                 }
 
@@ -144,14 +179,6 @@ public class AiStuckHelper : MonoBehaviour
         vehicle.transform.position = nearest.position + Vector3.up * _offsetY;
         vehicle.carBody.position = nearest.position + Vector3.up * _offsetY;
         vehicle.carBody.rotation = stuckOrientation;
-
-        //StartCoroutine(EnableGravityAfterDelay(vehicle));
-    }
-
-    private IEnumerator EnableGravityAfterDelay(ArcadeAiVehicleController vehicle)
-    {
-        yield return new WaitForSeconds(0.5f);
-        vehicle.rb.useGravity = true;
     }
 
     private Transform FindNearestRespawnPoint(Vector3 position)
@@ -168,7 +195,6 @@ public class AiStuckHelper : MonoBehaviour
             }
 
             float distSqr = (respawn.position - position).sqrMagnitude;
-
             if (distSqr < minDistSqr)
             {
                 minDistSqr = distSqr;
@@ -177,5 +203,57 @@ public class AiStuckHelper : MonoBehaviour
         }
 
         return nearest;
+    }
+
+    public void AddVehicle(ArcadeAiVehicleController newVehicle)
+    {
+        if (newVehicle == null)
+            return;
+
+
+
+        if (_vehicles == null)
+        {
+            _vehicles = new ArcadeAiVehicleController[0];
+            _trackerMap = new Dictionary<ArcadeAiVehicleController, WaypointProgressTracker>();
+        }
+
+
+
+        int oldLength = (_vehicles == null) ? 0 : _vehicles.Length;
+
+        ArcadeAiVehicleController[] newArray = new ArcadeAiVehicleController[oldLength + 1];
+
+        for (int i = 0; i < oldLength; i++)
+        {
+            newArray[i] = _vehicles[i];
+        }
+
+        newArray[oldLength] = newVehicle;
+        _vehicles = newArray;
+
+        float[] newStuckTimers = new float[_vehicles.Length];
+
+        for (int i = 0; i < oldLength; i++)
+        {
+            newStuckTimers[i] = _stuckTimers[i];
+        }
+
+        newStuckTimers[oldLength] = 0f;
+        _stuckTimers = newStuckTimers;
+
+        WaypointProgressTracker tracker = newVehicle.GetComponent<WaypointProgressTracker>();
+
+        if (tracker != null && !_trackerMap.ContainsKey(newVehicle))
+        {
+            _trackerMap.Add(newVehicle, tracker);
+        }
+
+
+
+        if (oldLength == 0 && newArray.Length > 0)
+        {
+            StartCoroutine(CheckStuckRoutine());
+        }
     }
 }

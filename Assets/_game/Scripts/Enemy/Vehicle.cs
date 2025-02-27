@@ -1,16 +1,16 @@
 using UnityEngine;
 
-[RequireComponent(typeof(VehiclesPartsSpawner))]
+[RequireComponent(typeof(CrashPartsCreator))]
 [RequireComponent(typeof(Health))]
 public abstract class Vehicle : MonoBehaviour
 {
-    private VehiclesPartsSpawner _vehiclesPartsSpawner;
+    private CrashPartsCreator _crashPartsCreator;
     private Health _health;
     private Vector3 _deathPosition;
 
     private void Awake()
     {
-        _vehiclesPartsSpawner = GetComponent<VehiclesPartsSpawner>();
+        _crashPartsCreator = GetComponent<CrashPartsCreator>();
         _health = GetComponent<Health>();
     }
 
@@ -31,6 +31,6 @@ public abstract class Vehicle : MonoBehaviour
 
     public void SpawnParts()
     {
-        _vehiclesPartsSpawner.StartSpawn(transform.position, GetType());
+        _crashPartsCreator.StartSpawn(transform.position, GetType());
     }
 }

@@ -6,9 +6,9 @@ public class RaceProgressInitializer
 
     private readonly Racer[] _racers;
     private readonly int _playerId;
-    private readonly RaceCarSelector _raceCarSelector;
+    private readonly PlayerCarSelector _raceCarSelector;
 
-    public RaceProgressInitializer(Racer[] racers, int playerId, RaceCarSelector raceCarSelector)
+    public RaceProgressInitializer(Racer[] racers, int playerId, PlayerCarSelector raceCarSelector)
     {
         if (racers == null || racers.Length == 0)
         {

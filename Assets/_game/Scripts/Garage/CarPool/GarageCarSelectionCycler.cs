@@ -1,16 +1,17 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class GarageCarSelectionCycler
 {
-    private readonly GarageCarInstancePool _pool;
+    private readonly List<GameObject> _carsInScene;
 
     public int CurrentIndex { get; private set; }
 
-    public GarageCarSelectionCycler(GarageCarInstancePool pool)
+    public GarageCarSelectionCycler(List<GameObject> carsInScene)
     {
-        _pool = pool;
+        _carsInScene = carsInScene;
 
-        if (_pool.SpawnedCars.Count == 0)
+        if (_carsInScene == null || _carsInScene.Count == 0)
         {
             CurrentIndex = -1;
         }
@@ -22,13 +23,13 @@ public class GarageCarSelectionCycler
 
     public void SetCurrentIndex(int newIndex)
     {
-        if (_pool.SpawnedCars.Count == 0)
+        if (_carsInScene == null || _carsInScene.Count == 0)
         {
             CurrentIndex = -1;
             return;
         }
 
-        if (newIndex < 0 || newIndex >= _pool.SpawnedCars.Count)
+        if (newIndex < 0 || newIndex >= _carsInScene.Count)
         {
             Debug.LogWarning("[GarageCarSelectionCycler] Некорректный индекс, пропускаем.");
             return;
@@ -39,33 +40,35 @@ public class GarageCarSelectionCycler
 
     public void SwitchCar(int direction)
     {
-        if (_pool.SpawnedCars.Count == 0)
+        if (_carsInScene == null || _carsInScene.Count == 0)
             return;
 
         SetCarActive(false);
 
-        CurrentIndex = (CurrentIndex + direction + _pool.SpawnedCars.Count) % _pool.SpawnedCars.Count;
+        CurrentIndex = (CurrentIndex + direction + _carsInScene.Count) % _carsInScene.Count;
 
         SetCarActive(true);
     }
 
     public void SetCarActive(bool state)
     {
-        if (CurrentIndex < 0 || CurrentIndex >= _pool.SpawnedCars.Count)
+        if (CurrentIndex < 0 || _carsInScene == null || CurrentIndex >= _carsInScene.Count)
             return;
 
-        var instance = _pool.SpawnedCars[CurrentIndex];
-        instance.transform.position = _pool.GarageSpawnPoint.position;
-        instance.gameObject.SetActive(state);
+        GameObject instance = _carsInScene[CurrentIndex];
+
+        if (instance == null)
+            return;
+
+        instance.SetActive(state);
     }
 
     public CarData GetCurrentCarData()
     {
-        if (CurrentIndex < 0 || _pool.SpawnedCars.Count == 0)
+        if (_carsInScene == null || _carsInScene.Count == 0 || CurrentIndex < 0)
             return null;
 
-        GameObject carObj = _pool.SpawnedCars[CurrentIndex];
-
+        GameObject carObj = _carsInScene[CurrentIndex];
         if (carObj == null)
             return null;
 

@@ -4,7 +4,6 @@ using UnityEngine;
 [RequireComponent(typeof(Health))]
 public class DamageHandler : MonoBehaviour, IDamageable
 {
-
     private Vehicle _vehicle;
 
     public event Action<Vehicle> Died;

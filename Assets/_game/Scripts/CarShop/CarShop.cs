@@ -1,11 +1,10 @@
-using System.Collections;
 using UnityEngine;
 using YG;
 
 [RequireComponent(typeof(CarShopUI))]
 public class CarShop : MonoBehaviour
 {
-    [SerializeField] private CarInstancePool _carInstancePool = null;
+    [SerializeField] private CarCollection _carCollection = null;
 
     private CarShopUI _carShopUI;
     private CarPurchaseValidator _purchaseValidator;
@@ -15,29 +14,36 @@ public class CarShop : MonoBehaviour
     {
         _carShopUI = GetComponent<CarShopUI>();
 
-        if (_carInstancePool == null || _carShopUI == null)
+        if (_carCollection == null)
         {
-            Debug.LogError("[CarShopUIMediator] Не назначены компоненты!", this);
+            Debug.LogError("[CarShop] CarCollection не назначен!", this);
+            enabled = false;
+            return;
+        }
+
+        if (_carShopUI == null)
+        {
+            Debug.LogError("[CarShop] CarShopUI не найден!", this);
             enabled = false;
             return;
         }
     }
 
-    private IEnumerator Start()
+    private void Start()
     {
-        yield return StartCoroutine(_carInstancePool.SpawnAllCars());
+        var carsInScene = _carCollection.SceneCars;
 
-        _purchaseValidator = new CarPurchaseValidator(_carInstancePool.SpawnedInstances);
+        _purchaseValidator = new CarPurchaseValidator(carsInScene);
 
         if (_purchaseValidator.AvailableCarIndices.Count > 0)
         {
-            _selectionCycler = new CarSelectionCycler(_carInstancePool, _purchaseValidator);
+            _selectionCycler = new CarSelectionCycler(carsInScene, _purchaseValidator);
 
             _selectionCycler.SetCarActive(true);
         }
         else
         {
-            Debug.Log("[CarShopUIMediator] Все машины уже куплены или недоступны.");
+            Debug.Log("[CarShop] Все машины уже куплены или недоступны!");
         }
 
         UpdateUI();
@@ -50,7 +56,7 @@ public class CarShop : MonoBehaviour
 
         if (_purchaseValidator.AvailableCarIndices.Count == 0)
         {
-            Debug.Log("[CarShopUIMediator] Нет доступных машин для покупки!");
+            Debug.Log("[CarShop] Нет доступных машин для покупки!");
             return;
         }
 
@@ -62,7 +68,6 @@ public class CarShop : MonoBehaviour
             _selectionCycler.SetCarActive(false);
             YandexGame.savesData.AddCar(data.Id);
             YandexGame.SaveProgress();
-
             _purchaseValidator.RecalculateAvailability();
             _selectionCycler.RevalidateCurrentIndex();
 
@@ -72,60 +77,18 @@ public class CarShop : MonoBehaviour
             }
             else
             {
-                Debug.Log("[CarShopUIMediator] Все машины куплены, больше ничего нет.");
+                Debug.Log("[CarShop] Все машины куплены, больше ничего нет.");
             }
 
             UpdateUI();
         }
         else
         {
-            Debug.Log("[CarShopUIMediator] Недостаточно денег или ошибка в покупке.");
+            Debug.Log("[CarShop] Недостаточно денег или ошибка в покупке.");
         }
 
         UpdateUI();
     }
-
-
-    //public void BuyCurrentCar()
-    //{
-    //    if (_purchaseValidator == null || _selectionCycler == null)
-    //        return;
-
-    //    if (_purchaseValidator.AvailableCarIndices.Count == 0)
-    //    {
-    //        Debug.Log("[CarShopUIMediator] Нет доступных машин для покупки!");
-    //        return;
-    //    }
-
-    //    bool canBuy = _purchaseValidator.TryBuyCar(_selectionCycler.CurrentIndex);
-
-    //    if (canBuy)
-    //    {
-    //        CarData data = _selectionCycler.GetCurrentCarData();
-    //        YandexGame.savesData.AddCar(data.Id);
-    //        YandexGame.SaveProgress();
-
-    //        Debug.Log($"[CarShopUIMediator] Машина '{data.CarName}' куплена за {data.Price}.");
-
-    //        _purchaseValidator.RecalculateAvailability();
-    //        _selectionCycler.RevalidateCurrentIndex();
-
-    //        if (_purchaseValidator.AvailableCarIndices.Count > 0)
-    //        {
-    //            _selectionCycler.SetCarActive(true);
-    //        }
-    //        else
-    //        {
-    //            Debug.Log("[CarShopUIMediator] Все машины куплены, больше ничего нет.");
-    //        }
-    //    }
-    //    else
-    //    {
-    //        Debug.Log("[CarShopUIMediator] Недостаточно денег или ошибка в покупке.");
-    //    }
-
-    //    UpdateUI();
-    //}
 
     public void SwitchNextCar()
     {
@@ -138,7 +101,7 @@ public class CarShop : MonoBehaviour
         }
         else
         {
-            Debug.Log("[CarShopUIMediator] Нет других машин, чтобы переключиться вперёд.");
+            Debug.Log("[CarShop] Нет других машин, чтобы переключиться вперёд.");
         }
 
         UpdateUI();
@@ -155,7 +118,7 @@ public class CarShop : MonoBehaviour
         }
         else
         {
-            Debug.Log("[CarShopUIMediator] Нет других машин, чтобы переключиться назад.");
+            Debug.Log("[CarShop] Нет других машин, чтобы переключиться назад.");
         }
 
         UpdateUI();
@@ -173,7 +136,6 @@ public class CarShop : MonoBehaviour
         }
 
         CarData currentCar = _selectionCycler?.GetCurrentCarData();
-
         if (currentCar == null)
         {
             _carShopUI.DisplayCarNotFound();

@@ -1,16 +1,16 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class CarSelectionCycler
 {
-    private readonly CarInstancePool _pool;
+    private readonly List<GameObject> _cars;
     private readonly CarPurchaseValidator _validator;
 
     public int CurrentIndex { get; private set; } = 0;
 
-
-    public CarSelectionCycler(CarInstancePool pool, CarPurchaseValidator validator)
+    public CarSelectionCycler(List<GameObject> cars, CarPurchaseValidator validator)
     {
-        _pool = pool;
+        _cars = cars;
         _validator = validator;
 
         if (_validator.AvailableCarIndices.Count == 0)
@@ -25,7 +25,10 @@ public class CarSelectionCycler
             return;
 
         SetCarActive(false);
-        CurrentIndex = (CurrentIndex + direction + _validator.AvailableCarIndices.Count) % _validator.AvailableCarIndices.Count;
+
+        CurrentIndex = (CurrentIndex + direction + _validator.AvailableCarIndices.Count)
+                       % _validator.AvailableCarIndices.Count;
+
         SetCarActive(true);
     }
 
@@ -35,9 +38,13 @@ public class CarSelectionCycler
             return;
 
         int realIndex = _validator.AvailableCarIndices[CurrentIndex];
-        GameObject instance = _pool.GetCarInstance(realIndex);
-        instance.transform.position = _pool.SpawnPoint.position;
-        instance.SetActive(state);
+
+        GameObject car = _cars[realIndex];
+
+        if (car != null)
+        {
+            car.SetActive(state);
+        }
     }
 
     public CarData GetCurrentCarData()
@@ -46,7 +53,8 @@ public class CarSelectionCycler
             return null;
 
         int realIndex = _validator.AvailableCarIndices[CurrentIndex];
-        return _pool.GetCarInstance(realIndex).GetComponent<CarData>();
+        GameObject car = _cars[realIndex];
+        return car != null ? car.GetComponent<CarData>() : null;
     }
 
     public void RevalidateCurrentIndex()
@@ -54,9 +62,9 @@ public class CarSelectionCycler
         if (_validator.AvailableCarIndices.Count == 0)
         {
             CurrentIndex = -1;
-
             return;
         }
+
         if (CurrentIndex >= _validator.AvailableCarIndices.Count)
         {
             CurrentIndex = _validator.AvailableCarIndices.Count - 1;

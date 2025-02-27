@@ -1,63 +1,58 @@
 using System.Collections.Generic;
 using UnityEngine;
-using YG;
 
 public class CarPurchaseValidator
 {
-    private readonly List<int> _availableCarIndices = new List<int>();
-    private readonly List<GameObject> _allCars;
+    private readonly List<CarData> _carDataList = new List<CarData>();
 
-    public IReadOnlyList<int> AvailableCarIndices => _availableCarIndices;
+    public List<int> AvailableCarIndices { get; private set; } = new List<int>();
 
-    public CarPurchaseValidator(List<GameObject> allCars)
+    public CarPurchaseValidator(List<GameObject> cars)
     {
-        _allCars = allCars ?? new List<GameObject>();
+        for (int i = 0; i < cars.Count; i++)
+        {
+            var obj = cars[i];
+
+            if (obj == null) continue;
+
+            CarData data = obj.GetComponent<CarData>();
+
+            if (data == null) continue;
+
+            _carDataList.Add(data);
+        }
+
         RecalculateAvailability();
     }
 
     public void RecalculateAvailability()
     {
-        _availableCarIndices.Clear();
+        AvailableCarIndices.Clear();
 
-        for (int i = 0; i < _allCars.Count; i++)
+        for (int i = 0; i < _carDataList.Count; i++)
         {
-            CarData data = _allCars[i].GetComponent<CarData>();
-            if (data == null)
-            {
-                Debug.LogError("[CarPurchaseValidator] CarData не найден на заспавненном объекте!", _allCars[i]);
-                continue;
-            }
+            CarData data = _carDataList[i];
 
-            if (!YandexGame.savesData.HasCar(data.Id))
+            if (!YG.YandexGame.savesData.HasCar(data.Id))
             {
-                _availableCarIndices.Add(i);
+                AvailableCarIndices.Add(i);
             }
         }
     }
 
-    public bool TryBuyCar(int currentSelectionIndex)
+    public bool TryBuyCar(int localIndex)
     {
-        if (currentSelectionIndex < 0 || currentSelectionIndex >= _availableCarIndices.Count)
+        if (localIndex < 0 || localIndex >= AvailableCarIndices.Count)
+            return false;
+
+        int realIndex = AvailableCarIndices[localIndex];
+        CarData data = _carDataList[realIndex];
+
+        if (!YG.YandexGame.savesData.TrySpendMoney(data.Price))
         {
-            Debug.LogError("[CarPurchaseValidator] Некорректный индекс для покупки.");
             return false;
         }
 
-        int realIndex = _availableCarIndices[currentSelectionIndex];
-        CarData carData = _allCars[realIndex].GetComponent<CarData>();
-
-        if (carData == null)
-        {
-            Debug.LogError("[CarPurchaseValidator] Данные машины не найдены!");
-            return false;
-        }
-
-        bool success = YandexGame.savesData.TrySpendMoney(carData.Price);
-
-        if (!success)
-        {
-            Debug.Log("[CarPurchaseValidator] Недостаточно средств для покупки!");
-        }
-        return success;
+        return true;
     }
 }

@@ -1,9 +1,10 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class DeadCarRespawner : MonoBehaviour
 {
-    [SerializeField] private Vehicle[] _vehicle;
+    [SerializeField] private List<Vehicle> _vehicles = new List<Vehicle>();
     [SerializeField] private float _delayUntilRespawn = 3f;
 
     private WaitForSeconds _wait;
@@ -12,34 +13,35 @@ public class DeadCarRespawner : MonoBehaviour
     {
         _wait = new WaitForSeconds(_delayUntilRespawn);
 
-        if (_vehicle.Length > 0)
+        foreach (var vehicle in _vehicles)
         {
-            for (int i = 0; i < _vehicle.Length; i++)
+            if (vehicle.TryGetComponent(out DamageHandler damageHandler))
             {
-                if (_vehicle[i].TryGetComponent(out DamageHandler damageHandler))
-                {
-                    damageHandler.Died += OnVehicleDied;
-                }
+                damageHandler.Died += OnVehicleDied;
             }
-        }
-        else
-        {
-            Debug.LogWarning("List is empty!");
-            enabled = false;
-            return;
         }
     }
 
     private void OnDisable()
     {
-        for (int i = 0; i < _vehicle.Length; i++)
+        foreach (var vehicle in _vehicles)
         {
-            if (_vehicle[i] != null)
+            if (vehicle != null && vehicle.TryGetComponent(out DamageHandler damageHandler))
             {
-                if (_vehicle[i].TryGetComponent(out DamageHandler damageHandler))
-                {
-                    damageHandler.Died -= OnVehicleDied;
-                }
+                damageHandler.Died -= OnVehicleDied;
+            }
+        }
+    }
+
+    public void AddVehicle(Vehicle vehicle)
+    {
+        if (!_vehicles.Contains(vehicle))
+        {
+            _vehicles.Add(vehicle);
+
+            if (vehicle.TryGetComponent(out DamageHandler damageHandler))
+            {
+                damageHandler.Died += OnVehicleDied;
             }
         }
     }

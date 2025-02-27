@@ -1,37 +1,27 @@
 using UnityEngine;
 using YG;
-using System.Collections;
+using System.Collections.Generic;
 using System;
 
-[RequireComponent(typeof(GarageCarInstancePool))]
 public class GarageNavigator : MonoBehaviour
 {
-    private GarageCarInstancePool _carPool;
+    [SerializeField] private List<GameObject> _carsInScene;
+
     private GarageCarSelectionCycler _selectionCycler;
 
     public event Action OnGarageReady;
 
-    private IEnumerator Start()
+    private void Start()
     {
-        _carPool = GetComponent<GarageCarInstancePool>();
 
-        if (_carPool == null)
+        if (_carsInScene == null || _carsInScene.Count == 0)
         {
-            Debug.LogError("[GarageNavigator] Не найден компонент GarageCarInstancePool!");
+            Debug.LogWarning("[GarageNavigator] Список машин в сцене пуст или не задан!");
             enabled = false;
-            yield break;
+            return;
         }
 
-        yield return StartCoroutine(_carPool.SpawnPurchasedCars());
-
-        if (_carPool.SpawnedCars.Count == 0)
-        {
-            Debug.LogWarning("[GarageNavigator] Нет купленных машин для отображения в гараже.");
-            enabled = false;
-            yield break;
-        }
-
-        _selectionCycler = new GarageCarSelectionCycler(_carPool);
+        _selectionCycler = new GarageCarSelectionCycler(_carsInScene);
 
         int lastUsedCarId = YandexGame.savesData.GetLastUsedCarId();
         int foundIndex = FindCarIndexById(lastUsedCarId);
@@ -42,10 +32,7 @@ public class GarageNavigator : MonoBehaviour
         }
         else
         {
-            if (_carPool.SpawnedCars.Count > 0)
-            {
-                SetCyclerIndex(0);
-            }
+            SetCyclerIndex(0);
         }
 
         InitializeCarUpgradesAndMods();
@@ -55,7 +42,7 @@ public class GarageNavigator : MonoBehaviour
 
     public void NextCar()
     {
-        if (_selectionCycler == null || _carPool.SpawnedCars.Count <= 1)
+        if (_selectionCycler == null || _carsInScene.Count <= 1)
             return;
 
         _selectionCycler.SwitchCar(1);
@@ -64,11 +51,49 @@ public class GarageNavigator : MonoBehaviour
 
     public void PrevCar()
     {
-        if (_selectionCycler == null || _carPool.SpawnedCars.Count <= 1)
+        if (_selectionCycler == null || _carsInScene.Count <= 1)
             return;
 
         _selectionCycler.SwitchCar(-1);
         OnCarChanged();
+    }
+
+    private void OnCarChanged()
+    {
+        CarData data = _selectionCycler.GetCurrentCarData();
+        if (data != null)
+        {
+            YandexGame.savesData.SetLastUsedCarId(data.Id);
+            YandexGame.SaveProgress();
+            InitializeCarUpgradesAndMods();
+        }
+    }
+
+    private void SetCyclerIndex(int index)
+    {
+        if (_selectionCycler == null)
+            return;
+
+        _selectionCycler.SetCarActive(false);
+        _selectionCycler.SetCurrentIndex(index);
+        _selectionCycler.SetCarActive(true);
+    }
+
+    private void InitializeCarUpgradesAndMods()
+    {
+        CarUpgrades upgrades = GetCurrentCarUpgrades();
+
+        if (upgrades != null)
+        {
+            upgrades.InitializePurchasedUpgrades(YandexGame.savesData.HasCarUpgrade);
+        }
+
+        CarModifications modifications = GetCurrentCarModifications();
+
+        if (modifications != null)
+        {
+            modifications.InitializePurchasedMods(YandexGame.savesData.GetCarModificationCount);
+        }
     }
 
     public CarModifications GetCurrentCarModifications()
@@ -95,49 +120,15 @@ public class GarageNavigator : MonoBehaviour
         return data.GetComponent<CarUpgrades>();
     }
 
-    private void SetCyclerIndex(int index)
-    {
-        _selectionCycler.SetCarActive(false);
-        _selectionCycler.SetCurrentIndex(index);
-        _selectionCycler.SetCarActive(true);
-    }
-
-    private void OnCarChanged()
-    {
-        CarData data = _selectionCycler.GetCurrentCarData();
-
-        if (data != null)
-        {
-            YandexGame.savesData.SetLastUsedCarId(data.Id);
-            YandexGame.SaveProgress();
-            InitializeCarUpgradesAndMods();
-        }
-    }
-
-    private void InitializeCarUpgradesAndMods()
-    {
-        CarUpgrades upgrades = GetCurrentCarUpgrades();
-
-        if (upgrades != null)
-        {
-            upgrades.InitializePurchasedUpgrades(YandexGame.savesData.HasCarUpgrade);
-        }
-
-        CarModifications modifications = GetCurrentCarModifications();
-
-        if (modifications != null)
-        {
-            modifications.InitializePurchasedMods(YandexGame.savesData.GetCarModificationCount);
-        }
-    }
-
     private int FindCarIndexById(int carId)
     {
-        var spawnedCars = _carPool.SpawnedCars;
-
-        for (int i = 0; i < spawnedCars.Count; i++)
+        for (int i = 0; i < _carsInScene.Count; i++)
         {
-            CarData data = spawnedCars[i].GetComponent<CarData>();
+            GameObject carObj = _carsInScene[i];
+            if (carObj == null)
+                continue;
+
+            CarData data = carObj.GetComponent<CarData>();
             if (data != null && data.Id == carId)
             {
                 return i;

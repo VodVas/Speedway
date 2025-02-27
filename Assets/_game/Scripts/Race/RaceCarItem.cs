@@ -6,4 +6,9 @@ public class RaceCarItem
 {
     public int carId;
     public GameObject carObject;
+
+
+
+    public CarUpgrades carUpgrades;
+    public CarModifications carModifications;
 }
