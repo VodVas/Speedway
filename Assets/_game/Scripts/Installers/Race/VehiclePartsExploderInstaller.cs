@@ -13,11 +13,12 @@ public class VehiclePartsExploderInstaller : MonoBehaviour, IInstaller
     [SerializeField] private VehiclePartsExploder _newsVanParts;
     [SerializeField] private VehiclePartsExploder _elvisParts;
     [SerializeField] private VehiclePartsExploder _tubParts;
+    [SerializeField] private VehiclePartsExploder _iceCreamerParts;
 
     private void Awake()
     {
         if (_buggyParts == null || _hotRodParts == null || _crossroadParts == null || _mustangParts == null || _redNeckParts == null || _newsVanParts == null ||
-            _elvisParts == null || _tubParts == null)
+            _elvisParts == null || _tubParts == null || _iceCreamerParts == null)
         {
             Debug.LogError("One or more VehiclePartsExploder components are not assigned.");
             enabled = false;
@@ -37,6 +38,7 @@ public class VehiclePartsExploderInstaller : MonoBehaviour, IInstaller
             { typeof(NewsVan), _newsVanParts },
             { typeof(Elvis), _elvisParts },
             { typeof(Tub), _tubParts },
+            { typeof(IceCreamer), _iceCreamerParts },
         };
 
         builder.AddSingleton(partsDictionary);

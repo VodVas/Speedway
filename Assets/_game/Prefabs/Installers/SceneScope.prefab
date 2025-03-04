@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 6484509871263786133}
   - component: {fileID: 8307430709457517976}
   - component: {fileID: 8936724569114032865}
+  - component: {fileID: 5178499863258909721}
+  - component: {fileID: 925059739886820173}
   m_Layer: 0
   m_Name: SceneScope
   m_TagString: Untagged
@@ -112,3 +114,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _aiStuckHelper: {fileID: 0}
   _timeCounter: {fileID: 0}
+  _carRespawner: {fileID: 0}
+--- !u!114 &5178499863258909721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5805024981204222922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 198dfe32a0501754ba48636d3a7f980f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _waypointContainer: {fileID: 0}
+--- !u!114 &925059739886820173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5805024981204222922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cb199610b6f08b41a1bf20265cf5df9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _progressTracker: {fileID: 0}

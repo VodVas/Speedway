@@ -209,7 +209,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: -0.04, z: 0}
+  m_ConnectedAnchor: {x: 0, y: -0.20962757, z: 0}
   serializedVersion: 2
   m_UseSpring: 0
   m_Spring:
@@ -330,6 +330,7 @@ GameObject:
   - component: {fileID: 4539082005844837575}
   - component: {fileID: 2803454754402995549}
   - component: {fileID: 2475521369521631457}
+  - component: {fileID: 7902983085411930656}
   m_Layer: 0
   m_Name: SM_Veh_Greaser_01_Door_R
   m_TagString: Untagged
@@ -381,7 +382,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d3790d8e2d14ebb489ffaf66d815d0f2, type: 2}
+  - {fileID: 2100000, guid: 7c26cf0bfe31c4247ad0de127e8e305f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -403,6 +404,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7902983085411930656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1600635560273201606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bddaef1903dc994e8ef0da7bb6931ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1691299981837045918
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,7 +494,7 @@ Transform:
   m_GameObject: {fileID: 1712028877012831144}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.9434883, z: 0.013911486}
+  m_LocalPosition: {x: 0.014, y: 0.9434883, z: 0.013911486}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -638,6 +651,8 @@ MonoBehaviour:
   - {fileID: 5823807481532338567}
   - {fileID: 3519585313547355325}
   carVelocity: {x: 0, y: 0, z: 0}
+  MaxForwardTilt: 5
+  MaxBackwardTilt: 5
   BodyTilt: 10
   engineSound: {fileID: 4847252380527151278}
   minPitch: 0.3
@@ -6353,7 +6368,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3499954700620934656
 Transform:
   m_ObjectHideFlags: 0
@@ -6447,7 +6462,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2345638967710201996
 Transform:
   m_ObjectHideFlags: 0
@@ -11603,6 +11618,7 @@ GameObject:
   - component: {fileID: 854818661430517613}
   - component: {fileID: 6716116835878289659}
   - component: {fileID: 3194135515804430340}
+  - component: {fileID: 7545621320371081092}
   m_Layer: 0
   m_Name: SM_Veh_Greaser_01
   m_TagString: Untagged
@@ -11659,7 +11675,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d3790d8e2d14ebb489ffaf66d815d0f2, type: 2}
+  - {fileID: 2100000, guid: 7c26cf0bfe31c4247ad0de127e8e305f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11681,6 +11697,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7545621320371081092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4775890837977026921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bddaef1903dc994e8ef0da7bb6931ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5249007189771628243
 GameObject:
   m_ObjectHideFlags: 0
@@ -17117,6 +17145,7 @@ Transform:
   - {fileID: 8679424122318887105}
   - {fileID: 2345638967710201996}
   - {fileID: 3499954700620934656}
+  - {fileID: 5796752847723952744}
   m_Father: {fileID: 7273929243370747171}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7650956064467719987
@@ -17130,6 +17159,7 @@ GameObject:
   - component: {fileID: 6963972173321173443}
   - component: {fileID: 534138843736451619}
   - component: {fileID: 1025640370348614430}
+  - component: {fileID: 8182273159357875195}
   m_Layer: 0
   m_Name: SM_Veh_Greaser_01_Door_L
   m_TagString: Untagged
@@ -17181,7 +17211,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d3790d8e2d14ebb489ffaf66d815d0f2, type: 2}
+  - {fileID: 2100000, guid: 7c26cf0bfe31c4247ad0de127e8e305f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17203,6 +17233,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8182273159357875195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7650956064467719987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bddaef1903dc994e8ef0da7bb6931ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8193411453485994651
 GameObject:
   m_ObjectHideFlags: 0
@@ -17214,6 +17256,7 @@ GameObject:
   - component: {fileID: 6705225712722419639}
   - component: {fileID: 6810375458449585060}
   - component: {fileID: 3687246552732652993}
+  - component: {fileID: 6928157661706728916}
   m_Layer: 0
   m_Name: SM_Veh_Greaser_01_Armour_01
   m_TagString: Untagged
@@ -17264,7 +17307,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d3790d8e2d14ebb489ffaf66d815d0f2, type: 2}
+  - {fileID: 2100000, guid: 7c26cf0bfe31c4247ad0de127e8e305f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17286,6 +17329,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6928157661706728916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8193411453485994651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bddaef1903dc994e8ef0da7bb6931ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8369553524544913746
 GameObject:
   m_ObjectHideFlags: 0
@@ -22446,6 +22501,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8608044771846341052}
     m_Modifications:
+    - target: {fileID: 43978674298298038, guid: 1970ab1ab31e6504d9eb5df2e068d319, type: 3}
+      propertyPath: <ParticleShoot>k__BackingField
+      value: 
+      objectReference: {fileID: 7006536003493398385}
     - target: {fileID: 1902256543885968322, guid: 1970ab1ab31e6504d9eb5df2e068d319, type: 3}
       propertyPath: m_Size.z
       value: 68.18957
@@ -22514,6 +22573,11 @@ PrefabInstance:
 --- !u!65 &3544637791260166302 stripped
 BoxCollider:
   m_CorrespondingSourceObject: {fileID: 1902256543885968322, guid: 1970ab1ab31e6504d9eb5df2e068d319, type: 3}
+  m_PrefabInstance: {fileID: 3123028045380750172}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &7006536003493398385 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5362395357260352557, guid: 1970ab1ab31e6504d9eb5df2e068d319, type: 3}
   m_PrefabInstance: {fileID: 3123028045380750172}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &8679424122318887105 stripped
@@ -22606,6 +22670,68 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3343536377525176066, guid: 21cae74019ad31c46b8e5ccd64064b88, type: 3}
   m_PrefabInstance: {fileID: 3894573483316190999}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4291434646210425566
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8608044771846341052}
+    m_Modifications:
+    - target: {fileID: 3447982725728612521, guid: 291a95c180968434698be54bd83d8b43, type: 3}
+      propertyPath: m_Name
+      value: DriverElvis
+      objectReference: {fileID: 0}
+    - target: {fileID: 7781104230235687094, guid: 291a95c180968434698be54bd83d8b43, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 7781104230235687094, guid: 291a95c180968434698be54bd83d8b43, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.351
+      objectReference: {fileID: 0}
+    - target: {fileID: 7781104230235687094, guid: 291a95c180968434698be54bd83d8b43, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.696
+      objectReference: {fileID: 0}
+    - target: {fileID: 7781104230235687094, guid: 291a95c180968434698be54bd83d8b43, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.95786405
+      objectReference: {fileID: 0}
+    - target: {fileID: 7781104230235687094, guid: 291a95c180968434698be54bd83d8b43, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.287222
+      objectReference: {fileID: 0}
+    - target: {fileID: 7781104230235687094, guid: 291a95c180968434698be54bd83d8b43, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7781104230235687094, guid: 291a95c180968434698be54bd83d8b43, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7781104230235687094, guid: 291a95c180968434698be54bd83d8b43, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -33.383
+      objectReference: {fileID: 0}
+    - target: {fileID: 7781104230235687094, guid: 291a95c180968434698be54bd83d8b43, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7781104230235687094, guid: 291a95c180968434698be54bd83d8b43, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 291a95c180968434698be54bd83d8b43, type: 3}
+--- !u!4 &5796752847723952744 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7781104230235687094, guid: 291a95c180968434698be54bd83d8b43, type: 3}
+  m_PrefabInstance: {fileID: 4291434646210425566}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5961794731766463527
 PrefabInstance:

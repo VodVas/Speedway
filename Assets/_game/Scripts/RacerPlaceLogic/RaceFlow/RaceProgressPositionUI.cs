@@ -3,8 +3,6 @@ using UnityEngine;
 
 internal sealed class RaceProgressPositionUI
 {
-    private const string PositionFormat = "{0} / 6";
-
     private readonly TextMeshProUGUI _playerPositionText;
 
     public RaceProgressPositionUI(TextMeshProUGUI playerPositionText)
@@ -18,14 +16,14 @@ internal sealed class RaceProgressPositionUI
         _playerPositionText = playerPositionText;
     }
 
-    public void UpdatePlayerUI(Racer playerRacer)
+    public void UpdatePlayerUI(Racer playerRacer, int totalRacersNumber)
     {
         if (playerRacer == null || _playerPositionText == null)
         {
             return;
         }
 
-        string positionText = string.Format(PositionFormat, playerRacer.Position);
+        string positionText = string.Format("{0} / {1}", playerRacer.Position, totalRacersNumber);
         _playerPositionText.text = positionText;
     }
 }

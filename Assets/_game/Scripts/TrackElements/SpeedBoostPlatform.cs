@@ -9,6 +9,7 @@ public class SpeedBoostPlatform : MonoBehaviour
     {
         if (other.TryGetComponent(out ISpeedBoostable speedBoostable))
         {
+            Debug.Log("TryGetComponent");
             speedBoostable.ApplySpeedBoost(boostAmount, duration);
         }
     }

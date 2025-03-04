@@ -53,7 +53,7 @@ public class RaceProgressTracker : MonoBehaviour
             Debug.LogWarning(NoPlayerFoundError, this);
         }
 
-        _raceProgressPosition.UpdatePlayerUI(_playerRacer);
+        _raceProgressPosition.UpdatePlayerUI(_playerRacer, _racers.Length);
     }
 
     public void HandleTriggerEnter(Racer racer, int checkpointIndex)
@@ -122,7 +122,7 @@ public class RaceProgressTracker : MonoBehaviour
 
                 if (ReferenceEquals(currentRacer, _playerRacer))
                 {
-                    _raceProgressPosition.UpdatePlayerUI(_playerRacer);
+                    _raceProgressPosition.UpdatePlayerUI(_playerRacer, _racers.Length);
                 }
             }
         }
