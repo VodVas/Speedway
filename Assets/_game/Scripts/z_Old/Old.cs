@@ -1197,4 +1197,86 @@ public class Old
     //    }
     //}
     #endregion
+
+    #region DynamicAddAIStuckHelper
+
+    //public void AddVehicle(ArcadeAiVehicleController newVehicle)
+    //{
+    //    if (newVehicle == null)
+    //        return;
+
+    //    if (_vehicles == null)
+    //    {
+    //        _vehicles = new ArcadeAiVehicleController[0];
+    //        _trackerMap = new Dictionary<ArcadeAiVehicleController, WaypointProgressTracker>();
+    //    }
+
+    //    int oldLength = (_vehicles == null) ? 0 : _vehicles.Length;
+
+    //    ArcadeAiVehicleController[] newArray = new ArcadeAiVehicleController[oldLength + 1];
+
+    //    for (int i = 0; i < oldLength; i++)
+    //    {
+    //        newArray[i] = _vehicles[i];
+    //    }
+
+    //    newArray[oldLength] = newVehicle;
+    //    _vehicles = newArray;
+
+    //    float[] newStuckTimers = new float[_vehicles.Length];
+
+    //    for (int i = 0; i < oldLength; i++)
+    //    {
+    //        newStuckTimers[i] = _stuckTimers[i];
+    //    }
+
+    //    newStuckTimers[oldLength] = 0f;
+    //    _stuckTimers = newStuckTimers;
+
+    //    WaypointProgressTracker tracker = newVehicle.GetComponent<WaypointProgressTracker>();
+
+    //    if (tracker != null && !_trackerMap.ContainsKey(newVehicle))
+    //    {
+    //        _trackerMap.Add(newVehicle, tracker);
+    //    }
+
+    //    if (oldLength == 0 && newArray.Length > 0)
+    //    {
+    //        StartCoroutine(CheckStuckRoutine());
+    //    }
+    //}
+
+    #endregion
+
+    #region Finisher
+        //public class RaceProgressFinisher
+    //{
+    //    public void PrintFinalResults(Racer[] racers, Racer finishingRacer)
+    //    {
+    //        if (racers == null || finishingRacer == null)
+    //        {
+    //            Debug.LogWarning("[RaceFlowFinisher] Неверные данные для вывода результатов.");
+    //            return;
+    //        }
+
+    //        Debug.Log("Гонка завершена! Итоговые результаты:");
+
+    //        for (int i = 0; i < racers.Length; i++)
+    //        {
+    //            Racer racer = racers[i];
+
+    //            if (racer == null)
+    //            {
+    //                continue;
+    //            }
+
+    //            Debug.Log($"Место: {i + 1} | RacerID: {racer.RacerId} | Круги: {racer.LapsCompleted}");
+    //        }
+
+    //        Debug.Log(
+    //            $"Игрок с ID {finishingRacer.RacerId} закончил гонку на месте {finishingRacer.Position}."
+    //        );
+    //    }
+    //}
+    #endregion
 }

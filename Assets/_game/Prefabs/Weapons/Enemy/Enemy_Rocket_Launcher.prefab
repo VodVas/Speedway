@@ -99,7 +99,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <DamageAmount>k__BackingField: 20
-  <ParticleShoot>k__BackingField: {fileID: 0}
+  <ParticleShoot>k__BackingField: {fileID: 5362395357260352557}
+  <IsBulletWeapon>k__BackingField: 0
 --- !u!65 &1902256543885968322
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -238,12 +239,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3639956512962585980}
     - target: {fileID: 1902195186933199159, guid: 0a898724e5f864c45a713dc6e1f618bc, type: 3}
-      propertyPath: looping
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1902195186933199159, guid: 0a898724e5f864c45a713dc6e1f618bc, type: 3}
-      propertyPath: playOnAwake
-      value: 0
+      propertyPath: InitialModule.maxNumParticles
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4202283270365599263, guid: 0a898724e5f864c45a713dc6e1f618bc, type: 3}
       propertyPath: looping
@@ -321,6 +318,10 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8568299312462714452, guid: 0a898724e5f864c45a713dc6e1f618bc, type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 500
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 8310045888318579361, guid: 0a898724e5f864c45a713dc6e1f618bc, type: 3}
@@ -347,6 +348,11 @@ ParticleSystem:
 --- !u!198 &4961287849109953860 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 49828739461705324, guid: 0a898724e5f864c45a713dc6e1f618bc, type: 3}
+  m_PrefabInstance: {fileID: 4930051784469213992}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &5362395357260352557 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1008808312468438789, guid: 0a898724e5f864c45a713dc6e1f618bc, type: 3}
   m_PrefabInstance: {fileID: 4930051784469213992}
   m_PrefabAsset: {fileID: 0}
 --- !u!198 &6777631065856868895 stripped

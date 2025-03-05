@@ -5,20 +5,37 @@ public abstract class BaseComponentsEnabler : MonoBehaviour
 {
     [SerializeField] private Collider[] _colliders;
 
+    protected abstract bool IsBoss { get; }
+
     [Inject] private RaceStartTimeCounter _raceTimer;
 
-    [Inject]
-    private void InjectDependencies(RaceStartTimeCounter raceTimer)
+    private void OnEnable()
     {
-        _raceTimer = raceTimer;
-        _raceTimer.Started += OnRaceStarted;
+        if (_raceTimer != null)
+        {
+            if (IsBoss)
+            {
+                _raceTimer.BossStarted += OnRaceStarted;
+            }
+            else
+            {
+                _raceTimer.Started += OnRaceStarted;
+            }
+        }
     }
 
     private void OnDisable()
     {
         if (_raceTimer != null)
         {
-            _raceTimer.Started -= OnRaceStarted;
+            if (IsBoss)
+            {
+                _raceTimer.BossStarted -= OnRaceStarted;
+            }
+            else
+            {
+                _raceTimer.Started -= OnRaceStarted;
+            }
         }
     }
 
@@ -30,9 +47,13 @@ public abstract class BaseComponentsEnabler : MonoBehaviour
 
     protected void EnableColliders()
     {
-        foreach (var collider in _colliders)
+        if (_colliders == null) return;
+        for (int i = 0; i < _colliders.Length; i++)
         {
-            collider.enabled = true;
+            if (_colliders[i] != null)
+            {
+                _colliders[i].enabled = true;
+            }
         }
     }
 

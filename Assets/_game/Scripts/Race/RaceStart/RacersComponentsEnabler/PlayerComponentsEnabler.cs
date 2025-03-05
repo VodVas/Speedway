@@ -13,17 +13,22 @@ public class PlayerComponentsEnabler : BaseComponentsEnabler
         _carController = GetComponent<ArcadeVehicleController>();
     }
 
+    protected override bool IsBoss
+    {
+        get { return false; }
+    }
+
     protected override void EnableComponents()
     {
         if (_carController != null)
             _carController.enabled = true;
 
-        EnableColliders();
-
-        foreach (var weapon in _playerWeapon)
+        for (int i = 0; i < _playerWeapon.Length; i++)
         {
-            if (weapon != null)
-                weapon.enabled = true;
+            if (_playerWeapon[i] != null)
+            {
+                _playerWeapon[i].enabled = true;
+            }
         }
     }
 }

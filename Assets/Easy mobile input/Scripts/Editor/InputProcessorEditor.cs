@@ -10,7 +10,7 @@ namespace EasyMobileInput
     [CustomEditor(typeof(BaseInputProcessor), true)]
     public class InputProcessorEditor : Editor
     {
-        private static bool shouldDraw = false;
+        //private static bool shouldDraw = false;
 
         private static Dictionary<BaseInputProcessor, float> drawTime = new Dictionary<BaseInputProcessor, float>();
         

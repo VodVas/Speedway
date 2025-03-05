@@ -6,25 +6,20 @@ public class Racer : MonoBehaviour
     private const string ErrorNewPositionInvalid = "Racer: Position must be greater than zero.";
     private const string ErrorCheckpointIndexInvalid = "Racer: CheckpointIndex must be greater than zero.";
 
-    private int _position = 0;
-    private int _lastCheckpoint = -1;
-    private int _previousPosition = 0;
-    private int _lapsCompleted = 0;
-    private bool _hasFinished = false;
+    public int Position { get; private set; } = 0;
+    public int LastCheckpoint { get; private set; } = -1;
+    public int PreviousPosition { get; private set; } = 0;
+    public int LapsCompleted { get; private set; } = 0;
+    public bool HasFinished { get; private set; } = false;
 
-    [field: SerializeField] public int RacerId { get; set; } = 0;
+
+    [field: SerializeField] public string Name { get; private set; } = "";
+    [field: SerializeField] public int RacerId { get; set; } = 0; //TODO: в метод
 
     private void Awake()
     {
         ValidateData();
     }
-
-    public int Position => _position;
-    public int LastCheckpoint => _lastCheckpoint;
-    public int PreviousPosition => _previousPosition;
-    public int LapsCompleted => _lapsCompleted;
-
-    public bool HasFinished => _hasFinished;
 
     public void SetPosition(int newPosition)
     {
@@ -35,7 +30,7 @@ public class Racer : MonoBehaviour
             return;
         }
 
-        _position = newPosition;
+        Position = newPosition;
     }
 
     public void UpdateLastCheckpoint(int checkpointIndex)
@@ -47,26 +42,26 @@ public class Racer : MonoBehaviour
             return;
         }
 
-        if (checkpointIndex > _lastCheckpoint)
+        if (checkpointIndex > LastCheckpoint)
         {
-            _lastCheckpoint = checkpointIndex;
+            LastCheckpoint = checkpointIndex;
         }
     }
 
     public void UpdatePreviousPosition()
     {
-        _previousPosition = _position;
+        PreviousPosition = Position;
     }
 
     public void CompleteLap()
     {
-        _lapsCompleted++;
-        _lastCheckpoint = -1;
+        LapsCompleted++;
+        LastCheckpoint = -1;
     }
 
     public void SetFinished(bool finished)
     {
-        _hasFinished = finished;
+        HasFinished = finished;
     }
 
     private void ValidateData()

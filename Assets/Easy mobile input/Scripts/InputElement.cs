@@ -76,9 +76,9 @@ namespace EasyMobileInput
             return processor;
         }
 
-        public override T TryAddProcessor<T>()
+        public override TProc TryAddProcessor<TProc>()
         {
-            return TryAddProcessor(typeof(T)) as T;
+            return TryAddProcessor(typeof(TProc)) as TProc;
         }
 
         protected virtual void Awake()

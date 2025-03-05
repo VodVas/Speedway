@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/_game/Scenes/Garage.unity
     guid: 25c7ca3a9568e754dbc399aa8b1a480a
   - enabled: 1
-    path: Assets/_game/Scenes/World_1/HubWorld1.unity
+    path: Assets/_game/Scenes/HubWorld1.unity
     guid: a2f4ab1ab60383548b97078f0f470404
   - enabled: 1
     path: Assets/_game/Scenes/World_1/DeadlyDrift.unity
@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_game/Scenes/World_1/NightRun.unity
     guid: 0341fa6133518eb418ef141dbddd4125
+  - enabled: 1
+    path: Assets/_game/Scenes/World_1/BattleIslend Boss.unity
+    guid: 12aba6353d5fcb74a8f93747bfde09c9
   m_configObjects: {}
