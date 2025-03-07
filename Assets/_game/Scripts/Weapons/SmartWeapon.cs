@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SmartWeapon : Weapon
+public class SmartWeapon : ParticleWeapon
 {
     private Transform _currentEnemy;
 
@@ -11,7 +11,7 @@ public class SmartWeapon : Weapon
             transform.LookAt(_currentEnemy);
 
             Vector3 direction = _currentEnemy.position - transform.position;
-            direction.y = 0;
+            //direction.y = 0;
             transform.rotation = Quaternion.LookRotation(direction);
         }
     }

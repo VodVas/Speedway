@@ -2,6 +2,8 @@ using Reflex.Attributes;
 using UnityEngine;
 
 [RequireComponent(typeof(DamageHandler))]
+
+
 public class PlayerDamageReceiverForBulletUI : ParticleDamageReceiver
 {
     private const string InvalidReferenceError = "[PlayerDamageReceiverForBulletUI] Не назначен BulletHoleUI!";
@@ -20,6 +22,16 @@ public class PlayerDamageReceiverForBulletUI : ParticleDamageReceiver
         }
     }
 
+    protected override void OnParticleCollision(GameObject other)
+    {
+        base.OnParticleCollision(other);
+
+        if (other.TryGetComponent<DirtParticleMarker>(out _))
+        {
+            _bulletHoleUI.ShowDirtSmudge();
+        }
+    }
+
     protected override void ApplyDamage(float damageAmount)
     {
         base.ApplyDamage(damageAmount);
@@ -27,11 +39,13 @@ public class PlayerDamageReceiverForBulletUI : ParticleDamageReceiver
 
         if (weapon == null)
         {
+            Debug.Log("if (weapon == null)");
             return;
         }
 
         if (IsBulletWeapon(weapon))
         {
+            Debug.Log("if (IsBulletWeapon(weapon))");
             _bulletHoleUI.ShowBulletHole();
         }
     }

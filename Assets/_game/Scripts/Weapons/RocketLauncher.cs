@@ -1,3 +1,3 @@
-public class RocketLauncher : Weapon
+public class RocketLauncher : ParticleWeapon
 {
 }

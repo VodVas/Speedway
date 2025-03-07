@@ -1,19 +1,74 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System;
 
 public class BulletHoleUI : MonoBehaviour
 {
-    private const int MaxHolesCount = 5;
-    private const string InvalidDataError = "[BulletHoleUI] Некорректные данные в инспекторе!";
-    private const string WarningNoImages = "[BulletHoleUI] Массив с дырками от пуль не заполнен!";
+    [Serializable]
+    private class EffectSettings
+    {
+        public EffectSettings(float visibleDuration, int maxEffectsCount, Vector2 sizeVariation)
+        {
+            VisibleDuration = visibleDuration;
+            MaxEffectsCount = maxEffectsCount;
+            SizeVariation = sizeVariation;
+        }
+
+        [field: SerializeField] public float VisibleDuration { get; private set; }
+        [field: SerializeField] public int MaxEffectsCount { get; private set; }
+        [field: SerializeField] public Vector2 SizeVariation { get; private set; }
+        [field: SerializeField] public Image[] Images { get; private set; } = new Image[1];
+
+        public void ValidateArraySize()
+        {
+            if (Images == null || Images.Length != MaxEffectsCount)
+            {
+                Image[] newArr = new Image[MaxEffectsCount];
+
+                if (Images != null)
+                {
+                    int copyLength = Mathf.Min(Images.Length, newArr.Length);
+
+                    for (int i = 0; i < copyLength; i++)
+                    {
+                        newArr[i] = Images[i];
+                    }
+                }
+
+                Images = newArr;
+            }
+        }
+    }
+
+    private const string InvalidDataError = "BulletHoleUI Некорректные данные в инспекторе!";
+    private const string WarningNoImages = "BulletHoleUI Массив с эффектами не заполнен или меньше MaxEffectsCount!";
 
     [SerializeField] private RectTransform _targetImage = null;
-    [SerializeField] private float _holeVisibleSeconds = 2f;
-    [SerializeField] private Image[] _bulletHoleImages = null;
 
-    private int _currentIndex = 0;
+    [SerializeField]
+    private EffectSettings _bulletSettings = new EffectSettings(
+        visibleDuration: 2f,
+        maxEffectsCount: 5,
+        sizeVariation: new Vector2(30f, 15f)
+    );
+
+    [SerializeField]
+    private EffectSettings _dirtSettings = new EffectSettings(
+        visibleDuration: 3f,
+        maxEffectsCount: 3,
+        sizeVariation: new Vector2(5f, 5f)
+    );
+
+    private int _currentBulletIndex = 0;
+    private int _currentDirtIndex = 0;
     private bool _initialized = false;
+
+    private void OnValidate()
+    {
+        if (_bulletSettings != null) _bulletSettings.ValidateArraySize();
+        if (_dirtSettings != null) _dirtSettings.ValidateArraySize();
+    }
 
     private void Awake()
     {
@@ -22,79 +77,119 @@ public class BulletHoleUI : MonoBehaviour
 
     private void Start()
     {
-        if (_initialized == false)
+        if (!_initialized)
         {
-            InitializeHoles();
+            InitializeEffects();
         }
     }
 
     public void ShowBulletHole()
     {
-        if (!_initialized)
+        ShowEffect(ref _currentBulletIndex, _bulletSettings);
+    }
+
+    public void ShowDirtSmudge()
+    {
+        ShowEffect(ref _currentDirtIndex, _dirtSettings);
+    }
+
+    private void ShowEffect(ref int currentIndex, EffectSettings settings)
+    {
+        if (!_initialized || settings.Images == null || settings.Images.Length == 0)
         {
+            Debug.LogWarning("[BulletHoleUI] Попытка показать эффект, но массив Images пуст.");
             return;
         }
 
-        int index = _currentIndex;
-        _currentIndex = (_currentIndex + 1) % MaxHolesCount;
+        int index = currentIndex;
+        currentIndex = (currentIndex + 1) % settings.MaxEffectsCount;
 
-        Image hole = _bulletHoleImages[index];
-        if (hole == null)
+        int safeIndex = index % settings.Images.Length;
+        Image effectImage = settings.Images[safeIndex];
+
+        if (effectImage == null) return;
+
+        SetupEffect(effectImage.rectTransform, settings);
+        effectImage.gameObject.SetActive(true);
+
+        StartCoroutine(HideEffectAfterSeconds(effectImage, settings.VisibleDuration));
+    }
+
+    private void SetupEffect(RectTransform effectRect, EffectSettings settings)
+    {
+        if (_targetImage == null) return;
+
+        float width = _targetImage.rect.width;
+        float height = _targetImage.rect.height;
+
+        effectRect.anchoredPosition = new Vector2(
+            UnityEngine.Random.Range(0f, width),
+            UnityEngine.Random.Range(0f, height)
+        );
+
+        float randomScale = UnityEngine.Random.Range(settings.SizeVariation.x, settings.SizeVariation.y);
+        effectRect.localScale = Vector3.one * randomScale;
+    }
+
+    private IEnumerator HideEffectAfterSeconds(Image effectImage, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (effectImage != null)
         {
-            return;
+            effectImage.gameObject.SetActive(false);
         }
-
-        PositionHoleRandomly(hole.rectTransform);
-        hole.gameObject.SetActive(true);
-
-        StartCoroutine(HideHoleAfterSeconds(hole, _holeVisibleSeconds));
     }
 
     private void ValidateSerializedData()
     {
-        if (_targetImage == null || _bulletHoleImages == null || _bulletHoleImages.Length == 0)
+        bool invalid = (_targetImage == null
+                        || _bulletSettings == null
+                        || _dirtSettings == null
+                        || _bulletSettings.Images == null
+                        || _dirtSettings.Images == null
+                        || _bulletSettings.Images.Length == 0
+                        || _dirtSettings.Images.Length == 0);
+
+        if (invalid)
         {
             Debug.LogError(InvalidDataError, this);
             enabled = false;
             return;
         }
 
-        if (_bulletHoleImages.Length < 5)
+        if (_bulletSettings.Images.Length < _bulletSettings.MaxEffectsCount ||
+            _dirtSettings.Images.Length < _dirtSettings.MaxEffectsCount)
         {
             Debug.LogWarning(WarningNoImages, this);
+            enabled = false;
+            return;
         }
 
         _initialized = true;
     }
 
-    private void InitializeHoles()
+    private void InitializeEffects()
     {
-        for (int i = 0; i < _bulletHoleImages.Length; i++)
+        InitializeEffectGroup(_bulletSettings);
+        InitializeEffectGroup(_dirtSettings);
+
+        _initialized = true;
+    }
+
+    private void InitializeEffectGroup(EffectSettings settings)
+    {
+        if (settings.Images == null) return;
+
+        for (int i = 0; i < settings.Images.Length; i++)
         {
-            if (_bulletHoleImages[i] != null)
+            Image img = settings.Images[i];
+
+            if (img != null)
             {
-                _bulletHoleImages[i].gameObject.SetActive(false);
+                img.gameObject.SetActive(false);
+                img.rectTransform.localScale = Vector3.one;
             }
-        }
-
-        _initialized = true;
-    }
-
-    private void PositionHoleRandomly(RectTransform holeRect)
-    {
-        float x = Random.Range(0f, _targetImage.rect.width);
-        float y = Random.Range(0f, _targetImage.rect.height);
-
-        holeRect.anchoredPosition = new Vector2(x, y);
-    }
-
-    private IEnumerator HideHoleAfterSeconds(Image hole, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-
-        if (hole != null)
-        {
-            hole.gameObject.SetActive(false);
         }
     }
 }

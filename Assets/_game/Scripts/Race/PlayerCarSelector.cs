@@ -18,7 +18,6 @@ public class PlayerCarSelector : MonoBehaviour
         public GameObject CarObject => _carObject;
     }
 
-    [Header("Scene Cars")]
     [SerializeField] private List<SceneCarReference> _sceneCars = new List<SceneCarReference>();
     [SerializeField] private bool _validateOnStart = true;
     [SerializeField] private UiCarBinder _uiCarBinder = null;

@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(ObjectCycleRotator))]
-public class MiniGun : Weapon
+public class MiniGun : ParticleWeapon
 {
     [SerializeField] private Transform _barrels;
     [SerializeField] private float _rotateSpeedX = 0f;
@@ -10,8 +10,10 @@ public class MiniGun : Weapon
 
     private ObjectCycleRotator _rotator;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         _rotator = GetComponent<ObjectCycleRotator>();
     }
 

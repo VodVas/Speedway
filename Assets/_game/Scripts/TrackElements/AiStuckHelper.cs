@@ -1,42 +1,30 @@
 using ArcadeVP;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AiStuckHelper : MonoBehaviour
 {
-    [SerializeField] private Transform[] _respawnPoints = default;
+    [SerializeField] private ArcadeAiVehicleController[] _vehicles = default;
+    [Space(1)]
     [SerializeField] private float _offsetY = 5f;
     [SerializeField] private float _minSpeed = 20f;
     [SerializeField] private float _stuckTimeout = 5f;
     [SerializeField] private float _maxHeightToStuck = -10f;
     [SerializeField] private float _checkInterval = 0.5f;
-    [SerializeField] private ArcadeAiVehicleController[] _vehicles = default;
 
-    private float[] _stuckTimers;
+    private float[] _stuckTimers; 
     private Dictionary<ArcadeAiVehicleController, WaypointProgressTracker> _trackerMap;
     private WaitForSeconds _wait;
 
     private void Awake()
     {
         _wait = new WaitForSeconds(_checkInterval);
-
-        _vehicles = _vehicles != null ? _vehicles : new ArcadeAiVehicleController[0];
-
         _trackerMap = new Dictionary<ArcadeAiVehicleController, WaypointProgressTracker>();
-        _stuckTimers = new float[_vehicles.Length];
 
-        for (int i = 0; i < _vehicles.Length; i++)
-        {
-            ArcadeAiVehicleController ai = _vehicles[i];
-            if (ai == null) continue;
-
-            WaypointProgressTracker tracker = ai.GetComponent<WaypointProgressTracker>();
-            if (tracker != null)
-            {
-                _trackerMap[ai] = tracker;
-            }
-        }
+        InitializeTrackers();
+        InitializeTimers();
     }
 
     private void Start()
@@ -44,6 +32,33 @@ public class AiStuckHelper : MonoBehaviour
         if (_vehicles.Length > 0)
         {
             StartCoroutine(CheckStuckRoutine());
+        }
+    }
+
+    private void InitializeTrackers()
+    {
+        for (int i = 0; i < _vehicles.Length; i++)
+        {
+            ArcadeAiVehicleController vehicle = _vehicles[i];
+
+            if (vehicle == null)
+                continue;
+
+            WaypointProgressTracker tracker = vehicle.GetComponent<WaypointProgressTracker>();
+
+            if (tracker != null)
+            {
+                _trackerMap[vehicle] = tracker;
+            }
+        }
+    }
+
+    private void InitializeTimers()
+    {
+        _stuckTimers = new float[_vehicles.Length];
+        for (int i = 0; i < _stuckTimers.Length; i++)
+        {
+            _stuckTimers[i] = 0f;
         }
     }
 
@@ -70,15 +85,15 @@ public class AiStuckHelper : MonoBehaviour
                 if (speed < _minSpeed)
                 {
                     _stuckTimers[i] += _checkInterval;
-
-                    if (_stuckTimers[i] >= _stuckTimeout)
-                    {
-                        TeleportStuckVehicle(vehicle);
-                        _stuckTimers[i] = 0f;
-                    }
                 }
                 else
                 {
+                    _stuckTimers[i] = 0f;
+                }
+
+                if (_stuckTimers[i] >= _stuckTimeout)
+                {
+                    TeleportStuckVehicle(vehicle);
                     _stuckTimers[i] = 0f;
                 }
             }
@@ -89,69 +104,79 @@ public class AiStuckHelper : MonoBehaviour
 
     private void TeleportStuckVehicle(ArcadeAiVehicleController vehicle)
     {
-        Transform nearest = FindNearestRespawnPoint(vehicle.transform.position);
+        if (!_trackerMap.TryGetValue(vehicle, out WaypointProgressTracker tracker))
+            return;
 
+        WaypointCircuit circuit = tracker.Circuit;
+
+        if (circuit == null || circuit.Waypoints == null || circuit.Waypoints.Length == 0)
+            return;
+
+        Transform nearestWp = FindNearestWaypoint(vehicle.transform.position, circuit.Waypoints);
+
+        if (nearestWp == null)
+            return;
+
+        ResetVehiclePhysics(vehicle);
+        SetVehiclePositionAndRotation(vehicle, nearestWp, _offsetY, tracker);
+    }
+
+    private Transform FindNearestWaypoint(Vector3 position, Transform[] waypoints)
+    {
+        Transform nearest = null;
+        float minDistance = float.MaxValue;
+
+        for (int i = 0; i < waypoints.Length; i++)
+        {
+            Transform waypoint = waypoints[i];
+
+            if (waypoint == null)
+                continue;
+
+            float sqrDistance = (waypoint.position - position).sqrMagnitude;
+
+            if (sqrDistance < minDistance)
+            {
+                minDistance = sqrDistance;
+                nearest = waypoint;
+            }
+        }
+        return nearest;
+    }
+
+    private void ResetVehiclePhysics(ArcadeAiVehicleController vehicle)
+    {
         vehicle.rb.velocity = Vector3.zero;
         vehicle.rb.angularVelocity = Vector3.zero;
-        vehicle.carBody.velocity = Vector3.zero;
-        vehicle.carBody.angularVelocity = Vector3.zero;
         vehicle.rb.useGravity = false;
+    }
 
-        Quaternion stuckOrientation;
+    private void SetVehiclePositionAndRotation(ArcadeAiVehicleController vehicle, Transform waypoint, float offsetY, WaypointProgressTracker tracker)
+    {
+        Vector3 position = waypoint.position + Vector3.up * offsetY;
+        Quaternion rotation = CalculateRespawnRotation(vehicle, tracker, waypoint);
 
-        if (_trackerMap.TryGetValue(vehicle, out WaypointProgressTracker tracker) && tracker != null)
+        vehicle.transform.position = position;
+        vehicle.carBody.position = position;
+        vehicle.rb.position = position;
+        vehicle.carBody.rotation = rotation;
+        vehicle.rb.rotation = rotation;
+    }
+
+    private Quaternion CalculateRespawnRotation(ArcadeAiVehicleController vehicle, WaypointProgressTracker tracker, Transform fallbackWaypoint)
+    {
+        if (tracker.Circuit == null)
+            return fallbackWaypoint.rotation;
+
+        WaypointCircuit.RoutePoint routePoint = tracker.Circuit.GetRoutePoint(tracker.progressDistance);
+
+        if (routePoint.direction.sqrMagnitude > Mathf.Epsilon)
         {
-            if (tracker.Circuit != null)
-            {
-                float dist = tracker.progressDistance;
-                WaypointCircuit.RoutePoint routePoint = tracker.Circuit.GetRoutePoint(dist);
-                Vector3 forwardDir = routePoint.direction;
-
-                if (forwardDir.sqrMagnitude < Mathf.Epsilon)
-                {
-                    stuckOrientation = nearest.rotation * Quaternion.Euler(45, 0, 0);
-                }
-                else
-                {
-                    stuckOrientation = Quaternion.LookRotation(forwardDir, Vector3.up);
-                }
-            }
-            else
-            {
-                stuckOrientation = nearest.rotation * Quaternion.Euler(45, 0, 0);
-            }
+            return Quaternion.LookRotation(routePoint.direction, Vector3.up);
         }
         else
         {
-            stuckOrientation = nearest.rotation * Quaternion.Euler(45, 0, 0);
+            return fallbackWaypoint.rotation;
         }
-
-        vehicle.transform.position = nearest.position + Vector3.up * _offsetY;
-        vehicle.carBody.position = nearest.position + Vector3.up * _offsetY;
-        vehicle.carBody.rotation = stuckOrientation;
-    }
-
-    private Transform FindNearestRespawnPoint(Vector3 position)
-    {
-        Transform nearest = null;
-        float minDistanceSqr = float.MaxValue;
-
-        for (int i = 0; i < _respawnPoints.Length; i++)
-        {
-            Transform respawn = _respawnPoints[i];
-            if (respawn == null)
-            {
-                continue;
-            }
-
-            float distSqr = (respawn.position - position).sqrMagnitude;
-            if (distSqr < minDistanceSqr)
-            {
-                minDistanceSqr = distSqr;
-                nearest = respawn;
-            }
-        }
-
-        return nearest;
     }
 }

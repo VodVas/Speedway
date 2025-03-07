@@ -10,13 +10,13 @@ public class RaceProgressTracker : MonoBehaviour
 
     [SerializeField] private Transform[] _checkpoints = null;
     [SerializeField] private Racer[] _racers = null;
-    [SerializeField] private int _playerId = 6;
+    [SerializeField] private int _playerRacerId = 6;
     [SerializeField] private int _totalLaps = 3;
 
     [Header("Rewards")]
     [SerializeField] private int[] _positionRewards;
     [SerializeField] private GameObject _rewardCanvas;
-    [SerializeField] private GameObject[] _playerUI;
+    [SerializeField] private GameObject[] _playerUIElements;
 
     [Header("TMP")]
     [SerializeField] private TextMeshProUGUI _playerPositionText = null;
@@ -42,7 +42,7 @@ public class RaceProgressTracker : MonoBehaviour
             return;
         }
 
-        _initializer = new RaceProgressInitializer(_racers, _playerId, _raceCarSelector);
+        _initializer = new RaceProgressInitializer(_racers, _playerRacerId, _raceCarSelector);
         _raceProgressUILaps = new RaceProgressUILaps(_playerLapsText);
         _positionSorter = new RaceProgressPositionSorter();
         _raceProgressPosition = new RaceProgressPositionUI(_playerPositionText);
@@ -142,9 +142,9 @@ public class RaceProgressTracker : MonoBehaviour
     {
         _raceFinished = true;
 
-        for (int i = 0; i < _playerUI.Length; i++)
+        for (int i = 0; i < _playerUIElements.Length; i++)
         {
-            _playerUI[i].SetActive(false);
+            _playerUIElements[i].SetActive(false);
         }
 
         _rewardCanvas.SetActive(true);
@@ -177,7 +177,7 @@ public class RaceProgressTracker : MonoBehaviour
 
     private bool ValidateSerializedData()
     {
-        if (_playerId < 0)
+        if (_playerRacerId < 0)
         {
             Debug.LogError("RaceProgressTracker: PlayerId не может быть отрицательным", this);
             return false;

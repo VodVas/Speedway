@@ -8076,7 +8076,7 @@ ParticleSystem:
     serializedVersion: 4
     type: 1
     collisionMode: 0
-    colliderForce: 2000
+    colliderForce: 500
     multiplyColliderForceByParticleSize: 0
     multiplyColliderForceByParticleSpeed: 0
     multiplyColliderForceByCollisionAngle: 0
@@ -9487,7 +9487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f56f8f1f8efcf2d4d8262ba773ddd765, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _object: {fileID: 6113561450894996712}
+  _objects: []
   _blinkDuration: 0.5
   _blinkInterval: 1
 --- !u!135 &5761146296097773940

@@ -21025,6 +21025,7 @@ MonoBehaviour:
   minPitch: 0.3
   MaxPitch: 3
   SkidSound: {fileID: 5242227477224183278}
+  _mobileInputController: {fileID: 0}
   _respawnPoints: []
   _stuckTimeout: 3
   _outOfBoundsY: -10

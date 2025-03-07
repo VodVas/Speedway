@@ -1,3 +1,8 @@
-public class AntiaircraftMachinegun : Weapon
+
+public class AntiaircraftMachinegun : ParticleWeapon
 {
 }
+
+//public class AntiaircraftMachinegun : Weapon
+//{
+//}

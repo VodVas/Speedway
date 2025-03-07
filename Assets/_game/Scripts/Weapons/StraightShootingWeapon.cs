@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public class StraightShootingWeapon : Weapon
+
+
+
+public class StraightShootingWeapon : ParticleWeapon
 {
     [field: SerializeField] public bool IsBulletWeapon { get; private set; } = false;
 
