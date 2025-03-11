@@ -33593,6 +33593,7 @@ GameObject:
   - component: {fileID: 7878318874684416746}
   - component: {fileID: 1008808312468438789}
   - component: {fileID: 8213774065479210393}
+  - component: {fileID: 5111875655004815476}
   m_Layer: 0
   m_Name: FX_Missile_01
   m_TagString: Untagged
@@ -38521,6 +38522,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &5111875655004815476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8412526244638116455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2218774431d3b14990f043cc1017c72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9014277963144980293
 GameObject:
   m_ObjectHideFlags: 0

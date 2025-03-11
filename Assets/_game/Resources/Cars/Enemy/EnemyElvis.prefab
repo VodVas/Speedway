@@ -494,7 +494,7 @@ Transform:
   m_GameObject: {fileID: 1712028877012831144}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.014, y: 0.9434883, z: 0.013911486}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -970,6 +970,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 431bedef999631d4bbc0fdd931be678c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Name>k__BackingField: 
   <RacerId>k__BackingField: 4
 --- !u!114 &3730265610414909810
 MonoBehaviour:
@@ -22679,6 +22680,15 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8608044771846341052}
     m_Modifications:
+    - target: {fileID: 2438438914921186861, guid: 291a95c180968434698be54bd83d8b43, type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'Root'\n\tTransform 'Elbow_R'\n\tTransform
+        'Clavicle_L'\n\tTransform 'Neck'\n\tTransform 'Elbow_L'\n\tTransform 'Head'\n\tTransform
+        'UpperLeg_L'\n\tTransform 'UpperLeg_R'\n\tTransform 'Spine_03'\n\tTransform
+        'Hand_L'\n\tand more ...\n\tFrom animation clip 'mixamo.com'"
+      objectReference: {fileID: 0}
     - target: {fileID: 3447982725728612521, guid: 291a95c180968434698be54bd83d8b43, type: 3}
       propertyPath: m_Name
       value: DriverElvis

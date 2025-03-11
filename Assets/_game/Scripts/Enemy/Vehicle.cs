@@ -7,6 +7,7 @@ public abstract class Vehicle : MonoBehaviour
     private CrashPartsCreator _crashPartsCreator;
     private Health _health;
     private Vector3 _deathPosition;
+    private bool _isRespawning;
 
     private void Awake()
     {
@@ -21,10 +22,7 @@ public abstract class Vehicle : MonoBehaviour
 
     public void Respawn()
     {
-        if (_health != null)
-        {
-            _health.ResetValue();
-        }
+        _health?.ResetValue();
 
         transform.position = _deathPosition;
     }
@@ -32,5 +30,22 @@ public abstract class Vehicle : MonoBehaviour
     public void SpawnParts()
     {
         _crashPartsCreator.StartSpawn(transform.position, GetType());
+    }
+
+    public bool TryStartRespawn()
+    {
+        if (!_isRespawning)
+        {
+            _isRespawning = true;
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public void FinishRespawn()
+    {
+         _isRespawning = false;
     }
 }

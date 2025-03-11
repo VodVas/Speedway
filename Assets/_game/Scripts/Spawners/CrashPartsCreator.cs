@@ -16,10 +16,10 @@ public class CrashPartsCreator : Spawner<VehiclePartsExploder>
         return _cachedPosition;
     }
 
-    public void StartSpawn(Vector3 deathPosition, Type enemyType)
+    public void StartSpawn(Vector3 deathPosition, Type vehicleType)
     {
         _cachedPosition = deathPosition;
-        _cachedEnemyType = enemyType;
+        _cachedEnemyType = vehicleType;
 
         SpawnObject();
     }

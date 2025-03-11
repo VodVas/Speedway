@@ -39,13 +39,11 @@ public class PlayerDamageReceiverForBulletUI : ParticleDamageReceiver
 
         if (weapon == null)
         {
-            Debug.Log("if (weapon == null)");
             return;
         }
 
         if (IsBulletWeapon(weapon))
         {
-            Debug.Log("if (IsBulletWeapon(weapon))");
             _bulletHoleUI.ShowBulletHole();
         }
     }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9068476336409720952}
   - component: {fileID: 3648496084609306474}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ GameObject:
   - component: {fileID: 4863382508428426738}
   - component: {fileID: 5094856431455560096}
   - component: {fileID: 4267422947901575545}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SM_Prop_Ramp_01_Mesh_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 7148310616929830053}
   - component: {fileID: 6096815292259666688}
   - component: {fileID: 8320622951235747786}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SM_Prop_Ramp_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

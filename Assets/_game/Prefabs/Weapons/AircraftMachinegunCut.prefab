@@ -101,7 +101,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <DamageAmount>k__BackingField: 10
-  <ParticleShoot>k__BackingField: {fileID: 6108397575814645286}
+  ParticleShoot: {fileID: 6108397575814645286}
+  _marker: {fileID: 3536712405280455003}
   <IsBulletWeapon>k__BackingField: 1
 --- !u!114 &3571449145825319253
 MonoBehaviour:
@@ -116,7 +117,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <DamageAmount>k__BackingField: 10
-  <ParticleShoot>k__BackingField: {fileID: 2467865909338185143}
+  ParticleShoot: {fileID: 2467865909338185143}
+  _marker: {fileID: 5183098856599544522}
   <IsBulletWeapon>k__BackingField: 1
 --- !u!65 &6121903369501394714
 BoxCollider:
@@ -290,6 +292,17 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 198316573430509862, guid: 91f767b549533eb4b896cd368ed1a008, type: 3}
   m_PrefabInstance: {fileID: 2377637989338836113}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5183098856599544522 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7426719277137956443, guid: 91f767b549533eb4b896cd368ed1a008, type: 3}
+  m_PrefabInstance: {fileID: 2377637989338836113}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2218774431d3b14990f043cc1017c72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6198620927034390272
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -443,6 +456,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91f767b549533eb4b896cd368ed1a008, type: 3}
+--- !u!114 &3536712405280455003 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7426719277137956443, guid: 91f767b549533eb4b896cd368ed1a008, type: 3}
+  m_PrefabInstance: {fileID: 6198620927034390272}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2218774431d3b14990f043cc1017c72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &6108397575814645286 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 198316573430509862, guid: 91f767b549533eb4b896cd368ed1a008, type: 3}

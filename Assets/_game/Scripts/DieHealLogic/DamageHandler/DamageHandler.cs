@@ -12,7 +12,7 @@ public class DamageHandler : MonoBehaviour, IDamageable
 
     public bool IsDead => Health.Value <= 0f;
 
-    protected virtual void Awake()
+    private void Awake()
     {
         Health = GetComponent<Health>();
         _vehicle = GetComponent<Vehicle>();
@@ -33,12 +33,7 @@ public class DamageHandler : MonoBehaviour, IDamageable
         }
     }
 
-    protected void ResetHealth()
-    {
-        Health.Init(Health.Max);
-    }
-
-    protected virtual void OnDeath()
+    private  void OnDeath()
     {
         Died?.Invoke(_vehicle);
     }

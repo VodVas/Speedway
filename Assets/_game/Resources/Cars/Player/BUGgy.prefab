@@ -21398,8 +21398,8 @@ MonoBehaviour:
   <CarName>k__BackingField: BUGgy
   <Price>k__BackingField: 100
   <Id>k__BackingField: 0
-  <Speed>k__BackingField: 103
-  <Acceleration>k__BackingField: 7
+  <Speed>k__BackingField: 120
+  <Acceleration>k__BackingField: 20
   <Turn>k__BackingField: 10
   <Armor>k__BackingField: 100
   <Weapon>k__BackingField: 0

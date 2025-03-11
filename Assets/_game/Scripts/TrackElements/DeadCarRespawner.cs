@@ -60,14 +60,22 @@ public class DeadCarRespawner : MonoBehaviour
         StartCoroutine(DelayRespawn(vehicle));
     }
 
-    private IEnumerator DelayRespawn(Vehicle enemy)
+    private IEnumerator DelayRespawn(Vehicle vehicle)
     {
-        enemy.SpawnParts();
+        if (!vehicle.TryStartRespawn())
+            yield break;
 
-        yield return _wait;
+        try
+        {
+            vehicle.SpawnParts();
+            yield return _wait;
 
-        enemy.gameObject.SetActive(true);
-
-        enemy.Respawn();
+            vehicle.gameObject.SetActive(true);
+            vehicle.Respawn();
+        }
+        finally
+        {
+            vehicle.FinishRespawn();
+        }
     }
 }

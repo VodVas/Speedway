@@ -100,7 +100,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <DamageAmount>k__BackingField: 10
-  <ParticleShoot>k__BackingField: {fileID: 3271924334401948124}
+  ParticleShoot: {fileID: 3271924334401948124}
+  _marker: {fileID: 5240426153042474657}
   <IsBulletWeapon>k__BackingField: 1
 --- !u!65 &611263294807076251
 BoxCollider:
@@ -382,3 +383,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4840268657495176, guid: 91f767b549533eb4b896cd368ed1a008, type: 3}
   m_PrefabInstance: {fileID: 3434199258110753018}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5240426153042474657 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7426719277137956443, guid: 91f767b549533eb4b896cd368ed1a008, type: 3}
+  m_PrefabInstance: {fileID: 3434199258110753018}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2218774431d3b14990f043cc1017c72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

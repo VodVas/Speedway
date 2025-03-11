@@ -355047,6 +355047,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthUIUpdater
       objectReference: {fileID: 0}
+    - target: {fileID: 4037465226770842042, guid: 1b6dd2139c1848f4488acb0dae921b26, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4133863552811671700, guid: 1b6dd2139c1848f4488acb0dae921b26, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1393.675
