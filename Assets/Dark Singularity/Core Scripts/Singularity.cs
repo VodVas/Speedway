@@ -28,6 +28,7 @@ public class Singularity : MonoBehaviour
     [SerializeField] private float _lerpDuration = 3f;
 
     [Header("Light Settings")] //TODO: в отдельный компонент
+    [SerializeField] private bool _isLightToggleOn = false;
     [SerializeField] private Light _pointLight;
     [SerializeField] private Light _directionalLight;
     [SerializeField] private Color _startColor = Color.green;
@@ -52,7 +53,9 @@ public class Singularity : MonoBehaviour
         _hasDirectionalLight = _directionalLight != null;
 
         ValidateTargets();
-        InitializeLightColor();
+
+        if (_isLightToggleOn)
+            InitializeLightColor();
     }
 
     private void InitializeLightColor()
@@ -119,7 +122,8 @@ public class Singularity : MonoBehaviour
         float t = Mathf.PingPong(_lerpTimer / _lerpDuration, 1f);
         _currentGravity = Mathf.Lerp(_startGravity, _endGravity, t);
 
-        UpdateLightColors(t);
+        if (_isLightToggleOn)
+            UpdateLightColors(t);
     }
 
     private void UpdateLightColors(float t)

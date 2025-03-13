@@ -17,7 +17,7 @@ public class DeadCarRespawner : MonoBehaviour
         {
             if (vehicle.TryGetComponent(out DamageHandler damageHandler))
             {
-                damageHandler.Died += OnVehicleDied;
+                damageHandler.Died1 += OnVehicleDied;
             }
         }
     }
@@ -28,7 +28,7 @@ public class DeadCarRespawner : MonoBehaviour
         {
             if (vehicle != null && vehicle.TryGetComponent(out DamageHandler damageHandler))
             {
-                damageHandler.Died -= OnVehicleDied;
+                damageHandler.Died1 -= OnVehicleDied;
             }
         }
     }
@@ -41,7 +41,7 @@ public class DeadCarRespawner : MonoBehaviour
 
             if (vehicle.TryGetComponent(out DamageHandler damageHandler))
             {
-                damageHandler.Died += OnVehicleDied;
+                damageHandler.Died1 += OnVehicleDied;
             }
         }
     }

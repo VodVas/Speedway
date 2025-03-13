@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/_game/Scenes/StartMenu.unity
     guid: 195a333ea7942fc44895745efceee9d3
   - enabled: 1
-    path: Assets/_game/Scenes/World_2/Winter.unity
-    guid: 2cb9032f2cb10dd42b80b4206dddaf5d
+    path: Assets/_game/Scenes/World_3/Hunt.unity
+    guid: 80c7e196766e5614fb463a15d2b6dfa1
   m_configObjects: {}

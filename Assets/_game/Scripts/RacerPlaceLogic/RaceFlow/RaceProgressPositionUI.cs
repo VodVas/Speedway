@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-internal sealed class RaceProgressPositionUI
+public class RaceProgressPositionUI
 {
     private readonly TextMeshProUGUI _playerPositionText;
 

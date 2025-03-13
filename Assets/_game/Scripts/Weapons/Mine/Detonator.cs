@@ -13,6 +13,11 @@ public class Detonator : MonoBehaviour, ITerminatable, IWeapon
 
     [field: SerializeField, Range(0, 100)] public float DamageAmount { get; private set; } = 25;
 
+    public Vehicle OwnerVehicle
+    {
+        get { return GetComponentInParent<Vehicle>(); }
+    }
+
     private void Awake()
     {
         _wait = new WaitForSeconds(_delayAfterExplosion);

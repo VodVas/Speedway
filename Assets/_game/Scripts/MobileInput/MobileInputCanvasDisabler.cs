@@ -3,13 +3,13 @@ using YG;
 
 public class MobileInputCanvasDisabler : MonoBehaviour
 {
-    [SerializeField] private GameObject _controlButtonCanvas;
+    [SerializeField] private GameObject _mobileControlCanvas;
 
     private void Start()
     {
-        if (YandexGame.EnvironmentData.isMobile)
+        if (YandexGame.EnvironmentData.isDesktop)
         {
-            _controlButtonCanvas.gameObject.SetActive(false);
+            _mobileControlCanvas.gameObject.SetActive(false);
         }
     }
 }

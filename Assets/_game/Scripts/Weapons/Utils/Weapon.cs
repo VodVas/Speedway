@@ -1,50 +1,22 @@
 using UnityEngine;
 
-public abstract class Weapon : MonoBehaviour, IWeapon
-{
-    [field: SerializeField, Range(0, 100)] public float DamageAmount { get; private set; } = 10;
-
-    protected virtual void Awake() { }
-
-    protected virtual void Update() { }
-
-    protected virtual void HandleShooting() { }
-}
-
-
-
-
 //public abstract class Weapon : MonoBehaviour, IWeapon
 //{
 //    [field: SerializeField, Range(0, 100)] public float DamageAmount { get; private set; } = 10;
-//    [field: SerializeField] protected ParticleSystem ParticleShoot { get; private set; }
 
-//    protected virtual void Update()
-//    {
-//        HandleShooting();
-//    }
+//    protected virtual void Awake() { }
 
-//    protected virtual void HandleShooting()
-//    {
-//        if (Input.GetKeyDown(KeyCode.Mouse0))
-//        {
-//            PlayParticleEffect();
-//        }
-//    }
+//    protected virtual void Update() { }
 
-//    protected virtual void PlayParticleEffect()
-//    {
-//        if (ParticleShoot.isPlaying == false && ParticleShoot != null)
-//        {
-//            ParticleShoot.Play();
-//        }
-//    }
-
-//    protected virtual void StopParticleEffect()
-//    {
-//        if (ParticleShoot.isPlaying && ParticleShoot != null)
-//        {
-//            ParticleShoot.Stop();
-//        }
-//    }
+//    protected virtual void HandleShooting() { }
 //}
+
+public abstract class Weapon : MonoBehaviour, IWeapon
+{
+    [field: SerializeField, Range(0, 100)] public float DamageAmount { get; private set; } = 10;
+    [field: SerializeField] public Vehicle OwnerVehicle { get; private set; }
+
+    protected virtual void Awake() { }
+    protected virtual void Update() { }
+    protected virtual void HandleShooting() { }
+}

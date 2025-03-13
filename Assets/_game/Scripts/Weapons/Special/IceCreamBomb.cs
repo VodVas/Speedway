@@ -14,6 +14,10 @@ public class IceCreamBomb : MonoBehaviour, ITerminatable, IWeapon
     public event Action<ITerminatable> Terminated;
 
     [field: SerializeField, Range(0, 100)] public float DamageAmount { get; private set; } = 25;
+    public Vehicle OwnerVehicle
+    {
+        get { return GetComponentInParent<Vehicle>(); }
+    }
 
     private void Awake()
     {
