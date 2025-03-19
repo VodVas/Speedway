@@ -38074,6 +38074,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4697b39c37e780e4aaf80be9374b774b, type: 3}
+--- !u!1 &280434847 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6547152091884641005, guid: 1b6dd2139c1848f4488acb0dae921b26, type: 3}
+  m_PrefabInstance: {fileID: 4307605145201264511}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &282165423
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -115048,7 +115053,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1612152606762210187, guid: 1b6dd2139c1848f4488acb0dae921b26, type: 3}
   m_PrefabInstance: {fileID: 4307605145201264511}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 280434847}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6ad9c336b8e2bd94191734b913bdac36, type: 3}
@@ -254116,8 +254121,9 @@ MonoBehaviour:
     - {fileID: 1411266025}
     - {fileID: 699532593}
     - {fileID: 2050608430}
-  smoothRoute: 1
+  distances: []
   editorVisualisationSubsteps: 100
+  points: []
 --- !u!4 &1577628246
 Transform:
   m_ObjectHideFlags: 0
@@ -260591,8 +260597,9 @@ MonoBehaviour:
     - {fileID: 148236445}
     - {fileID: 1443440142}
     - {fileID: 432608316}
-  smoothRoute: 1
+  distances: []
   editorVisualisationSubsteps: 100
+  points: []
 --- !u!4 &1637769083
 Transform:
   m_ObjectHideFlags: 0
@@ -355115,6 +355122,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -394.66663
       objectReference: {fileID: 0}
+    - target: {fileID: 4327606404379631514, guid: 1b6dd2139c1848f4488acb0dae921b26, type: 3}
+      propertyPath: _mobileControlCanvas
+      value: 
+      objectReference: {fileID: 280434847}
     - target: {fileID: 4469967368660011600, guid: 1b6dd2139c1848f4488acb0dae921b26, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647

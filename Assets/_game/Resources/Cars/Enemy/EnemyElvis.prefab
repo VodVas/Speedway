@@ -564,6 +564,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09c9adb9213d8bc49917051b7a4b4602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _minSpeedCap: 0.1
+  _maxSpeedCap: 150
   movementMode: 0
   GroundCheck: 1
   drivableSurface:
@@ -651,12 +653,12 @@ MonoBehaviour:
   - {fileID: 5823807481532338567}
   - {fileID: 3519585313547355325}
   carVelocity: {x: 0, y: 0, z: 0}
-  MaxForwardTilt: 5
-  MaxBackwardTilt: 5
+  MaxForwardTilt: 1
+  MaxBackwardTilt: 1
   BodyTilt: 10
   engineSound: {fileID: 4847252380527151278}
-  minPitch: 0.3
-  MaxPitch: 3
+  minPitch: 0.7
+  MaxPitch: 1.5
   SkidSound: {fileID: 82114939570394046}
   SkidWidth: 0.2
   target: {fileID: 5703069877567148602}
@@ -680,7 +682,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 7941f47abd5a1e64eb77e734906b7af5, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c0244b1a4233e6f44be7784b8779adc9, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -883,6 +885,10 @@ MonoBehaviour:
   lookAheadForSpeedFactor: 0.2
   progressStyle: 0
   pointToPointThreshold: 2
+  _targetsContainer: {fileID: 0}
+  _followMode: 0
+  _switchInterval: 10
+  _chaseDistance: 5
   target: {fileID: 5703069877567148602}
   progressDistance: 0
 --- !u!114 &9187431202583472937
@@ -22540,23 +22546,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5991119240705774493, guid: 1970ab1ab31e6504d9eb5df2e068d319, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.99918
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5991119240705774493, guid: 1970ab1ab31e6504d9eb5df2e068d319, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.04048924
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5991119240705774493, guid: 1970ab1ab31e6504d9eb5df2e068d319, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5991119240705774493, guid: 1970ab1ab31e6504d9eb5df2e068d319, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5991119240705774493, guid: 1970ab1ab31e6504d9eb5df2e068d319, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 4.641
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5991119240705774493, guid: 1970ab1ab31e6504d9eb5df2e068d319, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y

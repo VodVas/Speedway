@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Audio_MenuMusic
+  m_EditorClassIdentifier: 
+  m_GroupName: Audio_MenuMusic
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 4a0471d277894c543aee556cdfa7f80f
+  m_SerializeEntries:
+  - m_GUID: 3e006ecd600c60345aaec7980837d322
+    m_Address: Music_Track_01
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Menu_Music
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: e9dfb8cf9cb7a0446ad3b6a6393ab644, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: d31714351814b784086e424dd7862621, type: 2}
+    - {fileID: 11400000, guid: 3e7cfaf03dcf61e42a56dcdbc6fb9330, type: 2}

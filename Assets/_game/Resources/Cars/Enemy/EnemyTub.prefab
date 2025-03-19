@@ -10521,6 +10521,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09c9adb9213d8bc49917051b7a4b4602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _minSpeedCap: 0.1
+  _maxSpeedCap: 150
   movementMode: 0
   GroundCheck: 1
   drivableSurface:
@@ -10608,12 +10610,12 @@ MonoBehaviour:
   - {fileID: 3522598441960430250}
   - {fileID: 4181991017569032353}
   carVelocity: {x: 0, y: 0, z: 0}
-  MaxForwardTilt: 5
-  MaxBackwardTilt: 5
+  MaxForwardTilt: 1
+  MaxBackwardTilt: 1
   BodyTilt: 10
   engineSound: {fileID: 312058236765928739}
-  minPitch: 0.3
-  MaxPitch: 3
+  minPitch: 0.4
+  MaxPitch: 2.5
   SkidSound: {fileID: 580486838138503361}
   SkidWidth: 0.4
   target: {fileID: 513985156419935206}
@@ -10637,7 +10639,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 7941f47abd5a1e64eb77e734906b7af5, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a8818df079cea234aa2c18fb3ed51771, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -10840,6 +10842,10 @@ MonoBehaviour:
   lookAheadForSpeedFactor: 0.2
   progressStyle: 0
   pointToPointThreshold: 4
+  _targetsContainer: {fileID: 0}
+  _followMode: 0
+  _switchInterval: 10
+  _chaseDistance: 5
   target: {fileID: 513985156419935206}
   progressDistance: 0
 --- !u!114 &8241370485293010126
@@ -10927,6 +10933,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 431bedef999631d4bbc0fdd931be678c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Name>k__BackingField: 
   <RacerId>k__BackingField: 5
 --- !u!114 &7838734860192058243
 MonoBehaviour:

@@ -6,7 +6,7 @@ public class ParticleImpactVisualizer : ParticleDamageReceiver
 {
     private const string InvalidReferenceError = "[PlayerDamageReceiverForBulletUI] Не назначен BulletHoleUI!";
 
-    [Inject] private BulletHoleUI _bulletHoleUI = null;
+    [Inject] private EffectOnScreenUIApplier _bulletHoleUI = null;
 
     protected override void Awake()
     {

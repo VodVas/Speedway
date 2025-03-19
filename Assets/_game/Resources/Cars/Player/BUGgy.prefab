@@ -21023,7 +21023,7 @@ MonoBehaviour:
   - {fileID: 105770975675843770}
   engineSound: {fileID: 3528875478697116032}
   minPitch: 0.3
-  MaxPitch: 3
+  maxPitch: 0
   SkidSound: {fileID: 5242227477224183278}
   _mobileInputController: {fileID: 0}
   _respawnPoints: []
@@ -21078,7 +21078,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0b2844ba13c61eb459484abc96bde242, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 9a037908257abb24792c2067a3fd6838, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -21091,7 +21091,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -21173,10 +21173,10 @@ AudioSource:
   m_GameObject: {fileID: 7785104520783736772}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5855251610057139803, guid: 589367c5050e471478c52d314b8c768c, type: 2}
   m_audioClip: {fileID: 8300000, guid: a0212963d11a06c4caa454df8e2a2a57, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.1
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -21185,9 +21185,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 250
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -22189,6 +22189,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2935880037543257685, guid: abb0ad16da5431947b1852de369865a4, type: 3}
+      propertyPath: <OwnerVehicle>k__BackingField
+      value: 
+      objectReference: {fileID: -6485973079662719747}
     - target: {fileID: 6280618663913463853, guid: abb0ad16da5431947b1852de369865a4, type: 3}
       propertyPath: <UpgradeId>k__BackingField
       value: 3

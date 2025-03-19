@@ -34,12 +34,6 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadScene()
     {
-        if (string.IsNullOrEmpty(_sceneName))
-        {
-            Debug.LogError("Scene name is not set.");
-            return;
-        }
-
         SceneManager.LoadScene(_sceneName);
     }
 
@@ -64,37 +58,3 @@ public class SceneLoader : MonoBehaviour
         _sceneName = sceneName;
     }
 }
-
-//public class SceneLoader : MonoBehaviour
-//{
-//    [SerializeField] private int _sceneIndex;
-
-//    public void LoadScene(int sceneIndex)
-//    {
-//        if (sceneIndex >= 0 && sceneIndex < SceneManager.sceneCountInBuildSettings)
-//        {
-//            SceneManager.LoadScene(sceneIndex);
-//        }
-//        else
-//        {
-//            Debug.LogError("Неверный индекс сцены!");
-//        }
-//    }
-
-//    public void LoadSceneByName(string sceneName)
-//    {
-//        if (string.IsNullOrEmpty(sceneName))
-//        {
-//            Debug.LogError("Имя сцены не указано!");
-//            return;
-//        }
-
-//        if (SceneManager.GetSceneByName(sceneName).isLoaded)
-//        {
-//            Debug.LogWarning($"Сцена \"{sceneName}\" уже загружена.");
-//            return;
-//        }
-
-//        SceneManager.LoadScene(sceneName);
-//    }
-//}

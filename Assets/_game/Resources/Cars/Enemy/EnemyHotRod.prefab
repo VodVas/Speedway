@@ -21396,6 +21396,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09c9adb9213d8bc49917051b7a4b4602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _minSpeedCap: 0.1
+  _maxSpeedCap: 150
   movementMode: 0
   GroundCheck: 1
   drivableSurface:
@@ -21483,10 +21485,12 @@ MonoBehaviour:
   - {fileID: 7179284675280072601}
   - {fileID: 1323402193673115434}
   carVelocity: {x: 0, y: 0, z: 0}
+  MaxForwardTilt: 1
+  MaxBackwardTilt: 1
   BodyTilt: 10
   engineSound: {fileID: 753258602905774001}
-  minPitch: 0.3
-  MaxPitch: 3
+  minPitch: 0.7
+  MaxPitch: 2
   SkidSound: {fileID: 3228900680982042409}
   SkidWidth: 0.2
   target: {fileID: 1281517716122384126}
@@ -21510,7 +21514,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 7941f47abd5a1e64eb77e734906b7af5, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 0e94b5336f5848449968f37e49c100cd, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -21521,9 +21525,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 250
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -21605,10 +21609,10 @@ AudioSource:
   m_GameObject: {fileID: 7795521113928009670}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5855251610057139803, guid: 589367c5050e471478c52d314b8c768c, type: 2}
   m_audioClip: {fileID: 8300000, guid: a2cc5da2efae1494cb564bb784c6572b, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_PlayOnAwake: 0
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -21617,9 +21621,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 250
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -21713,6 +21717,10 @@ MonoBehaviour:
   lookAheadForSpeedFactor: 0.2
   progressStyle: 0
   pointToPointThreshold: 4
+  _targetsContainer: {fileID: 0}
+  _followMode: 0
+  _switchInterval: 10
+  _chaseDistance: 5
   target: {fileID: 0}
   progressDistance: 0
 --- !u!114 &6613425539523347955
@@ -21800,6 +21808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 431bedef999631d4bbc0fdd931be678c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Name>k__BackingField: 
   <RacerId>k__BackingField: 2
 --- !u!114 &4051082304838484077
 MonoBehaviour:

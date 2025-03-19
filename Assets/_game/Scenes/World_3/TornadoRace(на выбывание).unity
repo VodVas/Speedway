@@ -1155,6 +1155,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6696335063968102244, guid: 4fa0dbc37596a784d887cc6ca97f7e14, type: 3}
+      propertyPath: _directionalLight
+      value: 
+      objectReference: {fileID: 152197597}
     - target: {fileID: 6733576870197044070, guid: 4fa0dbc37596a784d887cc6ca97f7e14, type: 3}
       propertyPath: _container
       value: 
@@ -1165,7 +1169,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6926762510897672902, guid: 4fa0dbc37596a784d887cc6ca97f7e14, type: 3}
       propertyPath: _pullMode
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6926762510897672902, guid: 4fa0dbc37596a784d887cc6ca97f7e14, type: 3}
       propertyPath: _forceMode
@@ -1177,11 +1181,15 @@ PrefabInstance:
       objectReference: {fileID: 1086532998}
     - target: {fileID: 6926762510897672902, guid: 4fa0dbc37596a784d887cc6ca97f7e14, type: 3}
       propertyPath: _endGravity
-      value: 40
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 6926762510897672902, guid: 4fa0dbc37596a784d887cc6ca97f7e14, type: 3}
       propertyPath: _gravityPull
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926762510897672902, guid: 4fa0dbc37596a784d887cc6ca97f7e14, type: 3}
+      propertyPath: _delayAtStart
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6926762510897672902, guid: 4fa0dbc37596a784d887cc6ca97f7e14, type: 3}
       propertyPath: _lerpDuration
@@ -1217,7 +1225,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6930521010099528944, guid: 4fa0dbc37596a784d887cc6ca97f7e14, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.96
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 6930521010099528944, guid: 4fa0dbc37596a784d887cc6ca97f7e14, type: 3}
       propertyPath: m_LocalPosition.z
@@ -27731,6 +27739,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4667233407081112110, guid: 074a1a312c64d5d4b9d4533398c8e45b, type: 3}
   m_PrefabInstance: {fileID: 8793991}
   m_PrefabAsset: {fileID: 0}
+--- !u!108 &1672504394 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 1537943991050676225, guid: 4fa0dbc37596a784d887cc6ca97f7e14, type: 3}
+  m_PrefabInstance: {fileID: 2062857066}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1675782186 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4667233407081112110, guid: 074a1a312c64d5d4b9d4533398c8e45b, type: 3}
@@ -34013,6 +34026,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6696335063968102244, guid: 4fa0dbc37596a784d887cc6ca97f7e14, type: 3}
+      propertyPath: _pointLight
+      value: 
+      objectReference: {fileID: 1672504394}
+    - target: {fileID: 6696335063968102244, guid: 4fa0dbc37596a784d887cc6ca97f7e14, type: 3}
+      propertyPath: _startColor.b
+      value: 0.10453009
+      objectReference: {fileID: 0}
+    - target: {fileID: 6696335063968102244, guid: 4fa0dbc37596a784d887cc6ca97f7e14, type: 3}
+      propertyPath: _startColor.g
+      value: 0.7611645
+      objectReference: {fileID: 0}
+    - target: {fileID: 6696335063968102244, guid: 4fa0dbc37596a784d887cc6ca97f7e14, type: 3}
+      propertyPath: _startColor.r
+      value: 0.8207547
+      objectReference: {fileID: 0}
+    - target: {fileID: 6696335063968102244, guid: 4fa0dbc37596a784d887cc6ca97f7e14, type: 3}
+      propertyPath: _directionalLight
+      value: 
+      objectReference: {fileID: 152197597}
     - target: {fileID: 6733576870197044070, guid: 4fa0dbc37596a784d887cc6ca97f7e14, type: 3}
       propertyPath: _container
       value: 
@@ -34023,7 +34056,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6926762510897672902, guid: 4fa0dbc37596a784d887cc6ca97f7e14, type: 3}
       propertyPath: _pullMode
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6926762510897672902, guid: 4fa0dbc37596a784d887cc6ca97f7e14, type: 3}
       propertyPath: _forceMode
@@ -34035,15 +34068,23 @@ PrefabInstance:
       objectReference: {fileID: 1086532998}
     - target: {fileID: 6926762510897672902, guid: 4fa0dbc37596a784d887cc6ca97f7e14, type: 3}
       propertyPath: _endGravity
-      value: 40
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 6926762510897672902, guid: 4fa0dbc37596a784d887cc6ca97f7e14, type: 3}
       propertyPath: _gravityPull
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6926762510897672902, guid: 4fa0dbc37596a784d887cc6ca97f7e14, type: 3}
+      propertyPath: _delayAtStart
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926762510897672902, guid: 4fa0dbc37596a784d887cc6ca97f7e14, type: 3}
       propertyPath: _lerpDuration
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926762510897672902, guid: 4fa0dbc37596a784d887cc6ca97f7e14, type: 3}
+      propertyPath: _isLightToggleOn
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6926762510897672902, guid: 4fa0dbc37596a784d887cc6ca97f7e14, type: 3}
       propertyPath: _directionalLight
@@ -34075,7 +34116,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6930521010099528944, guid: 4fa0dbc37596a784d887cc6ca97f7e14, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.96
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 6930521010099528944, guid: 4fa0dbc37596a784d887cc6ca97f7e14, type: 3}
       propertyPath: m_LocalPosition.z
@@ -35841,6 +35882,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6696335063968102244, guid: 4fa0dbc37596a784d887cc6ca97f7e14, type: 3}
+      propertyPath: _directionalLight
+      value: 
+      objectReference: {fileID: 152197597}
     - target: {fileID: 6733576870197044070, guid: 4fa0dbc37596a784d887cc6ca97f7e14, type: 3}
       propertyPath: _container
       value: 
@@ -35851,7 +35896,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6926762510897672902, guid: 4fa0dbc37596a784d887cc6ca97f7e14, type: 3}
       propertyPath: _pullMode
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6926762510897672902, guid: 4fa0dbc37596a784d887cc6ca97f7e14, type: 3}
       propertyPath: _forceMode
@@ -35862,12 +35907,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1086532998}
     - target: {fileID: 6926762510897672902, guid: 4fa0dbc37596a784d887cc6ca97f7e14, type: 3}
+      propertyPath: _delayAtEnd
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926762510897672902, guid: 4fa0dbc37596a784d887cc6ca97f7e14, type: 3}
       propertyPath: _endGravity
-      value: 40
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 6926762510897672902, guid: 4fa0dbc37596a784d887cc6ca97f7e14, type: 3}
       propertyPath: _gravityPull
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926762510897672902, guid: 4fa0dbc37596a784d887cc6ca97f7e14, type: 3}
+      propertyPath: _delayAtStart
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6926762510897672902, guid: 4fa0dbc37596a784d887cc6ca97f7e14, type: 3}
       propertyPath: _lerpDuration
@@ -35903,7 +35956,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6930521010099528944, guid: 4fa0dbc37596a784d887cc6ca97f7e14, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.96
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 6930521010099528944, guid: 4fa0dbc37596a784d887cc6ca97f7e14, type: 3}
       propertyPath: m_LocalPosition.z

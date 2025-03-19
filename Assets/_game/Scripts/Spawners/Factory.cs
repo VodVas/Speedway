@@ -12,6 +12,7 @@ public class Factory<T> : IFactory<T> where T : MonoBehaviour
     public Factory(Container container, Dictionary<Type, T> prefabs)
     {
         Debug.Log($"[Factory<{typeof(T).Name}>] Constructor called.");
+
         _container = container ?? throw new ArgumentNullException(nameof(container));
         _prefabs = prefabs ?? throw new ArgumentNullException(nameof(prefabs));
     }

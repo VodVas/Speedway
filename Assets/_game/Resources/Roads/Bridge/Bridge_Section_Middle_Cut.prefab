@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 339510014989319784}
   - component: {fileID: 127685275370681505}
   - component: {fileID: 4681981538608613913}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 8066698402529640243}
   - component: {fileID: 5555122317530946388}
   - component: {fileID: 4509626782579858860}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bridge_Section_Middle_Cut
   m_TagString: Untagged
   m_Icon: {fileID: 0}

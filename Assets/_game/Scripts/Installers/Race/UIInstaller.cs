@@ -8,7 +8,7 @@ public class UIInstaller : MonoBehaviour, IInstaller
     [SerializeField] private UiCarBinder _uiCarBinder = null;
     [SerializeField] private SmoothSliderHealthBarDisplay _healthBarDisplay = null;
     [SerializeField] private GameObject _uiCounter = null;
-    [SerializeField] private BulletHoleUI _bulletHoleUI = null;
+    [SerializeField] private EffectOnScreenUIApplier _bulletHoleUI = null;
 
     private void Awake()
     {
@@ -27,6 +27,6 @@ public class UIInstaller : MonoBehaviour, IInstaller
         builder.AddSingleton(_uiCarBinder, typeof(UiCarBinder));
         builder.AddSingleton(_healthBarDisplay, typeof(SmoothSliderHealthBarDisplay));
         builder.AddSingleton(_uiCounter, typeof(GameObject));
-        builder.AddSingleton(_bulletHoleUI, typeof(BulletHoleUI));
+        builder.AddSingleton(_bulletHoleUI, typeof(EffectOnScreenUIApplier));
     }
 }

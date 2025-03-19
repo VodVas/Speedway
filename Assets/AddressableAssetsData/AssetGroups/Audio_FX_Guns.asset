@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Audio_FX_Guns
+  m_EditorClassIdentifier: 
+  m_GroupName: Audio_FX_Guns
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 9ba7876b842d2854cb7bf705580dea68
+  m_SerializeEntries:
+  - m_GUID: 66f670df00a7fcb48b5541a5f1ca199a
+    m_Address: MiddleMachinegun
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c12e56060b3511b4aae071cff0ed8cf9
+    m_Address: Gatling
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e66ff9b1f15b39c468867f6115713967
+    m_Address: /LightMachinegun
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e66209c38875f6544893140868deacf4
+    m_Address: GranadeLauncher
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3f7273cf82ff3564a8f4458c8b5f5e35
+    m_Address: Assets/_game/Audio/SFX/Guns/AircraftMachinegun.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: e9dfb8cf9cb7a0446ad3b6a6393ab644, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 6e9cb36a5f6208240ab962161f17aacf, type: 2}
+    - {fileID: 11400000, guid: 0216b7f1259f2f2479b8b8b1d14a9979, type: 2}
