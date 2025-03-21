@@ -20,7 +20,8 @@ public class SmartWeapon : ParticleWeapon
         if (!other.TryGetComponent(out Vehicle _)) return;
 
         _currentEnemy = other.transform;
-        if (!ParticleShoot.isPlaying) PlayParticleEffect();
+        //if (!ParticleShoot.isPlaying) PlayParticleEffect();
+        if (!IsParticlePlay) PlayParticleEffect();
     }
 
     private void OnTriggerExit(Collider other)

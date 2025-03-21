@@ -5,6 +5,7 @@ using UnityEngine;
 public class Detonator : MonoBehaviour, ITerminatable, IWeapon
 {
     [SerializeField] private ParticleSystem _explosion;
+    [SerializeField] private ParticleWeaponMarker _explosionMarker;
     [SerializeField] private float _delayAfterExplosion = 0.5f;
 
     private WaitForSeconds _wait;
@@ -21,6 +22,14 @@ public class Detonator : MonoBehaviour, ITerminatable, IWeapon
     private void Awake()
     {
         _wait = new WaitForSeconds(_delayAfterExplosion);
+    }
+
+    private void OnEnable()
+    {
+        if (_explosionMarker != null)
+        {
+            _explosionMarker.SetWeapon(this);
+        }
     }
 
     private void OnTriggerEnter(Collider other)

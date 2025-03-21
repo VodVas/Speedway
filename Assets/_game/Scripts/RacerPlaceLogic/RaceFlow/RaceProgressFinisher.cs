@@ -47,7 +47,7 @@ public class RaceProgressFinisher
             if (racer != null && textField != null)
             {
                 int reward = GetRewardForPosition(racer.Position);
-                textField.text = $"{racer.Position}. {racer.Name} - {reward}$";
+                textField.text = $"{racer.Position}. {racer.Name} {reward}$";
             }
         }
     }
@@ -55,7 +55,10 @@ public class RaceProgressFinisher
     public int GetRewardForPosition(int position)
     {
         if (position < 1 || position > _positionRewards.Length)
+        {
+            Debug.LogError($"Invalid position for a reward: {position}");
             return 0;
+        }
 
         return _positionRewards[position - 1];
     }

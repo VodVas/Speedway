@@ -2280,4 +2280,303 @@ public class Old
     //    }
     //}
     #endregion
+
+    #region ReceProgressTrackerLong
+    //public class RaceProgressTracker : MonoBehaviour
+    //{
+    //    private const string NoCheckpointsError = "RaceProgressTracker: список чекпоинтов пуст!";
+    //    private const string NoPlayerFoundError = "RaceProgressTracker: Racer игрока не найден!";
+    //    private const string CheckpointIndexError = "RaceProgressTracker: checkpointIndex должен быть >= 0!";
+
+    //    [SerializeField] private PauseManager _pausedManager;
+    //    [SerializeField] private Transform[] _checkpoints = null;
+    //    [SerializeField] private Racer[] _racers = null;
+    //    [SerializeField] private int _playerRacerId = 6;
+    //    [SerializeField] private int _totalLaps = 3;
+
+    //    [Header("Rewards")]
+    //    [SerializeField] private int[] _positionRewards;
+    //    [SerializeField] private GameObject _desktopRewardCanvas;
+    //    [SerializeField] private GameObject _mobileRewardCanvas;
+    //    [SerializeField] private GameObject[] _desktopPlayerUIElements;
+    //    [SerializeField] private GameObject[] _mobilePlayerUIElements;
+
+    //    [Header("Desktop settings")]
+    //    [SerializeField] private TextMeshProUGUI _desktopPlayerPositionText = null;
+    //    [SerializeField] private TextMeshProUGUI _desktopPlayerLapsText = null;
+    //    [SerializeField] private TextMeshProUGUI[] _desktopResultTexts = null;
+
+    //    [Header("Mobile settings")]
+    //    [SerializeField] private TextMeshProUGUI _mobilePlayerPositionText = null;
+    //    [SerializeField] private TextMeshProUGUI _mobilePlayerLapsText = null;
+    //    [SerializeField] private TextMeshProUGUI[] _mobileResultTexts = null;
+
+    //    [Inject] private PlayerCarSelector _raceCarSelector = null;
+
+    //    private GameObject[] _currentPlayerUIElements;
+    //    private GameObject _currentRewardCanvas;
+    //    private TextMeshProUGUI _currentLapsText;
+    //    private TextMeshProUGUI _currentPositionText;
+    //    private TextMeshProUGUI[] _currentResultTexts;
+    //    private RaceProgressPositionUI _raceProgressPosition;
+    //    private RaceProgressUILaps _raceProgressUILaps;
+    //    private RaceProgressInitializer _initializer;
+    //    private RaceProgressPositionSorter _positionSorter;
+    //    private RaceProgressCheckpointLogic _checkpointLogic;
+    //    private RaceProgressFinisher _finisher;
+    //    private Racer _playerRacer = null;
+    //    private bool _raceFinished = false;
+    //    private bool _rewardGiven;
+
+    //    private void Awake()
+    //    {
+    //        if (!ValidateSerializedData())
+    //        {
+    //            enabled = false;
+    //            return;
+    //        }
+
+    //        SetupPlatformSpecificUI();
+    //        InitializeSystems();
+    //    }
+
+    //    private void SetupPlatformSpecificUI()
+    //    {
+    //        bool isMobile = YandexGame.EnvironmentData.isMobile;
+
+    //        _currentLapsText = isMobile ? _mobilePlayerLapsText : _desktopPlayerLapsText;
+    //        _currentPositionText = isMobile ? _mobilePlayerPositionText : _desktopPlayerPositionText;
+    //        _currentResultTexts = isMobile ? _mobileResultTexts : _desktopResultTexts;
+    //        _currentPlayerUIElements = isMobile ? _mobilePlayerUIElements : _desktopPlayerUIElements;
+    //        _currentRewardCanvas = isMobile ? _mobileRewardCanvas : _desktopRewardCanvas;
+    //    }
+
+    //    private void InitializeSystems()
+    //    {
+    //        _initializer = new RaceProgressInitializer(_racers, _playerRacerId, _raceCarSelector);
+    //        _raceProgressUILaps = new RaceProgressUILaps(_currentLapsText);
+    //        _positionSorter = new RaceProgressPositionSorter();
+    //        _raceProgressPosition = new RaceProgressPositionUI(_currentPositionText);
+    //        _checkpointLogic = new RaceProgressCheckpointLogic(_totalLaps);
+    //        _finisher = new RaceProgressFinisher(_currentResultTexts, _positionRewards);
+    //    }
+
+    //    private void Start()
+    //    {
+    //        _initializer.InsertPlayerCarIntoRacers();
+    //        ValidateCheckpointsOnStart();
+    //        _initializer.InitializeRacersPositions();
+
+    //        _playerRacer = _initializer.FindPlayerRacer();
+
+    //        if (_playerRacer == null)
+    //        {
+    //            Debug.LogWarning(NoPlayerFoundError, this);
+    //            return;
+    //        }
+
+    //        _raceProgressPosition.UpdatePlayerUI(_playerRacer, _racers.Length);
+    //        UpdateLapCounter();
+    //    }
+
+    //    public void HandleTriggerEnter(Racer racer, int checkpointIndex)
+    //    {
+    //        if (_raceFinished || racer == null || racer.HasFinished) return;
+
+    //        if (checkpointIndex < 0)
+    //        {
+    //            Debug.LogError(CheckpointIndexError, this);
+    //            enabled = false;
+    //            return;
+    //        }
+
+    //        bool isPlayer = ReferenceEquals(racer, _playerRacer);
+    //        _checkpointLogic.ProcessCheckpoint(_checkpoints.Length, racer, checkpointIndex, isPlayer, out bool lapCompleted);
+
+    //        if (lapCompleted && racer.LapsCompleted >= _totalLaps)
+    //        {
+    //            HandleRaceFinish(racer, isPlayer);
+    //        }
+
+    //        if (isPlayer)
+    //        {
+    //            UpdatePositionsAround();
+    //            UpdateLapCounter();
+    //        }
+    //    }
+
+    //    private void HandleRaceFinish(Racer racer, bool isPlayer)
+    //    {
+    //        racer.SetFinished(true);
+    //        if (isPlayer)
+    //        {
+    //            EndRace(racer);
+    //        }
+    //        else
+    //        {
+    //            DisableRacerObject(racer);
+    //        }
+    //    }
+
+    //    private void UpdateLapCounter()
+    //    {
+    //        if (_playerRacer != null)
+    //        {
+    //            _raceProgressUILaps.UpdateLapCounter(_playerRacer.LapsCompleted + 1, _totalLaps);
+    //        }
+    //    }
+
+    //    private void UpdatePositionsAround()
+    //    {
+    //        _positionSorter.SortRacers(ref _racers);
+
+    //        for (int i = 0; i < _racers.Length; i++)
+    //        {
+    //            Racer currentRacer = _racers[i];
+    //            if (currentRacer == null) continue;
+
+    //            int newPosition = i + 1;
+    //            if (currentRacer.Position != newPosition)
+    //            {
+    //                currentRacer.UpdatePreviousPosition();
+    //                currentRacer.SetPosition(newPosition);
+
+    //                if (ReferenceEquals(currentRacer, _playerRacer))
+    //                {
+    //                    _raceProgressPosition.UpdatePlayerUI(currentRacer, _racers.Length);
+    //                }
+    //            }
+    //        }
+    //    }
+
+    //    private void EndRace(Racer finishingRacer)
+    //    {
+    //        _raceFinished = true;
+    //        DisablePlayerUI();
+    //        DeactivatePauseMenu();
+    //        ActivateRewardCanvas();
+    //        ProcessRaceResults(finishingRacer);
+    //        DisableAllRacers();
+    //    }
+
+    //    private void DisablePlayerUI()
+    //    {
+    //        for (int i = 0; i < _currentPlayerUIElements.Length; i++)
+    //        {
+    //            if (_currentPlayerUIElements[i] != null)
+    //            {
+    //                _currentPlayerUIElements[i].SetActive(false);
+    //            }
+    //        }
+    //    }
+
+    //    private void ActivateRewardCanvas()
+    //    {
+    //        if (_currentRewardCanvas != null)
+    //        {
+    //            _currentRewardCanvas.SetActive(true);
+    //        }
+    //    }
+
+    //    private void DeactivatePauseMenu()
+    //    {
+    //        _pausedManager.gameObject.SetActive(false);
+    //    }
+
+    //    private void ProcessRaceResults(Racer finishingRacer)
+    //    {
+    //        _finisher.PrintFinalResults(_racers, finishingRacer);
+
+    //        if (!_rewardGiven && finishingRacer != null)
+    //        {
+    //            YandexGame.savesData.AddMoney(_finisher.GetRewardForPosition(finishingRacer.Position));
+    //            _rewardGiven = true;
+    //        }
+    //    }
+
+    //    private void DisableAllRacers()
+    //    {
+    //        for (int i = 0; i < _racers.Length; i++)
+    //        {
+    //            if (_racers[i] != null)
+    //            {
+    //                DisableRacerObject(_racers[i]);
+    //            }
+    //        }
+    //    }
+
+    //    private void DisableRacerObject(Racer racer)
+    //    {
+    //        if (racer != null && racer.gameObject != null)
+    //        {
+    //            racer.gameObject.SetActive(false);
+    //        }
+    //    }
+
+    //    private bool ValidateSerializedData()
+    //    {
+    //        bool isValid = true;
+
+    //        if (_playerRacerId < 0)
+    //        {
+    //            Debug.LogError("RaceProgressTracker: PlayerId must be grater than zero", this);
+    //            isValid = false;
+    //        }
+
+    //        if (_totalLaps < 1)
+    //        {
+    //            Debug.LogError("RaceProgressTracker: laps must be >= 1", this);
+    //            isValid = false;
+    //        }
+
+    //        if (_raceCarSelector == null)
+    //        {
+    //            Debug.LogError("RaceProgressTracker: RaceCarManager is not assign!", this);
+    //            isValid = false;
+    //        }
+
+    //        if (_checkpoints == null || _checkpoints.Length == 0)
+    //        {
+    //            Debug.LogError(NoCheckpointsError, this);
+    //            isValid = false;
+    //        }
+
+    //        if (_desktopPlayerUIElements == null || _desktopPlayerUIElements.Length == 0 ||
+    //            _mobilePlayerUIElements == null || _mobilePlayerUIElements.Length == 0)
+    //        {
+    //            Debug.LogError("RaceProgressTracker: Player UI elements are not assigned!", this);
+    //            isValid = false;
+    //        }
+
+    //        if (_desktopRewardCanvas == null || _mobileRewardCanvas == null)
+    //        {
+    //            Debug.LogError("RaceProgressTracker: Reward canvases are not assigned!", this);
+    //            isValid = false;
+    //        }
+
+    //        if (_positionRewards == null || _positionRewards.Length == 0)
+    //        {
+    //            Debug.LogError("Position rewards are not configured!", this);
+    //            isValid = false;
+    //        }
+
+    //        if (_pausedManager == null)
+    //        {
+    //            Debug.LogError("Pause manager is not assign!", this);
+    //            isValid = false;
+    //        }
+
+    //        return isValid;
+    //    }
+
+    //    private void ValidateCheckpointsOnStart()
+    //    {
+    //        if (_checkpoints == null || _checkpoints.Length < 1)
+    //        {
+    //            Debug.LogError(NoCheckpointsError, this);
+    //            enabled = false;
+    //        }
+    //    }
+    //}
+    #endregion
 }

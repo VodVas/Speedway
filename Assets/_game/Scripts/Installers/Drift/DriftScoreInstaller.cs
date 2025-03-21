@@ -9,7 +9,7 @@ public class DriftScoreInstaller : MonoBehaviour, IInstaller
 
     private void Awake()
     {
-        if ( _driftScoreUIDisplayer == null )
+        if (_driftScoreUIDisplayer == null)
         {
             Debug.LogError(ErrorMissingField, this);
             enabled = false;

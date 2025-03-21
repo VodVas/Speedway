@@ -23,7 +23,8 @@ public class MiniGun : ParticleWeapon
     {
         base.Update();
 
-        if (ParticleShoot.isPlaying)
+       // if (ParticleShoot.isPlaying)
+        if (IsParticlePlay)
         {
             _rotator.SetRotationSpeeds(_activeRotateSpeedX, _activeRotateSpeedY, _activeRotateSpeedZ);
         }

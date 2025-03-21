@@ -103,7 +103,7 @@ MonoBehaviour:
   <DamageAmount>k__BackingField: 20
   <OwnerVehicle>k__BackingField: {fileID: 0}
   ParticleShoot: {fileID: 5362395357260352557}
-  _marker: {fileID: 187471307499565916}
+  _marker: {fileID: 1455339785942983098}
   <IsBulletWeapon>k__BackingField: 0
 --- !u!65 &1902256543885968322
 BoxCollider:
@@ -158,7 +158,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.51187515
+      value: 0.71222305
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -435,20 +435,30 @@ PrefabInstance:
       propertyPath: InitialModule.maxNumParticles
       value: 500
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5111875655004815476, guid: 0a898724e5f864c45a713dc6e1f618bc, type: 3}
     m_RemovedGameObjects:
     - {fileID: 8310045888318579361, guid: 0a898724e5f864c45a713dc6e1f618bc, type: 3}
     - {fileID: 1993315297668719160, guid: 0a898724e5f864c45a713dc6e1f618bc, type: 3}
     - {fileID: 3658352375141939595, guid: 0a898724e5f864c45a713dc6e1f618bc, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7296008662576585529, guid: 0a898724e5f864c45a713dc6e1f618bc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1455339785942983098}
   m_SourcePrefab: {fileID: 100100000, guid: 0a898724e5f864c45a713dc6e1f618bc, type: 3}
---- !u!114 &187471307499565916 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5111875655004815476, guid: 0a898724e5f864c45a713dc6e1f618bc, type: 3}
+--- !u!1 &2390196180775446545 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7296008662576585529, guid: 0a898724e5f864c45a713dc6e1f618bc, type: 3}
   m_PrefabInstance: {fileID: 4930051784469213992}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+--- !u!114 &1455339785942983098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2390196180775446545}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2218774431d3b14990f043cc1017c72, type: 3}

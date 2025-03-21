@@ -6,7 +6,8 @@ public class RocketLauncher : ParticleWeapon
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            if (!ParticleShoot.isPlaying)
+            //if (!ParticleShoot.isPlaying)
+            if (!IsParticlePlay)
             {
                 PlayParticleEffect();
             }

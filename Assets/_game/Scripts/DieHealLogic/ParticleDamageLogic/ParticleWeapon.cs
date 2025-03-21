@@ -2,8 +2,10 @@ using UnityEngine;
 
 public abstract class ParticleWeapon : Weapon
 {
-    [SerializeField] protected ParticleSystem ParticleShoot;
+    [SerializeField] private ParticleSystem ParticleShoot;
     [SerializeField] private ParticleWeaponMarker _marker;
+
+    protected bool IsParticlePlay => ParticleShoot.isPlaying;
 
     protected override void Awake()
     {

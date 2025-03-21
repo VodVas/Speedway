@@ -14,7 +14,7 @@ public class PitchChanger : MonoBehaviour
     {
         if (audioSource == null)
         {
-            Debug.LogError("AudioSource не назначен!");
+            Debug.LogError("AudioSource не назначен!", this);
             return;
         }
 

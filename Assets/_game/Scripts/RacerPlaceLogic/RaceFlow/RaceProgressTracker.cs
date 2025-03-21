@@ -1,53 +1,50 @@
 using UnityEngine;
 using TMPro;
 using Reflex.Attributes;
+using YG;
 
 public class RaceProgressTracker : MonoBehaviour
 {
-    private const string NoCheckpointsError = "RaceProgressTracker: список чекпоинтов пуст!";
+    private const string NoCheckpointsError = "RaceProgressTracker: —писок чекпоинтов пуст!";
     private const string NoPlayerFoundError = "RaceProgressTracker: Racer игрока не найден!";
     private const string CheckpointIndexError = "RaceProgressTracker: checkpointIndex должен быть >= 0!";
 
-    [SerializeField] private Transform[] _checkpoints = null;
-    [SerializeField] private Racer[] _racers = null;
+    [SerializeField] private Transform[] _checkpoints;
+    [SerializeField] private Racer[] _racers;
     [SerializeField] private int _playerRacerId = 6;
     [SerializeField] private int _totalLaps = 3;
 
-    [Header("Rewards")]
-    [SerializeField] private int[] _positionRewards;
-    [SerializeField] private GameObject _rewardCanvas;
-    [SerializeField] private GameObject[] _playerUIElements;
+    [Header("Desktop settings")]
+    [SerializeField] private TextMeshProUGUI _desktopPlayerPositionText;
+    [SerializeField] private TextMeshProUGUI _desktopPlayerLapsText;
 
-    [Header("TMP")]
-    [SerializeField] private TextMeshProUGUI _playerPositionText = null;
-    [SerializeField] private TextMeshProUGUI _playerLapsText = null;
-    [SerializeField] private TextMeshProUGUI[] _resultTexts = null;
+    [Header("Mobile settings")]
+    [SerializeField] private TextMeshProUGUI _mobilePlayerPositionText;
+    [SerializeField] private TextMeshProUGUI _mobilePlayerLapsText;
 
-    [Inject] private PlayerCarSelector _raceCarSelector = null;
+    [Inject] private PlayerCarSelector _raceCarSelector;
+    [Inject] private RaceRewardHandler _rewardHandler;
+
     private RaceProgressPositionUI _raceProgressPosition;
     private RaceProgressUILaps _raceProgressUILaps;
     private RaceProgressInitializer _initializer;
     private RaceProgressPositionSorter _positionSorter;
     private RaceProgressCheckpointLogic _checkpointLogic;
-    private RaceProgressFinisher _finisher;
-    private bool _raceFinished = false;
-    private Racer _playerRacer = null;
-    private bool _rewardGiven;
+    private Racer _playerRacer;
+    private bool _raceFinished;
+    private TextMeshProUGUI _currentLapsText;
+    private TextMeshProUGUI _currentPositionText;
 
     private void Awake()
     {
-        if (ValidateSerializedData() == false)
+        if (!ValidateSerializedData())
         {
             enabled = false;
             return;
         }
 
-        _initializer = new RaceProgressInitializer(_racers, _playerRacerId, _raceCarSelector);
-        _raceProgressUILaps = new RaceProgressUILaps(_playerLapsText);
-        _positionSorter = new RaceProgressPositionSorter();
-        _raceProgressPosition = new RaceProgressPositionUI(_playerPositionText);
-        _checkpointLogic = new RaceProgressCheckpointLogic(_totalLaps);
-        _finisher = new RaceProgressFinisher(_resultTexts, _positionRewards);
+        SetupPlatformSpecificUI();
+        InitializeSystems();
     }
 
     private void Start()
@@ -56,22 +53,43 @@ public class RaceProgressTracker : MonoBehaviour
         ValidateCheckpointsOnStart();
         _initializer.InitializeRacersPositions();
 
+        if (!_rewardHandler.ValidateRewardsSize(_racers.Length))
+        {
+            enabled = false;
+            return;
+        }
+
         _playerRacer = _initializer.FindPlayerRacer();
 
         if (_playerRacer == null)
         {
             Debug.LogWarning(NoPlayerFoundError, this);
+            enabled = false;
+            return;
         }
 
-        _raceProgressPosition.UpdatePlayerUI(_playerRacer, _racers.Length);
+        UpdatePositionAndLapUI();
+    }
+
+    private void SetupPlatformSpecificUI()
+    {
+        bool isMobile = YandexGame.EnvironmentData.isMobile;
+        _currentLapsText = isMobile ? _mobilePlayerLapsText : _desktopPlayerLapsText;
+        _currentPositionText = isMobile ? _mobilePlayerPositionText : _desktopPlayerPositionText;
+    }
+
+    private void InitializeSystems()
+    {
+        _initializer = new RaceProgressInitializer(_racers, _playerRacerId, _raceCarSelector);
+        _raceProgressUILaps = new RaceProgressUILaps(_currentLapsText);
+        _positionSorter = new RaceProgressPositionSorter();
+        _raceProgressPosition = new RaceProgressPositionUI(_currentPositionText);
+        _checkpointLogic = new RaceProgressCheckpointLogic(_totalLaps);
     }
 
     public void HandleTriggerEnter(Racer racer, int checkpointIndex)
     {
-        if (_raceFinished || racer == null || racer.HasFinished)
-        {
-            return;
-        }
+        if (_raceFinished || racer == null || racer.HasFinished) return;
 
         if (checkpointIndex < 0)
         {
@@ -81,33 +99,34 @@ public class RaceProgressTracker : MonoBehaviour
         }
 
         bool isPlayer = ReferenceEquals(racer, _playerRacer);
-
         _checkpointLogic.ProcessCheckpoint(_checkpoints.Length, racer, checkpointIndex, isPlayer, out bool lapCompleted);
 
         if (lapCompleted && racer.LapsCompleted >= _totalLaps)
         {
-            racer.SetFinished(true);
-            if (isPlayer)
-            {
-                EndRace(racer);
-            }
-            else
-            {
-                DisableRacerObject(racer);
-            }
+            HandleRaceFinish(racer, isPlayer);
         }
 
-        UpdatePositionsAround();
-        UpdateLapCounter();
+        if (isPlayer) UpdatePositionAndLapUI();
     }
 
-    private void UpdateLapCounter()
+    private void UpdatePositionAndLapUI()
     {
-        if (_playerRacer != null)
-        {
-            int currentLap = _playerRacer.LapsCompleted + 1;
-            _raceProgressUILaps.UpdateLapCounter(currentLap, _totalLaps);
-        }
+        UpdatePositionsAround();
+        _raceProgressUILaps.UpdateLapCounter(_playerRacer.LapsCompleted + 1, _totalLaps);
+    }
+
+    private void HandleRaceFinish(Racer racer, bool isPlayer)
+    {
+        racer.SetFinished(true);
+        if (isPlayer) EndRace();
+        else DisableRacerObject(racer);
+    }
+
+    private void EndRace()
+    {
+        _raceFinished = true;
+        _rewardHandler.HandleRaceFinish(_racers, _playerRacer);
+        DisableAllRacers();
     }
 
     private void UpdatePositionsAround()
@@ -116,103 +135,70 @@ public class RaceProgressTracker : MonoBehaviour
 
         for (int i = 0; i < _racers.Length; i++)
         {
-            Racer currentRacer = _racers[i];
-
-            if (currentRacer == null)
-            {
-                continue;
-            }
+            if (_racers[i] == null) continue;
 
             int newPosition = i + 1;
-
-            if (currentRacer.Position != newPosition)
+            if (_racers[i].Position != newPosition)
             {
-                currentRacer.UpdatePreviousPosition();
-                currentRacer.SetPosition(newPosition);
+                _racers[i].UpdatePreviousPosition();
+                _racers[i].SetPosition(newPosition);
 
-                if (ReferenceEquals(currentRacer, _playerRacer))
+                if (ReferenceEquals(_racers[i], _playerRacer))
                 {
-                    _raceProgressPosition.UpdatePlayerUI(_playerRacer, _racers.Length);
+                    _raceProgressPosition.UpdatePlayerUI(_racers[i], _racers.Length);
                 }
             }
         }
     }
 
-    private void EndRace(Racer finishingRacer)
+    private void DisableAllRacers()
     {
-        _raceFinished = true;
-
-        for (int i = 0; i < _playerUIElements.Length; i++)
-        {
-            _playerUIElements[i].SetActive(false);
-        }
-
-        _rewardCanvas.SetActive(true);
-
-        _finisher.PrintFinalResults(_racers, finishingRacer);
-
-        if (!_rewardGiven && finishingRacer != null)
-        {
-            int reward = _finisher.GetRewardForPosition(finishingRacer.Position);
-            YG.YandexGame.savesData.AddMoney(reward);
-            _rewardGiven = true;
-        }
-
         for (int i = 0; i < _racers.Length; i++)
         {
-            if (_racers[i] != null)
-            {
-                DisableRacerObject(_racers[i]);
-            }
+            if (_racers[i] != null) DisableRacerObject(_racers[i]);
         }
     }
 
     private void DisableRacerObject(Racer racer)
     {
-        if (racer != null)
-        {
+        if (racer != null && racer.gameObject != null)
             racer.gameObject.SetActive(false);
-        }
     }
 
     private bool ValidateSerializedData()
     {
+        bool isValid = true;
+
         if (_playerRacerId < 0)
         {
-            Debug.LogError("RaceProgressTracker: PlayerId не может быть отрицательным", this);
-            return false;
+            Debug.LogError("RaceProgressTracker: PlayerId должен быть больше нул€", this);
+            isValid = false;
         }
 
         if (_totalLaps < 1)
         {
-            Debug.LogError("RaceProgressTracker: количество кругов должно быть >= 1", this);
-            return false;
+            Debug.LogError("RaceProgressTracker:  оличество кругов должно быть >= 1", this);
+            isValid = false;
         }
 
         if (_raceCarSelector == null)
         {
             Debug.LogError("RaceProgressTracker: RaceCarManager не назначен!", this);
-            return false;
+            isValid = false;
         }
 
-        if (_resultTexts == null || _resultTexts.Length == 0)
+        if (_checkpoints == null || _checkpoints.Length == 0)
         {
-            Debug.LogError("RaceProgressTracker: Results texts not assigned!", this);
-            return false;
+            Debug.LogError(NoCheckpointsError, this);
+            isValid = false;
         }
 
-        if (_positionRewards == null || _positionRewards.Length == 0)
-        {
-            Debug.LogError("Position rewards not configured!", this);
-            return false;
-        }
-
-        return true;
+        return isValid;
     }
 
     private void ValidateCheckpointsOnStart()
     {
-        if (_checkpoints == null || _checkpoints.Length < 1)
+        if (_checkpoints == null || _checkpoints.Length == 0)
         {
             Debug.LogError(NoCheckpointsError, this);
             enabled = false;

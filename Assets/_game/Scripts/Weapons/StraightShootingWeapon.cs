@@ -8,13 +8,13 @@ public class StraightShootingWeapon : ParticleWeapon
     private void OnTriggerEnter(Collider other)
     {
         if (!other.TryGetComponent(out Vehicle _)) return;
-        if (!ParticleShoot.isPlaying) PlayParticleEffect();
+        if (!IsParticlePlay) PlayParticleEffect();
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (!other.TryGetComponent(out Vehicle _)) return;
-        if (ParticleShoot.isPlaying) StopParticleEffect();
+        if (IsParticlePlay) StopParticleEffect();
     }
 }
 

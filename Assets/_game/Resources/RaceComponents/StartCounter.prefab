@@ -46,10 +46,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _countdownDuration: 3
   _lightDuration: 0.5
-  _countText: {fileID: 0}
-  _lights:
+  _bossStartTime: 2
+  _mobileCountText: {fileID: 0}
+  _mobileLights:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  _UICounter: {fileID: 0}
+  _desktopCountText: {fileID: 0}
+  _desktopLights:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

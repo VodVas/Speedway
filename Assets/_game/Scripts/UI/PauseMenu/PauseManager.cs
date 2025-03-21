@@ -1,8 +1,10 @@
 using UnityEngine;
+using YG;
 
 public class PauseManager : MonoBehaviour
 {
-    [SerializeField] private GameObject _pauseMenu;
+    [SerializeField] private GameObject _desktopPauseMenu;
+    [SerializeField] private GameObject _mobilePauseMenu;
     [SerializeField] private Player[] _playerCars;
     [SerializeField] private GameObject[] _forceDisableObjects;
 
@@ -55,9 +57,13 @@ public class PauseManager : MonoBehaviour
 
         SetGroupActive(_forceDisableObjects, false);
 
-        if (_pauseMenu)
+        if (_mobilePauseMenu && YandexGame.EnvironmentData.isMobile)
         {
-            _pauseMenu.SetActive(true);
+            _mobilePauseMenu.SetActive(true);
+        }
+        else if (_desktopPauseMenu && YandexGame.EnvironmentData.isDesktop)
+        {
+            _desktopPauseMenu.SetActive(true);
         }
 
         _isPaused = true;
@@ -71,9 +77,13 @@ public class PauseManager : MonoBehaviour
 
         SetGroupActive(_forceDisableObjects, true);
 
-        if (_pauseMenu)
+        if (_mobilePauseMenu && YandexGame.EnvironmentData.isMobile)
         {
-            _pauseMenu.SetActive(false);
+            _mobilePauseMenu.SetActive(false);
+        }
+        else if (_desktopPauseMenu && YandexGame.EnvironmentData.isDesktop)
+        {
+            _desktopPauseMenu.SetActive(false);
         }
 
         _isPaused = false;

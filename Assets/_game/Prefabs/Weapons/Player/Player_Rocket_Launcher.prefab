@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6834059673769755301}
   - component: {fileID: 1833398509536827553}
   - component: {fileID: 7581479919601020728}
+  - component: {fileID: 4847347073263356420}
   m_Layer: 0
   m_Name: FX_Fireball_Shooting_Explosion_Core_01 (1)
   m_TagString: Untagged
@@ -4646,6 +4647,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &4847347073263356420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3433240400398479789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2218774431d3b14990f043cc1017c72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5759230062873724892
 GameObject:
   m_ObjectHideFlags: 0
@@ -4939,7 +4952,8 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5111875655004815476, guid: 0a898724e5f864c45a713dc6e1f618bc, type: 3}
     m_RemovedGameObjects:
     - {fileID: 8310045888318579361, guid: 0a898724e5f864c45a713dc6e1f618bc, type: 3}
     - {fileID: 1993315297668719160, guid: 0a898724e5f864c45a713dc6e1f618bc, type: 3}

@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class LampLightToggler : MonoBehaviour
 {
-    public enum BlinkMode { Single, Continuous }
-
     [SerializeField] private Transform[] _lampArray;
     [SerializeField] private float _blinkDuration = 0.5f;
     [SerializeField] private BlinkMode _mode = BlinkMode.Single;
@@ -13,6 +11,8 @@ public class LampLightToggler : MonoBehaviour
     private float[] _timers;
     private int _currentIndex;
     private bool _isBlinking;
+
+    private enum BlinkMode { Single, Continuous }
 
     private void OnEnable()
     {
