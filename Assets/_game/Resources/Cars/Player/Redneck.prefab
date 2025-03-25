@@ -112,6 +112,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2d69c44041501f4aab1c355410d67b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _minSpeed: 0.1
+  _maxSpeedCap: 300
   movementMode: 0
   GroundCheck: 0
   drivableSurface:
@@ -203,8 +205,9 @@ MonoBehaviour:
   - {fileID: 7183054540602784615}
   engineSound: {fileID: 526794285996722486}
   minPitch: 0.3
-  MaxPitch: 3
+  maxPitch: 0
   SkidSound: {fileID: 5118602226247683112}
+  _mobileInputController: {fileID: 0}
   _respawnPoints: []
   _stuckTimeout: 3
   _outOfBoundsY: -10
@@ -212,6 +215,7 @@ MonoBehaviour:
   _minSpeedThreshold: 0.1
   carVelocity: {x: 0, y: 0, z: 0}
   skidWidth: 0.63168925
+  _forwardBackTiltAmount: 0
   BodyTilt: 10
   <SkidMarksFadeDuration>k__BackingField: 2
   _speedStepForMultiplier: 20
@@ -219,7 +223,7 @@ MonoBehaviour:
   _baseDriftMultiplier: 1
   _driftInterval: 1
   _driftScorePerInterval: 10
-  _backRide: 1.3
+  _backRideMultiplier: 1.3
 --- !u!54 &4249817121476778195
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -21692,11 +21696,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 5717287730466780349}
   m_SourcePrefab: {fileID: 100100000, guid: e10c556d4d4596f40b7d9dbc793c966d, type: 3}
---- !u!198 &1243945559363362498 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 3273705627270017670, guid: e10c556d4d4596f40b7d9dbc793c966d, type: 3}
-  m_PrefabInstance: {fileID: 4336377141939104836}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4334778346925861982 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1638244575166490, guid: e10c556d4d4596f40b7d9dbc793c966d, type: 3}
@@ -21715,7 +21714,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <DamageAmount>k__BackingField: 30
-  <ParticleShoot>k__BackingField: {fileID: 1243945559363362498}
+  <OwnerVehicle>k__BackingField: {fileID: 0}
+  ParticleShoot: {fileID: 0}
+  _marker: {fileID: 0}
 --- !u!114 &5717287730466780349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21729,15 +21730,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <DamageAmount>k__BackingField: 30
-  <ParticleShoot>k__BackingField: {fileID: 8224275384914792957}
+  <OwnerVehicle>k__BackingField: {fileID: 0}
+  ParticleShoot: {fileID: 0}
+  _marker: {fileID: 0}
 --- !u!4 &4340856424860611068 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4567244561358264, guid: e10c556d4d4596f40b7d9dbc793c966d, type: 3}
-  m_PrefabInstance: {fileID: 4336377141939104836}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &8224275384914792957 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 5624880393014656441, guid: e10c556d4d4596f40b7d9dbc793c966d, type: 3}
   m_PrefabInstance: {fileID: 4336377141939104836}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5132829807748691872

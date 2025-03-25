@@ -21034,7 +21034,7 @@ MonoBehaviour:
   _minSpeedThreshold: 0.1
   carVelocity: {x: 0, y: 0, z: 0}
   skidWidth: 0.2
-  _forwardBackTiltAmount: 5
+  _forwardBackTiltAmount: 0
   BodyTilt: 10
   <SkidMarksFadeDuration>k__BackingField: 20
   _speedStepForMultiplier: 20

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17412841, g: 0.21774785, b: 0.29994392, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -899,6 +899,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3296188589806268302, guid: d07806e4eea3e4e40ba47afee8519451, type: 3}
+      propertyPath: _particleSystem
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3764865328181699572, guid: d07806e4eea3e4e40ba47afee8519451, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -951,9 +955,25 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: f8b6afeb81c20de428fbd0ec7a54d109, type: 2}
+    - target: {fileID: 4750694063829062086, guid: d07806e4eea3e4e40ba47afee8519451, type: 3}
+      propertyPath: _marker
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4750694063829062086, guid: d07806e4eea3e4e40ba47afee8519451, type: 3}
+      propertyPath: ParticleShoot
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4750694063829062086, guid: d07806e4eea3e4e40ba47afee8519451, type: 3}
+      propertyPath: <OwnerVehicle>k__BackingField
+      value: 
+      objectReference: {fileID: 74, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 4773825229377246828, guid: d07806e4eea3e4e40ba47afee8519451, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065134875751524162, guid: d07806e4eea3e4e40ba47afee8519451, type: 3}
+      propertyPath: _particleSystem
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5135418537600065980, guid: d07806e4eea3e4e40ba47afee8519451, type: 3}
       propertyPath: carController
@@ -999,6 +1019,22 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7006005011723942323, guid: d07806e4eea3e4e40ba47afee8519451, type: 3}
+      propertyPath: _particleSystem
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7394196118955052855, guid: d07806e4eea3e4e40ba47afee8519451, type: 3}
+      propertyPath: _marker
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7394196118955052855, guid: d07806e4eea3e4e40ba47afee8519451, type: 3}
+      propertyPath: ParticleShoot
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7394196118955052855, guid: d07806e4eea3e4e40ba47afee8519451, type: 3}
+      propertyPath: <OwnerVehicle>k__BackingField
+      value: 
+      objectReference: {fileID: 74, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 8134017738223119424, guid: d07806e4eea3e4e40ba47afee8519451, type: 3}
       propertyPath: carController
       value: 
@@ -1010,6 +1046,18 @@ PrefabInstance:
     - target: {fileID: 8473416031815834848, guid: d07806e4eea3e4e40ba47afee8519451, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8759136364263869680, guid: d07806e4eea3e4e40ba47afee8519451, type: 3}
+      propertyPath: _marker
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8759136364263869680, guid: d07806e4eea3e4e40ba47afee8519451, type: 3}
+      propertyPath: ParticleShoot
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8759136364263869680, guid: d07806e4eea3e4e40ba47afee8519451, type: 3}
+      propertyPath: <OwnerVehicle>k__BackingField
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8776398068794527821, guid: d07806e4eea3e4e40ba47afee8519451, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1035,7 +1083,14 @@ PrefabInstance:
     - {fileID: 8473416031815834848, guid: d07806e4eea3e4e40ba47afee8519451, type: 3}
     - {fileID: 895014446176179091, guid: d07806e4eea3e4e40ba47afee8519451, type: 3}
     - {fileID: 6500000286023418019, guid: d07806e4eea3e4e40ba47afee8519451, type: 3}
-    m_RemovedGameObjects: []
+    - {fileID: 3034327706047689847, guid: d07806e4eea3e4e40ba47afee8519451, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 4562407233601654325, guid: d07806e4eea3e4e40ba47afee8519451, type: 3}
+    - {fileID: 4178354870570774205, guid: d07806e4eea3e4e40ba47afee8519451, type: 3}
+    - {fileID: 2201366009604026444, guid: d07806e4eea3e4e40ba47afee8519451, type: 3}
+    - {fileID: 4773825229377246828, guid: d07806e4eea3e4e40ba47afee8519451, type: 3}
+    - {fileID: 7590272239756902721, guid: d07806e4eea3e4e40ba47afee8519451, type: 3}
+    - {fileID: 5631396492784558000, guid: d07806e4eea3e4e40ba47afee8519451, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d07806e4eea3e4e40ba47afee8519451, type: 3}
@@ -2076,6 +2131,7 @@ PrefabInstance:
     - {fileID: 1021068791044278228, guid: d29dfc736abe7f1448cbb0ab91b45604, type: 3}
     - {fileID: 3320676381866442685, guid: d29dfc736abe7f1448cbb0ab91b45604, type: 3}
     - {fileID: 6630089233478711786, guid: d29dfc736abe7f1448cbb0ab91b45604, type: 3}
+    - {fileID: 1356657440293109684, guid: d29dfc736abe7f1448cbb0ab91b45604, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

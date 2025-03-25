@@ -793,7 +793,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7c26cf0bfe31c4247ad0de127e8e305f, type: 2}
+  - {fileID: 2100000, guid: 569d56bd8be49434a947c7238e1bf4e9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -41280,6 +41280,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09c9adb9213d8bc49917051b7a4b4602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _minSpeedCap: 0.1
+  _maxSpeedCap: 150
   movementMode: 0
   GroundCheck: 1
   drivableSurface:
@@ -41605,6 +41607,10 @@ MonoBehaviour:
   lookAheadForSpeedFactor: 0.2
   progressStyle: 1
   pointToPointThreshold: 4
+  _targetsContainer: {fileID: 0}
+  _followMode: 0
+  _switchInterval: 10
+  _chaseDistance: 5
   target: {fileID: 9196801106190073326}
   progressDistance: 0
 --- !u!1 &7847480089009674179

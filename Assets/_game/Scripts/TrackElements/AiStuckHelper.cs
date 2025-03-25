@@ -70,7 +70,7 @@ public class AiStuckHelper : MonoBehaviour
             {
                 ArcadeAiVehicleController vehicle = _vehicles[i];
 
-                if (vehicle == null)
+                if (vehicle == null && !vehicle.gameObject.activeSelf)
                     continue;
 
                 if (vehicle.carBody.position.y < _maxHeightToStuck)

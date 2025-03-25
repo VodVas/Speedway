@@ -8,14 +8,14 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: LiquidOil
-  m_Shader: {fileID: 4800000, guid: 644d4419f6d30214892dd65158332ba7, type: 3}
+  m_Shader: {fileID: 4800000, guid: 6dfcfdf20b4c1344b8398432ad9c0dcf, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - _LIGHTING_ON
-  - _NORMAL_MAP_ON
+  m_ValidKeywords: []
   m_InvalidKeywords:
+  - _LIGHTING_ON
   - _MACRONORMALS_ON
+  - _NORMAL_MAP_ON
   - _SECONDARYFOAMALWAYSVISIBLE_ON
   - _TOGGLESWITCH0_ON
   - _UNLIT_ON
@@ -23,7 +23,7 @@ Material:
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: 
@@ -40,6 +40,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _GradientTex:
         m_Texture: {fileID: 2800000, guid: 7e177bfc0bd15734bb6123a25bd6b7c6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NoiseTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normals:
@@ -64,7 +76,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Cutoff: 0.5
+    - _Cutoff: 0.93
     - _Depth: 57.4
     - _Depthdarkness: 0.5
     - _ENABLE_GRADIENT: 0
@@ -80,6 +92,7 @@ Material:
     - _Fresnelexponent: 0.66
     - _Glossiness: 0.652
     - _HighlightPanning: 1
+    - _Intensity: 1.746
     - _LIGHTING: 1
     - _MACRO_WAVES: 0
     - _MacroBlendDistance: 869
@@ -99,6 +112,7 @@ Material:
     - _Rimfalloff: 16.7
     - _Rimtiling: 0.5
     - _SECONDARY_WAVES: 0
+    - _Speed: 4.82
     - _SurfaceHighlight: 0.14
     - _SurfaceHighlightsDistortion: 0.94
     - _SurfaceHighlightsSpeed: 0.1
@@ -113,14 +127,19 @@ Material:
     - _UseIntersectionHighlight: 0
     - _WaveFoam: 5.45
     - _WaveHeight: 0
+    - _WaveScale: 0.1
     - _WaveSize: 10
+    - _WaveSpeed: 0.5
     - _Wavesspeed: 1
     - _Wavesstrength: 0
     - _Wavetint: -1
     - _Worldspacetiling: 1
     - __dirty: 1
     m_Colors:
+    - _Color: {r: 0.14150941, g: 0.12510993, b: 0.11814701, a: 1}
+    - _DepthColor: {r: 0.09999997, g: 0.29999998, b: 0.6, a: 1}
     - _FresnelColor: {r: 0.78676474, g: 0.91186255, b: 1, a: 1}
+    - _MainColor: {r: 0.19999996, g: 0.6, b: 1, a: 0.5}
     - _RimColor: {r: 0, g: 0, b: 0, a: 1}
     - _WaterColor: {r: 0.26415092, g: 0.16073334, b: 0.16073334, a: 1}
     - _WaterShallowColor: {r: 0, g: 0, b: 0, a: 0}

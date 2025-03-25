@@ -23,6 +23,7 @@ public class ParticleSoundSynchronizer : MonoBehaviour
         {
             Debug.LogError("ParticleSystem not assigned.", this);
             enabled = false;
+            return;
         }
     }
 

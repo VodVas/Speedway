@@ -106,7 +106,8 @@ public class RaceProgressTracker : MonoBehaviour
             HandleRaceFinish(racer, isPlayer);
         }
 
-        if (isPlayer) UpdatePositionAndLapUI();
+        if (isPlayer)
+            UpdatePositionAndLapUI();
     }
 
     private void UpdatePositionAndLapUI()
@@ -118,8 +119,11 @@ public class RaceProgressTracker : MonoBehaviour
     private void HandleRaceFinish(Racer racer, bool isPlayer)
     {
         racer.SetFinished(true);
-        if (isPlayer) EndRace();
-        else DisableRacerObject(racer);
+
+        if (isPlayer)
+            EndRace();
+        else
+            DisableRacerObject(racer);
     }
 
     private void EndRace()

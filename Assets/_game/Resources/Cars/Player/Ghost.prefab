@@ -5485,6 +5485,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2d69c44041501f4aab1c355410d67b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _minSpeed: 0.1
+  _maxSpeedCap: 300
   movementMode: 0
   GroundCheck: 0
   drivableSurface:
@@ -5576,8 +5578,9 @@ MonoBehaviour:
   - {fileID: 6012285937501109758}
   engineSound: {fileID: 4501077126919839366}
   minPitch: 0.3
-  MaxPitch: 3
+  maxPitch: 0
   SkidSound: {fileID: 4250951992627359780}
+  _mobileInputController: {fileID: 0}
   _respawnPoints: []
   _stuckTimeout: 3
   _outOfBoundsY: -10
@@ -5585,6 +5588,7 @@ MonoBehaviour:
   _minSpeedThreshold: 0.1
   carVelocity: {x: 0, y: 0, z: 0}
   skidWidth: 0.6117588
+  _forwardBackTiltAmount: 0
   BodyTilt: 10
   <SkidMarksFadeDuration>k__BackingField: 2
   _speedStepForMultiplier: 20
@@ -5592,7 +5596,7 @@ MonoBehaviour:
   _baseDriftMultiplier: 1
   _driftInterval: 1
   _driftScorePerInterval: 10
-  _backRide: 1.3
+  _backRideMultiplier: 1.3
 --- !u!54 &5637831680521301549
 Rigidbody:
   m_ObjectHideFlags: 0
