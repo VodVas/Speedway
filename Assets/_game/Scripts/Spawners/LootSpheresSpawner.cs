@@ -1,19 +1,19 @@
 using System;
 using UnityEngine;
 
-public class LootSpheresSpawner : Spawner<LootSphere>
+public class LootSpheresSpawner : Spawner<LootPaintSphere>
 {
     [SerializeField] private SpheresMaterialsRegistry _materialsRegistry;
 
     private Rarity _currentRarity;
     private Vector3 _cachedPosition;
 
-    public LootSphere SpawnLootSphere(Rarity rarity, Vector3 spawnPos)
+    public LootPaintSphere SpawnLootSphere(Rarity rarity, Vector3 spawnPos)
     {
         _currentRarity = rarity;
         _cachedPosition = spawnPos;
 
-        LootSphere sphere = SpawnObject();
+        LootPaintSphere sphere = SpawnObject();
         return sphere;
     }
 
@@ -24,10 +24,10 @@ public class LootSpheresSpawner : Spawner<LootSphere>
 
     protected override Type GetObjectTypeToSpawn()
     {
-        return typeof(LootSphere);
+        return typeof(LootPaintSphere);
     }
 
-    protected override void OnGetFromPool(LootSphere obj)
+    protected override void OnGetFromPool(LootPaintSphere obj)
     {
         base.OnGetFromPool(obj);
 
