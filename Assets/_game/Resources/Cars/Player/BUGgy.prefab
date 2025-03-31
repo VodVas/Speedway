@@ -21023,8 +21023,8 @@ MonoBehaviour:
   - {fileID: 7507818094088645973}
   - {fileID: 105770975675843770}
   engineSound: {fileID: 3528875478697116032}
-  minPitch: 0.3
-  maxPitch: 0
+  minPitch: 0.7
+  maxPitch: 2
   SkidSound: {fileID: 5242227477224183278}
   _mobileInputController: {fileID: 0}
   _respawnPoints: []
@@ -21079,8 +21079,8 @@ AudioSource:
   m_GameObject: {fileID: 7785104520783736772}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 9a037908257abb24792c2067a3fd6838, type: 3}
+  OutputAudioMixerGroup: {fileID: 5855251610057139803, guid: 589367c5050e471478c52d314b8c768c, type: 2}
+  m_audioClip: {fileID: 8300000, guid: f3330abd23b6d0d4eb508849dc8a6382, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -21091,7 +21091,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 100
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -21101,8 +21101,8 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 1
+      time: 0.0070590973
+      value: 0.7094345
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -21187,7 +21187,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 250
+  MaxDistance: 100
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -21197,8 +21197,8 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 1
+      time: 0.011764526
+      value: 0.7094345
       inSlope: 0
       outSlope: 0
       tangentMode: 0

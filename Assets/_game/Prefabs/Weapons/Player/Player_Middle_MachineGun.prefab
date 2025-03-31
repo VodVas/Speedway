@@ -240,9 +240,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4147184425305526}
     m_Modifications:
+    - target: {fileID: 1102671994667914, guid: c0507a544f1ee7e4caa7785ef90ff92a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1510478111459396, guid: c0507a544f1ee7e4caa7785ef90ff92a, type: 3}
       propertyPath: m_Name
       value: FX_Gunshot_Heavy_Repeating_Tracers_Impact_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1751718829286632, guid: c0507a544f1ee7e4caa7785ef90ff92a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4840268657495176, guid: c0507a544f1ee7e4caa7785ef90ff92a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -282,18 +290,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4840268657495176, guid: c0507a544f1ee7e4caa7785ef90ff92a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198097232184664602, guid: c0507a544f1ee7e4caa7785ef90ff92a, type: 3}
-      propertyPath: looping
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198097232184664602, guid: c0507a544f1ee7e4caa7785ef90ff92a, type: 3}
-      propertyPath: lengthInSec
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 198097232184664602, guid: c0507a544f1ee7e4caa7785ef90ff92a, type: 3}
-      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198307641502024698, guid: c0507a544f1ee7e4caa7785ef90ff92a, type: 3}

@@ -2,20 +2,26 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Platinum
   m_Shader: {fileID: 4800000, guid: acfdd4aaa67bac047b3250e08833336f, type: 3}
-  m_ShaderKeywords: Cubemap_T DiffuseReflectOn
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - Cubemap_T
+  - DiffuseReflectOn
+  m_InvalidKeywords: []
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -63,6 +69,7 @@ Material:
         m_Texture: {fileID: 8400000, guid: 260919d7b1d70184bb7119ae804cfcd3, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _BumpDens: 1
     - _CandyPower: 0
@@ -79,6 +86,8 @@ Material:
     - _MetalScale: 2.87
     - _MetalicPower: 4.67
     - _MetalicScale: 1.44
+    - _MetalicnessIntensity: 1
+    - _MetalicnessScale: 500
     - _PearlUVScale: 1
     - _RefIntensity: 0.852
     - _RefVisibility: 0.1
@@ -91,11 +100,12 @@ Material:
     - _1DecalColor: {r: 0.9539193, g: 1, b: 0, a: 1}
     - _AmbientColor: {r: 0.86873984, g: 0.010294914, b: 0.997941, a: 1}
     - _AmbientColor2: {r: 0.9811321, g: 0.9811321, b: 0.9811321, a: 1}
-    - _Color: {r: 0.254717, g: 0.254717, b: 0.254717, a: 1}
+    - _Color: {r: 0.9528302, g: 0.8587373, b: 0.23820755, a: 1}
     - _DecalColor: {r: 1, g: 1, b: 1, a: 1}
     - _PearlescentColor: {r: 1, g: 1, b: 1, a: 1}
     - _ReflectionColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1002 &2100001
 EditorExtensionImpl:
   serializedVersion: 6

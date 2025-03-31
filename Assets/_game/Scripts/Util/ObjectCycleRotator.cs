@@ -4,13 +4,19 @@ public class ObjectCycleRotator : MonoBehaviour
 {
     [SerializeField] private bool _ignoreTimescale = true;
 
-    [field: SerializeField] public float SpeedX;
-    [field: SerializeField] public float SpeedY;
-    [field: SerializeField] public float SpeedZ;
+    [field: SerializeField] public float SpeedX { get; private set; }
 
-    private void Update()
+    [field: SerializeField] public float SpeedY { get; private set; }
+
+    [field: SerializeField] public float SpeedZ { get; private set; }
+
+    private Transform _cachedTransform;
+    private bool _hasRotation;
+
+    private void Start()
     {
-        Rotate(GetDeltaTime());
+        _cachedTransform = transform;
+        UpdateRotationState();
     }
 
     public void SetRotationSpeeds(float x, float y, float z)
@@ -18,6 +24,20 @@ public class ObjectCycleRotator : MonoBehaviour
         SpeedX = x;
         SpeedY = y;
         SpeedZ = z;
+        UpdateRotationState();
+    }
+
+    private void Update()
+    {
+        if (_hasRotation)
+        {
+            Rotate(GetDeltaTime());
+        }
+    }
+
+    private void UpdateRotationState()
+    {
+        _hasRotation = !Mathf.Approximately(SpeedX, 0f) || !Mathf.Approximately(SpeedY, 0f) || !Mathf.Approximately(SpeedZ, 0f);
     }
 
     private float GetDeltaTime()
@@ -27,9 +47,53 @@ public class ObjectCycleRotator : MonoBehaviour
 
     private void Rotate(float deltaTime)
     {
-        transform.Rotate(SpeedX * deltaTime, SpeedY * deltaTime, SpeedZ * deltaTime);
+        _cachedTransform.Rotate(SpeedX * deltaTime, SpeedY * deltaTime, SpeedZ * deltaTime);
     }
 }
+
+
+
+
+
+
+
+
+//public class ObjectCycleRotator : MonoBehaviour
+//{
+//    [SerializeField] private bool _ignoreTimescale = true;
+
+//    [field: SerializeField] public float SpeedX { get; private set; }
+//    [field: SerializeField] public float SpeedY { get; private set; }
+//    [field: SerializeField] public float SpeedZ { get; private set; }
+
+//    private void Update()
+//    {
+//        Rotate(GetDeltaTime());
+//    }
+
+//    public void SetRotationSpeeds(float x, float y, float z)
+//    {
+//        SpeedX = x;
+//        SpeedY = y;
+//        SpeedZ = z;
+//    }
+
+//    private float GetDeltaTime()
+//    {
+//        return _ignoreTimescale ? Time.unscaledDeltaTime : Time.deltaTime;
+//    }
+
+//    private void Rotate(float deltaTime)
+//    {
+//        transform.Rotate(SpeedX * deltaTime, SpeedY * deltaTime, SpeedZ * deltaTime);
+//    }
+//}
+
+
+
+
+
+
 
 //public class ObjectCycleRotator : MonoBehaviour
 //{

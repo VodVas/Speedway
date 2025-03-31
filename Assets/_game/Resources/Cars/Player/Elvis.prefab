@@ -5441,6 +5441,17 @@ GameObject:
   - component: {fileID: 9084625043753185454}
   - component: {fileID: 3726783521167204832}
   - component: {fileID: -2006544145889650303}
+  - component: {fileID: 7441487387070938666}
+  - component: {fileID: 6225742041514516492}
+  - component: {fileID: 3493473928560302358}
+  - component: {fileID: 8355040464804833715}
+  - component: {fileID: 5228052671067537257}
+  - component: {fileID: 2131069009228040329}
+  - component: {fileID: 6549647595006487516}
+  - component: {fileID: 3047794248382851214}
+  - component: {fileID: 7056925526047895306}
+  - component: {fileID: 523367318487008627}
+  - component: {fileID: 4171354707930143176}
   m_Layer: 7
   m_Name: Elvis
   m_TagString: Untagged
@@ -5511,7 +5522,7 @@ MonoBehaviour:
   turn: 10
   gravity: 7
   downforce: 5
-  AirControl: 0
+  AirControl: 1
   kartLike: 0
   driftMultiplier: 1.5
   rb: {fileID: 2268440977393949663}
@@ -5591,8 +5602,8 @@ MonoBehaviour:
   - {fileID: 601017927693654521}
   - {fileID: 2558029789805784554}
   engineSound: {fileID: 9084625043753185454}
-  minPitch: 0.3
-  maxPitch: 0
+  minPitch: 0.7
+  maxPitch: 1.5
   SkidSound: {fileID: 3726783521167204832}
   _mobileInputController: {fileID: 0}
   _respawnPoints: []
@@ -5647,8 +5658,8 @@ AudioSource:
   m_GameObject: {fileID: 3557641302005795811}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0b2844ba13c61eb459484abc96bde242, type: 3}
+  OutputAudioMixerGroup: {fileID: 5855251610057139803, guid: 589367c5050e471478c52d314b8c768c, type: 2}
+  m_audioClip: {fileID: 8300000, guid: c0244b1a4233e6f44be7784b8779adc9, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -5659,9 +5670,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 100
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -5669,8 +5680,8 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 1
+      time: 0.0070590973
+      value: 0.7094345
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -5743,10 +5754,10 @@ AudioSource:
   m_GameObject: {fileID: 3557641302005795811}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5855251610057139803, guid: 589367c5050e471478c52d314b8c768c, type: 2}
   m_audioClip: {fileID: 8300000, guid: a0212963d11a06c4caa454df8e2a2a57, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_PlayOnAwake: 0
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -5755,9 +5766,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 100
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -5765,8 +5776,8 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 1
+      time: 0.011764526
+      value: 0.7094345
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -5845,11 +5856,152 @@ MonoBehaviour:
   <CarName>k__BackingField: Elvis
   <Price>k__BackingField: 100
   <Id>k__BackingField: 2
-  <Speed>k__BackingField: 0
-  <Acceleration>k__BackingField: 0
-  <Turn>k__BackingField: 0
-  <Armor>k__BackingField: 0
+  <Speed>k__BackingField: 110
+  <Acceleration>k__BackingField: 15
+  <Turn>k__BackingField: 10
+  <Armor>k__BackingField: 120
   <Weapon>k__BackingField: 0
+--- !u!114 &7441487387070938666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3557641302005795811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48d00e19158929147bbf31d3dd247637, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6225742041514516492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3557641302005795811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c33478aace014a4d962a1507cadc6d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Max>k__BackingField: 100
+--- !u!114 &3493473928560302358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3557641302005795811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a39b8b0c2da238f4e9ecf0a1e9021003, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8355040464804833715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3557641302005795811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17026eaf83004634f85357ee5686985f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5228052671067537257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3557641302005795811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 431bedef999631d4bbc0fdd931be678c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: "\u0418\u0433\u0440\u043E\u043A"
+  <RacerId>k__BackingField: 6
+--- !u!114 &2131069009228040329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3557641302005795811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a608c6d18e96504595d52ee10fe27d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6549647595006487516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3557641302005795811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e405327d714e3e6428f4f2edde7939eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3047794248382851214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3557641302005795811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3295322f6c6f07a499f99601c77db7e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _upgrades: []
+  <CarId>k__BackingField: 0
+--- !u!114 &7056925526047895306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3557641302005795811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eddd235d93049064b8c9ec6bcfee6cf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _modifications: []
+  <CarId>k__BackingField: 0
+--- !u!114 &523367318487008627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3557641302005795811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f89a526066d71324885eea955169449b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _colliders: []
+  _playerWeapon: []
+--- !u!114 &4171354707930143176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3557641302005795811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58e1aad2ade7b22488332c7c58882dc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4043623506858924904
 GameObject:
   m_ObjectHideFlags: 0

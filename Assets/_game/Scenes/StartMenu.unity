@@ -1825,9 +1825,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ignoreTimescale: 1
-  SpeedX: 0
-  SpeedY: 0
-  SpeedZ: 0
+  <SpeedX>k__BackingField: 0
+  <SpeedY>k__BackingField: 0
+  <SpeedZ>k__BackingField: 420
 --- !u!1 &419892088
 GameObject:
   m_ObjectHideFlags: 0
@@ -2222,9 +2222,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ignoreTimescale: 1
-  SpeedX: 0
-  SpeedY: 0
-  SpeedZ: 0
+  <SpeedX>k__BackingField: 0
+  <SpeedY>k__BackingField: 0
+  <SpeedZ>k__BackingField: 350
 --- !u!114 &514991944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3689,9 +3689,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ignoreTimescale: 0
-  SpeedX: 0
-  SpeedY: -50
-  SpeedZ: 0
+  <SpeedX>k__BackingField: 0
+  <SpeedY>k__BackingField: 0
+  <SpeedZ>k__BackingField: 0
 --- !u!1 &1260349272
 GameObject:
   m_ObjectHideFlags: 0
@@ -4560,9 +4560,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ignoreTimescale: 1
-  SpeedX: 0
-  SpeedY: 0
-  SpeedZ: 0
+  <SpeedX>k__BackingField: 0
+  <SpeedY>k__BackingField: 0
+  <SpeedZ>k__BackingField: -240
 --- !u!1 &1526205567
 GameObject:
   m_ObjectHideFlags: 0
@@ -4689,9 +4689,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ignoreTimescale: 1
-  SpeedX: 0
-  SpeedY: 0
-  SpeedZ: 0
+  <SpeedX>k__BackingField: 0
+  <SpeedY>k__BackingField: 0
+  <SpeedZ>k__BackingField: -500
 --- !u!114 &1553418083
 MonoBehaviour:
   m_ObjectHideFlags: 0

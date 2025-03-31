@@ -20881,9 +20881,9 @@ GameObject:
   - component: {fileID: 6096339873154188092}
   - component: {fileID: 9140210080556483410}
   - component: {fileID: -4095136710609828555}
+  - component: {fileID: 1469870793839805475}
   - component: {fileID: 7941949494791791688}
   - component: {fileID: 5849732635329972383}
-  - component: {fileID: 1469870793839805475}
   - component: {fileID: 839245443703717379}
   - component: {fileID: 8446977067410161771}
   - component: {fileID: 3391817318328674086}
@@ -21043,8 +21043,8 @@ MonoBehaviour:
   - {fileID: 360323976847087118}
   - {fileID: 3891190442294538610}
   engineSound: {fileID: 6096339873154188092}
-  minPitch: 0.3
-  maxPitch: 0
+  minPitch: 0.4
+  maxPitch: 1.5
   SkidSound: {fileID: 9140210080556483410}
   _mobileInputController: {fileID: 0}
   _respawnPoints: []
@@ -21099,8 +21099,8 @@ AudioSource:
   m_GameObject: {fileID: 7944223924628639976}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0b2844ba13c61eb459484abc96bde242, type: 3}
+  OutputAudioMixerGroup: {fileID: 5855251610057139803, guid: 589367c5050e471478c52d314b8c768c, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 1d825b810d48147489e60c7110afdc0d, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -21111,9 +21111,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 100
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -21121,8 +21121,8 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 1
+      time: 0.0070590973
+      value: 0.7094345
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -21195,10 +21195,10 @@ AudioSource:
   m_GameObject: {fileID: 7944223924628639976}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5855251610057139803, guid: 589367c5050e471478c52d314b8c768c, type: 2}
   m_audioClip: {fileID: 8300000, guid: a0212963d11a06c4caa454df8e2a2a57, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_PlayOnAwake: 0
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -21207,9 +21207,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 100
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -21217,8 +21217,8 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 1
+      time: 0.011764526
+      value: 0.7094345
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -21302,6 +21302,18 @@ MonoBehaviour:
   <Turn>k__BackingField: 0
   <Armor>k__BackingField: 0
   <Weapon>k__BackingField: 0
+--- !u!114 &1469870793839805475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7944223924628639976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48d00e19158929147bbf31d3dd247637, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7941949494791791688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21329,18 +21341,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Max>k__BackingField: 150
---- !u!114 &1469870793839805475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7944223924628639976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48d00e19158929147bbf31d3dd247637, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &839245443703717379
 MonoBehaviour:
   m_ObjectHideFlags: 0

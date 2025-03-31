@@ -3,19 +3,23 @@ using System.Collections.Generic;
 using System;
 using ArcadeVP;
 
+[RequireComponent(typeof(CarData))]
 public class CarUpgrades : MonoBehaviour
 {
     [SerializeField] private List<CarUpgrade> _upgrades;
 
-    [field: SerializeField] public int CarId { get; private set; } = 0;
-
+    //[field: SerializeField] public int CarId { get; private set; } = 0;
     private CarData _carData;
+
+    public int CarId { get; private set; } = 0;
 
     public IReadOnlyList<CarUpgrade> Upgrades => _upgrades;
 
     private void Awake()
     {
         _carData = GetComponent<CarData>();
+
+        CarId = _carData.Id;
 
         if (CarId < 0)
         {

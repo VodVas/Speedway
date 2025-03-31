@@ -2,20 +2,28 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Body
   m_Shader: {fileID: 4800000, guid: acfdd4aaa67bac047b3250e08833336f, type: 3}
-  m_ShaderKeywords: Bumped_Diffuse Bumped_Pearl Cubemap_T DiffuseReflectOn
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - Bumped_Diffuse
+  - Bumped_Pearl
+  - Cubemap_T
+  - DiffuseReflectOn
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -79,6 +87,7 @@ Material:
         m_Texture: {fileID: 8400000, guid: 260919d7b1d70184bb7119ae804cfcd3, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _BumpScale: 1
     - _Cutoff: 0.5
@@ -109,8 +118,8 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.8490566, g: 0.058073904, b: 0, a: 1}
-    - _DecalColor: {r: 1, g: 0.9564916, b: 0, a: 1}
+    - _Color: {r: 0.14150941, g: 0.13088703, b: 0.12348699, a: 1}
+    - _DecalColor: {r: 0.7264151, g: 0.69507957, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _PearlescentColor: {r: 0.8509804, g: 0.05882353, b: 0, a: 1}
+    - _PearlescentColor: {r: 0.0754717, g: 0.0754717, b: 0.0754717, a: 1}
   m_BuildTextureStacks: []

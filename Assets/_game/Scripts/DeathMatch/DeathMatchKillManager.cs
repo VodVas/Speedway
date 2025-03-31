@@ -16,7 +16,7 @@ public sealed class DeathMatchKillManager : MonoBehaviour
         {
             var handler = _allDamageHandlers[i];
 
-            handler.Died += OnVehicleDied;
+            handler.VehicleKilled += OnVehicleDied;
 
             var vehicle = handler.GetComponent<Vehicle>();
 

@@ -2776,17 +2776,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3245678355623485606, guid: 809a5e90072a9ce419b1dcda61f55e5c, type: 3}
   m_PrefabInstance: {fileID: 336490264}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &338167770 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7637485988816239161, guid: 50708335e4c927d4cb87232d1abc4656, type: 3}
-  m_PrefabInstance: {fileID: 1849202096}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2218774431d3b14990f043cc1017c72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &338400425
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9386,17 +9375,6 @@ Transform:
   - {fileID: 1015180928}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1751788346 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5570758181745110522, guid: 50708335e4c927d4cb87232d1abc4656, type: 3}
-  m_PrefabInstance: {fileID: 1849202096}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2218774431d3b14990f043cc1017c72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1776313629
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9675,7 +9653,7 @@ PrefabInstance:
     - target: {fileID: 658591586417372932, guid: 50708335e4c927d4cb87232d1abc4656, type: 3}
       propertyPath: _marker
       value: 
-      objectReference: {fileID: 338167770}
+      objectReference: {fileID: 0}
     - target: {fileID: 658591586417372932, guid: 50708335e4c927d4cb87232d1abc4656, type: 3}
       propertyPath: ParticleShoot
       value: 
@@ -9743,7 +9721,7 @@ PrefabInstance:
     - target: {fileID: 5977503735132583062, guid: 50708335e4c927d4cb87232d1abc4656, type: 3}
       propertyPath: _marker
       value: 
-      objectReference: {fileID: 1751788346}
+      objectReference: {fileID: 0}
     - target: {fileID: 5977503735132583062, guid: 50708335e4c927d4cb87232d1abc4656, type: 3}
       propertyPath: ParticleShoot
       value: 

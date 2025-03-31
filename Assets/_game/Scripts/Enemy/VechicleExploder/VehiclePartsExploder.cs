@@ -9,7 +9,6 @@ public class VehiclePartsExploder : MonoBehaviour, ITerminatable, IResettable
     [SerializeField] private Vector2 _horizontalExplosionRange = new Vector2(-1f, 1f);
     [SerializeField] private Vector2 _verticalExplosionRange = new Vector2(0f, 1f);
 
-    private SoundPlayer _soundPlayer;
     private Rigidbody[] _childRigidbodies;
     private int _childCount;
     private bool _isTerminated = false;
@@ -19,7 +18,6 @@ public class VehiclePartsExploder : MonoBehaviour, ITerminatable, IResettable
 
     private void Awake()
     {
-        _soundPlayer = GetComponent<SoundPlayer>();
         _childRigidbodies = GetComponentsInChildren<Rigidbody>();
         _childCount = _childRigidbodies.Length;
         _wait = new WaitForSeconds(_delay);
@@ -27,8 +25,6 @@ public class VehiclePartsExploder : MonoBehaviour, ITerminatable, IResettable
 
     private void OnEnable()
     {
-        _soundPlayer.Play();
-
         ExplodeChildObjects();
         StartCoroutine(DelayingDelete());
     }

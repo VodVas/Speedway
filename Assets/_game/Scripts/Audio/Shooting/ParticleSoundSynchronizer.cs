@@ -6,66 +6,112 @@ public class ParticleSoundSynchronizer : MonoBehaviour
     [SerializeField] private ParticleSystem _particleSystem;
 
     private AudioSource _audioSource;
-    private bool _wasPlaying;
-    private bool _isLooping;
 
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
 
-        if (_particleSystem != null)
-        {
-            var mainModule = _particleSystem.main;
-            _isLooping = mainModule.loop;
-            _audioSource.loop = _isLooping;
-        }
-        else
+        if (_particleSystem == null)
         {
             Debug.LogError("ParticleSystem not assigned.", this);
             enabled = false;
-            return;
         }
     }
 
     private void Update()
     {
-        bool isPlaying = _particleSystem.isPlaying;
+        bool isParticlePlaying = _particleSystem.isPlaying;
 
-        if (isPlaying == _wasPlaying) return;
-
-        if (isPlaying)
+        if (isParticlePlaying)
         {
-            HandleParticleStart();
+            // ≈сли частицы играют, запускаем аудио при необходимости
+            if (!_audioSource.isPlaying)
+            {
+                _audioSource.Play();
+            }
         }
         else
         {
-            HandleParticleStop();
-        }
-
-        _wasPlaying = isPlaying;
-    }
-
-    private void HandleParticleStart()
-    {
-        if (_isLooping)
-        {
-            if (!_audioSource.isPlaying) _audioSource.Play();
-        }
-        else
-        {
-            if (_audioSource.isPlaying) _audioSource.Stop();
-            _audioSource.Play();
-        }
-    }
-
-    private void HandleParticleStop()
-    {
-        if (_isLooping && _audioSource.isPlaying)
-        {
-            _audioSource.Stop();
+            // ≈сли частицы остановились, останавливаем аудио
+            if (_audioSource.isPlaying)
+            {
+                _audioSource.Stop();
+            }
         }
     }
 }
+
+
+
+
+
+
+
+//public class ParticleSoundSynchronizer : MonoBehaviour
+//{
+//    [SerializeField] private ParticleSystem _particleSystem;
+
+//    private AudioSource _audioSource;
+//    private bool _wasPlaying;
+//    private bool _isLooping;
+
+//    private void Awake()
+//    {
+//        _audioSource = GetComponent<AudioSource>();
+
+//        if (_particleSystem != null)
+//        {
+//            var mainModule = _particleSystem.main;
+//            _isLooping = mainModule.loop;
+//            _audioSource.loop = _isLooping;
+//        }
+//        else
+//        {
+//            Debug.LogError("ParticleSystem not assigned.", this);
+//            enabled = false;
+//            return;
+//        }
+//    }
+
+//    private void Update()
+//    {
+//        bool isPlaying = _particleSystem.isPlaying;
+
+//        if (isPlaying == _wasPlaying) return;
+
+//        if (isPlaying)
+//        {
+//            HandleParticleStart();
+//        }
+//        else
+//        {
+//            HandleParticleStop();
+//        }
+
+//        _wasPlaying = isPlaying;
+//    }
+
+//    private void HandleParticleStart()
+//    {
+//        if (_isLooping)
+//        {
+//            if (!_audioSource.isPlaying) _audioSource.Play();
+//        }
+//        else
+//        {
+//            if (_audioSource.isPlaying) _audioSource.Stop();
+//            _audioSource.Play();
+//        }
+//    }
+
+//    private void HandleParticleStop()
+//    {
+//        if (_isLooping && _audioSource.isPlaying)
+//        {
+//            _audioSource.Stop();
+//        }
+//    }
+//}
 
 
 

@@ -6,8 +6,8 @@ public class DamageHandler : MonoBehaviour, IDamageable
     private Vehicle _vehicle;
     private IWeapon _lastWeaponUsed;
 
-    public event Action<Vehicle, IWeapon> Died;
-    public event Action<Vehicle> Died1;
+    public event Action<Vehicle, IWeapon> VehicleKilled;
+    public event Action<Vehicle> VehicleTerminated;
 
     public Health Health { get; private set; }
     public bool IsDead => Health.Value <= 0f;
@@ -40,8 +40,8 @@ public class DamageHandler : MonoBehaviour, IDamageable
 
     private void OnDeath()
     {
-        Died?.Invoke(_vehicle, _lastWeaponUsed);
-        Died1?.Invoke(_vehicle);
+        VehicleKilled?.Invoke(_vehicle, _lastWeaponUsed);
+        VehicleTerminated?.Invoke(_vehicle);
     }
 }
 

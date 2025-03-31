@@ -10969,8 +10969,8 @@ MonoBehaviour:
   - {fileID: 9112265920033928925}
   - {fileID: 7834273840596772142}
   engineSound: {fileID: 550733890538228161}
-  minPitch: 0.3
-  maxPitch: 0
+  minPitch: 0.4
+  maxPitch: 1.3
   SkidSound: {fileID: 4564974550238135847}
   _mobileInputController: {fileID: 0}
   _respawnPoints: []
@@ -11025,8 +11025,8 @@ AudioSource:
   m_GameObject: {fileID: 5389964055449079453}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0b2844ba13c61eb459484abc96bde242, type: 3}
+  OutputAudioMixerGroup: {fileID: 5855251610057139803, guid: 589367c5050e471478c52d314b8c768c, type: 2}
+  m_audioClip: {fileID: 8300000, guid: c7da83ce87771644bb6a3199b886b75d, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -11037,9 +11037,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 100
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -11047,8 +11047,8 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 1
+      time: 0.0070590973
+      value: 0.7094345
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -11121,10 +11121,10 @@ AudioSource:
   m_GameObject: {fileID: 5389964055449079453}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5855251610057139803, guid: 589367c5050e471478c52d314b8c768c, type: 2}
   m_audioClip: {fileID: 8300000, guid: a0212963d11a06c4caa454df8e2a2a57, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_PlayOnAwake: 0
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -11133,9 +11133,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 100
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -11143,8 +11143,8 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 1
+      time: 0.011764526
+      value: 0.7094345
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -11299,8 +11299,8 @@ MonoBehaviour:
   - {fileID: 2351269731940394796}
   - {fileID: 5734550933841399178}
   - {fileID: 5052655471895526923}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 4502105547494627262}
+  - {fileID: 1804285393102588239}
   <CarId>k__BackingField: 1
 --- !u!114 &6259314433874980891
 MonoBehaviour:
@@ -21849,6 +21849,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2218774431d3b14990f043cc1017c72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1804285393102588239 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6280618663913463853, guid: abb0ad16da5431947b1852de369865a4, type: 3}
+  m_PrefabInstance: {fileID: 5630380687439587682}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd1a88443a8dd7747999369742051677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &2038161002284091694 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 5938596190533509196, guid: abb0ad16da5431947b1852de369865a4, type: 3}
@@ -21956,6 +21967,17 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 5938596190533509196, guid: abb0ad16da5431947b1852de369865a4, type: 3}
   m_PrefabInstance: {fileID: 7589564014225242003}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4502105547494627262 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6280618663913463853, guid: abb0ad16da5431947b1852de369865a4, type: 3}
+  m_PrefabInstance: {fileID: 7589564014225242003}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd1a88443a8dd7747999369742051677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7592285663756988965 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4147184425305526, guid: abb0ad16da5431947b1852de369865a4, type: 3}

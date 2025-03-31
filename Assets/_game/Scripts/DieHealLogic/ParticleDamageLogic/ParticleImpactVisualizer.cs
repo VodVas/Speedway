@@ -5,7 +5,7 @@ using YG;
 [RequireComponent(typeof(DamageHandler))]
 public class ParticleImpactVisualizer : ParticleDamageReceiver
 {
-    private const string InvalidReferenceError = "[PlayerDamageReceiverForBulletUI] Не назначен EffectOnScreenUIApplier!";
+    private const string InvalidReferenceError = "[ParticleImpactVisualizer] Не назначен EffectOnScreenUIApplier!";
 
     [Header("Platform References")]
     [Inject] private EffectOnScreenUIApplier _desktopEffectOnScreenUIApplier;
@@ -34,6 +34,7 @@ public class ParticleImpactVisualizer : ParticleDamageReceiver
         {
             Debug.LogError(InvalidReferenceError, this);
             enabled = false;
+            return;
         }
     }
 

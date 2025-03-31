@@ -1,39 +1,119 @@
 using UnityEngine;
 
-[RequireComponent(typeof(ObjectCycleRotator))]
 public class MiniGun : ParticleWeapon
 {
     [SerializeField] private Transform _barrels;
-    [SerializeField] private float _activeRotateSpeedX = 500f;
+    [SerializeField] private float _activeRotateSpeedX = 0f;
     [SerializeField] private float _activeRotateSpeedY = 0f;
     [SerializeField] private float _activeRotateSpeedZ = 0f;
 
     private ObjectCycleRotator _rotator;
     private Vector3 _baseRotationSpeeds;
+    private bool _wasParticlePlaying;
 
     protected override void Awake()
     {
         base.Awake();
-        _rotator = GetComponent<ObjectCycleRotator>();
 
-        _baseRotationSpeeds = new Vector3(_rotator.SpeedX, _rotator.SpeedY, _rotator.SpeedZ);
+        if (_barrels == null)
+        {
+            Debug.LogError("Barrels reference is not set in MiniGun!");
+            enabled = false;
+            return;
+        }
+
+        if (_barrels.TryGetComponent(out ObjectCycleRotator objectCycleRotator))
+        {
+            _rotator = objectCycleRotator;
+            _baseRotationSpeeds = new Vector3(_rotator.SpeedX, _rotator.SpeedY, _rotator.SpeedZ);
+        }
+        else
+        {
+            Debug.Log("ObjectCycleRotator component missing on barrels!", this);
+            enabled = false;
+            return;
+        }
+
+        _wasParticlePlaying = true;
     }
 
     protected override void Update()
     {
         base.Update();
 
-       // if (ParticleShoot.isPlaying)
-        if (IsParticlePlay)
+        bool isParticlePlaying = IsParticlePlay;
+
+        if (isParticlePlaying != _wasParticlePlaying)
         {
-            _rotator.SetRotationSpeeds(_activeRotateSpeedX, _activeRotateSpeedY, _activeRotateSpeedZ);
+            if (isParticlePlaying)
+            {
+                _rotator.SetRotationSpeeds(_activeRotateSpeedX, _activeRotateSpeedY, _activeRotateSpeedZ);
+            }
+            else
+            {
+                _rotator.SetRotationSpeeds(_baseRotationSpeeds.x, _baseRotationSpeeds.y, _baseRotationSpeeds.z);
+            }
+
+            _wasParticlePlaying = isParticlePlaying;
         }
-        else
+    }
+
+    protected override void HandleShooting()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            _rotator.SetRotationSpeeds(_baseRotationSpeeds.x, _baseRotationSpeeds.y, _baseRotationSpeeds.z);
+            PlayParticleEffect();
         }
     }
 }
+
+
+
+
+
+
+
+
+//public class MiniGun : ParticleWeapon
+//{
+//    [SerializeField] private Transform _barrels;
+//    [SerializeField] private float _activeRotateSpeedX = 0f;
+//    [SerializeField] private float _activeRotateSpeedY = 0f;
+//    [SerializeField] private float _activeRotateSpeedZ = 0f;
+
+//    private ObjectCycleRotator _rotator;
+//    private Vector3 _baseRotationSpeeds;
+
+//    protected override void Awake()
+//    {
+//        base.Awake();
+//        _rotator = GetComponent<ObjectCycleRotator>();
+
+//        _baseRotationSpeeds = new Vector3(_rotator.SpeedX, _rotator.SpeedY, _rotator.SpeedZ);
+//    }
+
+//    protected override void Update()
+//    {
+//        base.Update();
+
+//        if (IsParticlePlay)
+//        {
+//            _rotator.SetRotationSpeeds(_activeRotateSpeedX, _activeRotateSpeedY, _activeRotateSpeedZ);
+//        }
+//        else
+//        {
+//            _rotator.SetRotationSpeeds(_baseRotationSpeeds.x, _baseRotationSpeeds.y, _baseRotationSpeeds.z);
+//        }
+//    }
+
+//    protected override void HandleShooting()
+//    {
+//        if (Input.GetKeyDown(KeyCode.Mouse0))
+//        {
+//            PlayParticleEffect();
+//        }
+//    }
+//}
 
 
 
