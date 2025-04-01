@@ -7,11 +7,10 @@ public class LootBoxInstaller : MonoBehaviour, IInstaller
 {
     [SerializeField] private LootPaintSphere _lootSphere;
     [SerializeField] private LootCar _lootCar;
-    [SerializeField] private LootMoney _lootMoney;
 
     private void Awake()
     {
-        if (_lootSphere == null || _lootCar == null || _lootMoney == null)
+        if (_lootSphere == null || _lootCar == null)
         {
             Debug.LogError("one or more components are not assigned.", this);
             enabled = false;
@@ -31,9 +30,6 @@ public class LootBoxInstaller : MonoBehaviour, IInstaller
             return new Factory<LootPaintSphere>(container, spheres);
         });
 
-
-
-
         Dictionary<Type, LootCar> lootCars = new Dictionary<Type, LootCar> { { typeof(LootCar), _lootCar } };
 
         builder.AddSingleton(lootCars);
@@ -43,19 +39,6 @@ public class LootBoxInstaller : MonoBehaviour, IInstaller
             var container = resolver.Resolve<Container>();
             return new Factory<LootCar>(container, lootCars);
         });
-
-
-
-        Dictionary<Type, LootMoney> lootMoney = new Dictionary<Type, LootMoney> { { typeof(LootMoney), _lootMoney } };
-
-        builder.AddSingleton(lootMoney);
-
-        builder.AddSingleton<IFactory<LootMoney>>(resolver =>
-        {
-            var container = resolver.Resolve<Container>();
-            return new Factory<LootMoney>(container, lootMoney);
-        });
-
     }
 }
 

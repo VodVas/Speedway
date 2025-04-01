@@ -20,5 +20,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_game/Scenes/World_1/BattleIslend.unity
     guid: 75e733d133a609247933f8e698f823dc
+  - enabled: 1
+    path: Assets/_game/Scenes/BlackMarket.unity
+    guid: 5c88c4b7edb3a364f8078869de582988
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 6c4d18c9c043c694d86116324a648b59, type: 2}

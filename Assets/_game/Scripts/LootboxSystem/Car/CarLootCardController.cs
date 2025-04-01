@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CarLootController : MonoBehaviour
+public class CarLootCardController : MonoBehaviour
 {
     private const string Loot = "Loot";
 

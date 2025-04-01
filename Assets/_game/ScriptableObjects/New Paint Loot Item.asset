@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: New Paint Loot Item
   m_EditorClassIdentifier: 
   <DisplayName>k__BackingField: "\u041F\u0440\u043E\u0441\u0442\u043E\u0439"
-  <CardSprite>k__BackingField: {fileID: 21300000, guid: 22c7397ce39782340ae41dcba387d1d2, type: 3}
+  <CardSprite>k__BackingField: {fileID: 21300000, guid: 4d5c4535ac33c76479928e8cdb1d8015, type: 3}

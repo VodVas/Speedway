@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7152812100197030636}
   - component: {fileID: 8573268224793741579}
   - component: {fileID: 7651503543338501137}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Veh_Whirligig_01_Attach_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 3825502390477420965}
   - component: {fileID: 314130499965274744}
   - component: {fileID: 4243122316624891061}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Veh_Whirligig_01_Fan_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 5771614290453176776}
   - component: {fileID: 7843612932708902493}
   - component: {fileID: 6551529530975148168}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Veh_Whirligig_01_Lever_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 7306109238012694182}
   - component: {fileID: 5621898253088061115}
   - component: {fileID: 1299919575347059933}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Veh_Whirligig_01_Steeringwheel_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -344,7 +344,7 @@ GameObject:
   - component: {fileID: 5353735912537876140}
   - component: {fileID: 7901773609771897446}
   - component: {fileID: -3620872182500023969}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Vortex
   m_TagString: Untagged
   m_Icon: {fileID: 0}

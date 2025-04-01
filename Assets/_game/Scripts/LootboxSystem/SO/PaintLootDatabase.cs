@@ -2,13 +2,14 @@ using UnityEngine;
 using System.Collections.Generic;
 
 [CreateAssetMenu(menuName = "Loot System/LootDatabase")]
-public class LootDatabase : ScriptableObject
+public class PaintLootDatabase : ScriptableObject
 {
     [SerializeField] private List<PaintLootItem> _commonItems = new();
     [SerializeField] private List<PaintLootItem> _rareItems = new();
     [SerializeField] private List<PaintLootItem> _uniqueItems = new();
     [SerializeField] private List<PaintLootItem> _legendaryItems = new();
-    [SerializeField] private List<PaintLootItem> _epicItems = new();
+
+    [field: SerializeField] public List<PaintLootItem> EpicItems { get; private set; } = new();
 
     private Dictionary<Rarity, List<PaintLootItem>> _rarityMap;
 
@@ -20,7 +21,7 @@ public class LootDatabase : ScriptableObject
             { Rarity.Rare, _rareItems },
             { Rarity.Unique, _uniqueItems },
             { Rarity.Legendary, _legendaryItems },
-            { Rarity.Epic, _epicItems }
+            { Rarity.Epic, EpicItems }
         };
     }
 
@@ -31,14 +32,5 @@ public class LootDatabase : ScriptableObject
             return items[Random.Range(0, items.Count)];
         }
         return null;
-    }
-
-    public Rarity GetRandomRarity()
-    {
-        float value = Random.value;
-        if (value < 0.5f) return Rarity.Common;
-        if (value < 0.7f) return Rarity.Rare;
-        if (value < 0.8f) return Rarity.Unique;
-        return value < 0.9f ? Rarity.Legendary : Rarity.Epic;
     }
 }

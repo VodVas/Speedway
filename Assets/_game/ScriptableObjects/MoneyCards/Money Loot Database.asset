@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c04973947c613684d8f41687bd6ce719, type: 3}
+  m_Name: Money Loot Database
+  m_EditorClassIdentifier: 
+  _commonItem: {fileID: 11400000, guid: e80d08b27de775f4a9f0a4c4a58480c9, type: 2}
+  _rareItem: {fileID: 11400000, guid: 17b72d5451625084281f481a5ab8bd65, type: 2}
+  _uniqueItem: {fileID: 11400000, guid: 266fc75ed3946ce47970577db08b59b0, type: 2}
+  _legendaryItem: {fileID: 11400000, guid: a8bf56ef7c6dc734f85a72f494e93a8a, type: 2}
+  <EpicItem>k__BackingField: {fileID: 11400000, guid: 2aef1b420df25f0449db6acf43e12c87, type: 2}

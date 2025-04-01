@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b07170098f6cc2441af2dab0b2d218e4, type: 3}
-  m_Name: _loot_Database
+  m_Name: Paint Loot Database
   m_EditorClassIdentifier: 
   _commonItems:
   - {fileID: 11400000, guid: dffb8617c62836447b2e3726079fece6, type: 2}
@@ -20,5 +20,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8250ecea7642c0042bc486773dc99529, type: 2}
   _legendaryItems:
   - {fileID: 11400000, guid: 39bfa9de4c372ec4b98bab3385da7f08, type: 2}
-  _epicItems:
+  <EpicItems>k__BackingField:
   - {fileID: 11400000, guid: e3f7c5de0da2f8c44a3b15c5479aa7a1, type: 2}
