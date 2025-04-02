@@ -7,12 +7,22 @@ public class LootPaintSphere : MonoBehaviour, ITerminatable
 
     private Renderer _cachedRenderer;
     private bool _initialized;
+    private int _paintId; // Добавляем поле для хранения ID
 
     private void Awake()
     {
         _cachedRenderer = GetComponent<Renderer>();
         _initialized = true;
     }
+
+    // Новый метод для установки ID краски
+    public void SetPaintId(int id)
+    {
+        _paintId = id;
+    }
+
+    public int GetPaintId() => _paintId;
+
 
     public void SetMaterial(Material mat)
     {

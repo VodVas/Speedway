@@ -26,14 +26,14 @@ public class PaintLootCardController : MonoBehaviour
         _renderCamera.cullingMask = 1 << _lootLayer;
     }
 
-    public void ShowCard(PaintLootItem item, GameObject sphere)
+    public void ShowCard(PaintLootItemOld item, GameObject sphere)
     {
         ConfigureVisuals(item);
         ActivateSphere(sphere);
         gameObject.SetActive(true);
     }
 
-    private void ConfigureVisuals(PaintLootItem item)
+    private void ConfigureVisuals(PaintLootItemOld item)
     {
         _rarityText.text = item.DisplayName;
         _cardBackground.sprite = item.CardSprite;

@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6712934142575391159
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5422753504533862998}
+  - component: {fileID: 4761311901253321614}
+  - component: {fileID: 6622016203645435366}
+  m_Layer: 0
+  m_Name: PaintSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5422753504533862998
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6712934142575391159}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 911.9894, y: 494.52213, z: -0.03104902}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4761311901253321614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6712934142575391159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da3a890e944bce479439af5c77ced3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _registry: {fileID: 6622016203645435366}
+--- !u!114 &6622016203645435366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6712934142575391159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d650495c4cfae246824e0826587fd10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _commonPaints:
+  - _paintId: 0
+    _paintMaterial: {fileID: 2100000, guid: ae2ac36e07e14f0498088d9b5c875adf, type: 2}
+  _rarePaints:
+  - _paintId: 1
+    _paintMaterial: {fileID: 2100000, guid: 4bed454ac150b6c42b182fc0949feb7f, type: 2}
+  _uniquePaints:
+  - _paintId: 2
+    _paintMaterial: {fileID: 2100000, guid: 1541205cc6bd269408ddadf546ecd5c2, type: 2}
+  _legendaryPaints:
+  - _paintId: 3
+    _paintMaterial: {fileID: 2100000, guid: d7721e788b7cf9f45ab4e5ed83ed5680, type: 2}
+  _epicPaints:
+  - _paintId: 4
+    _paintMaterial: {fileID: 2100000, guid: 070a9f48c23c21b42a258a79d3d65158, type: 2}

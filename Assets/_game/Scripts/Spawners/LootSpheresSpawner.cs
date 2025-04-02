@@ -29,12 +29,15 @@ public class LootSpheresSpawner : Spawner<LootPaintSphere>
 
     protected override void OnGetFromPool(LootPaintSphere obj)
     {
-        base.OnGetFromPool(obj);
-
         if (_materialsRegistry != null)
         {
-            Material chosenMat = _materialsRegistry.GetRandomMaterial(_currentRarity);
-            obj.SetMaterial(chosenMat);
+            // Получаем PaintLootItem вместо Material
+            PaintLootItem paintItem = _materialsRegistry.GetRandomPaint(_currentRarity);
+            if (paintItem != null)
+            {
+                obj.SetMaterial(paintItem.PaintMaterial); // Используем материал из PaintLootItem
+                obj.SetPaintId(paintItem.PaintId); // Сохраняем ID для системы сохранений
+            }
         }
         else
         {

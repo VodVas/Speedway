@@ -7,44 +7,70 @@ using YG;
 public class CarModifications : MonoBehaviour
 {
     [SerializeField] private List<CarModification> _modifications;
+    [SerializeField] private PaintIntegrationSystem _paintSystem;
+
     private CarData _carData;
+
     public int CarId { get; private set; }
+    public IReadOnlyList<CarModification> GetAll() => _modifications;
 
     private void Awake()
     {
         _carData = GetComponent<CarData>();
         CarId = _carData.Id;
 
-        if (CarId < 0) Debug.LogError($"[CarModifications] Неверный CarId: {CarId}", this);
-        if (_carData == null) Debug.LogError($"[CarModifications] Не назначен CarData!", this);
-        if (_modifications == null) Debug.LogError($"[CarModifications] Список модификаций пуст!", this);
+        if (CarId < 0)
+        {
+            Debug.LogError($"[CarModifications] РќРµРІРµСЂРЅС‹Р№ CarId: {CarId}", this);
+            enabled = false;
+            return;
+        }
+        if (_carData == null)
+        {
+            Debug.LogError($"[CarModifications] РќРµ РЅР°Р№РґРµРЅ CarData!", this);
+            enabled = false;
+            return;
+        }
+        if (_modifications == null)
+        {
+            Debug.LogError($"[CarModifications] РЎРїРёСЃРѕРє РјРѕРґРёС„РёРєР°С†РёР№ РїСѓСЃС‚!", this);
+            enabled = false;
+            return;
+        }
+
+        InitializeMaterials();
+    }
+
+    private void InitializeMaterials()
+    {
+        if (_paintSystem == null)
+        {
+            _paintSystem = FindObjectOfType<PaintIntegrationSystem>();
+            if (_paintSystem == null)
+            {
+                Debug.LogError("[CarModifications] PaintIntegrationSystem РЅРµ РЅР°Р№РґРµРЅ РЅР° СЃС†РµРЅРµ!");
+                return;
+            }
+        }
+
+        foreach (var mod in _modifications)
+        {
+            if (mod == null || mod.Type != CarModification.ModificationType.Color) continue;
+            mod.UpdateRuntimeMaterials(_paintSystem);
+        }
     }
 
     public void ApplyPurchasedMods(Func<int, int, int> getCarModCount, ArcadeVP.ArcadeVehicleController controller, Health health)
     {
         if (controller == null && health == null)
         {
-            Debug.LogError("[CarModifications] Не заданы controller и health!");
+            Debug.LogError("[CarModifications] РќРµ РїРµСЂРµРґР°РЅ controller РёР»Рё health!");
             return;
         }
 
         ApplyStandardMods(controller, health);
         ApplyPurchasedCountMods(getCarModCount, controller, health);
         ApplyColorMods();
-    }
-
-    public void InitializePurchasedMods(Func<int, int, int> getCarModCount)
-    {
-        if (!enabled) return;
-        if (_modifications.Count == 0) return;
-
-        for (int i = 0; i < _modifications.Count; i++)
-        {
-            CarModification carModification = _modifications[i];
-
-            if (carModification == null)
-                continue;
-        }
     }
 
     private void ApplyStandardMods(ArcadeVP.ArcadeVehicleController controller, Health health)
@@ -55,7 +81,11 @@ public class CarModifications : MonoBehaviour
             controller.SetAcceleration(_carData.Acceleration);
             controller.SetTurn(_carData.Turn);
         }
-        if (health != null) health.Init(_carData.Armor);
+
+        if (health != null)
+        {
+            health.Init(_carData.Armor);
+        }
     }
 
     private void ApplyPurchasedCountMods(Func<int, int, int> getCarModCount, ArcadeVP.ArcadeVehicleController controller, Health health)
@@ -65,6 +95,7 @@ public class CarModifications : MonoBehaviour
             if (mod == null || mod.Type == CarModification.ModificationType.Color) continue;
 
             int count = getCarModCount(CarId, mod.ModificationId);
+
             if (count < 1) continue;
 
             ApplyModEffect(mod, count, controller, health);
@@ -74,6 +105,7 @@ public class CarModifications : MonoBehaviour
     private void ApplyModEffect(CarModification mod, int count, ArcadeVP.ArcadeVehicleController controller, Health health)
     {
         float total = mod.Value * count;
+
         switch (mod.Type)
         {
             case CarModification.ModificationType.Speed:
@@ -98,14 +130,32 @@ public class CarModifications : MonoBehaviour
             if (mod == null || mod.Type != CarModification.ModificationType.Color) continue;
 
             int selectedIndex = YandexGame.savesData.GetSelectedMaterialIndex(CarId, mod.ModificationId);
-            if (mod.TargetRenderer != null && mod.Materials != null && selectedIndex < mod.Materials.Length)
+            Material material = mod.GetRuntimeMaterial(selectedIndex);
+
+            if (material != null && mod.TargetRenderer != null)
             {
-                mod.TargetRenderer.material = mod.Materials[selectedIndex];
+                mod.TargetRenderer.material = material;
+            }
+            else
+            {
+                Debug.LogWarning($"[CarModifications] РќРµ СѓРґР°Р»РѕСЃСЊ РїСЂРёРјРµРЅРёС‚СЊ РјР°С‚РµСЂРёР°Р» РґР»СЏ РјРѕРґРёС„РёРєР°С†РёРё {mod.ModificationName}");
             }
         }
     }
 
-    public IReadOnlyList<CarModification> GetAll() => _modifications;
+    public void InitializePurchasedMods(Func<int, int, int> getCarModCount)
+    {
+        if (!enabled) return;
+        if (_modifications.Count == 0) return;
+
+        for (int i = 0; i < _modifications.Count; i++)
+        {
+            CarModification carModification = _modifications[i];
+
+            if (carModification == null)
+                continue;
+        }
+    }
 }
 
 
@@ -132,19 +182,19 @@ public class CarModifications : MonoBehaviour
 
 //        if (CarId < 0)
 //        {
-//            Debug.LogError($"[CarModifications] Неверный CarId: {CarId}", this);
+//            Debug.LogError($"[CarModifications] пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ CarId: {CarId}", this);
 //            enabled = false;
 //            return;
 //        }
 //        if (_carData == null)
 //        {
-//            Debug.LogError($"[CarModifications] Не назначен CarData (CarId={CarId})!", this);
+//            Debug.LogError($"[CarModifications] пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ CarData (CarId={CarId})!", this);
 //            enabled = false;
 //            return;
 //        }
 //        if (_modifications == null)
 //        {
-//            Debug.LogError($"[CarModifications] Список _modifications не назначен на {name}", this);
+//            Debug.LogError($"[CarModifications] пїЅпїЅпїЅпїЅпїЅпїЅ _modifications пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ {name}", this);
 //            enabled = false;
 //            return;
 //        }
@@ -173,7 +223,7 @@ public class CarModifications : MonoBehaviour
 //    {
 //        if (controller == null && health == null)
 //        {
-//            Debug.Log("[CarUpgrades] controller && health не задан!");
+//            Debug.Log("[CarUpgrades] controller && health пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ!");
 //            enabled = false;
 //            return;
 //        }
