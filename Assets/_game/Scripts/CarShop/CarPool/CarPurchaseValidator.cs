@@ -1,58 +1,62 @@
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
+using YG;
 
 public class CarPurchaseValidator
 {
-    private readonly List<CarData> _carDataList = new List<CarData>();
+    private readonly List<GameObject> _cars;
+    private readonly List<int> _availableCarIndices = new();
+    private CarCollection _carCollection;
 
-    public List<int> AvailableCarIndices { get; private set; } = new List<int>();
+    public IReadOnlyList<int> AvailableCarIndices => _availableCarIndices;
 
-    public CarPurchaseValidator(List<GameObject> cars)
+    public CarPurchaseValidator(List<GameObject> cars, CarCollection carCollection)
     {
-        for (int i = 0; i < cars.Count; i++)
-        {
-            var obj = cars[i];
-
-            if (obj == null) continue;
-
-            CarData data = obj.GetComponent<CarData>();
-
-            if (data == null) continue;
-
-            _carDataList.Add(data);
-        }
+        _cars = cars;
+        _carCollection = carCollection;
 
         RecalculateAvailability();
     }
 
     public void RecalculateAvailability()
     {
-        AvailableCarIndices.Clear();
+        _availableCarIndices.Clear();
 
-        for (int i = 0; i < _carDataList.Count; i++)
+        for (int i = 0; i < _cars.Count; i++)
         {
-            CarData data = _carDataList[i];
-
-            if (!YG.YandexGame.savesData.HasCar(data.Id))
+            if (_cars[i].TryGetComponent(out CarData carData))
             {
-                AvailableCarIndices.Add(i);
+                bool isEpic = _carCollection.IsCarEpic(carData.Id);
+
+                if (!YandexGame.savesData.HasCar(carData.Id))
+                {
+                    _availableCarIndices.Add(i);
+                }
             }
         }
     }
 
-    public bool TryBuyCar(int localIndex)
+    public bool TryBuyCar(int index)
     {
-        if (localIndex < 0 || localIndex >= AvailableCarIndices.Count)
+        if (index < 0 || index >= _cars.Count)
             return false;
 
-        int realIndex = AvailableCarIndices[localIndex];
-        CarData data = _carDataList[realIndex];
+        if (!_availableCarIndices.Contains(index))
+            return false;
 
-        if (!YG.YandexGame.savesData.TrySpendMoney(data.Price))
+        if (_cars[index].TryGetComponent(out CarData carData))
         {
-            return false;
+            Debug.Log($"Покупка: {carData.CarName}, цена: {carData.Price}, денег: {YandexGame.savesData.Money}");
+            if (YandexGame.savesData.Money >= carData.Price)
+            {
+                YandexGame.savesData.TrySpendMoney(carData.Price);
+                YandexGame.savesData.AddCar(carData.Id);
+                YandexGame.SaveProgress();
+                RecalculateAvailability();
+                return true;
+            }
         }
 
-        return true;
+        return false;
     }
 }

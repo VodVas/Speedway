@@ -218,7 +218,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6903375165280587783}
-  - component: {fileID: 6866319959608037086}
+  - component: {fileID: 6263425299206606784}
   m_Layer: 5
   m_Name: CommonMoney
   m_TagString: Untagged
@@ -249,7 +249,7 @@ RectTransform:
   m_AnchoredPosition: {x: -283, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6866319959608037086
+--- !u!114 &6263425299206606784
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -258,12 +258,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4649156154313506959}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71fb43665265f984397ec7e610dedd91, type: 3}
+  m_Script: {fileID: 11500000, guid: ea6cda751c70dfe46b7f2bdcb6750d66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _amountText: {fileID: 3958368633787875083}
   _rarityText: {fileID: 4739782345614411383}
+  _countText: {fileID: 3958368633787875083}
   _cardBackground: {fileID: 5712922716972365069}
+  _currencyIcon: {fileID: 8977311490320020560}
 --- !u!1 &7726805880623947331
 GameObject:
   m_ObjectHideFlags: 0

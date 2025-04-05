@@ -277,7 +277,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6731633396256320147}
-  - component: {fileID: 4592140688514384003}
+  - component: {fileID: 6948152341947823110}
   m_Layer: 5
   m_Name: EpicMoney
   m_TagString: Untagged
@@ -308,7 +308,7 @@ RectTransform:
   m_AnchoredPosition: {x: 729, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &4592140688514384003
+--- !u!114 &6948152341947823110
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -317,12 +317,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4776594341931179871}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71fb43665265f984397ec7e610dedd91, type: 3}
+  m_Script: {fileID: 11500000, guid: ea6cda751c70dfe46b7f2bdcb6750d66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _amountText: {fileID: 5901105730589253725}
   _rarityText: {fileID: 1213262841308560645}
+  _countText: {fileID: 5901105730589253725}
   _cardBackground: {fileID: 9177829277144760952}
+  _currencyIcon: {fileID: 3698031365720819465}
 --- !u!1 &4782855099862856398
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ public class PaintLootCardController : MonoBehaviour
     private const string Loot = "Loot";
 
     [SerializeField] private TextMeshProUGUI _rarityText;
+    [SerializeField] private TextMeshProUGUI _epicRarityText;
     [SerializeField] private Image _cardBackground;
     [SerializeField] private Camera _renderCamera;
 
@@ -26,17 +27,29 @@ public class PaintLootCardController : MonoBehaviour
         _renderCamera.cullingMask = 1 << _lootLayer;
     }
 
-    public void ShowCard(PaintLootItemOld item, GameObject sphere)
+    public void ShowCard(PaintLootItemSO item, GameObject sphere)
     {
         ConfigureVisuals(item);
         ActivateSphere(sphere);
         gameObject.SetActive(true);
     }
 
-    private void ConfigureVisuals(PaintLootItemOld item)
+    private void ConfigureVisuals(PaintLootItemSO item)
     {
         _rarityText.text = item.DisplayName;
+        _epicRarityText.text = item.DisplayName;
         _cardBackground.sprite = item.CardSprite;
+
+        if (item.Rarity == Rarity.Epic)
+        {
+            _rarityText.gameObject.SetActive(false);
+            _epicRarityText.gameObject.SetActive(true);
+        }
+        else
+        {
+            _rarityText.gameObject.SetActive(true);
+            _epicRarityText.gameObject.SetActive(false);
+        }
     }
 
     private void ActivateSphere(GameObject sphere)
@@ -59,6 +72,8 @@ public class PaintLootCardController : MonoBehaviour
 
     private void ResetPreviousSphere()
     {
+        if (_currentSphere == null) return;
+        
         _currentSphere.layer = _originalLayer;
         _currentSphere.SetActive(false);
         _currentSphere = null;

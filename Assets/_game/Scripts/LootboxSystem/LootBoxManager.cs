@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using YG;
+using System.Collections;
 
 public class LootBoxManager : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class LootBoxManager : MonoBehaviour
     [Header("Databases")]
     [SerializeField] private PaintLootDatabase _PaintLootDatabase;
     [SerializeField] private MoneyLootDatabase _moneyLootDatabase;
+    [SerializeField] private CarLootDatabase _carLootDatabase;
 
     [Header("UI Components")]
     [SerializeField] private MoneyLootCardController[] _moneyLootCards;
@@ -37,18 +39,16 @@ public class LootBoxManager : MonoBehaviour
     [SerializeField] private float _legendaryChance = 0.1f;
     [SerializeField] private float _epicChance = 0.1f;
 
+    [Header("Box Components")]
+    [SerializeField] private BoxOpener[] _boxOpeners;
+    [SerializeField] private ObjectOnceShaker[] _boxShakers;
+
+    [Header("Audio")]
+    [SerializeField] private OnceSoundPlayer _cardAppearSound;
+
     private int _consecutiveNonEpicCount = 0;
     private int _selectedButtonIndex = -1;
-
-    private void Awake()
-    {
-        InitializeSystem();
-    }
-
-    private void OnDisable()
-    {
-        UnsubscribeFromButtons();
-    }
+    private Rarity[] _pendingRarities;
 
     private void OnValidate()
     {
@@ -57,7 +57,7 @@ public class LootBoxManager : MonoBehaviour
 
         if (Mathf.Abs(total - 1f) > 0.001f)
         {
-            Debug.LogWarning("����� ������ ��������� ������ ���� ����� 100%");
+            Debug.LogWarning(" Not 100%!");
         }
     }
 
@@ -71,10 +71,16 @@ public class LootBoxManager : MonoBehaviour
         return Rarity.Epic;
     }
 
+    private void Awake()
+    {
+        InitializeSystem();
+    }
+
     private void InitializeSystem()
     {
         _PaintLootDatabase.Initialize();
         _moneyLootDatabase.Initialize();
+        _carLootDatabase.Initialize();
         ValidateDependencies();
         SubscribeToButtons();
     }
@@ -94,6 +100,40 @@ public class LootBoxManager : MonoBehaviour
             _carLootCards.Length < CardsCount)
         {
             Debug.LogError("[LootBoxManager] Card arrays length mismatch!");
+            error = true;
+        }
+
+        if (_carLootDatabase == null)
+        {
+            Debug.LogError("[LootBoxManager] Car Loot Database is not assigned!");
+            error = true;
+        }
+
+        if (_boxOpeners == null || _boxOpeners.Length == 0)
+        {
+            Debug.LogError("[LootBoxManager] Box Openers are not assigned!");
+            error = true;
+        }
+        else if (_boxOpeners.Length != _boxButtons.Length)
+        {
+            Debug.LogError("[LootBoxManager] Box Openers count does not match Box Buttons count!");
+            error = true;
+        }
+
+        if (_boxShakers == null || _boxShakers.Length == 0)
+        {
+            Debug.LogError("[LootBoxManager] Box Shakers are not assigned!");
+            error = true;
+        }
+        else if (_boxShakers.Length != _boxButtons.Length)
+        {
+            Debug.LogError("[LootBoxManager] Box Shakers count does not match Box Buttons count!");
+            error = true;
+        }
+
+        if (_cardAppearSound == null)
+        {
+            Debug.LogError("[LootBoxManager] Card Appear Sound is not assigned!");
             error = true;
         }
 
@@ -120,148 +160,231 @@ public class LootBoxManager : MonoBehaviour
 
     private void OnBoxSelected(int buttonIndex)
     {
+        if (_selectedButtonIndex != -1 || buttonIndex < 0 || buttonIndex >= _boxButtons.Length)
+        {
+            return;
+        }
+
         _selectedButtonIndex = buttonIndex;
         DisableAllButtons();
-        Rarity[] rarities = GenerateRarities();
-        ProcessCards(rarities);
+
+        // Ensure the correct box is shaken by checking if the button and shaker indices match
+        if (buttonIndex < _boxShakers.Length)
+        {
+            _boxShakers[buttonIndex].Shake();
+        }
+        else
+        {
+            Debug.LogError($"[LootBoxManager] Box Shaker index {buttonIndex} is out of range!");
+        }
+        
+        // Wait for shake animation to complete before opening lids
+        StartCoroutine(OpenLidsAfterShake());
+    }
+
+    private IEnumerator OpenLidsAfterShake()
+    {
+        // Wait for shake animation to complete (0.5 seconds)
+        yield return new WaitForSeconds(0.5f);
+        
+        // Start box opening animation for all boxes
+        foreach (var boxOpener in _boxOpeners)
+        {
+            boxOpener.OpenBox();
+        }
+        
+        // Wait for lid animation to complete before showing cards
+        yield return new WaitForSeconds(1f);
+        
+        // Generate and show cards
+        _pendingRarities = GenerateRarities();
+        ProcessCards(_pendingRarities);
     }
 
     private Rarity[] GenerateRarities()
     {
         Rarity[] rarities = new Rarity[CardsCount];
-        bool forceEpic = ShouldForceEpic();
+        bool hasEpic = false;
 
         for (int i = 0; i < CardsCount; i++)
         {
             rarities[i] = DetermineRarity();
-        }
 
-        if (forceEpic) ForceEpicCard(ref rarities);
-        return rarities;
-    }
-
-    private bool ShouldForceEpic()
-    {
-        return _consecutiveNonEpicCount >= _guaranteedEpicAfterAttempts;
-    }
-
-    private void ForceEpicCard(ref Rarity[] rarities)
-    {
-        bool hasEpic = false;
-        for (int i = 0; i < CardsCount; i++)
-        {
             if (rarities[i] == Rarity.Epic)
             {
                 hasEpic = true;
-                break;
             }
         }
 
         if (!hasEpic)
         {
-            int forcedIndex = Random.Range(0, CardsCount);
-            rarities[forcedIndex] = Rarity.Epic;
+            _consecutiveNonEpicCount++;
+            if (_consecutiveNonEpicCount >= _guaranteedEpicAfterAttempts)
+            {
+                int forcedIndex = Random.Range(0, CardsCount);
+                rarities[forcedIndex] = Rarity.Epic;
+                _consecutiveNonEpicCount = 0; // Reset counter after forcing epic
+            }
         }
+        else
+        {
+            _consecutiveNonEpicCount = 0; // Reset counter if we got epic naturally
+        }
+
+        return rarities;
     }
 
     private void ProcessCards(Rarity[] rarities)
     {
-        bool hasEpicInBox = false;
+        // First, process the selected card
+        ProcessSingleCard(_selectedButtonIndex, rarities[_selectedButtonIndex]);
 
-        for (int i = 0; i < CardsCount; i++)
+        // Then process the rest of the cards with a delay
+        StartCoroutine(ProcessRemainingCards(rarities));
+    }
+
+    private void ProcessSingleCard(int index, Rarity rarity)
+    {
+        if (index < 0 || index >= CardsCount)
         {
-            Rarity rarity = rarities[i];
-            bool isEpic = rarity == Rarity.Epic;
-            bool isSelected = (i == _selectedButtonIndex);
+            Debug.LogError($"[LootBoxManager] Invalid card index: {index}");
+            return;
+        }
 
-            if (isEpic)
+        // Определяем, является ли карточка действительно «выбранной» (той, по которой кликнули)
+        bool isThisTheChosenBox = (index == _selectedButtonIndex);
+
+        // В зависимости от редкости — генерируем тип награды (машина/деньги/краска)
+        if (rarity == Rarity.Epic)
+        {
+            float roll = Random.value;
+            if (roll < EPIC_CAR_CHANCE)
             {
-                ProcessEpicCard(i, isSelected);
-                hasEpicInBox = true;
+                SpawnCar(index, isThisTheChosenBox);    // <-- передаём, выбранная ли это карточка
+            }
+            else if (roll < (EPIC_CAR_CHANCE + EPIC_MONEY_CHANCE))
+            {
+                SpawnMoney(index, isThisTheChosenBox);  // <-- передаём, выбранная ли это карточка
             }
             else
             {
-                ProcessNonEpicCard(rarity, i, isSelected);
+                SpawnPaint(index, isThisTheChosenBox);  // <-- передаём, выбранная ли это карточка
+            }
+        }
+        else
+        {
+            // Если не эпик, то, например, половина — деньги, половина — краска (NON_EPIC_MONEY_CHANCE = 0.5)
+            // Но с той же логикой: передаём признак выбранной карточки
+            float roll = Random.value;
+            if (roll < NON_EPIC_MONEY_CHANCE)
+            {
+                SpawnMoney(index, isThisTheChosenBox);
+            }
+            else
+            {
+                SpawnPaint(index, isThisTheChosenBox);
             }
         }
 
-        _consecutiveNonEpicCount = hasEpicInBox ? 0 : _consecutiveNonEpicCount + 1;
-    }
-
-    private void ProcessEpicCard(int index, bool isSelected)
-    {
-        float roll = Random.value;
-
-        if (roll < EPIC_CAR_CHANCE)
+        // Проигрываем звук карты
+        if (_cardAppearSound != null)
         {
-            SpawnCar(index, isSelected);
-        }
-        else if (roll < EPIC_MONEY_CHANCE)
-        {
-            SpawnMoney(Rarity.Epic, index, isSelected);
-        }
-        else
-        {
-            SpawnColor(Rarity.Epic, index, isSelected);
+            _cardAppearSound.Play();
         }
     }
 
-    private void ProcessNonEpicCard(Rarity rarity, int index, bool isSelected)
-    {
-        bool spawnMoney = Random.value < NON_EPIC_MONEY_CHANCE;
+    //private void ProcessSingleCard(int index, Rarity rarity)
+    //{
+    //    if (index < 0 || index >= CardsCount)
+    //    {
+    //        Debug.LogError($"[LootBoxManager] Invalid card index: {index}");
+    //        return;
+    //    }
 
-        if (spawnMoney)
+    //    // Determine reward type and spawn appropriate card
+    //    if (rarity == Rarity.Epic)
+    //    {
+    //        float roll = Random.value;
+    //        if (roll < EPIC_CAR_CHANCE)
+    //        {
+    //            SpawnCar(index, true);
+    //        }
+    //        else if (roll < EPIC_CAR_CHANCE + EPIC_MONEY_CHANCE)
+    //        {
+    //            SpawnMoney(index, true);
+    //        }
+    //        else
+    //        {
+    //            SpawnPaint(index, true);
+    //        }
+    //    }
+    //    else
+    //    {
+    //        float roll = Random.value;
+    //        if (roll < NON_EPIC_MONEY_CHANCE)
+    //        {
+    //            SpawnMoney(index, false);
+    //        }
+    //        else
+    //        {
+    //            SpawnPaint(index, false);
+    //        }
+    //    }
+
+    //    // Play sound when card appears
+    //    _cardAppearSound.Play();
+    //}
+
+    private IEnumerator ProcessRemainingCards(Rarity[] rarities)
+    {
+        // Wait for the first card to appear
+        yield return new WaitForSeconds(0.5f);
+
+        // Process all remaining cards simultaneously
+        for (int i = 0; i < CardsCount; i++)
         {
-            SpawnMoney(rarity, index, isSelected);
-        }
-        else
-        {
-            SpawnColor(rarity, index, isSelected);
+            if (i != _selectedButtonIndex) // Skip the already processed card
+            {
+                ProcessSingleCard(i, rarities[i]);
+            }
         }
     }
 
     private void SpawnCar(int index, bool isSelected)
     {
+        CarLootItem carItem = _carLootDatabase.GetRandomItem(Rarity.Epic);
+        if (carItem == null)
+        {
+            Debug.LogError("[LootBoxManager] Не удалось получить случайную машину!");
+            return;
+        }
+
         Transform spawnPoint = _carSpawnPoints[index];
         LootCar car = _lootCarSpawner.SpawnLootCar(spawnPoint.position);
+        car.Initialize(carItem.CarPrefab);
 
         _carLootCards[index].gameObject.SetActive(true);
         _carLootCards[index].ShowCard(car.gameObject);
         _colorLootCards[index].gameObject.SetActive(false);
         _moneyLootCards[index].gameObject.SetActive(false);
 
-        // ���� ����� ������������ ��������� ������ ��� ������
         if (isSelected)
         {
-            // ������ ������������� ������
-        }
-    }
-
-    private void SpawnColor(Rarity rarity, int index, bool isSelected)
-    {
-        PaintLootItemOld item = _PaintLootDatabase.GetRandomItem(rarity);
-        Transform spawnPoint = _sphereSpawnPoints[index];
-        LootPaintSphere sphere = _lootSpheresSpawner.SpawnLootSphere(rarity, spawnPoint.position);
-
-        _colorLootCards[index].gameObject.SetActive(true);
-        _colorLootCards[index].ShowCard(item, sphere.gameObject);
-        _carLootCards[index].gameObject.SetActive(false);
-        _moneyLootCards[index].gameObject.SetActive(false);
-
-        // ���� ����� ������������ ��������� ����� ��� ������
-        if (isSelected)
-        {
-            int paintId = sphere.GetComponent<LootPaintSphere>().GetPaintId();
-            YandexGame.savesData.UnlockPaint(paintId);
+            _carLootDatabase.UnlockCar(carItem.CarId);
+            YandexGame.savesData.UnlockEpicCar(carItem.CarId);
             YandexGame.SaveProgress();
-
-            // ����� ���������� ����������
-            FindObjectOfType<PaintIntegrationSystem>()?.ForceRefresh();
         }
     }
 
-    private void SpawnMoney(Rarity rarity, int index, bool isSelected)
+    private void SpawnMoney(int index, bool isEpic)
     {
+        if (index < 0 || index >= _moneyLootCards.Length)
+        {
+            Debug.LogError($"[LootBoxManager] Invalid money card index: {index}");
+            return;
+        }
+
+        Rarity rarity = isEpic ? Rarity.Epic : DetermineRarity();
         MoneyLootItem item = _moneyLootDatabase.GetRandomItem(rarity);
 
         if (item == null)
@@ -275,25 +398,61 @@ public class LootBoxManager : MonoBehaviour
         _colorLootCards[index].gameObject.SetActive(false);
         _carLootCards[index].gameObject.SetActive(false);
 
-        if (isSelected)
+        if (index == _selectedButtonIndex)
         {
-            if (int.TryParse(item.Count, out int amount))
+            if (int.TryParse(item.Amount, out int amount))
             {
                 YandexGame.savesData.AddMoney(amount);
             }
             else
             {
-                Debug.LogError($"Failed to parse money amount from '{item.Count}'");
+                Debug.LogError($"Failed to parse money amount from '{item.Amount}'");
             }
             YandexGame.SaveProgress();
         }
     }
 
+    private void SpawnPaint(int index, bool isEpic)
+    {
+        if (index < 0 || index >= _colorLootCards.Length)
+        {
+            Debug.LogError($"[LootBoxManager] Invalid paint card index: {index}");
+            return;
+        }
+
+        Rarity rarity = isEpic ? Rarity.Epic : DetermineRarity();
+        PaintLootItemSO item = _PaintLootDatabase.GetRandomItem(rarity);
+        Transform spawnPoint = _sphereSpawnPoints[index];
+        LootPaintSphere sphere = _lootSpheresSpawner.SpawnLootSphere(rarity, spawnPoint.position);
+
+        _colorLootCards[index].gameObject.SetActive(true);
+        _colorLootCards[index].ShowCard(item, sphere.gameObject);
+        _carLootCards[index].gameObject.SetActive(false);
+        _moneyLootCards[index].gameObject.SetActive(false);
+
+        if (index == _selectedButtonIndex)
+        {
+            int paintId = sphere.GetComponent<LootPaintSphere>().GetPaintId();
+            YandexGame.savesData.UnlockPaint(paintId);
+            YandexGame.SaveProgress();
+
+            FindObjectOfType<PaintIntegrationSystem>()?.ForceRefresh();
+        }
+    }
+
     private void DisableAllButtons()
     {
-        for (int i = 0; i < _boxButtons.Length; i++)
+        foreach (var button in _boxButtons)
         {
-            _boxButtons[i].interactable = false;
+            button.interactable = false;
+        }
+    }
+
+    private void EnableAllButtons()
+    {
+        foreach (var button in _boxButtons)
+        {
+            button.interactable = true;
         }
     }
 
@@ -302,6 +461,31 @@ public class LootBoxManager : MonoBehaviour
         for (int i = 0; i < _boxButtons.Length; i++)
         {
             _boxButtons[i].onClick.RemoveAllListeners();
+        }
+    }
+
+    private void OnEnable()
+    {
+        YandexGame.RewardVideoEvent += OnRewardVideoComplete;
+    }
+
+    private void OnDisable()
+    {
+        YandexGame.RewardVideoEvent -= OnRewardVideoComplete;
+        UnsubscribeFromButtons();
+    }
+
+    private void OnRewardVideoComplete(int id)
+    {
+        if (id == 1 && _pendingRarities != null)
+        {
+            ProcessCards(_pendingRarities);
+            _pendingRarities = null;
+        }
+        else
+        {
+            EnableAllButtons();
+            _pendingRarities = null;
         }
     }
 

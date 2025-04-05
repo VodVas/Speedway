@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85939ab058f89414e85b0517e4648799, type: 3}
+  m_Name: IceCreamer Car Loot Item
+  m_EditorClassIdentifier: 
+  <DisplayName>k__BackingField: IceCreamer
+  <CarPrefab>k__BackingField: {fileID: 4247857781886651365, guid: 446c8a95a94d00f4ab186710cc9bab5c, type: 3}

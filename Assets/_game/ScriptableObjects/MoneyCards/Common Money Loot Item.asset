@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Common Money Loot Item
   m_EditorClassIdentifier: 
   <DisplayName>k__BackingField: "\u041E\u0431\u044B\u0447\u043D\u044B\u0439"
-  <Count>k__BackingField: 50
-  <CardSprite>k__BackingField: {fileID: 21300000, guid: 3f3a288949fbbb34a8c2bf016479256c, type: 3}
-  <CurrencyIcon>k__BackingField: {fileID: 21300000, guid: 0d93693b79a040f45afb3225a1f0b8a6, type: 3}
+  <Amount>k__BackingField: 50
+  <CardSprite>k__BackingField: {fileID: 21300000, guid: 5b978d0c25e615f4896468a55ac3c318, type: 3}
+  <CurrencyIcon>k__BackingField: {fileID: 21300000, guid: e34e0c8c61402d74dba8122ebadc01a2, type: 3}
+  <Rarity>k__BackingField: 0

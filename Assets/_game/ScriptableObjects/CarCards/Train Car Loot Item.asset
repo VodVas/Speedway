@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85939ab058f89414e85b0517e4648799, type: 3}
+  m_Name: Train Car Loot Item
+  m_EditorClassIdentifier: 
+  <DisplayName>k__BackingField: Train
+  <CarPrefab>k__BackingField: {fileID: 6635119512700724544, guid: 1d1e174d5a1943748b05e9f089a9a7ca, type: 3}

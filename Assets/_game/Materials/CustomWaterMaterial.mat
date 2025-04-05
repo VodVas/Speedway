@@ -27,6 +27,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _CausticsTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -40,6 +44,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FoamRamp:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -71,10 +79,15 @@ Material:
     m_Floats:
     - _BumpScale: 1
     - _Cutoff: 0.5
+    - _DepthContrast: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _EdgeDistance: 0.398
+    - _EdgeFalloff: 0.911
+    - _FoamSpeed: 0.6
     - _FoamStrength: 0.733
-    - _FoamThreshold: 0.685
+    - _FoamThreshold: 0.451
+    - _FresnelPower: 5
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -83,20 +96,24 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _RippleFrequency: 9.61
+    - _RippleFrequency: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _Speed: 1
     - _SrcBlend: 1
     - _UVSec: 0
     - _VolumeStrength: 0.118
-    - _WaveScale: 0.342
-    - _WaveSpeed: 1.764
+    - _WaveScale: 0
+    - _WaveSpeed: 0.3
     - _WhiteCapIntensity: 0.317
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _DepthColor: {r: 0.10902457, g: 0.2535273, b: 0.4716981, a: 1}
+    - _DeepColor: {r: 0.11999995, g: 0.34999996, b: 0.6, a: 0.9}
+    - _DepthColor: {r: 0.22027412, g: 0.3820958, b: 0.6226415, a: 1}
+    - _EdgeColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _FoamColor: {r: 1, g: 1, b: 1, a: 1}
     - _MainColor: {r: 0.19999999, g: 0.9468765, b: 1, a: 0.92156863}
+    - _ShallowColor: {r: 0.31999996, g: 0.68, b: 0.85, a: 0.8}
   m_BuildTextureStacks: []

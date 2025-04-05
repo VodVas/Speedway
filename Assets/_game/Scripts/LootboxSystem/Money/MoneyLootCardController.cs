@@ -1,48 +1,56 @@
-using TMPro;
 using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
 
-
-
-[RequireComponent(typeof(RectTransform))]
 public class MoneyLootCardController : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI _amountText;
     [SerializeField] private TextMeshProUGUI _rarityText;
-    [SerializeField] private TextMeshProUGUI _countText;
+    [SerializeField] private TextMeshProUGUI _epicRarityText;
     [SerializeField] private Image _cardBackground;
     [SerializeField] private Image _currencyIcon;
 
-    private RectTransform _rectTransform;
-    private MoneyLootItem _cachedItem;
-
-    private void Awake()
-    {
-        _rectTransform = GetComponent<RectTransform>();
-
-        if (_rarityText == null || _countText == null || _cardBackground == null || _currencyIcon == null)
-        {
-            Debug.Log("Dependencies not assign", this);
-            enabled = false;
-            return;
-        }
-    }
-
     public void ShowCard(MoneyLootItem item)
     {
-        _cachedItem = item;
-        ConfigureVisuals();
-        gameObject.SetActive(true);
+        _amountText.text = item.Amount;
+        _rarityText.text = item.DisplayName;
+        _epicRarityText.text = item.DisplayName;
+        _cardBackground.sprite = item.CardSprite;
+        _currencyIcon.sprite = item.CurrencyIcon;
+
+        if (item.Rarity == Rarity.Epic)
+        {
+            _rarityText.gameObject.SetActive(false);
+            _epicRarityText.gameObject.SetActive(true);
+        }
+        else
+        {
+            _rarityText.gameObject.SetActive(true);
+            _epicRarityText.gameObject.SetActive(false);
+        }
+
     }
 
-    private void ConfigureVisuals()
-    {
-        if (_cachedItem == null) return;
+    //public void ShowCard(MoneyLootItem item)
+    //{
+    //    if (item is MoneyLootItem moneyItem)
+    //    {
+    //        _amountText.text = moneyItem.Amount;
+    //        _rarityText.text = moneyItem.DisplayName;
+    //        _epicRarityText.text = moneyItem.DisplayName;
+    //        _cardBackground.sprite = moneyItem.CardSprite;
+    //        _currencyIcon.sprite = moneyItem.CurrencyIcon;
 
-        _rarityText.text = _cachedItem.DisplayName;
-        _countText.text = _cachedItem.Count;
-        _cardBackground.sprite = _cachedItem.CardSprite;
-        _currencyIcon.sprite = _cachedItem.CurrencyIcon;
-
-        LayoutRebuilder.ForceRebuildLayoutImmediate(_rectTransform);
-    }
+    //        if (moneyItem.Rarity == Rarity.Epic)
+    //        {
+    //            _rarityText.gameObject.SetActive(false);
+    //            _epicRarityText.gameObject.SetActive(true);
+    //        }
+    //        else
+    //        {
+    //            _rarityText.gameObject.SetActive(true);
+    //            _epicRarityText.gameObject.SetActive(false);
+    //        }
+    //    }
+    //}
 }

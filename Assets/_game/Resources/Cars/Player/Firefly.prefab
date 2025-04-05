@@ -21211,10 +21211,10 @@ MonoBehaviour:
   <CarName>k__BackingField: Firefly
   <Price>k__BackingField: 100
   <Id>k__BackingField: 4
-  <Speed>k__BackingField: 0
-  <Acceleration>k__BackingField: 0
-  <Turn>k__BackingField: 0
-  <Armor>k__BackingField: 0
+  <Speed>k__BackingField: 120
+  <Acceleration>k__BackingField: 15
+  <Turn>k__BackingField: 15
+  <Armor>k__BackingField: 120
   <Weapon>k__BackingField: 0
 --- !u!114 &7416969845416008435
 MonoBehaviour:
@@ -21240,7 +21240,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c33478aace014a4d962a1507cadc6d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Max>k__BackingField: 100
 --- !u!114 &629220255071516058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21316,7 +21315,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _upgrades: []
-  <CarId>k__BackingField: 0
 --- !u!114 &1629323055707915461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21330,7 +21328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _modifications: []
-  <CarId>k__BackingField: 0
+  _paintSystem: {fileID: 0}
 --- !u!114 &1780693838638691794
 MonoBehaviour:
   m_ObjectHideFlags: 0

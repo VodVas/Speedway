@@ -427,7 +427,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5558736528515756353}
-  - component: {fileID: 808033123218045917}
   m_Layer: 5
   m_Name: RareMoney
   m_TagString: Untagged
@@ -458,18 +457,3 @@ RectTransform:
   m_AnchoredPosition: {x: -283, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &808033123218045917
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7581403989678360388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71fb43665265f984397ec7e610dedd91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _amountText: {fileID: 1360393205256349206}
-  _rarityText: {fileID: 1629645602144567529}
-  _cardBackground: {fileID: 2857588900707450052}

@@ -2,7 +2,11 @@ fileFormatVersion: 2
 guid: 6dfcfdf20b4c1344b8398432ad9c0dcf
 ShaderImporter:
   externalObjects: {}
-  defaultTextures: []
+  defaultTextures:
+  - _CausticsTex: {instanceID: 0}
+  - _FoamRamp: {instanceID: 0}
+  - _WaveNoise: {instanceID: 0}
+  - _NormalMap: {instanceID: 0}
   nonModifiableTextures: []
   userData: 
   assetBundleName: 

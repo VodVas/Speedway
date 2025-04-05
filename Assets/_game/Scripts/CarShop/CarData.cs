@@ -9,7 +9,6 @@ public class CarData : MonoBehaviour
     [field: SerializeField] public int Acceleration { get; private set; } = 0;
     [field: SerializeField] public int Turn { get; private set; } = 0;
     [field: SerializeField] public int Armor { get; private set; } = 0;
-    [field: SerializeField] public int Weapon { get; private set; } = 0;
 
     private void Awake()
     {

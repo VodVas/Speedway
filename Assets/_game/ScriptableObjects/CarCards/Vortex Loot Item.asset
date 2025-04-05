@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85939ab058f89414e85b0517e4648799, type: 3}
+  m_Name: Vortex Loot Item
+  m_EditorClassIdentifier: 
+  <DisplayName>k__BackingField: Vortex
+  <CarPrefab>k__BackingField: {fileID: 4786225700687181318, guid: d0265f83430475046b42136a76fc926a, type: 3}
+  <CarId>k__BackingField: 14
+  <IsUnlocked>k__BackingField: 0

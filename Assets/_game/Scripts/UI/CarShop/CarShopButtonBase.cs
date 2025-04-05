@@ -18,6 +18,7 @@ public abstract class CarButtonBase : MonoBehaviour
         {
             Debug.LogError(InvalidButtonMessage, this);
             enabled = false;
+            return;
         }
     }
 

@@ -166,6 +166,15 @@ public class PlayerCarSelector : MonoBehaviour
 
     private void ProcessCarComponents()
     {
+        if (_activeCar == null)
+        {
+            Debug.LogWarning("[PlayerCarSelector] No active car selected, skipping component initialization");
+            enabled = false;
+            return;
+
+
+        }
+
         InitializeUpgradeSystems();
         SetupPlatformSpecificUI();
         RegisterRespawnSystem();
@@ -173,6 +182,8 @@ public class PlayerCarSelector : MonoBehaviour
 
     private void InitializeUpgradeSystems()
     {
+        if (_activeCar == null) return;
+
         var upgrades = _activeCar.GetComponent<CarUpgrades>();
         var modifications = _activeCar.GetComponent<CarModifications>();
         var vehicleController = _activeCar.GetComponent<ArcadeVehicleController>();

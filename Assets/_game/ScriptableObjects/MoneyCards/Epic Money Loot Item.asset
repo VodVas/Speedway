@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39f94f125a51b6744b98ca157792f6f7, type: 3}
   m_Name: Epic Money Loot Item
   m_EditorClassIdentifier: 
-  <DisplayName>k__BackingField: Epic
-  <Count>k__BackingField: 500
-  <CardSprite>k__BackingField: {fileID: 21300000, guid: 2e96b066dc54cd74c93bbb7a874a8b8c, type: 3}
-  <CurrencyIcon>k__BackingField: {fileID: 21300000, guid: 0d93693b79a040f45afb3225a1f0b8a6, type: 3}
+  <DisplayName>k__BackingField: "\u042D\u043F\u0438\u043A"
+  <Amount>k__BackingField: 500
+  <CardSprite>k__BackingField: {fileID: 21300000, guid: a3ccae468ce147f4f840726db573b340, type: 3}
+  <CurrencyIcon>k__BackingField: {fileID: 21300000, guid: fcb87cdb64b76ff43b710478ce0b4015, type: 3}
+  <Rarity>k__BackingField: 4

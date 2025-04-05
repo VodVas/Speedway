@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85939ab058f89414e85b0517e4648799, type: 3}
+  m_Name: Undertaker Car Loot Item
+  m_EditorClassIdentifier: 
+  <DisplayName>k__BackingField: Undertaker
+  <CarPrefab>k__BackingField: {fileID: 7742153029012900195, guid: 64109cc60fad0394c904e3e8c92adcc4, type: 3}
+  <CarId>k__BackingField: 12
+  <IsUnlocked>k__BackingField: 0

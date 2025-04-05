@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class CarCollection : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> _sceneCars = null;
+    [SerializeField] private List<GameObject> _sceneCars = new List<GameObject>();
+    [SerializeField] private CarLootDatabase _epicCarsDatabase;
 
     public List<GameObject> SceneCars => _sceneCars;
 
@@ -11,7 +12,7 @@ public class CarCollection : MonoBehaviour
     {
         if (_sceneCars == null || _sceneCars.Count == 0)
         {
-            Debug.LogError("[CarCollection] Список машин пуст или не назначен!", this);
+            Debug.LogError("[CarCollection] РЎРїРёСЃРѕРє РјР°С€РёРЅ РїСѓСЃС‚ РёР»Рё РЅРµ РёРЅРёС†РёР°Р»РёР·РёСЂРѕРІР°РЅ!", this);
             enabled = false;
             return;
         }
@@ -20,7 +21,7 @@ public class CarCollection : MonoBehaviour
         {
             if (_sceneCars[i] == null)
             {
-                Debug.LogWarning($"[CarCollection] Пустой элемент списка _sceneCars на индексе {i}!", this);
+                Debug.LogWarning($"[CarCollection] РћР±РЅР°СЂСѓР¶РµРЅ null СЌР»РµРјРµРЅС‚ РІ _sceneCars РїРѕ РёРЅРґРµРєСЃСѓ {i}!", this);
                 continue;
             }
 
@@ -28,10 +29,21 @@ public class CarCollection : MonoBehaviour
 
             if (carData == null)
             {
-                Debug.LogError($"[CarCollection] На объекте '{_sceneCars[i].name}' нет CarData!", this);
+                Debug.LogError($"[CarCollection] РќР° РѕР±СЉРµРєС‚Рµ '{_sceneCars[i].name}' РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚ РєРѕРјРїРѕРЅРµРЅС‚ CarData!", this);
             }
 
             _sceneCars[i].SetActive(false);
         }
+    }
+
+    public bool IsCarEpic(int carId)
+    {
+        if (_epicCarsDatabase == null)
+        {
+            Debug.LogWarning("[CarCollection] Р‘Р°Р·Р° РґР°РЅРЅС‹С… СЌРїРёС‡РµСЃРєРёС… РјР°С€РёРЅ РЅРµ РЅР°Р·РЅР°С‡РµРЅР°!", this);
+            return false;
+        }
+
+        return _epicCarsDatabase.IsCarEpic(carId);
     }
 }

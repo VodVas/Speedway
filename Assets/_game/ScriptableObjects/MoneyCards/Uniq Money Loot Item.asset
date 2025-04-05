@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Uniq Money Loot Item
   m_EditorClassIdentifier: 
   <DisplayName>k__BackingField: "\u0423\u043D\u0438\u043A\u0430\u043B\u044C\u043D\u044B\u0439"
-  <Count>k__BackingField: 200
-  <CardSprite>k__BackingField: {fileID: 21300000, guid: be3c86997ba6770449a969b6125a908b, type: 3}
-  <CurrencyIcon>k__BackingField: {fileID: 21300000, guid: 0d93693b79a040f45afb3225a1f0b8a6, type: 3}
+  <Amount>k__BackingField: 200
+  <CardSprite>k__BackingField: {fileID: 21300000, guid: 1d2cb48f47216eb4fa63c39b62bd97bd, type: 3}
+  <CurrencyIcon>k__BackingField: {fileID: 21300000, guid: 96ce4b806bbadce4593a32c0ad18a4f1, type: 3}
+  <Rarity>k__BackingField: 2

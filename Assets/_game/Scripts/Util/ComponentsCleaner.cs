@@ -49,7 +49,7 @@ public class ComponentsCleaner : MonoBehaviour
 
     private void DisableAllSkidMarks(GameObject root)
     {
-        foreach (var skidMark in root.GetComponentsInChildren<SkidMarks>(true))
+        foreach (var skidMark in root.GetComponentsInChildren<PlayerSkidMarks>(true))
         {
             if (skidMark != null) skidMark.enabled = false;
         }
