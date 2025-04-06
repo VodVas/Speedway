@@ -18,12 +18,24 @@ public class BoxOpener : MonoBehaviour
         if (_boxLid != null)
         {
             _lidTransform = _boxLid.transform;
+            _initialRotation = _lidTransform.localRotation;
         }
         else
         {
             Debug.LogError("BoxOpener: _boxLid not assign!", this);
             enabled = false;
             return;
+        }
+    }
+
+    [ContextMenu("ResetState")]
+    public void ResetState()
+    {
+        if (_lidTransform != null)
+        {
+            _lidTransform.localRotation = _initialRotation;
+            _isOpening = false;
+            _elapsedTime = 0f;
         }
     }
 

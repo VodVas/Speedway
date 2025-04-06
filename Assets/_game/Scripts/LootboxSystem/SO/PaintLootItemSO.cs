@@ -7,12 +7,3 @@ public class PaintLootItemSO : ScriptableObject
     [field: SerializeField] public Sprite CardSprite { get; private set; }
     [field: SerializeField] public Rarity Rarity { get; private set; }
 }
-
-public enum Rarity
-{
-    Common,
-    Rare,
-    Unique,
-    Legendary,
-    Epic
-}

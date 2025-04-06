@@ -15,7 +15,6 @@ public class PaintIntegrationSystem : MonoBehaviour
     {
         YandexGame.GetDataEvent += HandleDataLoaded;
 
-        // ���� ������ ��� ���������
         if (YandexGame.SDKEnabled)
             RefreshUnlockedMaterials();
     }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
-using Zenject;
 
+[RequireComponent(typeof(Button))]
 public abstract class CarButtonBase : MonoBehaviour
 {
     protected const string InvalidButtonMessage = "Button component is missing on the game object.";
