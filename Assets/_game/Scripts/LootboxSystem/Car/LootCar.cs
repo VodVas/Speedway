@@ -20,16 +20,19 @@ public class LootCar : MonoBehaviour, ITerminatable
             }
         }
 
-        Debug.LogError($"[LootCar] Не найдена машина {carPrefab.name} среди дочерних объектов!", this);
+        Debug.Log($"[LootCar] Не найдена машина {carPrefab.name} среди дочерних объектов!", this);
+        enabled = false;
+        return;
     }
 
-    public void TerminateLoot()
+    public void Terminate()
     {
         if (_currentCar != null)
         {
             _currentCar.SetActive(false);
             _currentCar = null;
         }
+
         Terminated?.Invoke(this);
     }
 }

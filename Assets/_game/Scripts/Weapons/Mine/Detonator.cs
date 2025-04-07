@@ -48,7 +48,12 @@ public class Detonator : MonoBehaviour, ITerminatable, IWeapon
         }
 
         yield return _wait;
+        Terminate();
+        //Terminated?.Invoke(this);
+    }
 
+    public void Terminate()
+    {
         Terminated?.Invoke(this);
     }
 }

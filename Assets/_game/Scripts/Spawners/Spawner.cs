@@ -11,7 +11,7 @@ public abstract class Spawner<T> : MonoBehaviour where T : MonoBehaviour, ITermi
 
     protected virtual void Start()
     {
-        _objectPool = new ObjectPool<T>(CreateObject, OnGetFromPool, OnReleaseToPool, OnDestroyPoolObject);
+        _objectPool = new ObjectPool<T>(CreateObject, OnGetFromPool, OnReleaseToPool, OnDestroyPoolObject, false, 10, 100);
     }
 
     private void OnDisable()
@@ -50,9 +50,14 @@ public abstract class Spawner<T> : MonoBehaviour where T : MonoBehaviour, ITermi
         obj.gameObject.SetActive(false);
     }
 
-    protected virtual void HandleObjectDeath(ITerminatable deadObject)
+    protected virtual void HandleObjectDeath(ITerminatable terminateObject)
     {
-        _objectPool.Release((T)deadObject);
+        if (terminateObject is T obj && obj != null)
+        {
+            _objectPool.Release(obj);
+        }
+
+        //_objectPool.Release((T)terminateObject);
     }
 
     protected virtual T SpawnObject()

@@ -3,11 +3,11 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Loot System/Car Loot Item")]
 public class CarLootItem : ScriptableObject
 {
-    [field: SerializeField] public string DisplayName { get; private set; }
-    [field: SerializeField] public GameObject CarPrefab { get; private set; }
-
     [SerializeField] public bool IsUnlocked { get; private set; } = false;
     [SerializeField] public int CarId { get; private set; }
+
+    [field: SerializeField] public string DisplayName { get; private set; }
+    [field: SerializeField] public GameObject CarPrefab { get; private set; }
 
     private void Awake()
     {

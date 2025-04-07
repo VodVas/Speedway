@@ -3,7 +3,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Отвечает только за визуальную часть открытия коробки
 public class BoxCrackingProcess : MonoBehaviour
 {
     [SerializeField] private Button[] _boxButtons;
@@ -13,7 +12,6 @@ public class BoxCrackingProcess : MonoBehaviour
     private int _buttonsCount;
     private int _selectedButtonIndex = -1;
 
-    // Событие завершения анимации открытия коробки
     public event Action<int> BoxOpeningAnimationComplete;
 
     private void Awake()
@@ -23,14 +21,20 @@ public class BoxCrackingProcess : MonoBehaviour
         SubscribeToButtons();
     }
 
+    private void OnDisable()
+    {
+        UnsubscribeFromButtons();
+    }
+
     private void ValidateComponents()
     {
         if (_boxButtons == null || _boxButtons.Length == 0 ||
             _boxOpeners == null || _boxOpeners.Length != _buttonsCount ||
             _boxShakers == null || _boxShakers.Length != _buttonsCount)
         {
-            Debug.LogError("[BoxCrackingProcess] Box components mismatch!");
+            Debug.Log("[BoxCrackingProcess] Box components mismatch!", this);
             enabled = false;
+            return;
         }
     }
 
@@ -71,7 +75,6 @@ public class BoxCrackingProcess : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        // Уведомляем о завершении анимации
         BoxOpeningAnimationComplete?.Invoke(_selectedButtonIndex);
     }
 
@@ -86,6 +89,7 @@ public class BoxCrackingProcess : MonoBehaviour
     public void EnableAllButtons()
     {
         _selectedButtonIndex = -1;
+
         for (int i = 0; i < _buttonsCount; i++)
         {
             _boxButtons[i].interactable = true;
@@ -95,12 +99,8 @@ public class BoxCrackingProcess : MonoBehaviour
     public void ResetState()
     {
         _selectedButtonIndex = -1;
-        EnableAllButtons();
-    }
 
-    private void OnDisable()
-    {
-        UnsubscribeFromButtons();
+        EnableAllButtons();
     }
 
     private void UnsubscribeFromButtons()

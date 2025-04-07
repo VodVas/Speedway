@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3776069729974240096}
   - component: {fileID: 2033591534982753882}
   - component: {fileID: 5217712328148249866}
+  - component: {fileID: 2352706232785913788}
   m_Layer: 9
   m_Name: Paint_Loot_Material_prefab
   m_TagString: Untagged
@@ -94,5 +95,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b5cb117a3b184f40a018ca0cb63bac8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2352706232785913788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9153954540855714646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13ba122d8a14de540819d6b46d23bd6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

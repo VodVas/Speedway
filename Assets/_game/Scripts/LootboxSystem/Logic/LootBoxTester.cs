@@ -13,7 +13,7 @@ public class LootBoxTester : MonoBehaviour
     [SerializeField] private float _epicChance = 0.1f;
 
     [ContextMenu("Run Balance Test")]
-    private void RunBalanceTest()
+    public void RunBalanceTest()
     {
         LootGeneratorCore generator = new LootGeneratorCore(
             _guaranteedEpicAfterAttempts, _cardsPerBox,

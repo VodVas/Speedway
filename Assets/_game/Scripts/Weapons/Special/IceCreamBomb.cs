@@ -48,7 +48,12 @@ public class IceCreamBomb : MonoBehaviour, ITerminatable, IWeapon
         }
 
         yield return _waitAfterExplosion;
+        Terminate();
+        //Terminated?.Invoke(this);
+    }
 
+    public void Terminate()
+    {
         Terminated?.Invoke(this);
     }
 }

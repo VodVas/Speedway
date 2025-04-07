@@ -7,7 +7,7 @@ public class LootPaintSphere : MonoBehaviour, ITerminatable
 
     private Renderer _cachedRenderer;
     private bool _initialized;
-    private int _paintId; // Добавляем поле для хранения ID
+    private int _paintId;
 
     private void Awake()
     {
@@ -15,7 +15,11 @@ public class LootPaintSphere : MonoBehaviour, ITerminatable
         _initialized = true;
     }
 
-    // Новый метод для установки ID краски
+    //private void OnDisable()
+    //{
+    //    Terminate();
+    //}
+
     public void SetPaintId(int id)
     {
         _paintId = id;
@@ -34,7 +38,7 @@ public class LootPaintSphere : MonoBehaviour, ITerminatable
         _cachedRenderer.sharedMaterial = mat;
     }
 
-    public void TerminateLoot()
+    public void Terminate()
     {
         Terminated?.Invoke(this);
     }

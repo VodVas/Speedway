@@ -13,17 +13,24 @@ public class LootboxReloadButton : MonoBehaviour
     private void OnEnable()
     {
         _reloadButton.onClick.AddListener(ResetObjects);
+        _lootBoxController.LootboxesShowed += ShowReloadButton;
     }
 
     private void OnDisable()
     {
         _reloadButton.onClick.RemoveListener(ResetObjects);
+        _lootBoxController.LootboxesShowed -= ShowReloadButton;
     }
 
-    [ContextMenu("ResetObjects")]
+    private void ShowReloadButton()
+    {
+        _reloadButtonObject.SetActive(true);
+    }
+
     private void ResetObjects()
     {
         _startButton.SetActive(true);
+        _lootBoxController.ResetLootBox();
 
         for (int i = 0; i < _boxOpener.Length; i++)
         {
@@ -35,8 +42,6 @@ public class LootboxReloadButton : MonoBehaviour
             _disableObjects[i].SetActive(false);
         }
 
-
-        _lootBoxController.ResetLootBox();
         _reloadButtonObject.SetActive(false);
     }
 }

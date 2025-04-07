@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1505132530596160681}
   - component: {fileID: 5921661905529317766}
   - component: {fileID: -7146110856343206073}
+  - component: {fileID: -2568416099067589802}
   m_Layer: 9
   m_Name: LootCar
   m_TagString: Untagged
@@ -68,6 +69,18 @@ MonoBehaviour:
   <SpeedX>k__BackingField: 0
   <SpeedY>k__BackingField: 50
   <SpeedZ>k__BackingField: 0
+--- !u!114 &-2568416099067589802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8334039235851190953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13ba122d8a14de540819d6b46d23bd6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1998425321312144175
 PrefabInstance:
   m_ObjectHideFlags: 0

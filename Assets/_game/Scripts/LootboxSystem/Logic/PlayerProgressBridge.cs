@@ -2,19 +2,18 @@ using System;
 using UnityEngine;
 using YG;
 
-// ќтвечает за взаимодействие с системой сохранени€ прогресса
 public class PlayerProgressBridge : MonoBehaviour
 {
     private const string ERROR_SAVE_DATA_NULL = "[PlayerProgressBridge] YandexGame.savesData is null!";
 
-    // —обытие награждени€ игрока
     public event Action<LootRewardType, object> PlayerRewarded;
 
     public void UnlockCar(int carId)
     {
         if (YandexGame.savesData == null)
         {
-            Debug.LogError(ERROR_SAVE_DATA_NULL);
+            Debug.Log(ERROR_SAVE_DATA_NULL);
+            enabled = false;
             return;
         }
 
@@ -28,7 +27,8 @@ public class PlayerProgressBridge : MonoBehaviour
     {
         if (YandexGame.savesData == null)
         {
-            Debug.LogError(ERROR_SAVE_DATA_NULL);
+            Debug.Log(ERROR_SAVE_DATA_NULL);
+            enabled |= false;
             return;
         }
 
@@ -41,7 +41,9 @@ public class PlayerProgressBridge : MonoBehaviour
         }
         else
         {
-            Debug.LogError($"[PlayerProgressBridge] Failed to parse money amount: {amountString}");
+            Debug.Log($"[PlayerProgressBridge] Failed to parse money amount: {amountString}");
+            enabled = false;
+            return;
         }
     }
 
@@ -49,7 +51,8 @@ public class PlayerProgressBridge : MonoBehaviour
     {
         if (YandexGame.savesData == null)
         {
-            Debug.LogError(ERROR_SAVE_DATA_NULL);
+            Debug.Log(ERROR_SAVE_DATA_NULL);
+            enabled = false;
             return;
         }
 

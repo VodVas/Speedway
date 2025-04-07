@@ -1,7 +1,8 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-// Координирует работу всех подсистем
 public class LootBoxController : MonoBehaviour
 {
     [Header("Settings")]
@@ -11,6 +12,7 @@ public class LootBoxController : MonoBehaviour
     [SerializeField] private float _uniqueChance = 0.1f;
     [SerializeField] private float _legendaryChance = 0.1f;
     [SerializeField] private float _epicChance = 0.1f;
+    [SerializeField] private float _waitBetweenCardSpawning = 0.5f;
 
     [Header("References")]
     [SerializeField] private BoxCrackingProcess _boxCrackingProcess;
@@ -21,9 +23,14 @@ public class LootBoxController : MonoBehaviour
     private LootGeneratorCore _lootGenerator;
     private int _selectedIndex = -1;
     private LootGeneratorCore.LootResult[] _currentResults;
+    private WaitForSeconds _wait;
+
+    public event Action LootboxesShowed;
 
     private void Awake()
     {
+        _wait = new WaitForSeconds(_waitBetweenCardSpawning);
+
         ValidateComponents();
     }
 
@@ -72,24 +79,25 @@ public class LootBoxController : MonoBehaviour
         _selectedIndex = selectedButtonIndex;
         _currentResults = _lootGenerator.GenerateLootSet();
 
-        // Начинаем показывать выбранную карту
         ProcessCard(selectedButtonIndex, _currentResults[selectedButtonIndex]);
-
-        // Затем остальные карты с задержкой
         StartCoroutine(ProcessRemainingCards());
     }
 
     private IEnumerator ProcessRemainingCards()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return _wait;
 
         for (int i = 0; i < _currentResults.Length; i++)
         {
             if (i != _selectedIndex)
             {
                 ProcessCard(i, _currentResults[i]);
+
+                yield return _wait;
             }
         }
+
+        LootboxesShowed?.Invoke();
     }
 
     private void ProcessCard(int cardIndex, LootGeneratorCore.LootResult result)
@@ -124,7 +132,6 @@ public class LootBoxController : MonoBehaviour
 
     private void OnCardVisualized(int cardIndex, LootRewardType type, object item)
     {
-        // Записываем прогресс только для выбранной карты
         if (cardIndex != _selectedIndex)
             return;
 
@@ -134,10 +141,6 @@ public class LootBoxController : MonoBehaviour
                 if (item is CarLootItem lootCar)
                 {
                     _progressBridge.UnlockCar(lootCar.CarId);
-                }
-                else
-                {
-                    Debug.Log("item is not CarLootItem lootCar");
                 }
                 break;
 

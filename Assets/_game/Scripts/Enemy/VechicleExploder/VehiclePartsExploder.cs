@@ -64,7 +64,12 @@ public class VehiclePartsExploder : MonoBehaviour, ITerminatable, IResettable
         {
             _isTerminated = true;
 
-            Terminated?.Invoke(this);
+            Terminate();
         }
+    }
+
+    public void Terminate()
+    {
+        Terminated?.Invoke(this);
     }
 }

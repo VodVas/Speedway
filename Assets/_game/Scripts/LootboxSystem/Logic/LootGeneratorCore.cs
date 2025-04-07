@@ -1,6 +1,5 @@
 using UnityEngine;
 
-// Отвечает только за математическую генерацию лута
 public class LootGeneratorCore
 {
     private const int DEFAULT_CARD_COUNT = 3;
@@ -18,7 +17,6 @@ public class LootGeneratorCore
 
     private int _consecutiveNonEpicCount;
 
-    // Структура, описывающая выпавшую награду
     public struct LootResult
     {
         public Rarity Rarity;
@@ -38,7 +36,6 @@ public class LootGeneratorCore
         _guaranteedEpicAfterAttempts = guaranteedEpicAfterAttempts;
         _cardsCount = cardsCount;
 
-        // Проверяем, что сумма шансов равна 1
         float totalChance = commonChance + rareChance + uniqueChance + legendaryChance + epicChance;
         float normalizeFactor = Mathf.Approximately(totalChance, 1f) ? 1f : 1f / totalChance;
 
@@ -49,7 +46,6 @@ public class LootGeneratorCore
         _epicChance = epicChance * normalizeFactor;
     }
 
-    // Генерирует полный набор наград для коробки
     public LootResult[] GenerateLootSet()
     {
         Rarity[] rarities = GenerateRarities();
@@ -65,7 +61,6 @@ public class LootGeneratorCore
         return results;
     }
 
-    // Генерирует набор редкостей с учетом гарантированного эпика
     private Rarity[] GenerateRarities()
     {
         Rarity[] rarities = new Rarity[_cardsCount];
@@ -95,7 +90,6 @@ public class LootGeneratorCore
         return rarities;
     }
 
-    // Определяет редкость на основе весов
     public Rarity DetermineRarity()
     {
         float roll = Random.value;
@@ -108,7 +102,6 @@ public class LootGeneratorCore
         return Rarity.Epic;
     }
 
-    // Определяет тип награды на основе редкости и весов
     private LootRewardType DetermineRewardType(bool isEpic)
     {
         float roll = Random.value;

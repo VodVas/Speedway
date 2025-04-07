@@ -5,136 +5,128 @@ public class LootVisualizationBuilder : MonoBehaviour
 {
     private const int CARDS_COUNT = 3;
 
-    [Header("Card Controllers")]
-    [SerializeField] private MoneyLootCardController[] _moneyLootCards = new MoneyLootCardController[CARDS_COUNT];
-    [SerializeField] private PaintLootCardController[] _colorLootCards = new PaintLootCardController[CARDS_COUNT];
-    [SerializeField] private CarLootCardController[] _carLootCards = new CarLootCardController[CARDS_COUNT];
+    [SerializeField] private MoneyLootCardController[] _moneyCards = new MoneyLootCardController[CARDS_COUNT];
+    [SerializeField] private PaintLootCardController[] _paintCards = new PaintLootCardController[CARDS_COUNT];
+    [SerializeField] private CarLootCardController[] _carCards = new CarLootCardController[CARDS_COUNT];
+    [SerializeField] private Transform[] _spherePoints = new Transform[CARDS_COUNT];
+    [SerializeField] private Transform[] _carPoints = new Transform[CARDS_COUNT];
+    [SerializeField] private CardLootSpheresSpawner _sphereSpawner;
+    [SerializeField] private CardLootCarSpawner _carSpawner;
+    [SerializeField] private OnceSoundPlayer _soundPlayer;
 
-    [Header("Spawn Points")]
-    [SerializeField] private Transform[] _sphereSpawnPoints = new Transform[CARDS_COUNT];
-    [SerializeField] private Transform[] _carSpawnPoints = new Transform[CARDS_COUNT];
-
-    [Header("Spawners")]
-    [SerializeField] private LootSpheresSpawner _lootSpheresSpawner;
-    [SerializeField] private LootCarSpawner _lootCarSpawner;
-
-    [Header("Audio")]
-    [SerializeField] private OnceSoundPlayer _cardAppearSound;
-
-    private bool _initialized;
+    private LootPaintSphere[] _spheres = new LootPaintSphere[CARDS_COUNT];
+    private LootCar[] _cars = new LootCar[CARDS_COUNT];
+    private int _sphereCount;
+    private int _carCount;
 
     public event Action<int, LootRewardType, object> CardVisualized;
 
     private void Awake()
     {
-        ValidateComponents();
+        if (!ValidateComponents()) enabled = false;
     }
 
-    private void ValidateComponents()
+    private bool ValidateComponents()
     {
-        if (_moneyLootCards.Length < CARDS_COUNT || _colorLootCards.Length < CARDS_COUNT ||
-            _carLootCards.Length < CARDS_COUNT || _sphereSpawnPoints.Length < CARDS_COUNT ||
-            _carSpawnPoints.Length < CARDS_COUNT || _lootSpheresSpawner == null ||
-            _lootCarSpawner == null || _cardAppearSound == null)
-        {
-            Debug.Log("[LootVisualizationBuilder] Components mismatch or missing!");
-            enabled = false;
-            return;
-        }
+        if (!_sphereSpawner || !_carSpawner || !_soundPlayer) return false;
 
-        for (int i = 0; i < CARDS_COUNT; i++)
+        for (var i = 0; i < CARDS_COUNT; i++)
         {
-            if (_moneyLootCards[i] == null || _colorLootCards[i] == null ||
-                _carLootCards[i] == null || _sphereSpawnPoints[i] == null ||
-                _carSpawnPoints[i] == null)
-            {
-                Debug.Log($"[LootVisualizationBuilder] Required component at index {i} is null!");
-                enabled = false;
-                return;
-            }
+            if (!_moneyCards[i] || !_paintCards[i] || !_carCards[i] ||
+                !_spherePoints[i] || !_carPoints[i]) return false;
         }
-
-        _initialized = true;
+        return true;
     }
 
-    public void VisualizeCar(int cardIndex, CarLootItem carItem)
+    public void VisualizeCar(int index, CarLootItem item)
     {
-        if (!_initialized || cardIndex < 0 || cardIndex >= CARDS_COUNT || carItem == null)
-            return;
+        if (!IsValidRequest(index, item)) return;
 
-        LootCar car = _lootCarSpawner.SpawnLootCar(_carSpawnPoints[cardIndex].position);
+        var car = _carSpawner.SpawnCarForCard(_carPoints[index].position, index);
+        if (!car) return;
 
-        if (car != null)
-        {
-            car.Initialize(carItem.CarPrefab);
-
-            _carLootCards[cardIndex].gameObject.SetActive(true);
-            _carLootCards[cardIndex].ShowCard(car.gameObject);
-            _colorLootCards[cardIndex].gameObject.SetActive(false);
-            _moneyLootCards[cardIndex].gameObject.SetActive(false);
-
-            if (_cardAppearSound != null)
-                _cardAppearSound.Play();
-
-            CardVisualized?.Invoke(cardIndex, LootRewardType.Car, carItem);
-        }
-        else
-        {
-            Debug.Log("[LootVisualizationBuilder] Failed to spawn car!");
-            enabled = false;
-            return;
-        }
+        car.Initialize(item.CarPrefab);
+        StoreAndShow(index, car, _cars, ref _carCount, _carCards[index], item);
     }
 
-    public void VisualizeMoney(int cardIndex, MoneyLootItem moneyItem)
+    public void VisualizeMoney(int index, MoneyLootItem item)
     {
-        if (!_initialized || cardIndex < 0 || cardIndex >= CARDS_COUNT || moneyItem == null)
-            return;
+        if (!IsValidRequest(index, item)) return;
 
-        _moneyLootCards[cardIndex].gameObject.SetActive(true);
-        _moneyLootCards[cardIndex].ShowCard(moneyItem);
-        _colorLootCards[cardIndex].gameObject.SetActive(false);
-        _carLootCards[cardIndex].gameObject.SetActive(false);
-
-        if (_cardAppearSound != null) _cardAppearSound.Play();
-
-        CardVisualized?.Invoke(cardIndex, LootRewardType.Money, moneyItem);
+        _moneyCards[index].gameObject.SetActive(true);
+        _moneyCards[index].ShowCard(item);
+        UpdateCardState(index, LootRewardType.Money, item);
     }
 
-    public void VisualizePaint(int cardIndex, PaintLootItemSO paintItem, Rarity rarity)
+    public void VisualizePaint(int index, PaintLootItemSO item, Rarity rarity)
     {
-        if (!_initialized || cardIndex < 0 || cardIndex >= CARDS_COUNT || paintItem == null)
-            return;
+        if (!IsValidRequest(index, item)) return;
 
-        LootPaintSphere sphere = _lootSpheresSpawner.SpawnLootSphere(
-            rarity, _sphereSpawnPoints[cardIndex].position);
+        var sphere = _sphereSpawner.SpawnSphereForCard(rarity, _spherePoints[index].position, index);
+        if (!sphere) return;
 
-        if (sphere != null)
-        {
-            _colorLootCards[cardIndex].gameObject.SetActive(true);
-            _colorLootCards[cardIndex].ShowCard(paintItem, sphere.gameObject);
-            _carLootCards[cardIndex].gameObject.SetActive(false);
-            _moneyLootCards[cardIndex].gameObject.SetActive(false);
-
-            if (_cardAppearSound != null) _cardAppearSound.Play();
-
-            CardVisualized?.Invoke(cardIndex, LootRewardType.Paint, sphere);
-        }
-        else
-        {
-            Debug.Log("[LootVisualizationBuilder] Failed to spawn paint sphere!");
-            enabled = false;
-            return;
-        }
+        StoreAndShow(index, sphere, _spheres, ref _sphereCount, _paintCards[index], item);
     }
 
     public void ResetAllVisuals()
     {
-        for (int i = 0; i < CARDS_COUNT; i++)
+        for (var i = 0; i < CARDS_COUNT; i++)
         {
-            _moneyLootCards[i].gameObject.SetActive(false);
-            _colorLootCards[i].gameObject.SetActive(false);
-            _carLootCards[i].gameObject.SetActive(false);
+            _moneyCards[i].gameObject.SetActive(false);
+            _paintCards[i].gameObject.SetActive(false);
+            _carCards[i].gameObject.SetActive(false);
         }
+
+        ReleaseObjects(_cars, ref _carCount);
+        ReleaseObjects(_spheres, ref _sphereCount);
+    }
+
+    private void StoreAndShow<T>(int index, T obj, T[] array, ref int count,
+        MonoBehaviour card, object item) where T : Component
+    {
+        array[count++] = obj;
+        card.gameObject.SetActive(true);
+
+        switch (card)
+        {
+            case CarLootCardController carCard:
+                carCard.ShowCard(obj.gameObject);
+                break;
+            case PaintLootCardController paintCard:
+                paintCard.ShowCard((item as PaintLootItemSO), obj.gameObject);
+                break;
+        }
+
+        _soundPlayer.Play();
+        CardVisualized?.Invoke(index, GetRewardType<T>(), item);
+    }
+
+    private LootRewardType GetRewardType<T>()
+    {
+        return typeof(T) == typeof(LootCar) ? LootRewardType.Car :
+            typeof(T) == typeof(LootPaintSphere) ? LootRewardType.Paint :
+            LootRewardType.Money;
+    }
+
+    private bool IsValidRequest<T>(int index, T item)
+    {
+        if (index < 0 || index >= CARDS_COUNT || item == null)
+        {
+            Debug.LogError($"Invalid request: {typeof(T).Name}");
+            return false;
+        }
+        return true;
+    }
+
+    private void UpdateCardState(int index, LootRewardType type, object item)
+    {
+        _soundPlayer.Play();
+        CardVisualized?.Invoke(index, type, item);
+    }
+
+    private void ReleaseObjects<T>(T[] items, ref int count) where T : ITerminatable
+    {
+        for (var i = 0; i < count; i++) items[i]?.Terminate();
+        count = 0;
     }
 }
