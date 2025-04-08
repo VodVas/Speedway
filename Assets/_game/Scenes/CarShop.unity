@@ -5159,9 +5159,57 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 485951439}
     m_Modifications:
+    - target: {fileID: 541867867273603228, guid: 0c06de4c887db3044830e9e862e6d8ab, type: 3}
+      propertyPath: m_Maskable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 541867867273603228, guid: 0c06de4c887db3044830e9e862e6d8ab, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 685122012483628170, guid: 0c06de4c887db3044830e9e862e6d8ab, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1963142459895435054, guid: 0c06de4c887db3044830e9e862e6d8ab, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 698.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1963142459895435054, guid: 0c06de4c887db3044830e9e862e6d8ab, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -153.99997
+      objectReference: {fileID: 0}
+    - target: {fileID: 3170001495798114241, guid: 0c06de4c887db3044830e9e862e6d8ab, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4011690701340716934, guid: 0c06de4c887db3044830e9e862e6d8ab, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4667506960235235571, guid: 0c06de4c887db3044830e9e862e6d8ab, type: 3}
       propertyPath: m_Name
       value: CarsParametrs
+      objectReference: {fileID: 0}
+    - target: {fileID: 4667506960235235571, guid: 0c06de4c887db3044830e9e862e6d8ab, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4677914114821515044, guid: 0c06de4c887db3044830e9e862e6d8ab, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5449626258675995871, guid: 0c06de4c887db3044830e9e862e6d8ab, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5578525482009201249, guid: 0c06de4c887db3044830e9e862e6d8ab, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5760507338968429940, guid: 0c06de4c887db3044830e9e862e6d8ab, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6556693889032278649, guid: 0c06de4c887db3044830e9e862e6d8ab, type: 3}
       propertyPath: m_Pivot.x
@@ -5247,8 +5295,23 @@ PrefabInstance:
       propertyPath: m_Maskable
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8791212262775413698, guid: 0c06de4c887db3044830e9e862e6d8ab, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9009056175594673055, guid: 0c06de4c887db3044830e9e862e6d8ab, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9096771561810844154, guid: 0c06de4c887db3044830e9e862e6d8ab, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 685122012483628170, guid: 0c06de4c887db3044830e9e862e6d8ab, type: 3}
+    - {fileID: 9009056175594673055, guid: 0c06de4c887db3044830e9e862e6d8ab, type: 3}
+    - {fileID: 7969345002764442569, guid: 0c06de4c887db3044830e9e862e6d8ab, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c06de4c887db3044830e9e862e6d8ab, type: 3}
@@ -5267,6 +5330,10 @@ PrefabInstance:
     - target: {fileID: 2628916534808373712, guid: e549a013ced6f0844aa2693cb6163d10, type: 3}
       propertyPath: m_Name
       value: MoneyPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 2628916534808373712, guid: e549a013ced6f0844aa2693cb6163d10, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4502669410270200514, guid: e549a013ced6f0844aa2693cb6163d10, type: 3}
       propertyPath: m_Pivot.x
@@ -5519,9 +5586,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 485951439}
     m_Modifications:
+    - target: {fileID: 702921010125467618, guid: efe3c87321f42f642bc7630522ab36d8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 926215658685368571, guid: efe3c87321f42f642bc7630522ab36d8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1000976235613344995, guid: efe3c87321f42f642bc7630522ab36d8, type: 3}
       propertyPath: m_Name
       value: ExitButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 1126784391157300698, guid: efe3c87321f42f642bc7630522ab36d8, type: 3}
+      propertyPath: m_Name
+      value: Roll
+      objectReference: {fileID: 0}
+    - target: {fileID: 1126784391157300698, guid: efe3c87321f42f642bc7630522ab36d8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2407569710399746659, guid: efe3c87321f42f642bc7630522ab36d8, type: 3}
       propertyPath: m_Pivot.x

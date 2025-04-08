@@ -493,9 +493,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a8c6d7666705734da9b8013c660ce48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speedX: 0
-  _speedY: 0
-  _speedZ: 500
+  _ignoreTimescale: 0
+  <SpeedX>k__BackingField: 0
+  <SpeedY>k__BackingField: 0
+  <SpeedZ>k__BackingField: 350
 --- !u!1 &2572262797406854495
 GameObject:
   m_ObjectHideFlags: 0
@@ -932,7 +933,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 557ad0c19e48c934abde36b493041952, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -1018,7 +1019,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a894aef4a25c92e4ea388005050b9b3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sceneIndex: 4
+  _loadMode: 1
+  _sceneName: 
 --- !u!1 &8860379210556076400
 GameObject:
   m_ObjectHideFlags: 0

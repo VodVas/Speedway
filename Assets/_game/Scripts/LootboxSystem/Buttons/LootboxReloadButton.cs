@@ -5,6 +5,7 @@ public class LootboxReloadButton : MonoBehaviour
 {
     [SerializeField] private GameObject _startButton;
     [SerializeField] private GameObject _reloadButtonObject;
+    [SerializeField] private GameObject _buyCurrencyButtonObject;
     [SerializeField] private GameObject[] _disableObjects;
     [SerializeField] private LootBoxController _lootBoxController;
     [SerializeField] private BoxOpener[] _boxOpener;
@@ -43,5 +44,6 @@ public class LootboxReloadButton : MonoBehaviour
         }
 
         _reloadButtonObject.SetActive(false);
+        _buyCurrencyButtonObject.SetActive(true);
     }
 }
