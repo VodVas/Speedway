@@ -4880,7 +4880,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3078336080729366878}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -4928,7 +4928,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <DamageAmount>k__BackingField: 10
-  <ParticleShoot>k__BackingField: {fileID: 3038796605649449119}
+  <OwnerVehicle>k__BackingField: {fileID: 0}
+  _mineSpawner: {fileID: 0}
   _carController: {fileID: 0}
 --- !u!114 &1121934669960137798
 MonoBehaviour:
@@ -4955,9 +4956,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _upgradeRoot: {fileID: 3078336080729366878}
-  <UpgradeId>k__BackingField: 5
+  <UpgradeId>k__BackingField: 11
   <UpgradeName>k__BackingField: "\u041C\u0438\u043D\u0430"
   <Price>k__BackingField: 100
   <UpgradeType>k__BackingField: 0
-  <UpgradeValue>k__BackingField: 0
-  <UpgradeDescription>k__BackingField: 
+  <UpgradeValue>k__BackingField: 50
+  <UpgradeDescription>k__BackingField: "\u041C\u0438\u043D\u0430"

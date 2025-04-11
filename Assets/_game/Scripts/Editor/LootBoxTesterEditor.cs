@@ -32,7 +32,7 @@ public class LootBoxTesterEditor : Editor
         DrawDefaultInspector();
     }
 
-    [MenuItem("Tools/Apocalypse Test/Run Test #&t")]
+    [MenuItem("Tools/Apocalypse/Run Test #&t")]
     private static void RunTestMenu() => RunTestLogic();
 
     private static void RunTestLogic()

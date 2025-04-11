@@ -15,6 +15,8 @@ public class GarageNavigator : MonoBehaviour
 
     public event Action OnGarageReady;
 
+    public int CurrentCarID => _selectionCycler?.GetCurrentCarData()?.Id ?? -1;
+
     private void Start()
     {
         InitializeGarageSystem();
@@ -224,7 +226,7 @@ public class GarageNavigator : MonoBehaviour
 
 //        if (_carsInScene == null || _carsInScene.Count == 0)
 //        {
-//            Debug.LogWarning("[GarageNavigator] Список машин в сцене пуст или не задан!");
+//            Debug.LogWarning("[GarageNavigator] пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ!");
 //            enabled = false;
 //            return;
 //        }

@@ -26,7 +26,7 @@ public class CarPurchaseValidator
         {
             if (_cars[i].TryGetComponent(out CarData carData))
             {
-                bool isEpic = _carCollection.IsCarEpic(carData.Id);
+                bool isEpic = _carCollection.IsCarEpic(carData.Id); // TODO: ????
 
                 if (!YandexGame.savesData.HasCar(carData.Id))
                 {

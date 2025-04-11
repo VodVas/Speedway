@@ -51,7 +51,9 @@ public class CarShop : MonoBehaviour
         }
         else
         {
-            Debug.Log("[CarShop] Нет машин для показа или покупки!");
+            Debug.Log("[CarShop] Нет машин для показа или покупки!", this);
+            enabled = false;
+            return;
         }
 
         UpdateUI();
@@ -59,30 +61,29 @@ public class CarShop : MonoBehaviour
 
     public void BuyCurrentCar()
     {
-        // Проверка на null и пустые коллекции
         if (_purchaseValidator == null || _selectionCycler == null)
         {
-            Debug.LogWarning("[CarShop] Системы покупки не инициализированы!");
+            Debug.LogWarning("[CarShop] Системы покупки не инициализированы!", this);
+            enabled = false;
             return;
         }
 
-        // Проверка доступных машин
         if (_purchaseValidator.AvailableCarIndices.Count == 0)
         {
-            Debug.Log("[CarShop] Нет доступных машин для покупки!");
+            Debug.Log("[CarShop] Нет доступных машин для покупки!", this);
             _carShopUI.DisplayNoCarsAvailable();
             return;
         }
 
-        // Получаем текущую машину с проверкой
         CarData currentCar = _selectionCycler.GetCurrentCarData();
+
         if (currentCar == null)
         {
-            Debug.LogError("[CarShop] Не удалось получить данные текущей машины!");
+            Debug.LogError("[CarShop] Не удалось получить данные текущей машины!", this);
+            enabled = false;
             return;
         }
 
-        // Проверка блокировки эпической машины
         bool isEpic = _selectionCycler.IsCurrentCarEpic();
         bool isUnlocked = !isEpic || _epicCarsDatabase.IsCarUnlocked(currentCar.Id);
 
@@ -92,161 +93,33 @@ public class CarShop : MonoBehaviour
             return;
         }
 
-        // Пытаемся купить машину
         int realIndex = _purchaseValidator.AvailableCarIndices[_selectionCycler.CurrentIndex];
         bool purchaseSuccess = _purchaseValidator.TryBuyCar(realIndex);
 
         if (purchaseSuccess)
         {
-            // Успешная покупка
             _selectionCycler.SetCarActive(false);
 
-            // Обновляем список доступных машин
             _purchaseValidator.RecalculateAvailability();
             _selectionCycler.RevalidateCurrentIndex();
 
-            // Проверяем остались ли машины для показа
             if (_purchaseValidator.AvailableCarIndices.Count > 0)
             {
-                // Переключаем на следующую доступную машину
                 _selectionCycler.SetCarActive(true);
             }
             else
             {
-                Debug.Log("[CarShop] Все машины куплены!");
+                Debug.Log("[CarShop] Все машины куплены!", this);
                 _carShopUI.DisplayNoCarsAvailable();
             }
 
-            // Обновляем UI
             UpdateUI();
         }
         else
         {
-            Debug.Log("[CarShop] Недостаточно денег для покупки!");
+            Debug.Log("[CarShop] Недостаточно денег для покупки!", this);
         }
     }
-
-    //public void BuyCurrentCar()
-    //{
-    //    if (_purchaseValidator == null || _selectionCycler == null)
-    //        return;
-
-    //    if (_purchaseValidator.AvailableCarIndices.Count == 0)
-    //    {
-    //        Debug.Log("[CarShop] Нет доступных машин для покупки!");
-    //        return;
-    //    }
-
-    //    CarData currentCar = _selectionCycler.GetCurrentCarData();
-    //    if (currentCar == null)
-    //        return;
-
-    //    // Удален блок с прямой проверкой IsCurrentCarEpic()
-    //    // Перенесена логика проверки в общий поток
-
-    //    int realIndex = _purchaseValidator.AvailableCarIndices[_selectionCycler.CurrentIndex];
-    //    bool canBuy = _purchaseValidator.TryBuyCar(realIndex);
-
-    //    bool isEpic = _selectionCycler.IsCurrentCarEpic();
-    //    bool isUnlocked = !isEpic || _epicCarsDatabase.IsCarUnlocked(currentCar.Id);
-
-    //    if (isEpic && !isUnlocked)
-    //    {
-    //        _carShopUI.DisplayEpicCarLocked();
-    //        return;
-    //    }
-
-    //    if (canBuy)
-    //    {
-    //        // Существующая логика обработки успешной покупки
-    //        CarData data = _selectionCycler.GetCurrentCarData();
-    //        _selectionCycler.SetCarActive(false);
-    //        _selectionCycler.RevalidateCurrentIndex();
-
-    //        if (_purchaseValidator.AvailableCarIndices.Count > 0)
-    //        {
-    //            _selectionCycler.SetCarActive(true);
-    //        }
-    //        else
-    //        {
-    //            Debug.Log("[CarShop] Все машины куплены.");
-    //        }
-
-    //        UpdateUI();
-    //    }
-    //    else
-    //    {
-    //        Debug.Log("[CarShop] Недостаточно денег для покупки.");
-    //    }
-
-    //    UpdateUI();
-    //}
-
-
-
-
-
-
-    //public void BuyCurrentCar()
-    //{
-    //    if (_purchaseValidator == null || _selectionCycler == null)
-    //        return;
-
-    //    if (_purchaseValidator.AvailableCarIndices.Count == 0)
-    //    {
-    //        Debug.Log("[CarShop] Нет доступных машин для покупки!");
-    //        return;
-    //    }
-
-    //    CarData currentCar = _selectionCycler.GetCurrentCarData();
-    //    if (currentCar == null)
-    //        return;
-
-    //    if (_selectionCycler.IsCurrentCarEpic())
-    //    {
-    //        _carShopUI.DisplayEpicCarLocked();
-    //        return;
-    //    }
-
-    //    int realIndex = _purchaseValidator.AvailableCarIndices[_selectionCycler.CurrentIndex];
-    //    bool canBuy = _purchaseValidator.TryBuyCar(realIndex);
-
-
-    //    bool isEpic = _selectionCycler.IsCurrentCarEpic();
-    //    bool isUnlocked = !isEpic || _epicCarsDatabase.IsCarUnlocked(currentCar.Id);
-
-    //    if (isEpic && !isUnlocked)
-    //    {
-    //        _carShopUI.DisplayEpicCarLocked();
-    //        return;
-    //    }
-
-
-
-    //    if (canBuy)
-    //    {
-    //        CarData data = _selectionCycler.GetCurrentCarData();
-    //        _selectionCycler.SetCarActive(false);
-    //        _selectionCycler.RevalidateCurrentIndex();
-
-    //        if (_purchaseValidator.AvailableCarIndices.Count > 0)
-    //        {
-    //            _selectionCycler.SetCarActive(true);
-    //        }
-    //        else
-    //        {
-    //            Debug.Log("[CarShop] Все машины куплены.");
-    //        }
-
-    //        UpdateUI();
-    //    }
-    //    else
-    //    {
-    //        Debug.Log("[CarShop] Недостаточно денег для покупки.");
-    //    }
-
-    //    UpdateUI();
-    //}
 
     public void SwitchNextCar()
     {
@@ -259,7 +132,7 @@ public class CarShop : MonoBehaviour
         }
         else
         {
-            Debug.Log("[CarShop] Нет следующей машины, все машины куплены.");
+            Debug.Log("[CarShop] Нет следующей машины, все машины куплены.", this);
         }
 
         UpdateUI();
@@ -276,7 +149,7 @@ public class CarShop : MonoBehaviour
         }
         else
         {
-            Debug.Log("[CarShop] Нет предыдущей машины, все машины куплены.");
+            Debug.Log("[CarShop] Нет предыдущей машины, все машины куплены.", this);
         }
 
         UpdateUI();
@@ -304,9 +177,9 @@ public class CarShop : MonoBehaviour
         _carShopUI.UpdatePlayerMoney(YandexGame.savesData.Money);
 
         bool isEpic = _selectionCycler.IsCurrentCarEpic();
-        Debug.Log($"[CarShop] Текущая машина: {currentCar.CarName} (ID: {currentCar.Id})");
-        Debug.Log($"[CarShop] Это эпическая машина: {isEpic}");
-        Debug.Log($"[CarShop] Разблок: {_epicCarsDatabase.IsCarUnlocked(currentCar.Id)}");
+        //Debug.Log($"[CarShop] Текущая машина: {currentCar.CarName} (ID: {currentCar.Id})");
+       // Debug.Log($"[CarShop] Это эпическая машина: {isEpic}");
+       // Debug.Log($"[CarShop] Разблок: {_epicCarsDatabase.IsCarUnlocked(currentCar.Id)}");
 
         bool isUnlocked = !isEpic || _epicCarsDatabase.IsCarUnlocked(currentCar.Id);
 

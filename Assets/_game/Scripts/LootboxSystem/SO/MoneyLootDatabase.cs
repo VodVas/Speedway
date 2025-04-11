@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Loot System/Money Loot Database")]
+[CreateAssetMenu(menuName = "Apocalypse/Loot System/Money Loot Database")]
 public class MoneyLootDatabase : ScriptableObject
 {
     [SerializeField] private MoneyLootItem _commonItem;

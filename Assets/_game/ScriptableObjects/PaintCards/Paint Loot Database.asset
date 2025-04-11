@@ -13,12 +13,29 @@ MonoBehaviour:
   m_Name: Paint Loot Database
   m_EditorClassIdentifier: 
   _commonItems:
+  - {fileID: 11400000, guid: 1c2f5c4f6cb4edf44865348f1b141af3, type: 2}
   - {fileID: 11400000, guid: dffb8617c62836447b2e3726079fece6, type: 2}
+  - {fileID: 11400000, guid: 4946414899f8a3748aee29cda4e07f2f, type: 2}
+  - {fileID: 11400000, guid: 6c7a0ac44a3b5f640815d07eb470a58e, type: 2}
   _rareItems:
+  - {fileID: 11400000, guid: 7e664d3c29aa50b4d9b17fe37df33175, type: 2}
   - {fileID: 11400000, guid: 512dd9514ce45644aa979309041f1a62, type: 2}
+  - {fileID: 11400000, guid: 74d8e869bd3cba943aaf34110ba486fe, type: 2}
+  - {fileID: 11400000, guid: b0cae30b9a6139d40a273154ca16ad08, type: 2}
   _uniqueItems:
+  - {fileID: 11400000, guid: 3aab86036a5f05f4ab97dd6018a5ea62, type: 2}
+  - {fileID: 11400000, guid: e04c52d1912fed2428187e2a134bdc4a, type: 2}
   - {fileID: 11400000, guid: 8250ecea7642c0042bc486773dc99529, type: 2}
+  - {fileID: 11400000, guid: bba2ea51cd2d9cb49bd1af9997fce627, type: 2}
   _legendaryItems:
+  - {fileID: 11400000, guid: d6bb709ff647fb142b4630826bae388c, type: 2}
+  - {fileID: 11400000, guid: b1f0fb7c1093de34aa2409fa85b5b5f0, type: 2}
   - {fileID: 11400000, guid: 39bfa9de4c372ec4b98bab3385da7f08, type: 2}
+  - {fileID: 11400000, guid: 0f9beec34e38c314999bee5e24cd4edb, type: 2}
+  - {fileID: 11400000, guid: fc80aa6424b0ea74197d58c75676e99c, type: 2}
   <EpicItems>k__BackingField:
+  - {fileID: 11400000, guid: 7575904e76dbab04aa81fcc4675890d8, type: 2}
   - {fileID: 11400000, guid: e3f7c5de0da2f8c44a3b15c5479aa7a1, type: 2}
+  - {fileID: 11400000, guid: 217dcab18cad9244dac38804485aaaa4, type: 2}
+  - {fileID: 11400000, guid: 6abc5c553701b3e4f843348731339e1f, type: 2}
+  - {fileID: 11400000, guid: 1819fccbe3e2ee042b758ae9e18016e3, type: 2}

@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4173432339263517243
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5619471645281427267}
+  - component: {fileID: 5440118948943585314}
+  m_Layer: 0
+  m_Name: SpheresMaterialsRegistry
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5619471645281427267
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4173432339263517243}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1650, y: 390, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5440118948943585314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4173432339263517243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d650495c4cfae246824e0826587fd10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _commonPaints:
+  - _paintId: 0
+    _paintMaterial: {fileID: 2100000, guid: 561949ac186553647a9f22a215091919, type: 2}
+  _rarePaints:
+  - _paintId: 1
+    _paintMaterial: {fileID: 2100000, guid: 4bed454ac150b6c42b182fc0949feb7f, type: 2}
+  _uniquePaints:
+  - _paintId: 2
+    _paintMaterial: {fileID: 2100000, guid: 1541205cc6bd269408ddadf546ecd5c2, type: 2}
+  _legendaryPaints:
+  - _paintId: 3
+    _paintMaterial: {fileID: 2100000, guid: d7721e788b7cf9f45ab4e5ed83ed5680, type: 2}
+  _epicPaints:
+  - _paintId: 4
+    _paintMaterial: {fileID: 2100000, guid: c5b7db642e61bb34f876f70d5e148818, type: 2}

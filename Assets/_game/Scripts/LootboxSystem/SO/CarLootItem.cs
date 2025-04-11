@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Loot System/Car Loot Item")]
+[CreateAssetMenu(menuName = "Apocalypse/Loot System/Car Loot Item")]
 public class CarLootItem : ScriptableObject
 {
     [SerializeField] public bool IsUnlocked { get; private set; } = false;

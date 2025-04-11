@@ -1,281 +1,145 @@
 using UnityEngine;
 using System;
-using System.Collections.Generic;
 using YG;
+using ArcadeVP;
+
 
 [RequireComponent(typeof(CarData))]
-public class CarModifications : MonoBehaviour
+public sealed class CarModifications : MonoBehaviour
 {
-    [SerializeField] private List<CarModification> _modifications;
+    [SerializeField] private BaseCarModification[] _modifications;
     [SerializeField] private PaintIntegrationSystem _paintSystem;
 
-    private CarData _carData;
+    [field: SerializeField] public ColorCarModification _colorModification { get; private set; }
 
-    public int CarId { get; private set; }
-    public IReadOnlyList<CarModification> GetAll() => _modifications;
+    private CarData _carData;
+    private int _carId;
+    private bool _isInitialized;
+
+    public int CarId => _carId;
+    public BaseCarModification[] Modifications => _modifications;
 
     private void Awake()
     {
         _carData = GetComponent<CarData>();
-        CarId = _carData.Id;
+        _carId = _carData.Id;
 
-        if (CarId < 0)
+        if (_carId < 0 || _carData == null || _modifications == null)
         {
-            Debug.LogError($"[CarModifications] Неверный CarId: {CarId}", this);
-            enabled = false;
-            return;
-        }
-        if (_carData == null)
-        {
-            Debug.LogError($"[CarModifications] Не найден CarData!", this);
-            enabled = false;
-            return;
-        }
-        if (_modifications == null)
-        {
-            Debug.LogError($"[CarModifications] Список модификаций пуст!", this);
+            Debug.LogError($"[{GetType().Name}] Initialization failed!");
             enabled = false;
             return;
         }
 
         InitializeMaterials();
+        _isInitialized = true;
     }
 
     private void InitializeMaterials()
+    {
+        if (_paintSystem == null) _paintSystem = FindObjectOfType<PaintIntegrationSystem>();
+
+        for (int i = 0; i < _modifications.Length; i++)
+        {
+            if (_modifications[i] is ColorCarModification colorMod)
+            {
+                colorMod.RefreshMaterials(_paintSystem);
+            }
+        }
+    }
+
+    public void InitializePurchasedMods(Func<int, int, int> getModCount)
+    {
+        ApplyModifications(getModCount, null, null);
+    }
+
+    public void ApplyModifications(Func<int, int, int> getModCount, ArcadeVP.ArcadeVehicleController controller, Health health)
+    {
+        if (!_isInitialized) return;
+
+        ApplyBaseStats(controller, health);
+        ApplyPurchasedMods(getModCount, controller, health);
+        ApplyColors();
+    }
+
+    private void ApplyBaseStats(ArcadeVehicleController carController, Health health)
+    {
+        if (carController != null)
+        {
+            carController.SetMaxSpeed(_carData.Speed);
+            carController.SetAcceleration(_carData.Acceleration);
+            carController.SetTurn(_carData.Turn);
+        }
+
+        health?.Init(_carData.Armor);
+    }
+
+    public void ApplyPurchasedMods(Func<int, int, int> getModCount,
+        ArcadeVehicleController c, Health h)
+    {
+        for (int i = 0; i < _modifications.Length; i++)
+        {
+            if (_modifications[i] is StatsCarModification statsMod)
+            {
+                int count = getModCount(_carId, statsMod.ModificationId);
+                if (count > 0) statsMod.TryApplyEffect(count, c, h);
+            }
+        }
+    }
+
+    public void ApplyColors()
     {
         if (_paintSystem == null)
         {
             _paintSystem = FindObjectOfType<PaintIntegrationSystem>();
             if (_paintSystem == null)
             {
-                Debug.LogError("[CarModifications] PaintIntegrationSystem не найден на сцене!");
+                Debug.LogError($"[{GetType().Name}] PaintIntegrationSystem not found!", this);
                 return;
             }
         }
 
-        foreach (var mod in _modifications)
+        if (!_paintSystem.IsInitialized)
         {
-            if (mod == null || mod.Type != CarModification.ModificationType.Color) continue;
-            mod.UpdateRuntimeMaterials(_paintSystem);
+            Debug.LogWarning($"[{GetType().Name}] PaintSystem not initialized, trying to initialize...", this);
+            YandexGame.GetDataEvent?.Invoke();
+        }
+
+        Debug.Log($"[{GetType().Name}] Applying colors for car ID: {_carId}");
+        
+        for (int i = 0; i < _modifications.Length; i++)
+        {
+            if (_modifications[i] is ColorCarModification colorMod)
+            {
+                colorMod.RefreshMaterials(_paintSystem);
+                
+                int index = YandexGame.savesData.GetSelectedMaterialIndex(_carId, colorMod.ModificationId);
+                Debug.Log($"[{GetType().Name}] Applying color for mod {colorMod.ModificationName}, selected index: {index}");
+                
+                ApplyColor(colorMod, index);
+            }
         }
     }
 
-    public void ApplyPurchasedMods(Func<int, int, int> getCarModCount, ArcadeVP.ArcadeVehicleController controller, Health health)
+    private void ApplyColor(ColorCarModification mod, int index)
     {
-        if (controller == null && health == null)
+        Material mat = mod.GetMaterial(index);
+        if (mat == null)
         {
-            Debug.LogError("[CarModifications] Не передан controller или health!");
+            Debug.LogWarning($"[{GetType().Name}] Material is null for index {index} in {mod.ModificationName}", this);
+            return;
+        }
+        
+        if (mod.TargetRenderer == null)
+        {
+            Debug.LogError($"[{GetType().Name}] Target renderer is null for {mod.ModificationName}", this);
             return;
         }
 
-        ApplyStandardMods(controller, health);
-        ApplyPurchasedCountMods(getCarModCount, controller, health);
-        ApplyColorMods();
-    }
-
-    private void ApplyStandardMods(ArcadeVP.ArcadeVehicleController controller, Health health)
-    {
-        if (controller != null)
-        {
-            controller.SetMaxSpeed(_carData.Speed);
-            controller.SetAcceleration(_carData.Acceleration);
-            controller.SetTurn(_carData.Turn);
-        }
-
-        if (health != null)
-        {
-            health.Init(_carData.Armor);
-        }
-    }
-
-    private void ApplyPurchasedCountMods(Func<int, int, int> getCarModCount, ArcadeVP.ArcadeVehicleController controller, Health health)
-    {
-        foreach (var mod in _modifications)
-        {
-            if (mod == null || mod.Type == CarModification.ModificationType.Color) continue;
-
-            int count = getCarModCount(CarId, mod.ModificationId);
-
-            if (count < 1) continue;
-
-            ApplyModEffect(mod, count, controller, health);
-        }
-    }
-
-    private void ApplyModEffect(CarModification mod, int count, ArcadeVP.ArcadeVehicleController controller, Health health)
-    {
-        float total = mod.Value * count;
-
-        switch (mod.Type)
-        {
-            case CarModification.ModificationType.Speed:
-                controller.SetMaxSpeed(controller.GetMaxSpeed() + total);
-                break;
-            case CarModification.ModificationType.Acceleration:
-                controller.SetAcceleration(controller.GetAcceleration() + total);
-                break;
-            case CarModification.ModificationType.Turn:
-                controller.SetTurn(controller.GetTurn() + total);
-                break;
-            case CarModification.ModificationType.Health:
-                health.Init(health.Max + total);
-                break;
-        }
-    }
-
-    private void ApplyColorMods()
-    {
-        foreach (var mod in _modifications)
-        {
-            if (mod == null || mod.Type != CarModification.ModificationType.Color) continue;
-
-            int selectedIndex = YandexGame.savesData.GetSelectedMaterialIndex(CarId, mod.ModificationId);
-            Material material = mod.GetRuntimeMaterial(selectedIndex);
-
-            if (material != null && mod.TargetRenderer != null)
-            {
-                mod.TargetRenderer.material = material;
-            }
-            else
-            {
-                Debug.LogWarning($"[CarModifications] Не удалось применить материал для модификации {mod.ModificationName}");
-            }
-        }
-    }
-
-    public void InitializePurchasedMods(Func<int, int, int> getCarModCount)
-    {
-        if (!enabled) return;
-        if (_modifications.Count == 0) return;
-
-        for (int i = 0; i < _modifications.Count; i++)
-        {
-            CarModification carModification = _modifications[i];
-
-            if (carModification == null)
-                continue;
-        }
+        Debug.Log($"[{GetType().Name}] Applied material for {mod.ModificationName}, index: {index}");
+        
+        Material[] materials = mod.TargetRenderer.materials;
+        for (int i = 0; i < materials.Length; i++) materials[i] = mat;
+        mod.TargetRenderer.materials = materials;
     }
 }
-
-
-
-
-
-
-
-
-//public sealed class CarModifications : MonoBehaviour
-//{
-//    [SerializeField] private List<CarModification> _modifications;
-
-//    //[field: SerializeField] public int CarId { get; private set; } = 0;
-//    private CarData _carData;
-
-//    public int CarId { get; private set; } = 0;
-
-//    private void Awake()
-//    {
-//        _carData = GetComponent<CarData>();
-
-//        CarId = _carData.Id;
-
-//        if (CarId < 0)
-//        {
-//            Debug.LogError($"[CarModifications] �������� CarId: {CarId}", this);
-//            enabled = false;
-//            return;
-//        }
-//        if (_carData == null)
-//        {
-//            Debug.LogError($"[CarModifications] �� �������� CarData (CarId={CarId})!", this);
-//            enabled = false;
-//            return;
-//        }
-//        if (_modifications == null)
-//        {
-//            Debug.LogError($"[CarModifications] ������ _modifications �� �������� �� {name}", this);
-//            enabled = false;
-//            return;
-//        }
-//    }
-
-//    public void InitializePurchasedMods(Func<int, int, int> getCarModCount)
-//    {
-//        if (!enabled) return;
-//        if (_modifications.Count == 0) return;
-
-//        for (int i = 0; i < _modifications.Count; i++)
-//        {
-//            CarModification carModification = _modifications[i];
-
-//            if (carModification == null)
-//                continue;
-//        }
-//    }
-
-//    public IReadOnlyList<CarModification> GetAll()
-//    {
-//        return _modifications;
-//    }
-
-//    public void ApplyPurchasedMods(Func<int, int, int> getCarModCount, ArcadeVP.ArcadeVehicleController controller, Health health)
-//    {
-//        if (controller == null && health == null)
-//        {
-//            Debug.Log("[CarUpgrades] controller && health �� �����!");
-//            enabled = false;
-//            return;
-//        }
-
-//        if (controller != null)
-//        {
-//            controller.SetMaxSpeed(_carData.Speed);
-//            controller.SetAcceleration(_carData.Acceleration);
-//            controller.SetTurn(_carData.Turn);
-//        }
-
-//        if (health != null)
-//        {
-//            health.Init(_carData.Armor);
-//        }
-
-//        if (_modifications.Count == 0 || getCarModCount == null)
-//            return;
-
-//        for (int i = 0; i < _modifications.Count; i++)
-//        {
-//            CarModification carModification = _modifications[i];
-
-//            if (carModification == null)
-//                continue;
-
-//            int timesBought = getCarModCount(CarId, carModification.ModificationId);
-
-//            if (timesBought < 1)
-//                continue;
-
-//            float totalBonus = carModification.Value * timesBought;
-
-//            switch (carModification.Type)
-//            {
-//                case CarModification.ModificationType.Speed:
-//                    controller.SetMaxSpeed(controller.GetMaxSpeed() + totalBonus);
-//                    break;
-
-//                case CarModification.ModificationType.Acceleration:
-//                    controller.SetAcceleration(controller.GetAcceleration() + totalBonus);
-//                    break;
-
-//                case CarModification.ModificationType.Turn:
-//                    controller.SetTurn(controller.GetTurn() + totalBonus);
-//                    break;
-
-//                case CarModification.ModificationType.Health:
-//                    float newMax = health.Max + totalBonus;
-//                    health.Init(newMax);
-//                    break;
-//            }
-//        }
-//    }
-//}

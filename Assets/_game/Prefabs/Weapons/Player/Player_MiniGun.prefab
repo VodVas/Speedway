@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33292640342270358}
   - component: {fileID: 23094550334730114}
   - component: {fileID: 2799547339207577898}
+  - component: {fileID: 3005279068415256846}
   m_Layer: 0
   m_Name: Player_MiniGun
   m_TagString: Untagged
@@ -98,14 +99,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 046ef052b32a10940804a8b170a65c05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <DamageAmount>k__BackingField: 30
+  <DamageAmount>k__BackingField: 10
   <OwnerVehicle>k__BackingField: {fileID: 0}
-  ParticleShoot: {fileID: 0}
-  _marker: {fileID: 0}
+  ParticleShoot: {fileID: 3271924334401948124}
+  _marker: {fileID: 5240426153042474657}
   _barrels: {fileID: 4248658529765070}
-  _activeRotateSpeedX: 0
-  _activeRotateSpeedY: 0
-  _activeRotateSpeedZ: 0
+--- !u!114 &3005279068415256846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277969264105640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd1a88443a8dd7747999369742051677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _upgradeRoot: {fileID: 1277969264105640}
+  <UpgradeId>k__BackingField: 0
+  <UpgradeName>k__BackingField: "\u041C\u0438\u043D\u0438\u0433\u0430\u043D"
+  <Price>k__BackingField: 100
+  <UpgradeType>k__BackingField: 0
+  <UpgradeValue>k__BackingField: 2
+  <UpgradeDescription>k__BackingField: "\u041C\u0438\u043D\u0438\u0433\u0430\u043D"
 --- !u!1 &1388528498519288
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,13 +150,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1388528498519288}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.3826838, w: 0.9238794}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.00000004535823, y: 0.22260223, z: 0.114001125}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4330984924424482}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33367422180854874
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -363,8 +380,24 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91f767b549533eb4b896cd368ed1a008, type: 3}
+--- !u!198 &3271924334401948124 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198316573430509862, guid: 91f767b549533eb4b896cd368ed1a008, type: 3}
+  m_PrefabInstance: {fileID: 3434199258110753018}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3438929553541264498 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4840268657495176, guid: 91f767b549533eb4b896cd368ed1a008, type: 3}
   m_PrefabInstance: {fileID: 3434199258110753018}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5240426153042474657 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7426719277137956443, guid: 91f767b549533eb4b896cd368ed1a008, type: 3}
+  m_PrefabInstance: {fileID: 3434199258110753018}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2218774431d3b14990f043cc1017c72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

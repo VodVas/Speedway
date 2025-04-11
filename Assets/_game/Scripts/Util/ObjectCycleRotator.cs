@@ -5,29 +5,20 @@ public class ObjectCycleRotator : MonoBehaviour
     [SerializeField] private bool _ignoreTimescale = true;
 
     [field: SerializeField] public float SpeedX { get; private set; }
-
     [field: SerializeField] public float SpeedY { get; private set; }
-
     [field: SerializeField] public float SpeedZ { get; private set; }
 
-    private Transform _cachedTransform;
-    private bool _hasRotation;
+    public Transform _cachedTransform { get; private set; }
 
-    private void Start()
+    public bool _hasRotation { get; private set; }
+
+    protected virtual void Start()
     {
         _cachedTransform = transform;
         UpdateRotationState();
     }
 
-    public void SetRotationSpeeds(float x, float y, float z)
-    {
-        SpeedX = x;
-        SpeedY = y;
-        SpeedZ = z;
-        UpdateRotationState();
-    }
-
-    private void Update()
+    protected virtual void Update()
     {
         if (_hasRotation)
         {
@@ -35,14 +26,28 @@ public class ObjectCycleRotator : MonoBehaviour
         }
     }
 
+    public void SetRotation(bool rotation)
+    {
+        _hasRotation = rotation;
+    }
+
+    public void SetRotationSpeeds(float x, float y, float z)
+    {
+        SpeedX = x;
+        SpeedY = y;
+        SpeedZ = z;
+
+        UpdateRotationState();
+    }
+
+    public float GetDeltaTime()
+    {
+        return _ignoreTimescale ? Time.unscaledDeltaTime : Time.deltaTime;
+    }
+
     private void UpdateRotationState()
     {
         _hasRotation = !Mathf.Approximately(SpeedX, 0f) || !Mathf.Approximately(SpeedY, 0f) || !Mathf.Approximately(SpeedZ, 0f);
-    }
-
-    private float GetDeltaTime()
-    {
-        return _ignoreTimescale ? Time.unscaledDeltaTime : Time.deltaTime;
     }
 
     private void Rotate(float deltaTime)
@@ -50,96 +55,3 @@ public class ObjectCycleRotator : MonoBehaviour
         _cachedTransform.Rotate(SpeedX * deltaTime, SpeedY * deltaTime, SpeedZ * deltaTime);
     }
 }
-
-
-
-
-
-
-
-
-//public class ObjectCycleRotator : MonoBehaviour
-//{
-//    [SerializeField] private bool _ignoreTimescale = true;
-
-//    [field: SerializeField] public float SpeedX { get; private set; }
-//    [field: SerializeField] public float SpeedY { get; private set; }
-//    [field: SerializeField] public float SpeedZ { get; private set; }
-
-//    private void Update()
-//    {
-//        Rotate(GetDeltaTime());
-//    }
-
-//    public void SetRotationSpeeds(float x, float y, float z)
-//    {
-//        SpeedX = x;
-//        SpeedY = y;
-//        SpeedZ = z;
-//    }
-
-//    private float GetDeltaTime()
-//    {
-//        return _ignoreTimescale ? Time.unscaledDeltaTime : Time.deltaTime;
-//    }
-
-//    private void Rotate(float deltaTime)
-//    {
-//        transform.Rotate(SpeedX * deltaTime, SpeedY * deltaTime, SpeedZ * deltaTime);
-//    }
-//}
-
-
-
-
-
-
-
-//public class ObjectCycleRotator : MonoBehaviour
-//{
-//    [SerializeField] private float _speedX;
-//    [SerializeField] private float _speedY;
-//    [SerializeField] private float _speedZ;
-//    [SerializeField] private bool _ignoreTimescale;
-
-//    private void Update()
-//    {
-//        StartRotate(GetDeltaTime());
-//    }
-
-//    private float GetDeltaTime()
-//    {
-//        return _ignoreTimescale ? Time.unscaledDeltaTime : Time.deltaTime;
-//    }
-
-//    public void StartRotate(float deltaTime)
-//    {
-//        transform.Rotate(_speedX * deltaTime, _speedY * deltaTime, _speedZ * deltaTime);
-//    }
-//}
-
-
-
-
-
-//public class ObjectCycleRotator : MonoBehaviour
-//{
-//    [SerializeField] private float _speedX;
-//    [SerializeField] private float _speedY;
-//    [SerializeField] private float _speedZ;
-
-//    private void FixedUpdate()
-//    {
-//        StartRotate(transform, _speedX, _speedY, _speedZ);
-//    }
-
-//    public void StartRotate(Transform target, float speedX = 0, float speedY = 0, float speedZ = 0)
-//    {
-//        target.Rotate(speedX * Time.deltaTime, speedY * Time.deltaTime, speedZ * Time.fixedDeltaTime);
-//    }
-
-//    public void StopRotate(Transform target, float speedX = 0, float speedY = 0, float speedZ = 0)
-//    {
-//        target.Rotate(speedX * Time.deltaTime, speedY * Time.deltaTime, speedZ * Time.fixedDeltaTime);
-//    }
-//}

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Loot System/Money Loot Item")]
+[CreateAssetMenu(menuName = "Apocalypse/Loot System/Money Loot Item")]
 public class MoneyLootItem : ScriptableObject
 {
     [field: SerializeField] public string DisplayName { get; private set; }

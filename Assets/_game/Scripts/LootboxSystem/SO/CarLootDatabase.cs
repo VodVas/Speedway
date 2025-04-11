@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using YG;
 
-[CreateAssetMenu(menuName = "Loot System/Car Loot Database")]
+[CreateAssetMenu(menuName = "Apocalypse//Loot System/Car Loot Database")]
 public class CarLootDatabase : ScriptableObject
 {
     [SerializeField] private List<CarLootItem> _epicItems = new();
@@ -31,13 +31,13 @@ public class CarLootDatabase : ScriptableObject
         return YandexGame.savesData.GetUnlockedEpicCars().Contains(carId);
     }
 
-    public void UnlockCar(int carId)
-    {
-        YandexGame.savesData.UnlockEpicCar(carId);
-    }
-
     public bool IsCarEpic(int carId)
     {
+        //if (carId < 12)
+        //{
+        //    return false;
+        //}
+
         return _epicItems.Exists(item => item.CarId == carId);
     }
 } 

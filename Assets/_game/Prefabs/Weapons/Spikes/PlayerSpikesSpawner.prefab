@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed7d11adf4c4ed3459f2d97848d819b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <DamageAmount>k__BackingField: 10
-  <ParticleShoot>k__BackingField: {fileID: 0}
+  <DamageAmount>k__BackingField: 0
+  <OwnerVehicle>k__BackingField: {fileID: 0}
   _spikes: {fileID: 6970321485084292415, guid: f8c813784ec7b8a43bc81c26f9a2975c, type: 3}
   _carController: {fileID: 0}
   _offSetY: 0.3
@@ -63,9 +63,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _upgradeRoot: {fileID: 5574258388119670151}
-  <UpgradeId>k__BackingField: 4
+  <UpgradeId>k__BackingField: 8
   <UpgradeName>k__BackingField: "\u0428\u0438\u043F\u044B"
   <Price>k__BackingField: 100
   <UpgradeType>k__BackingField: 0
   <UpgradeValue>k__BackingField: 0
-  <UpgradeDescription>k__BackingField: 
+  <UpgradeDescription>k__BackingField: "\u0421\u0431\u0438\u0432\u0430\u044E\u0442
+    \u0443\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0438\u0435"

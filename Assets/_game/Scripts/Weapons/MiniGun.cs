@@ -3,10 +3,10 @@ using UnityEngine;
 public class MiniGun : ParticleWeapon
 {
     [SerializeField] private Transform _barrels;
-    [SerializeField] private float _activeRotateSpeedX = 0f;
-    [SerializeField] private float _activeRotateSpeedY = 0f;
-    [SerializeField] private float _activeRotateSpeedZ = 0f;
 
+    private float _activeRotateSpeedX = 0f;
+    private float _activeRotateSpeedY = 0f;
+    private float _activeRotateSpeedZ = 0f;
     private ObjectCycleRotator _rotator;
     private Vector3 _baseRotationSpeeds;
     private bool _wasParticlePlaying;

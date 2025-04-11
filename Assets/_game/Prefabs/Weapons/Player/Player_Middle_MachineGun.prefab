@@ -121,8 +121,9 @@ MonoBehaviour:
   <UpgradeName>k__BackingField: "\u0421\u0440\u0435\u0434\u043D\u0438\u0439 \u043F\u0443\u043B\u0435\u043C\u0435\u0442"
   <Price>k__BackingField: 100
   <UpgradeType>k__BackingField: 0
-  <UpgradeValue>k__BackingField: 0
-  <UpgradeDescription>k__BackingField: 
+  <UpgradeValue>k__BackingField: 10
+  <UpgradeDescription>k__BackingField: "\u0421\u0442\u0440\u0435\u043B\u044F\u0435\u0442
+    \u043F\u0440\u044F\u043C\u043E"
 --- !u!82 &2090798628042665273
 AudioSource:
   m_ObjectHideFlags: 0
