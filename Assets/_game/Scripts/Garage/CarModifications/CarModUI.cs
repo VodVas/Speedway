@@ -16,9 +16,9 @@ public class CarModUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _countText;
     [SerializeField] private TextMeshProUGUI _feedbackText;
     [SerializeField] private TextMeshProUGUI _effectText;
-    [SerializeField] private Button _buyButton;
 
     [Header("Navigation")]
+    [SerializeField] private Button _buyButton;
     [SerializeField] private Button _nextModButton;
     [SerializeField] private Button _prevModButton;
     [SerializeField] private Button _nextColorButton;

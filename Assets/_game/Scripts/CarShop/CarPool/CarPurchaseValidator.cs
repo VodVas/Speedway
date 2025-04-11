@@ -6,14 +6,12 @@ public class CarPurchaseValidator
 {
     private readonly List<GameObject> _cars;
     private readonly List<int> _availableCarIndices = new();
-    private CarCollection _carCollection;
 
     public IReadOnlyList<int> AvailableCarIndices => _availableCarIndices;
 
     public CarPurchaseValidator(List<GameObject> cars, CarCollection carCollection)
     {
         _cars = cars;
-        _carCollection = carCollection;
 
         RecalculateAvailability();
     }
@@ -26,8 +24,6 @@ public class CarPurchaseValidator
         {
             if (_cars[i].TryGetComponent(out CarData carData))
             {
-                bool isEpic = _carCollection.IsCarEpic(carData.Id); // TODO: ????
-
                 if (!YandexGame.savesData.HasCar(carData.Id))
                 {
                     _availableCarIndices.Add(i);

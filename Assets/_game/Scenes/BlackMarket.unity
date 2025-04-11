@@ -8032,6 +8032,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _paintSystem: {fileID: 1579227800}
+  _carRegistry: {fileID: 11400000, guid: 9cf3fc725005b9c459230f4f68dd3550, type: 2}
 --- !u!114 &1201658920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8095,11 +8096,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _guaranteedEpicAfterAttempts: 10
-  _commonChance: 0.2
-  _rareChance: 0.2
-  _uniqueChance: 0.2
-  _legendaryChance: 0.2
-  _epicChance: 0.2
+  _rewardChances:
+    Common: 0
+    Rare: 0
+    Unique: 0
+    Legendary: 0
+    Epic: 1
   _waitBetweenCardSpawning: 0.5
   _boxCrackingProcess: {fileID: 1201658923}
   _databaseMediator: {fileID: 1201658920}
@@ -10366,6 +10368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _paintDatabase: {fileID: 11400000, guid: 01df5523dada8de4fae1511ae5e8d8c4, type: 2}
+  _carRegistry: {fileID: 11400000, guid: 9cf3fc725005b9c459230f4f68dd3550, type: 2}
 --- !u!4 &1579227801
 Transform:
   m_ObjectHideFlags: 0

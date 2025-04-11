@@ -75,16 +75,6 @@ public class LootVisualizationBuilder : MonoBehaviour
         StoreAndShow(index, sphere, _spheres, ref _sphereCount, _paintCards[index], item);
     }
 
-    //public void VisualizePaint(int index, PaintLootItemSO item, Rarity rarity)
-    //{
-    //    if (!IsValidRequest(index, item)) return;
-
-    //    var sphere = _sphereSpawner.SpawnSphereForCard(rarity, _spherePoints[index].position, index);
-    //    if (!sphere) return;
-
-    //    StoreAndShow(index, sphere, _spheres, ref _sphereCount, _paintCards[index], item);
-    //}
-
     public void ResetAllVisuals()
     {
         for (var i = 0; i < CARDS_COUNT; i++)
@@ -118,26 +108,6 @@ public class LootVisualizationBuilder : MonoBehaviour
 
         CardVisualized?.Invoke(index, GetRewardType<T>(), obj);
     }
-
-    //private void StoreAndShow<T>(int index, T obj, T[] array, ref int count,
-    //    MonoBehaviour card, object item) where T : Component
-    //{
-    //    array[count++] = obj;
-    //    card.gameObject.SetActive(true);
-
-    //    switch (card)
-    //    {
-    //        case CarLootCardController carCard:
-    //            carCard.ShowCard(obj.gameObject);
-    //            break;
-    //        case PaintLootCardController paintCard:
-    //            paintCard.ShowCard((item as PaintLootItemSO), obj.gameObject);
-    //            break;
-    //    }
-
-    //    _soundPlayer.Play();
-    //    CardVisualized?.Invoke(index, GetRewardType<T>(), item);
-    //}
 
     private LootRewardType GetRewardType<T>()
     {

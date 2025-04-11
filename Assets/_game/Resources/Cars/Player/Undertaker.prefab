@@ -20954,6 +20954,7 @@ MonoBehaviour:
   - {fileID: 5399583164161427034}
   - {fileID: 9211113724938315157}
   _paintSystem: {fileID: 0}
+  <_colorModification>k__BackingField: {fileID: 9211113724938315157}
 --- !u!114 &7750870858515953251
 MonoBehaviour:
   m_ObjectHideFlags: 0

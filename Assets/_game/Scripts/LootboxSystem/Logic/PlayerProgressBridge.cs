@@ -75,6 +75,7 @@ public class PlayerProgressBridge : MonoBehaviour
             return;
         }
 
+        Debug.Log($"[PlayerProgressBridge] Разблокировка эпической машины с ID: {carId}");
         YandexGame.savesData.UnlockEpicCar(carId);
         YandexGame.SaveProgress();
 
@@ -158,6 +159,15 @@ public class PlayerProgressBridge : MonoBehaviour
         }
     }
 }
+
+
+
+
+
+
+
+
+
 
 //public class PlayerProgressBridge : MonoBehaviour
 //{

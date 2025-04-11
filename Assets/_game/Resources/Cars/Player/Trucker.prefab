@@ -5633,8 +5633,8 @@ Transform:
   m_Children:
   - {fileID: 2526543927217219650}
   - {fileID: 2497115191427455049}
-  - {fileID: 8350423633729812121}
   - {fileID: 6956334710107189265}
+  - {fileID: 8350423633729812121}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &7671275675561151789
@@ -6150,6 +6150,7 @@ MonoBehaviour:
   - {fileID: 1828913982416353140}
   - {fileID: 3196083444216108219}
   _paintSystem: {fileID: 0}
+  <_colorModification>k__BackingField: {fileID: 3196083444216108219}
 --- !u!114 &6461724881292444041
 MonoBehaviour:
   m_ObjectHideFlags: 0

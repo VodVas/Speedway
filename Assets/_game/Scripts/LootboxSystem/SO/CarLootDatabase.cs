@@ -33,11 +33,6 @@ public class CarLootDatabase : ScriptableObject
 
     public bool IsCarEpic(int carId)
     {
-        //if (carId < 12)
-        //{
-        //    return false;
-        //}
-
         return _epicItems.Exists(item => item.CarId == carId);
     }
 } 
