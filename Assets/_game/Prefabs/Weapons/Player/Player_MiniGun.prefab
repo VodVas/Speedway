@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 23094550334730114}
   - component: {fileID: 2799547339207577898}
   - component: {fileID: 3005279068415256846}
+  - component: {fileID: 719215376229405676}
+  - component: {fileID: 8805176850966657311}
   m_Layer: 0
   m_Name: Player_MiniGun
   m_TagString: Untagged
@@ -104,6 +106,9 @@ MonoBehaviour:
   ParticleShoot: {fileID: 3271924334401948124}
   _marker: {fileID: 5240426153042474657}
   _barrels: {fileID: 4248658529765070}
+  _activeRotateSpeedX: 0
+  _activeRotateSpeedY: 0
+  _activeRotateSpeedZ: -1000
 --- !u!114 &3005279068415256846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,6 +128,117 @@ MonoBehaviour:
   <UpgradeType>k__BackingField: 0
   <UpgradeValue>k__BackingField: 2
   <UpgradeDescription>k__BackingField: "\u041C\u0438\u043D\u0438\u0433\u0430\u043D"
+--- !u!82 &719215376229405676
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277969264105640}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 5855251610057139803, guid: 589367c5050e471478c52d314b8c768c, type: 2}
+  m_audioClip: {fileID: 8300000, guid: c12e56060b3511b4aae071cff0ed8cf9, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 250
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.51614
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &8805176850966657311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277969264105640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 955c00790b911ed4897b2caeb629b131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particleSystem: {fileID: 3272664231146399654}
+  _audioClip: {fileID: 0}
+  _isOneShot: 0
 --- !u!1 &1388528498519288
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,7 +338,7 @@ MonoBehaviour:
   _ignoreTimescale: 0
   <SpeedX>k__BackingField: 0
   <SpeedY>k__BackingField: 0
-  <SpeedZ>k__BackingField: -500
+  <SpeedZ>k__BackingField: 0
 --- !u!1001 &3434199258110753018
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -372,6 +488,10 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 198840909020946268, guid: 91f767b549533eb4b896cd368ed1a008, type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198840909020946268, guid: 91f767b549533eb4b896cd368ed1a008, type: 3}
       propertyPath: EmissionModule.rateOverTime.minMaxState
       value: 0
       objectReference: {fileID: 0}
@@ -383,6 +503,11 @@ PrefabInstance:
 --- !u!198 &3271924334401948124 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 198316573430509862, guid: 91f767b549533eb4b896cd368ed1a008, type: 3}
+  m_PrefabInstance: {fileID: 3434199258110753018}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &3272664231146399654 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198840909020946268, guid: 91f767b549533eb4b896cd368ed1a008, type: 3}
   m_PrefabInstance: {fileID: 3434199258110753018}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &3438929553541264498 stripped

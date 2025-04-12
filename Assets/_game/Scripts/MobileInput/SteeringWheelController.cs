@@ -3,7 +3,6 @@ using UnityEngine;
 public class SteeringWheelController : MonoBehaviour
 {
     [SerializeField] private MobileInputController _inputController;
-   // [SerializeField] private Transform _steeringWheelPosition;
     [SerializeField, Range(0f, 360f)] private float _maxSteeringAngle = 180f;
     [SerializeField, Range(0f, 1000f)] private float _rotationSpeed = 300f;
 

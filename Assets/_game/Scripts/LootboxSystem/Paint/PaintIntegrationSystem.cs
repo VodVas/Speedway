@@ -112,9 +112,9 @@ public sealed class PaintIntegrationSystem : MonoBehaviour
 
                 for (int i = 0; i < cars.Length; i++)
                 {
-                    if (cars[i] != null && cars[i].isActiveAndEnabled && cars[i]._colorModification != null)
+                    if (cars[i] != null && cars[i].isActiveAndEnabled && cars[i].ColorModification != null)
                     {
-                        cars[i]._colorModification.RefreshMaterials(this);
+                        cars[i].ColorModification.RefreshMaterials(this);
                     }
                 }
             }

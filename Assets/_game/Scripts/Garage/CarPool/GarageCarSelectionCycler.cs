@@ -56,11 +56,15 @@ public class GarageCarSelectionCycler
             return;
 
         GameObject instance = _carsInScene[CurrentIndex];
-
-        if (instance == null)
-            return;
+        if (instance == null) return;
 
         instance.SetActive(state);
+
+        if (state)
+        {
+            var carMods = instance.GetComponent<CarModifications>();
+            carMods?.ForceInitialize();
+        }
     }
 
     public CarData GetCurrentCarData()

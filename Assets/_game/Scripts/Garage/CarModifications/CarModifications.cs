@@ -3,14 +3,16 @@ using System;
 using YG;
 using ArcadeVP;
 
-
 [RequireComponent(typeof(CarData))]
-public sealed class CarModifications : MonoBehaviour
+public class CarModifications : MonoBehaviour
 {
     [SerializeField] private BaseCarModification[] _modifications;
     [SerializeField] private PaintIntegrationSystem _paintSystem;
 
-    [field: SerializeField] public ColorCarModification _colorModification { get; private set; }
+   // [field: SerializeField] public ColorCarModification _colorModification { get; private set; }
+
+    [SerializeField] private ColorCarModification _colorModification;
+    public ColorCarModification ColorModification => _colorModification;
 
     private CarData _carData;
     private int _carId;
@@ -35,6 +37,15 @@ public sealed class CarModifications : MonoBehaviour
         _isInitialized = true;
     }
 
+    public void ForceInitialize()
+    {
+        foreach (var mod in Modifications)
+        {
+            if (mod is ColorCarModification colorMod)
+                colorMod.RefreshMaterials(FindObjectOfType<PaintIntegrationSystem>());
+        }
+    }
+
     private void InitializeMaterials()
     {
         if (_paintSystem == null) _paintSystem = FindObjectOfType<PaintIntegrationSystem>();
@@ -53,7 +64,7 @@ public sealed class CarModifications : MonoBehaviour
         ApplyModifications(getModCount, null, null);
     }
 
-    public void ApplyModifications(Func<int, int, int> getModCount, ArcadeVP.ArcadeVehicleController controller, Health health)
+    public void ApplyModifications(Func<int, int, int> getModCount, ArcadeVehicleController controller, Health health)
     {
         if (!_isInitialized) return;
 
@@ -89,24 +100,6 @@ public sealed class CarModifications : MonoBehaviour
 
     public void ApplyColors()
     {
-        if (_paintSystem == null)
-        {
-            _paintSystem = FindObjectOfType<PaintIntegrationSystem>();
-            if (_paintSystem == null)
-            {
-                Debug.LogError($"[{GetType().Name}] PaintIntegrationSystem not found!", this);
-                return;
-            }
-        }
-
-        if (!_paintSystem.IsInitialized)
-        {
-            Debug.LogWarning($"[{GetType().Name}] PaintSystem not initialized, trying to initialize...", this);
-            YandexGame.GetDataEvent?.Invoke();
-        }
-
-        Debug.Log($"[{GetType().Name}] Applying colors for car ID: {_carId}");
-        
         for (int i = 0; i < _modifications.Length; i++)
         {
             if (_modifications[i] is ColorCarModification colorMod)
@@ -124,6 +117,7 @@ public sealed class CarModifications : MonoBehaviour
     private void ApplyColor(ColorCarModification mod, int index)
     {
         Material mat = mod.GetMaterial(index);
+
         if (mat == null)
         {
             Debug.LogWarning($"[{GetType().Name}] Material is null for index {index} in {mod.ModificationName}", this);

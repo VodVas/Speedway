@@ -1730,7 +1730,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shakeAxes: {x: 1, y: 1, z: 1}
   _maxAmplitude: 0.001
-  _frequency: 1
+  _frequency: 100
 --- !u!1 &408202816
 GameObject:
   m_ObjectHideFlags: 0

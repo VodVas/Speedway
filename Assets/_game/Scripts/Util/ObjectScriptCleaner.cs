@@ -1,4 +1,5 @@
 #if UNITY_EDITOR
+using System;
 using UnityEngine;
 
 public class ObjectScriptCleaner : MonoBehaviour
@@ -85,7 +86,13 @@ public class ObjectScriptCleaner : MonoBehaviour
         if (component is Transform || component is RectTransform)
             return true;
 
-        if (component.GetType() == typeof(CarData))
+        Type componentType = component.GetType();
+        if (componentType == typeof(CarData) ||
+            componentType == typeof(CarUpgrade) ||
+            componentType == typeof(ColorCarModification) ||
+            componentType == typeof(StatsCarModification) ||
+            componentType == typeof(CarUpgrades) ||
+            componentType == typeof(CarModifications))
             return true;
 
         if (!(component is MonoBehaviour))

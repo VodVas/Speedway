@@ -134,7 +134,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 5855251610057139803, guid: 589367c5050e471478c52d314b8c768c, type: 2}
   m_audioClip: {fileID: 8300000, guid: 05fa05ee8cbef8647b4f0c848bd70be6, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -232,6 +232,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _particleSystem: {fileID: 2028322373643880723}
+  _audioClip: {fileID: 8300000, guid: 05fa05ee8cbef8647b4f0c848bd70be6, type: 3}
+  _isOneShot: 1
 --- !u!1001 &1307747737611089430
 PrefabInstance:
   m_ObjectHideFlags: 0

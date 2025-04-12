@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public sealed class ColorCarModification : BaseCarModification
+public class ColorCarModification : BaseCarModification
 {
     [SerializeField] private Material[] _defaultMaterials;
     [SerializeField] private Renderer _targetRenderer;
@@ -29,11 +29,18 @@ public sealed class ColorCarModification : BaseCarModification
 
     public void RefreshMaterials(PaintIntegrationSystem paintSystem)
     {
+        Debug.Log("RefreshMaterials");
+
         if (paintSystem == null)
         {
             Debug.LogError($"[{GetType().Name}] PaintIntegrationSystem is null!", this);
             enabled = false;
             return;
+        }
+
+        if (!paintSystem.IsInitialized)
+        {
+            paintSystem.RefreshMaterials();
         }
 
         Material[] buffer = new Material[128];

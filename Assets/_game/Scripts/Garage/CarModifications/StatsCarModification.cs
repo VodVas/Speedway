@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public sealed class StatsCarModification : BaseCarModification
+public class StatsCarModification : BaseCarModification
 {
     private enum StatType { Speed, Acceleration, Turn, Health }
 
