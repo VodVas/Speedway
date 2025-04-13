@@ -19,6 +19,9 @@ public class RaceRewardHandler : MonoBehaviour
     [SerializeField] private GameObject[] _mobilePlayerDisabledUIElements;
     [SerializeField] private TextMeshProUGUI[] _mobileResultTexts;
 
+    [Header("V8 Fury Settings")]
+    [SerializeField] private int[] _furyRewards = new int[3] { 100, 60, 30 };
+
     private RaceProgressFinisher _finisher;
     private GameObject[] _currentPlayerUIElements;
     private GameObject _currentRewardCanvas;
@@ -54,6 +57,14 @@ public class RaceRewardHandler : MonoBehaviour
         DeactivatePauseMenu();
         ActivateRewardCanvas();
         ProcessRaceResults(racers, finishingRacer);
+    }
+
+    private void AddFuryReward(int position)
+    {
+        if (position < 1 || position > 3) return;
+
+        int fury = _furyRewards[position - 1];
+        YandexGame.savesData.AddRespect(fury);
     }
 
     private void SetupPlatformSpecificUI()
@@ -97,6 +108,8 @@ public class RaceRewardHandler : MonoBehaviour
         if (!_isRewardGiven && finishingRacer != null)
         {
             YandexGame.savesData.AddMoney(_finisher.GetRewardForPosition(finishingRacer.Position));
+            AddFuryReward(finishingRacer.Position);
+
             _isRewardGiven = true;
         }
     }

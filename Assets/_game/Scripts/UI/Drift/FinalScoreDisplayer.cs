@@ -15,6 +15,7 @@ public class FinalScoreDisplayer : MonoBehaviour
     [SerializeField] private float _matchDuration = 300f;
     [SerializeField] private TMP_Text _timerText;
     [SerializeField] private RacerDisplayData[] _racerDisplays;
+    [SerializeField] private Transform _resultMenu;
 
     private DriftScoreUIDisplayer _driftScoreUIDisplayer;
     private ObjectsDisabler _objectsDisabler;
@@ -31,6 +32,11 @@ public class FinalScoreDisplayer : MonoBehaviour
 
         ValidateDependencies();
         InitializeTimer();
+    }
+
+    private void OnDisable()
+    {
+        if (_timerActive) StopCoroutine(TimerRoutine());
     }
 
     private void ValidateDependencies()
@@ -78,12 +84,14 @@ public class FinalScoreDisplayer : MonoBehaviour
     private IEnumerator TimerRoutine()
     {
         _timerActive = true;
+
         while (_remainingTime > 0)
         {
             yield return _cachedWait;
             _remainingTime -= UPDATE_INTERVAL;
             UpdateTimerDisplay();
         }
+
         _timerActive = false;
         HandleMatchEnd();
     }
@@ -103,13 +111,11 @@ public class FinalScoreDisplayer : MonoBehaviour
     private void HandleMatchEnd()
     {
         _objectsDisabler.Execute();
+        _resultMenu.gameObject.SetActive(true);
+
+        Time.timeScale = 0f;
         var racerInfo = _driftScoreUIDisplayer.CollectAllRacerInfo();
         Debug.Log($"HandleMatchEnd called, collecting {racerInfo.Length} racers info");
         DisplayResults(racerInfo);
-    }
-
-    private void OnDisable()
-    {
-        if (_timerActive) StopCoroutine(TimerRoutine());
     }
 }

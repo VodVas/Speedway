@@ -48,8 +48,10 @@ public class RaceStartTimeCounter : MonoBehaviour
         _currentLights = isMobile ? _mobileLights : _desktopLights;
         _currentUICounter = isMobile ? _mobileUICounter : _desktopUICounter;
 
-        _mobileUICounter.SetActive(isMobile);
-        _desktopUICounter.SetActive(!isMobile);
+        if (_mobileUICounter != null)
+            _mobileUICounter.SetActive(isMobile);
+        else if (_desktopUICounter != null)
+            _desktopUICounter.SetActive(!isMobile);
     }
 
     private void InitializeWaitObjects()

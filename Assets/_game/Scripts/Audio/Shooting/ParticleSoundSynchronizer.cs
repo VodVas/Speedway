@@ -4,7 +4,7 @@ using UnityEngine;
 public class ParticleSoundSynchronizer : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _particleSystem;
-    [SerializeField] private AudioClip _audioClip;
+    [SerializeField] private AudioClip _audioClipOneShotMode;
     [SerializeField] private bool _isOneShot = false;
 
     private bool _hasPlayedSound = false;
@@ -32,7 +32,7 @@ public class ParticleSoundSynchronizer : MonoBehaviour
             {
                 if (_isOneShot)
                 {
-                    _audioSource.PlayOneShot(_audioClip);
+                    _audioSource.PlayOneShot(_audioClipOneShotMode);
                     _hasPlayedSound = true;
                 }
                 else

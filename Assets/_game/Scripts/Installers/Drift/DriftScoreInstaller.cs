@@ -5,11 +5,12 @@ public class DriftScoreInstaller : MonoBehaviour, IInstaller
 {
     private const string ErrorMissingField = "[UIInstaller] Не все поля назначены в инспекторе!";
 
-    [SerializeField] private DriftScoreUIDisplayer _driftScoreUIDisplayer = null;
+    [SerializeField] private DriftScoreUIDisplayer _desktopDriftScoreUIDisplayer = null;
+    [SerializeField] private DriftScoreUIDisplayer _mobileDriftScoreUIDisplayer = null;
 
     private void Awake()
     {
-        if (_driftScoreUIDisplayer == null)
+        if (_desktopDriftScoreUIDisplayer == null || _mobileDriftScoreUIDisplayer == null)
         {
             Debug.LogError(ErrorMissingField, this);
             enabled = false;
@@ -19,6 +20,7 @@ public class DriftScoreInstaller : MonoBehaviour, IInstaller
 
     public void InstallBindings(ContainerBuilder builder)
     {
-        builder.AddSingleton(_driftScoreUIDisplayer, typeof(DriftScoreUIDisplayer));
+        builder.AddSingleton(_desktopDriftScoreUIDisplayer, typeof(DriftScoreUIDisplayer));
+        builder.AddSingleton(_mobileDriftScoreUIDisplayer, typeof(DriftScoreUIDisplayer));
     }
 }

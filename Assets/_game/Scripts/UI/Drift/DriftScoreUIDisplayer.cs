@@ -1,6 +1,5 @@
 ﻿using ArcadeVP;
 using System;
-using TMPro;
 using UnityEngine;
 
 public class DriftScoreUIDisplayer : MonoBehaviour

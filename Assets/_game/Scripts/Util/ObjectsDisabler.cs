@@ -28,12 +28,14 @@ public class ObjectsDisabler : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogWarning($"Объект {obj.name} уже отключен.");
+                    Debug.Log($"Объект {obj.name} уже отключен.");
+                    enabled = false;
                 }
             }
             else
             {
-                Debug.LogWarning("Один из объектов в массиве _objects равен null!");
+                Debug.Log("Один из объектов в массиве _objects равен null!");
+                enabled = false;
             }
 
             yield return null;
