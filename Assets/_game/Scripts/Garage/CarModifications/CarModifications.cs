@@ -8,17 +8,13 @@ public class CarModifications : MonoBehaviour
 {
     [SerializeField] private BaseCarModification[] _modifications;
     [SerializeField] private PaintIntegrationSystem _paintSystem;
-
-   // [field: SerializeField] public ColorCarModification _colorModification { get; private set; }
-
     [SerializeField] private ColorCarModification _colorModification;
-    public ColorCarModification ColorModification => _colorModification;
 
     private CarData _carData;
     private int _carId;
     private bool _isInitialized;
 
-    public int CarId => _carId;
+    public ColorCarModification ColorModification => _colorModification;
     public BaseCarModification[] Modifications => _modifications;
 
     private void Awake()

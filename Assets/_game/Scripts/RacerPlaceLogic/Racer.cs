@@ -12,7 +12,7 @@ public class Racer : MonoBehaviour
     public int LapsCompleted { get; private set; } = 0;
     public bool HasFinished { get; private set; } = false;
 
-    [field: SerializeField] public string Name { get; private set; } = "";
+    [field: SerializeField] public string Name { get; private set; } = "Игрок";
     [field: SerializeField] public int RacerId { get; set; } = 0; //TODO: в метод
 
     private void Awake()

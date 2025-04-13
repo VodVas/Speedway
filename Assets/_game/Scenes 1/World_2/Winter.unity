@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.019583061, g: 0.044729844, b: 0.100276366, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -38074,6 +38074,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4697b39c37e780e4aaf80be9374b774b, type: 3}
+--- !u!1 &280434847 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6547152091884641005, guid: 1b6dd2139c1848f4488acb0dae921b26, type: 3}
+  m_PrefabInstance: {fileID: 4307605145201264511}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &282165423
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -115048,7 +115053,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1612152606762210187, guid: 1b6dd2139c1848f4488acb0dae921b26, type: 3}
   m_PrefabInstance: {fileID: 4307605145201264511}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 280434847}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6ad9c336b8e2bd94191734b913bdac36, type: 3}
@@ -173149,7 +173154,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1165592644
 Transform:
   m_ObjectHideFlags: 0
@@ -254116,8 +254121,9 @@ MonoBehaviour:
     - {fileID: 1411266025}
     - {fileID: 699532593}
     - {fileID: 2050608430}
-  smoothRoute: 1
+  distances: []
   editorVisualisationSubsteps: 100
+  points: []
 --- !u!4 &1577628246
 Transform:
   m_ObjectHideFlags: 0
@@ -260591,8 +260597,9 @@ MonoBehaviour:
     - {fileID: 148236445}
     - {fileID: 1443440142}
     - {fileID: 432608316}
-  smoothRoute: 1
+  distances: []
   editorVisualisationSubsteps: 100
+  points: []
 --- !u!4 &1637769083
 Transform:
   m_ObjectHideFlags: 0
@@ -354697,6 +354704,14 @@ PrefabInstance:
       propertyPath: _mine
       value: 
       objectReference: {fileID: 6455596013646650521, guid: 13c32f687f826f246b0c3951616ed760, type: 3}
+    - target: {fileID: 6783644027860992214, guid: 20736cef70715b944bd61ffdf8d7372a, type: 3}
+      propertyPath: _driftScoreUIDisplayer
+      value: 
+      objectReference: {fileID: 1739737024}
+    - target: {fileID: 8307430709457517976, guid: 20736cef70715b944bd61ffdf8d7372a, type: 3}
+      propertyPath: _rollerParts
+      value: 
+      objectReference: {fileID: 5846442825237034280, guid: af471e3e7db42aa4eb64c6734e05b8cc, type: 3}
     - target: {fileID: 8307430709457517976, guid: 20736cef70715b944bd61ffdf8d7372a, type: 3}
       propertyPath: "_ice\u0421reamerParts"
       value: 
@@ -354778,7 +354793,7 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1082184931}
     m_RemovedComponents:
-    - {fileID: 3313001091252634319, guid: 20736cef70715b944bd61ffdf8d7372a, type: 3}
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -355039,6 +355054,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthUIUpdater
       objectReference: {fileID: 0}
+    - target: {fileID: 4037465226770842042, guid: 1b6dd2139c1848f4488acb0dae921b26, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4133863552811671700, guid: 1b6dd2139c1848f4488acb0dae921b26, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1393.675
@@ -355103,6 +355122,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -394.66663
       objectReference: {fileID: 0}
+    - target: {fileID: 4327606404379631514, guid: 1b6dd2139c1848f4488acb0dae921b26, type: 3}
+      propertyPath: _mobileControlCanvas
+      value: 
+      objectReference: {fileID: 280434847}
     - target: {fileID: 4469967368660011600, guid: 1b6dd2139c1848f4488acb0dae921b26, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647

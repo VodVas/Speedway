@@ -85,8 +85,8 @@ Material:
     - _EdgeDistance: 0.398
     - _EdgeFalloff: 0.911
     - _FoamSpeed: 0.6
-    - _FoamStrength: 0.733
-    - _FoamThreshold: 0.451
+    - _FoamStrength: 0.56
+    - _FoamThreshold: 0.803
     - _FresnelPower: 5
     - _GlossMapScale: 1
     - _Glossiness: 0.5
@@ -96,15 +96,15 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _RippleFrequency: 1
+    - _RippleFrequency: 3.54
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _Speed: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _VolumeStrength: 0.118
-    - _WaveScale: 0
-    - _WaveSpeed: 0.3
+    - _VolumeStrength: 0.294
+    - _WaveScale: 0.189
+    - _WaveSpeed: 1.174
     - _WhiteCapIntensity: 0.317
     - _ZWrite: 1
     m_Colors:
