@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 8936724569114032865}
   - component: {fileID: 5178499863258909721}
   - component: {fileID: 925059739886820173}
-  - component: {fileID: 6783644027860992214}
   - component: {fileID: 1765521520741593654}
   m_Layer: 0
   m_Name: SceneScope
@@ -64,10 +63,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157badf6e4430a14eba9f59f73f4a6e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _uiCarBinder: {fileID: 0}
-  _healthBarDisplay: {fileID: 0}
-  _uiCounter: {fileID: 0}
-  _bulletHoleUI: {fileID: 0}
+  _desktopUICarBinder: {fileID: 0}
+  _mobileUICarBinder: {fileID: 0}
+  _mobileHealthBarDisplay: {fileID: 0}
+  _desktopHealthBarDisplay: {fileID: 0}
+  _mobileUICounter: {fileID: 0}
+  _desktopUICounter: {fileID: 0}
+  _desktopEffectOnScreenUIApplier: {fileID: 0}
+  _mobileEffectOnScreenUIApplier: {fileID: 0}
 --- !u!114 &6484509871263786133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,6 +104,10 @@ MonoBehaviour:
   _newsVanParts: {fileID: 5868475140483715000, guid: 0c23e96709fac1a4681bdffaa9ae5309, type: 3}
   _elvisParts: {fileID: 231065053580264977, guid: ade3ad31b9590984e9bc9572ccb6da00, type: 3}
   _tubParts: {fileID: 2498865438934783005, guid: ec01bc76dff6a294a901ed6bb05ce16c, type: 3}
+  _novaParts: {fileID: 0}
+  _phantomParts: {fileID: 0}
+  _fireflyParts: {fileID: 0}
+  _roadkillParts: {fileID: 0}
   "_ice\u0421reamerParts": {fileID: 0}
   _rollerParts: {fileID: 0}
 --- !u!114 &8936724569114032865
@@ -119,6 +126,7 @@ MonoBehaviour:
   _timeCounter: {fileID: 0}
   _carRespawner: {fileID: 0}
   _playerCarSelector: {fileID: 0}
+  _rewardHandler: {fileID: 0}
 --- !u!114 &5178499863258909721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,19 +153,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _progressTracker: {fileID: 0}
---- !u!114 &6783644027860992214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5805024981204222922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12b93486faebadc4ebced4cc6e530399, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _driftScoreUIDisplayer: {fileID: 0}
 --- !u!114 &1765521520741593654
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(ParticleSoundSynchronizer))]
-public class SmartWeapon : ParticleWeapon
+public class SmartWeapon : ParticleWeapon, IWeapon
 {
     private Transform _currentEnemy;
 
@@ -20,7 +20,7 @@ public class SmartWeapon : ParticleWeapon
         if (!other.TryGetComponent(out Vehicle _)) return;
 
         _currentEnemy = other.transform;
-        //if (!ParticleShoot.isPlaying) PlayParticleEffect();
+
         if (!IsParticlePlay) PlayParticleEffect();
     }
 

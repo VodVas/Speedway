@@ -119,10 +119,10 @@ public sealed class PaintIntegrationSystem : MonoBehaviour
                 }
             }
         }
-        else
-        {
-            Debug.LogWarning("[PaintIntegrationSystem] Не найдено ни одной открытой краски!");
-        }
+        //else
+        //{
+        //    Debug.LogWarning("[PaintIntegrationSystem] Не найдено ни одной открытой краски!");
+        //}
     }
 
     public int GetAvailableMaterials(ColorCarModification mod, ref Material[] buffer)

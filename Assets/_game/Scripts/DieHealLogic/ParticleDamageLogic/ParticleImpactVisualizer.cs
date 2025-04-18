@@ -1,96 +1,110 @@
-using Reflex.Attributes;
 using UnityEngine;
 using YG;
 
 [RequireComponent(typeof(DamageHandler))]
 public class ParticleImpactVisualizer : ParticleDamageReceiver
 {
-    private const string InvalidReferenceError = "[ParticleImpactVisualizer] Не назначен EffectOnScreenUIApplier!";
+    [SerializeField] private EffectOnScreenUIApplier _desktopEffects;
+    [SerializeField] private EffectOnScreenUIApplier _mobileEffects;
 
-    [Header("Platform References")]
-    [Inject] private EffectOnScreenUIApplier _desktopEffectOnScreenUIApplier;
-    [Inject] private EffectOnScreenUIApplier _mobileEffectOnScreenUIApplier;
-
-    private EffectOnScreenUIApplier _currentEffectApplier;
-    private bool _isInitialized;
+    private EffectOnScreenUIApplier _activeEffects;
+    private bool _effectsInitialized;
 
     protected override void Awake()
     {
         base.Awake();
-        InitializePlatformComponents();
-        ValidateReferences();
+        InitializePlatformEffects();
     }
 
-    private void InitializePlatformComponents()
+    private void InitializePlatformEffects()
     {
         bool isMobile = YandexGame.EnvironmentData.isMobile;
-        _currentEffectApplier = isMobile ? _mobileEffectOnScreenUIApplier : _desktopEffectOnScreenUIApplier;
-        _isInitialized = _currentEffectApplier != null;
-    }
+        _activeEffects = isMobile ? _mobileEffects : _desktopEffects;
+        _effectsInitialized = _activeEffects != null;
 
-    private void ValidateReferences()
-    {
-        if (!_isInitialized)
+        if (!_effectsInitialized)
         {
-            Debug.LogError(InvalidReferenceError, this);
+            Debug.LogError($"Effect applier not found for {(isMobile ? "mobile" : "desktop")} platform");
             enabled = false;
-            return;
         }
     }
 
-    protected override void OnParticleCollision(GameObject other)
+    protected override void ProcessDirtImpact()
     {
-        base.OnParticleCollision(other);
-
-        if (_isInitialized && other.TryGetComponent<DirtParticleMarker>(out _))
-        {
-            _currentEffectApplier.ShowDirtSmudge();
-        }
+        if (_effectsInitialized)
+            _activeEffects.ShowDirtSmudge();
     }
 
-    protected override void ApplyDamage(float damageAmount)
+    protected override void ApplyDamage(float damageAmount, IWeapon weapon)
     {
-        base.ApplyDamage(damageAmount);
+        base.ApplyDamage(damageAmount, weapon);
 
-        if (!_isInitialized) return;
-
-        IWeapon weapon = LastWeaponUsed;
-        if (weapon == null) return;
-
-        if (IsBulletWeapon(weapon))
+        if (_effectsInitialized && IsBulletWeapon(weapon))
         {
-            _currentEffectApplier.ShowBulletHole();
+            _activeEffects.ShowBulletHole();
         }
     }
 
     private bool IsBulletWeapon(IWeapon weapon)
     {
-        return weapon switch
-        {
-            SmartWeapon => true,
-            StraightShootingWeapon straight => straight.IsBulletWeapon,
-            _ => false
-        };
+        return weapon is SmartWeapon ||
+              (weapon is StraightShootingWeapon straight && straight.IsBulletWeapon);
+    }
+
+    private void OnParticleCollision(GameObject other)
+    {
+        var particleSystem = other.GetComponent<ParticleSystem>();
+        if (particleSystem != null)
+            HandleParticleCollision(particleSystem);
     }
 }
 
 
 
 
+
+
 //public class ParticleImpactVisualizer : ParticleDamageReceiver
 //{
-//    private const string InvalidReferenceError = "[PlayerDamageReceiverForBulletUI] Не назначен BulletHoleUI!";
+//    private const string InvalidReferenceError = "[ParticleImpactVisualizer] Не назначен EffectOnScreenUIApplier!";
 
-//    [Inject] private EffectOnScreenUIApplier _desktopEffectOnScreenUIApplier = null;
-//    [Inject] private EffectOnScreenUIApplier _mobileEffectOnScreenUIApplier = null;
+//    [SerializeField] private EffectOnScreenUIApplier _desktopEffectOnScreenUIApplier;
+//    [SerializeField] private EffectOnScreenUIApplier _mobileEffectOnScreenUIApplier;
+
+//    private EffectOnScreenUIApplier _currentEffectApplier;
+//    private bool _isInitialized;
 
 //    protected override void Awake()
 //    {
 //        base.Awake();
 
-//        if (_desktopEffectOnScreenUIApplier == null)
+//        InitializePlatformComponents();
+//        ValidateReferences();
+//    }
+
+//    private void InitializePlatformComponents()
+//    {
+//        bool isMobile = YandexGame.EnvironmentData.isMobile;
+//        _currentEffectApplier = isMobile ? _mobileEffectOnScreenUIApplier : _desktopEffectOnScreenUIApplier;
+
+//        if (_currentEffectApplier == null)
 //        {
-//            Debug.LogError(InvalidReferenceError, this);
+//            Debug.LogError("Не удалось инициализировать _currentEffectApplier. " +
+//                          (isMobile ? "Мобильный" : "Десктопный") + " аппликатор эффектов не назначен.", this);
+//            _isInitialized = false;
+//        }
+//        else
+//        {
+//            Debug.Log("Успешно инициализирован " + (isMobile ? "мобильный" : "десктопный") + " аппликатор эффектов.", this);
+//            _isInitialized = true;
+//        }
+//    }
+
+//    private void ValidateReferences()
+//    {
+//        if (!_isInitialized)
+//        {
+//            Debug.Log(InvalidReferenceError, this);
 //            enabled = false;
 //            return;
 //        }
@@ -100,40 +114,32 @@ public class ParticleImpactVisualizer : ParticleDamageReceiver
 //    {
 //        base.OnParticleCollision(other);
 
-//        if (other.TryGetComponent<DirtParticleMarker>(out _))
+//        if (_isInitialized && other.TryGetComponent<DirtParticleMarker>(out _))
 //        {
-//            _desktopEffectOnScreenUIApplier.ShowDirtSmudge();
+//            _currentEffectApplier.ShowDirtSmudge();
 //        }
 //    }
 
-//    protected override void ApplyDamage(float damageAmount)
+//    protected override void ApplyDamage(float damageAmount, IWeapon weapon)
 //    {
-//        base.ApplyDamage(damageAmount);
-//        IWeapon weapon = LastWeaponUsed;
-
-//        if (weapon == null)
-//        {
-//            return;
-//        }
+//        base.ApplyDamage(damageAmount, weapon);
 
 //        if (IsBulletWeapon(weapon))
 //        {
-//            _desktopEffectOnScreenUIApplier.ShowBulletHole();
+//            if (_currentEffectApplier != null)
+//            {
+//                _currentEffectApplier.ShowBulletHole();
+//            }
 //        }
 //    }
 
 //    private bool IsBulletWeapon(IWeapon weapon)
 //    {
-//        if (weapon is SmartWeapon)
+//        return weapon switch
 //        {
-//            return true;
-//        }
-
-//        if (weapon is StraightShootingWeapon straight)
-//        {
-//            return straight.IsBulletWeapon;
-//        }
-
-//        return false;
+//            SmartWeapon => true,
+//            StraightShootingWeapon straight => straight.IsBulletWeapon,
+//            _ => false
+//        };
 //    }
 //}

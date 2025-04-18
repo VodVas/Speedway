@@ -55,8 +55,6 @@ public class PaintLootDatabase : ScriptableObject
         AddItemsToCache(_uniqueItems);
         AddItemsToCache(_legendaryItems);
         AddItemsToCache(EpicItems);
-
-        Debug.Log($"[PaintLootDatabase] Initialized materials cache with {_materialsCache.Count} entries");
     }
 
     private void AddItemsToCache(List<PaintLootItemSO> items)

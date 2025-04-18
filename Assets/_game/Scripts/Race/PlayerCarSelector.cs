@@ -20,11 +20,11 @@ public class PlayerCarSelector : MonoBehaviour
     [SerializeField] private bool _validateOnStart = true;
     [SerializeField] private UiCarBinder _desktopUICarBinder = null;
     [SerializeField] private UiCarBinder _mobileUICarBinder = null;
+    [SerializeField] private DriftScoreUIDisplayer _desktopDriftScoreUIDisplayer;
+    [SerializeField] private DriftScoreUIDisplayer _mobileDriftScoreUIDisplayer;
 
     [Inject] private SmoothSliderHealthBarDisplay _desktopHealthBarDisplay;
     [Inject] private SmoothSliderHealthBarDisplay _mobileHealthBarDisplay;
-    [Inject] private DriftScoreUIDisplayer _desktopDriftScoreUIDisplayer;
-    [Inject] private DriftScoreUIDisplayer _mobileDriftScoreUIDisplayer;
     [Inject] private DeadCarRespawner _deadCarRespawner;
 
     private GameObject _activeCar;

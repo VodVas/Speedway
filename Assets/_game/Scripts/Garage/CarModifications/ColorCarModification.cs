@@ -29,8 +29,6 @@ public class ColorCarModification : BaseCarModification
 
     public void RefreshMaterials(PaintIntegrationSystem paintSystem)
     {
-        Debug.Log("RefreshMaterials");
-
         if (paintSystem == null)
         {
             Debug.LogError($"[{GetType().Name}] PaintIntegrationSystem is null!", this);

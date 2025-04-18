@@ -5,6 +5,9 @@ using System;
 
 public class EffectOnScreenUIApplier : MonoBehaviour
 {
+    private const string InvalidDataError = "BulletHoleUI Некорректные данные в инспекторе!";
+    private const string WarningNoImages = "BulletHoleUI Массив с эффектами не заполнен или меньше MaxEffectsCount!";
+
     [Serializable]
     private class EffectSettings
     {
@@ -41,8 +44,6 @@ public class EffectOnScreenUIApplier : MonoBehaviour
         }
     }
 
-    private const string InvalidDataError = "BulletHoleUI Некорректные данные в инспекторе!";
-    private const string WarningNoImages = "BulletHoleUI Массив с эффектами не заполнен или меньше MaxEffectsCount!";
 
     [SerializeField] private RectTransform _targetImage = null;
 

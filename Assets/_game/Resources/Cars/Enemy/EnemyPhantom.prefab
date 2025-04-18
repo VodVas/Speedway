@@ -6209,7 +6209,6 @@ GameObject:
   - component: {fileID: 1865309053846049235}
   - component: {fileID: 7573627789869595154}
   - component: {fileID: 1341490321705368350}
-  - component: {fileID: 3461355762302872579}
   - component: {fileID: 8089261698825864757}
   - component: {fileID: 8999615774638953782}
   - component: {fileID: 1466528888625321233}
@@ -6640,7 +6639,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c33478aace014a4d962a1507cadc6d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Max>k__BackingField: 100
 --- !u!114 &7573627789869595154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6663,18 +6661,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ae17f0e61d69204da027168b8dddd94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3461355762302872579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5589798907750690856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a608c6d18e96504595d52ee10fe27d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &8089261698825864757
@@ -21958,6 +21944,15 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 404426569883730050}
     m_Modifications:
+    - target: {fileID: 2438438914921186861, guid: 291a95c180968434698be54bd83d8b43, type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'Root'\n\tTransform 'Elbow_R'\n\tTransform
+        'Clavicle_L'\n\tTransform 'Neck'\n\tTransform 'Elbow_L'\n\tTransform 'Head'\n\tTransform
+        'UpperLeg_L'\n\tTransform 'UpperLeg_R'\n\tTransform 'Spine_03'\n\tTransform
+        'Hand_L'\n\tand more ...\n\tFrom animation clip 'mixamo.com'"
+      objectReference: {fileID: 0}
     - target: {fileID: 3447982725728612521, guid: 291a95c180968434698be54bd83d8b43, type: 3}
       propertyPath: m_Name
       value: Driver

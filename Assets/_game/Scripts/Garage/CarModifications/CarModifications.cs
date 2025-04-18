@@ -103,7 +103,7 @@ public class CarModifications : MonoBehaviour
                 colorMod.RefreshMaterials(_paintSystem);
                 
                 int index = YandexGame.savesData.GetSelectedMaterialIndex(_carId, colorMod.ModificationId);
-                Debug.Log($"[{GetType().Name}] Applying color for mod {colorMod.ModificationName}, selected index: {index}");
+                //Debug.Log($"[{GetType().Name}] Applying color for mod {colorMod.ModificationName}, selected index: {index}");
                 
                 ApplyColor(colorMod, index);
             }
@@ -126,7 +126,7 @@ public class CarModifications : MonoBehaviour
             return;
         }
 
-        Debug.Log($"[{GetType().Name}] Applied material for {mod.ModificationName}, index: {index}");
+        //Debug.Log($"[{GetType().Name}] Applied material for {mod.ModificationName}, index: {index}");
         
         Material[] materials = mod.TargetRenderer.materials;
         for (int i = 0; i < materials.Length; i++) materials[i] = mat;

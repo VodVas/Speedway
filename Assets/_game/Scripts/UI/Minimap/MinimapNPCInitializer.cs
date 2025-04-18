@@ -10,7 +10,7 @@ public class MinimapInitializer : MonoBehaviour
     {
         if (_npcTransforms.Length != _npcIcons.Length)
         {
-            Debug.LogError(" оличество NPC и иконок должно совпадать!");
+            Debug.Log(" оличество NPC и иконок должно совпадать!", this);
             enabled = false;
             return;
         }

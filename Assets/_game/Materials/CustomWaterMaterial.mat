@@ -102,8 +102,8 @@ Material:
     - _Speed: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _VolumeStrength: 0.294
-    - _WaveScale: 0.189
+    - _VolumeStrength: 0.548
+    - _WaveScale: 0.0001
     - _WaveSpeed: 1.174
     - _WhiteCapIntensity: 0.317
     - _ZWrite: 1

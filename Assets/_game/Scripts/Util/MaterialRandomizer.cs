@@ -1,33 +1,59 @@
 using UnityEngine;
 
+[DisallowMultipleComponent]
+[RequireComponent(typeof(MeshRenderer))]
 public class MaterialRandomizer : MonoBehaviour
 {
     private MeshRenderer _meshRenderer;
+    private int _materialCount;
 
     private void Awake()
     {
         _meshRenderer = GetComponent<MeshRenderer>();
+        _materialCount = _meshRenderer.sharedMaterials.Length;
     }
 
     void Start()
     {
-        if (_meshRenderer == null)
+        if (!ValidateComponents()) return;
+
+        for (int i = 0; i < _materialCount; i++)
         {
-            Debug.LogError("MeshRenderer not found on the object.");
-            enabled = false;
-            return;
+            ApplyRandomizedProperties(i);
         }
+    }
 
-        Material material = _meshRenderer.material;
+    private bool ValidateComponents()
+    {
+        if (_meshRenderer != null && _materialCount > 0) return true;
 
-        Color randomColor = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 1f);
+        Debug.LogError(_meshRenderer == null ?
+            "MeshRenderer not found" : "No materials assigned");
+        enabled = false;
+        return false;
+    }
 
-        material.color = randomColor;
+    private void ApplyRandomizedProperties(int materialIndex)
+    {
+        MaterialPropertyBlock block = new MaterialPropertyBlock();
+        GenerateMaterialProperties(out Color color, out float metallic, out float smoothness);
 
-        float randomMetallic = Random.Range(0f, 1f);
-        float randomSmoothness = Random.Range(0f, 1f);
+        block.SetColor("_Color", color);
+        block.SetFloat("_Metallic", metallic);
+        block.SetFloat("_Smoothness", smoothness);
 
-        material.SetFloat("_Metallic", randomMetallic);
-        material.SetFloat("_Smoothness", randomSmoothness);
+        _meshRenderer.SetPropertyBlock(block, materialIndex);
+    }
+
+    private void GenerateMaterialProperties(out Color color, out float metallic, out float smoothness)
+    {
+        color = new Color(
+            Random.value,
+            Random.value,
+            Random.value,
+            1f
+        );
+        metallic = Random.value;
+        smoothness = Random.value;
     }
 }

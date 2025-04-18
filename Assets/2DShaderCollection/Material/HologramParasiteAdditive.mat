@@ -90,7 +90,7 @@ Material:
     - DistortionUV_WaveY_1: 19.8
     - DoodleUV_Frame_1: 10.11
     - DoodleUV_Size_1: 7.22
-    - Effect_Fade: 0.2964306
+    - Effect_Fade: 0.665
     - Effect_Fading: 1
     - Explode_Value: 0.35749298
     - FishEyeUV_Size_1: 0.418
@@ -98,8 +98,8 @@ Material:
     - Glass_Rotation: -0.689
     - Glass_Seed: 1.067
     - Glass_Size: 13.6
-    - Parasite_Angle: -0.251
-    - Parasite_Distance: -0.125
+    - Parasite_Angle: 0.41
+    - Parasite_Distance: 0.083
     - PixelSnap: 0
     - Pixel_Size: 19
     - Seed: 0.6

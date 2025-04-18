@@ -1,5 +1,4 @@
 ﻿using ArcadeVP;
-using System;
 using UnityEngine;
 
 public class DriftScoreUIDisplayer : MonoBehaviour
@@ -14,6 +13,11 @@ public class DriftScoreUIDisplayer : MonoBehaviour
 
     private void Awake()
     {
+        for (int i = 0; i < _carUIDataArray.Length; i++)
+        {
+            _carUIDataArray[i].CacheComponents();
+        }
+
         ValidateData();
         CacheInitialRacers();
     }
@@ -79,7 +83,7 @@ public class DriftScoreUIDisplayer : MonoBehaviour
             {
                 _carUIDataArray[i].PlayerCar = newPlayerCar;
                 assigned = true;
-                Debug.Log($"Player car assigned to slot {i}");
+                //Debug.Log($"Player car assigned to slot {i}");
                 break;
             }
         }
@@ -89,28 +93,52 @@ public class DriftScoreUIDisplayer : MonoBehaviour
 
     public RacerInfo[] CollectAllRacerInfo()
     {
-        if (_carUIDataArray == null) return Array.Empty<RacerInfo>();
-
         var infos = new RacerInfo[_carUIDataArray.Length];
 
         for (int i = 0; i < _carUIDataArray.Length; i++)
         {
             infos[i] = _carUIDataArray[i].GetRacerInfo();
-            Debug.Log($"Collected racer info: Name={infos[i].Name}, Score={infos[i].Score}");
+            Debug.Log($"Racer {i}: Name={infos[i].Name}, IsPlayer={infos[i].IsPlayer}");
         }
-
         return infos;
     }
 
-    public float[] CollectAllScores()
-    {
-        if (_carUIDataArray == null) return Array.Empty<float>();
+    //public RacerInfo[] CollectAllRacerInfo()
+    //{
+    //    if (_carUIDataArray == null) return Array.Empty<RacerInfo>();
 
-        var scores = new float[_carUIDataArray.Length];
+    //    var infos = new RacerInfo[_carUIDataArray.Length];
+
+    //    for (int i = 0; i < _carUIDataArray.Length; i++)
+    //    {
+    //        infos[i] = _carUIDataArray[i].GetRacerInfo();
+    //        Debug.Log($"Collected racer info: Name={infos[i].Name}, Score={infos[i].Score}");
+    //    }
+
+    //    return infos;
+    //}
+
+    public void ValidatePlayerAssignment()
+    {
         for (int i = 0; i < _carUIDataArray.Length; i++)
         {
-            scores[i] = _carUIDataArray[i].GetRacerInfo().Score;
+            bool isPlayer = _carUIDataArray[i].PlayerCar != null;
+            if (isPlayer)
+            {
+                Debug.Log($"Найден игрок в слоте {i}, имя: {_carUIDataArray[i].GetRacerInfo().Name}");
+            }
         }
-        return scores;
     }
+
+    //public float[] CollectAllScores()
+    //{
+    //    if (_carUIDataArray == null) return Array.Empty<float>();
+
+    //    var scores = new float[_carUIDataArray.Length];
+    //    for (int i = 0; i < _carUIDataArray.Length; i++)
+    //    {
+    //        scores[i] = _carUIDataArray[i].GetRacerInfo().Score;
+    //    }
+    //    return scores;
+    //}
 }

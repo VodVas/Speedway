@@ -11,16 +11,14 @@ public class UIInstaller : MonoBehaviour, IInstaller
     [SerializeField] private SmoothSliderHealthBarDisplay _desktopHealthBarDisplay = null;
     [SerializeField] private GameObject _mobileUICounter = null;
     [SerializeField] private GameObject _desktopUICounter = null;
-    [SerializeField] private EffectOnScreenUIApplier _desktopEffectOnScreenUIApplier = null;
-    [SerializeField] private EffectOnScreenUIApplier _mobileEffectOnScreenUIApplier = null;
 
     private void Awake()
     {
-        if (_desktopUICarBinder == null || _mobileUICarBinder == null || _mobileHealthBarDisplay == null ||
-            _mobileHealthBarDisplay == null ||
-            _mobileUICounter == null || _mobileUICounter == null || _mobileEffectOnScreenUIApplier == null || _desktopEffectOnScreenUIApplier == null)
+        if (_desktopUICarBinder == null || _mobileUICarBinder == null ||
+        _mobileHealthBarDisplay == null || _desktopHealthBarDisplay == null ||
+        _mobileUICounter == null || _desktopUICounter == null)
         {
-            Debug.LogError(ErrorMissingField, this);
+            Debug.Log(ErrorMissingField, this);
             enabled = false;
             return;
         }
@@ -34,7 +32,5 @@ public class UIInstaller : MonoBehaviour, IInstaller
         builder.AddSingleton(_desktopHealthBarDisplay, typeof(SmoothSliderHealthBarDisplay));
         builder.AddSingleton(_mobileUICounter, typeof(GameObject));
         builder.AddSingleton(_desktopUICounter, typeof(GameObject));
-        builder.AddSingleton(_desktopEffectOnScreenUIApplier, typeof(EffectOnScreenUIApplier));
-        builder.AddSingleton(_mobileEffectOnScreenUIApplier, typeof(EffectOnScreenUIApplier));
     }
 }

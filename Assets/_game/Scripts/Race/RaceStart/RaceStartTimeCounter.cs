@@ -50,7 +50,7 @@ public class RaceStartTimeCounter : MonoBehaviour
 
         if (_mobileUICounter != null)
             _mobileUICounter.SetActive(isMobile);
-        else if (_desktopUICounter != null)
+        if (_desktopUICounter != null)
             _desktopUICounter.SetActive(!isMobile);
     }
 
@@ -107,71 +107,3 @@ public class RaceStartTimeCounter : MonoBehaviour
         }
     }
 }
-
-
-
-
-
-//public class RaceStartTimeCounter : MonoBehaviour
-//{
-//    [SerializeField] private int _countdownDuration = 3;
-//    [SerializeField] private float _lightDuration = 0.5f;
-//    [SerializeField, Range(0, 3)] private int _bossStartTime = 2;
-//    [SerializeField] private TextMeshProUGUI _mobileCountText;
-//    [SerializeField] private TextMeshProUGUI _desktopCountText;
-//    [SerializeField] private Image[] _mobileLights;
-//    [SerializeField] private Image[] _desktopLights;
-
-//    [Inject] private GameObject _mobileUICounter;
-//    [Inject] private GameObject _desktopUICounter;
-//    [Inject] private AiStuckHelper _aiStuckHelper;
-//    private WaitForSeconds _wait1Sec;
-//    private WaitForSeconds _waitLightDuration;
-
-//    public event Action Started;
-//    public event Action BossStarted;
-
-//    public void Awake()
-//    {
-//        _wait1Sec = new WaitForSeconds(1f);
-//        _waitLightDuration = new WaitForSeconds(_lightDuration);
-
-//        StartCoroutine(Countdown());
-//    }
-
-//    private IEnumerator Countdown()
-//    {
-//        yield return _wait1Sec;
-
-//        for (int i = _countdownDuration; i > 0; i--)
-//        {
-//            _mobileCountText.text = $"{i}";
-//            SetLightsToggle(true);
-
-//            if (i == _bossStartTime)
-//            {
-//                BossStarted?.Invoke();
-//            }
-
-//            yield return _waitLightDuration;
-//            SetLightsToggle(false);
-//            yield return _wait1Sec;
-//        }
-
-//        FinalizeCountdown();
-//    }
-
-//    private void FinalizeCountdown()
-//    {
-//        _mobileUICounter.SetActive(false);
-//        _aiStuckHelper.enabled = true;
-//        _mobileCountText.text = string.Empty;
-//        Started?.Invoke();
-//    }
-
-//    private void SetLightsToggle(bool enable)
-//    {
-//        foreach (var image in _mobileLights)
-//            image.enabled = enable;
-//    }
-//}
