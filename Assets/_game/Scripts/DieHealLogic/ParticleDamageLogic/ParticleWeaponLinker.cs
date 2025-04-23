@@ -1,20 +1,8 @@
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class ParticleWeaponLinker : MonoBehaviour
 {
-    [Serializable]
-    public struct WeaponParticlePair
-    {
-        [SerializeField] private ParticleSystem _particle;
-        [SerializeField, InterfaceConstraint(typeof(IWeapon))]
-        private MonoBehaviour _weapon;
-
-        public ParticleSystem ParticleSystem => _particle;
-        public IWeapon Weapon => _weapon as IWeapon;
-    }
-
     [SerializeField] private WeaponParticlePair[] _linkedParticles;
 
     private Dictionary<ParticleSystem, IWeapon> _particleWeaponMap;

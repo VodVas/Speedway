@@ -2,7 +2,6 @@ using UnityEngine;
 
 public abstract class MineWeapon : Weapon
 {
-    protected abstract bool IsMineReadyToSpawn();
 
     [SerializeField] private MineSpawner _mineSpawner;
 
@@ -21,6 +20,8 @@ public abstract class MineWeapon : Weapon
             StartSpawn();
         }
     }
+
+    protected abstract bool IsMineReadyToSpawn();
 
     protected void StartSpawn()
     {

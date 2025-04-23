@@ -146,7 +146,7 @@ Material:
     - _DepthColor: {r: 0.09999997, g: 0.29999998, b: 0.6, a: 1}
     - _EdgeColor: {r: 1, g: 1, b: 1, a: 1}
     - _FresnelColor: {r: 0.78676474, g: 0.91186255, b: 1, a: 1}
-    - _MainColor: {r: 0.19999996, g: 0.6, b: 1, a: 0.5}
+    - _MainColor: {r: 0, g: 0, b: 0, a: 0.5}
     - _RimColor: {r: 0, g: 0, b: 0, a: 1}
     - _WaterColor: {r: 0.26415092, g: 0.16073334, b: 0.16073334, a: 1}
     - _WaterShallowColor: {r: 0, g: 0, b: 0, a: 0}

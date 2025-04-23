@@ -1,100 +1,49 @@
-using System.Collections.Generic;
 using UnityEngine;
 
-
-public abstract class ParticleDamageReceiver : MonoBehaviour
+[RequireComponent(typeof(DamageHandler), typeof(Vehicle))]
+public class ParticleDamageReceiver : MonoBehaviour
 {
     [SerializeField] private ParticleWeaponLinker _weaponLinker;
-    [SerializeField] private ParticleSystem[] _dirtParticles;
 
     private DamageHandler _damageHandler;
     private Vehicle _vehicle;
-    private HashSet<ParticleSystem> _dirtParticleSet;
-    protected IWeapon LastWeaponUsed;
+    private IDamageImpactListener[] _listeners;
 
-    protected virtual void Awake()
-    {
-        InitializeComponents();
-        InitializeDirtSet();
-    }
-
-    private void InitializeComponents()
+    private void Awake()
     {
         _damageHandler = GetComponent<DamageHandler>();
         _vehicle = GetComponent<Vehicle>();
+        _listeners = GetComponents<IDamageImpactListener>();
     }
 
-    private void InitializeDirtSet()
+    private void OnParticleCollision(GameObject other)
     {
-        _dirtParticleSet = new HashSet<ParticleSystem>(_dirtParticles.Length);
-        for (int i = 0; i < _dirtParticles.Length; i++)
-        {
-            if (_dirtParticles[i] != null)
-                _dirtParticleSet.Add(_dirtParticles[i]);
-        }
-    }
+        var particle = other.GetComponent<ParticleSystem>();
+        if (!particle) return;
 
-    protected void HandleParticleCollision(ParticleSystem particle)
-    {
-        if (_weaponLinker.TryGetWeapon(particle, out IWeapon weapon))
-        {
+        if (_weaponLinker.TryGetWeapon(particle, out var weapon))
             ProcessWeaponImpact(weapon);
-        }
-        else if (_dirtParticleSet.Contains(particle))
-        {
-            ProcessDirtImpact();
-        }
+        else
+            NotifyParticleImpact(particle);
     }
 
     private void ProcessWeaponImpact(IWeapon weapon)
     {
         if (weapon.OwnerVehicle == _vehicle) return;
 
-        LastWeaponUsed = weapon;
-        ApplyDamage(weapon.DamageAmount, weapon);
+        _damageHandler.TakeDamage(weapon.DamageAmount, weapon);
+        NotifyWeaponImpact(weapon.DamageAmount, weapon);
     }
 
-    protected virtual void ApplyDamage(float damageAmount, IWeapon weapon)
+    private void NotifyWeaponImpact(float damage, IWeapon weapon)
     {
-        _damageHandler?.TakeDamage(damageAmount, weapon);
+        foreach (var listener in _listeners)
+            listener?.OnWeaponImpact(damage, weapon);
     }
 
-    protected abstract void ProcessDirtImpact();
+    private void NotifyParticleImpact(ParticleSystem particle)
+    {
+        foreach (var listener in _listeners)
+            listener?.OnParticleImpact(particle);
+    }
 }
-
-
-
-//public abstract class ParticleDamageReceiver : MonoBehaviour
-//{
-//    private DamageHandler _damageHandler;
-//    private Vehicle _vehicle;
-//    protected IWeapon LastWeaponUsed; //TODO: private
-
-//    protected virtual void Awake()
-//    {
-//        _damageHandler = GetComponent<DamageHandler>();
-//        _vehicle = GetComponent<Vehicle>();
-//    }
-
-//    protected virtual void OnParticleCollision(GameObject other)
-//    {
-//        if (other.TryGetComponent(out ParticleWeaponMarker marker))
-//        {
-//            IWeapon weapon = marker.WeaponRef;
-
-//            if (weapon != null && weapon.OwnerVehicle != _vehicle)
-//            {
-//                LastWeaponUsed = weapon;
-//                ApplyDamage(weapon.DamageAmount, weapon);
-//            }
-//        }
-//    }
-
-//    protected virtual void ApplyDamage(float damageAmount, IWeapon weapon)
-//    {
-//        if (_damageHandler != null)
-//        {
-//            _damageHandler.TakeDamage(damageAmount, weapon);
-//        }
-//    }
-//}

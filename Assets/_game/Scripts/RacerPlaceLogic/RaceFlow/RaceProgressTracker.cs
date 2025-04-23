@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using Reflex.Attributes;
 using YG;
+using System.Linq;
 
 public class RaceProgressTracker : MonoBehaviour
 {
@@ -34,6 +35,9 @@ public class RaceProgressTracker : MonoBehaviour
     private bool _raceFinished;
     private TextMeshProUGUI _currentLapsText;
     private TextMeshProUGUI _currentPositionText;
+
+    public int TotalLaps => _totalLaps;
+    public Racer[] GetRacersArray() => _racers.ToArray();
 
     private void Awake()
     {

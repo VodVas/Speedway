@@ -8,11 +8,11 @@ public class Detonator : MonoBehaviour, ITerminatable, IWeapon
     [SerializeField] private ParticleWeaponMarker _explosionMarker;
     [SerializeField] private float _delayAfterExplosion = 0.5f;
 
+    [field: SerializeField, Range(0, 100)] public float DamageAmount { get; private set; } = 25;
+
     private WaitForSeconds _wait;
 
     public event Action<ITerminatable> Terminated;
-
-    [field: SerializeField, Range(0, 100)] public float DamageAmount { get; private set; } = 25;
 
     public Vehicle OwnerVehicle
     {
@@ -48,9 +48,9 @@ public class Detonator : MonoBehaviour, ITerminatable, IWeapon
         }
 
         yield return _wait;
+
         Terminate();
-        //Terminated?.Invoke(this);
-    }
+     }
 
     public void Terminate()
     {

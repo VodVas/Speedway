@@ -22,27 +22,3 @@ public class EnemyMine : MineWeapon
         return result;
     }
 }
-
-//public class EnemyMine : Weapon
-//{
-//    [SerializeField] private ArcadeAiVehicleController _carController;
-
-//    private MineSpawner _mineSpawner;
-
-//    private void Awake()
-//    {
-//        _mineSpawner = GetComponent<MineSpawner>();
-//    }
-
-//    protected override void Update()
-//    {
-//    }
-
-//    private void OnTriggerEnter(Collider other)
-//    {
-//        if (other.TryGetComponent(out Vehicle _) && _carController.IsGrounded())
-//        {
-//            _mineSpawner.StartSpawn(transform.position);
-//        }
-//    }
-//}

@@ -1,7 +1,5 @@
-using System;
 using UnityEngine;
 
-[Serializable]
 public class GravityLightSwitcher : MonoBehaviour
 {
     [SerializeField] private Light _pointLight;

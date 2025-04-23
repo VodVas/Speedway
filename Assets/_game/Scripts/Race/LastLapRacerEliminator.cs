@@ -1,162 +1,251 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
 
 public class LastLapRacerEliminator : MonoBehaviour
 {
-    [Header("Ссылка на массив гонщиков (тот же, что в RaceProgressTracker)")]
-    [SerializeField] private Racer[] _racers = null;
+    [SerializeField] private RaceProgressTracker _tracker;
 
-    [Header("Число кругов (должно совпадать с RaceProgressTracker)")]
-    [SerializeField] private int _totalLaps = 3;
-
-    [Header("Включить ли логику выбывания?")]
-    [SerializeField] private bool _enableElimination = true;
-
-    // Храним "предыдущий" LapsCompleted для каждого гонщика, чтобы отследить переход на новый круг:
-    private Dictionary<Racer, int> _prevLapCount;
-    // Храним время, когда гонщик "перешёл" на очередной круг:
-    private Dictionary<Racer, float> _lapFinishTime;
+    private Racer[] _racers;
+    private int[] _lastCompletedLaps;
+    private bool[] _eliminated;
+    private int _totalLaps;
+    private int _activeRacers;
+    private int _lastEliminatedLap = -1;
 
     private void Awake()
     {
-        if (!_enableElimination)
-        {
-            enabled = false;
-            return;
-        }
+        if (!_tracker) enabled = false;
+    }
 
-        if (_racers == null || _racers.Length == 0)
-        {
-            Debug.LogWarning("[EliminationHandler] Нет гонщиков для выбывания!");
-            enabled = false;
-            return;
-        }
+    private void Start()
+    {
+        _racers = _tracker.GetRacersArray();
+        _totalLaps = _tracker.TotalLaps;
+        _activeRacers = _racers.Length;
 
-        if (_totalLaps < 1)
-        {
-            Debug.LogError("[EliminationHandler] Некорректное число кругов!");
-            enabled = false;
-            return;
-        }
+        InitializeStateArrays();
+    }
 
-        // Инициализируем словари
-        _prevLapCount = new Dictionary<Racer, int>(_racers.Length);
-        _lapFinishTime = new Dictionary<Racer, float>(_racers.Length);
+    private void InitializeStateArrays()
+    {
+        _lastCompletedLaps = new int[_racers.Length];
+        _eliminated = new bool[_racers.Length];
+    }
 
-        // Заполним начальные значения
+    private void FixedUpdate()
+    {
+        if (_activeRacers <= 1) return;
+
+        UpdateLapProgress();
+        TryEliminateLast();
+    }
+
+    private void UpdateLapProgress()
+    {
         for (int i = 0; i < _racers.Length; i++)
         {
-            Racer r = _racers[i];
-            if (r != null)
-            {
-                // Сразу возьмём текущее LapsCompleted
-                _prevLapCount[r] = r.LapsCompleted;
-                // Поставим время "минимальное" или 0
-                _lapFinishTime[r] = 0f;
-            }
+            if (_eliminated[i] || !_racers[i]) continue;
+            _lastCompletedLaps[i] = _racers[i].LapsCompleted;
         }
     }
 
-    private void LateUpdate()
+    private void TryEliminateLast()
     {
-        // 1) Обновим данные о том, кто пересёк круг
-        for (int i = 0; i < _racers.Length; i++)
-        {
-            Racer r = _racers[i];
-            if (r == null)
-                continue;
+        int minLap = FindMinCompletedLap();
 
-            if (r.HasFinished)
-                continue; // Уже выбыл или полностью закончил гонку
-
-            int oldLap = _prevLapCount[r];
-            int newLap = r.LapsCompleted;
-
-            // Если гонщик "поднял" число кругов => значит пересёк финиш круга сейчас
-            if (newLap > oldLap)
-            {
-                _prevLapCount[r] = newLap;
-                _lapFinishTime[r] = Time.time;
-            }
-        }
-
-        // 2) Проверим, не закончился ли очередной круг для всех ещё активных гонщиков
-        //    По сути, если все живые гонщики имеют одинаковый LapsCompleted, 
-        //    то круг завершён (последний пересёк линию), и мы можем "выбить" последнего.
-        EliminateLastIfNeeded();
-    }
-
-    private void EliminateLastIfNeeded()
-    {
-        // Собираем не-финишировавших гонщиков
-        // и узнаём их текущий LapsCompleted
-        int referenceLap = -1;
-        List<Racer> activeRacers = new List<Racer>();
-        for (int i = 0; i < _racers.Length; i++)
-        {
-            Racer r = _racers[i];
-            if (r == null)
-                continue;
-
-            if (r.HasFinished)
-                continue;
-
-            // Если гонщик уже прошёл все круги, он фактически финишировал
-            if (r.LapsCompleted >= _totalLaps)
-                continue;
-
-            // Это актуальный гонщик, участвующий в текущем круге
-            activeRacers.Add(r);
-
-            // Возьмём lap как "базу" для сравнения
-            if (referenceLap < 0)
-            {
-                referenceLap = r.LapsCompleted;
-            }
-        }
-
-        // Если вообще нет активных гонщиков — ничего не делаем
-        if (activeRacers.Count == 0)
+        // 1) Не выкидывать в 0-м круге, и не выкидывать в последнем круге
+        if (minLap < 1 || minLap >= _totalLaps - 1)
             return;
 
-        // Проверим, все ли они на одном и том же lap
-        for (int i = 0; i < activeRacers.Count; i++)
+        // 2) Если уже выкидывали в этом круге — не выкидываем повторно
+        if (minLap == _lastEliminatedLap)
+            return;
+
+        int lastRacerIndex = FindLastRacerIndex(minLap);
+        if (lastRacerIndex == -1)
+            return;
+
+        // отмечаем, что в этом круге уже была элиминация
+        _lastEliminatedLap = minLap;
+
+        ExecuteElimination(lastRacerIndex);
+    }
+
+    private int FindMinCompletedLap()
+    {
+        int min = int.MaxValue;
+        for (int i = 0; i < _racers.Length; i++)
         {
-            Racer r = activeRacers[i];
-            if (r.LapsCompleted != referenceLap)
+            if (_eliminated[i] || !_racers[i]) continue;
+            if (_lastCompletedLaps[i] < min) min = _lastCompletedLaps[i];
+        }
+        return min;
+    }
+
+    private int FindLastRacerIndex(int targetLap)
+    {
+        int worstPosition = -1;
+        int lastIndex = -1;
+
+        for (int i = 0; i < _racers.Length; i++)
+        {
+            if (_eliminated[i] || !_racers[i]) continue;
+            if (_lastCompletedLaps[i] != targetLap) continue;
+
+            if (_racers[i].Position > worstPosition)
             {
-                // Как только находим, что кто-то ещё не добрался до referenceLap, 
-                // значит ещё не все завершили этот круг → выбывание не делаем.
-                return;
+                worstPosition = _racers[i].Position;
+                lastIndex = i;
             }
         }
 
-        // Если дошли сюда, значит все активные гонщики = referenceLap
-        // Последний, кто финишировал этот lap, имеет max _lapFinishTime[r].
-        float maxTime = float.MinValue;
-        Racer lastRacer = null;
+        return lastIndex;
+    }
 
-        for (int i = 0; i < activeRacers.Count; i++)
-        {
-            Racer r = activeRacers[i];
-            float t = _lapFinishTime[r];
-            if (t > maxTime)
-            {
-                maxTime = t;
-                lastRacer = r;
-            }
-        }
-
-        // Теперь "lastRacer" - гонщик, который пересёк линию последним
-        if (lastRacer != null)
-        {
-            // Устанавливаем "финиш" и отключаем
-            lastRacer.SetFinished(true);
-            lastRacer.gameObject.SetActive(false);
-
-            Debug.Log($"[EliminationHandler] {lastRacer.Name} был последним и выбыл из гонки.");
-        }
+    private void ExecuteElimination(int index)
+    {
+        _eliminated[index] = true;
+        _racers[index].gameObject.SetActive(false);
+        _activeRacers--;
+        Debug.Log($"[Elimination] {_racers[index].Name} выбыл");
     }
 }
+
+
+
+
+
+
+//public class LastLapRacerEliminator : MonoBehaviour
+//{
+//    [Header("Ссылка на массив гонщиков (тот же, что в RaceProgressTracker)")]
+//    [SerializeField] private Racer[] _racers = null;
+//    [Header("Число кругов (должно совпадать с RaceProgressTracker)")]
+//    [SerializeField] private int _totalLaps = 3;
+//    [SerializeField] private bool _enableElimination = true;
+
+//    private Dictionary<Racer, int> _prevLapCount;
+//    private Dictionary<Racer, float> _lapFinishTime;
+
+//    private void Awake()
+//    {
+//        if (!_enableElimination)
+//        {
+//            enabled = false;
+//            return;
+//        }
+
+//        if (_racers == null || _racers.Length == 0)
+//        {
+//            Debug.LogWarning("[EliminationHandler] Нет гонщиков для выбывания!");
+//            enabled = false;
+//            return;
+//        }
+
+//        if (_totalLaps < 1)
+//        {
+//            Debug.LogError("[EliminationHandler] Некорректное число кругов!");
+//            enabled = false;
+//            return;
+//        }
+
+//        _prevLapCount = new Dictionary<Racer, int>(_racers.Length);
+//        _lapFinishTime = new Dictionary<Racer, float>(_racers.Length);
+
+//        for (int i = 0; i < _racers.Length; i++)
+//        {
+//            Racer r = _racers[i];
+
+//            if (r != null)
+//            {
+//                _prevLapCount[r] = r.LapsCompleted;
+//                _lapFinishTime[r] = 0f;
+//            }
+//        }
+//    }
+
+//    private void LateUpdate()
+//    {
+//        for (int i = 0; i < _racers.Length; i++)
+//        {
+//            Racer racer = _racers[i];
+//            if (racer == null)
+//                continue;
+
+//            if (racer.HasFinished)
+//                continue;
+
+//            int oldLap = _prevLapCount[racer];
+//            int newLap = racer.LapsCompleted;
+
+//            if (newLap > oldLap)
+//            {
+//                _prevLapCount[racer] = newLap;
+//                _lapFinishTime[racer] = Time.time;
+//            }
+//        }
+
+//        EliminateLastIfNeeded();
+//    }
+
+//    private void EliminateLastIfNeeded()
+//    {
+//        int referenceLap = -1;
+//        List<Racer> activeRacers = new List<Racer>();
+
+//        for (int i = 0; i < _racers.Length; i++)
+//        {
+//            Racer racer = _racers[i];
+
+//            if (racer == null)
+//                continue;
+
+//            if (racer.HasFinished)
+//                continue;
+
+//            if (racer.LapsCompleted >= _totalLaps)
+//                continue;
+
+//            activeRacers.Add(racer);
+
+//            if (referenceLap < 0)
+//            {
+//                referenceLap = racer.LapsCompleted;
+//            }
+//        }
+
+//        if (activeRacers.Count == 0)
+//            return;
+
+//        for (int i = 0; i < activeRacers.Count; i++)
+//        {
+//            Racer r = activeRacers[i];
+//            if (r.LapsCompleted != referenceLap)
+//            {
+//                return;
+//            }
+//        }
+
+//        float maxTime = float.MinValue;
+//        Racer lastRacer = null;
+
+//        for (int i = 0; i < activeRacers.Count; i++)
+//        {
+//            Racer racer = activeRacers[i];
+//            float t = _lapFinishTime[racer];
+
+//            if (t > maxTime)
+//            {
+//                maxTime = t;
+//                lastRacer = racer;
+//            }
+//        }
+
+//        if (lastRacer != null)
+//        {
+//            lastRacer.SetFinished(true);
+//            lastRacer.gameObject.SetActive(false);
+
+//            Debug.Log($"[EliminationHandler] {lastRacer.Name} был последним и выбыл из гонки.");
+//        }
+//    }
+//}

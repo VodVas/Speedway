@@ -4,27 +4,20 @@ using YG;
 public class AddTriggerMoney : MonoBehaviour
 {
     [SerializeField] private Transform _container;
+    [SerializeField] private PlayerCarSelector _carSelector;
 
     private Collider _playerCollider;
     private bool _hasGivenMoney;
 
-    private void Start()
+    private void OnEnable()
     {
-        Player player = _container.GetComponentInChildren<Player>();
+        _carSelector.CarActivated += FindPlayerCar;
+    }
 
-        if (player != null)
-        {
-            _playerCollider = player.GetComponent<Collider>();
-
-            if (_playerCollider == null)
-            {
-                Debug.LogError("Player doesn't have a Collider component");
-            }
-        }
-        else
-        {
-            Debug.LogError("Player not found in the container");
-        }
+    private void OnDisable()
+    {
+        _hasGivenMoney = false;
+        _carSelector.CarActivated -= FindPlayerCar;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -43,8 +36,22 @@ public class AddTriggerMoney : MonoBehaviour
             _hasGivenMoney = false;
     }
 
-    private void OnDisable()
+    private void FindPlayerCar()
     {
-        _hasGivenMoney = false;
+        Player player = _container.GetComponentInChildren<Player>();
+
+        if (player != null)
+        {
+            _playerCollider = player.GetComponent<Collider>();
+
+            if (_playerCollider == null)
+            {
+                Debug.LogError("Player doesn't have a Collider component");
+            }
+        }
+        else
+        {
+            Debug.LogError("Player not found in the container");
+        }
     }
 }

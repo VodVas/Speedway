@@ -108,7 +108,6 @@ public class RespawnPointsSetter : EditorWindow
         EditorGUILayout.BeginVertical(EditorStyles.helpBox);
         EditorGUILayout.LabelField("Mass Import Options", EditorStyles.boldLabel);
 
-        // Drag-and-drop area
         var rect = GUILayoutUtility.GetRect(0, 50, GUILayout.ExpandWidth(true));
         GUI.Box(rect, "Drag Transforms or Parent Container Here");
 
@@ -117,7 +116,6 @@ public class RespawnPointsSetter : EditorWindow
             HandleDragAndDrop();
         }
 
-        // Container reference
         EditorGUILayout.BeginHorizontal();
         _pointsContainer = (Transform)EditorGUILayout.ObjectField(
             "Parent Container",
@@ -195,10 +193,8 @@ public class RespawnPointsSetter : EditorWindow
     {
         EditorGUILayout.BeginHorizontal();
 
-        // Search filter
         _searchFilter = EditorGUILayout.TextField("Search:", _searchFilter, GUILayout.Width(250));
 
-        // Sorting options
         EditorGUILayout.LabelField("Sort:", GUILayout.Width(40));
         _sortByName = GUILayout.Toggle(_sortByName, "By Name", EditorStyles.miniButton, GUILayout.Width(80));
         if (GUILayout.Button("Clear List", EditorStyles.miniButton, GUILayout.Width(80)))

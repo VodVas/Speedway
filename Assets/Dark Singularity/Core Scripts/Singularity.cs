@@ -54,6 +54,8 @@ public class Singularity : MonoBehaviour
     private LerpState _currentLerpState = LerpState.MovingToEnd;
     private float _currentDelayTimer = 0f;
 
+    public PullTarget[] GetTargets() => _targets != null ? _targets : Array.Empty<PullTarget>();
+
     private void Awake()
     {
         _lightController = GetComponent<GravityLightSwitcher>();
@@ -68,6 +70,11 @@ public class Singularity : MonoBehaviour
 
         if (_isLightToggleOn && _hasLightController)
             _lightController.InitializeLightColor();
+    }
+
+    public void SetTargets(PullTarget[] targets)
+    {
+        _targets = targets != null ? (PullTarget[])targets.Clone() : new PullTarget[0];
     }
 
     private void ValidateTargets()
@@ -92,7 +99,10 @@ public class Singularity : MonoBehaviour
 
     private void Update()
     {
-        _pullForce.text = $"Gravity force: {_currentGravity:F1}";
+        if (_pullForce != null)
+        {
+            _pullForce.text = $"{_currentGravity:F1}";
+        }
     }
 
     private void FixedUpdate()
@@ -233,9 +243,9 @@ public class Singularity : MonoBehaviour
         for (int i = 0; i < targetsCount; i++)
         {
             PullTarget pullTarget = _targets[i];
-            if (pullTarget == null || !pullTarget.Pullable) continue;
+            if (pullTarget == null || !pullTarget.IsPullable()) continue;
 
-            Rigidbody targetRb = pullTarget.TargetRigidbody;
+            Rigidbody targetRb = pullTarget.GetRigidbody();
             Vector3 targetPosition = targetRb.position;
             Vector3 toCenter = centerPosition - targetPosition;
 
@@ -244,7 +254,7 @@ public class Singularity : MonoBehaviour
 
             float distance = Mathf.Sqrt(distanceSqr);
             float gravityIntensity = distance / _radius;
-            float massFactor = pullTarget.CachedMass * Time.fixedDeltaTime;
+            float massFactor = pullTarget.GetCachedMass() * Time.fixedDeltaTime;
 
             targetRb.AddForce(
                 toCenter * _currentGravity * gravityIntensity * massFactor,
