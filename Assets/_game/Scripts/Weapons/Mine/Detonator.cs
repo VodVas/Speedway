@@ -2,34 +2,18 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Detonator : MonoBehaviour, ITerminatable, IWeapon
+public class Detonator : MonoBehaviour, ITerminatable
 {
     [SerializeField] private ParticleSystem _explosion;
-    [SerializeField] private ParticleWeaponMarker _explosionMarker;
+    [SerializeField] private MineExplosionMarker _mineExplosionMarker;
     [SerializeField] private float _delayAfterExplosion = 0.5f;
 
-    [field: SerializeField, Range(0, 100)] public float DamageAmount { get; private set; } = 25;
-
     private WaitForSeconds _wait;
-
     public event Action<ITerminatable> Terminated;
-
-    public Vehicle OwnerVehicle
-    {
-        get { return GetComponentInParent<Vehicle>(); }
-    }
 
     private void Awake()
     {
         _wait = new WaitForSeconds(_delayAfterExplosion);
-    }
-
-    private void OnEnable()
-    {
-        if (_explosionMarker != null)
-        {
-            _explosionMarker.SetWeapon(this);
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -42,18 +26,10 @@ public class Detonator : MonoBehaviour, ITerminatable, IWeapon
 
     private IEnumerator DelayingExplosion()
     {
-        if (_explosion.isPlaying == false)
-        {
-            _explosion.Play();
-        }
-
+        if (!_explosion.isPlaying) _explosion.Play();
         yield return _wait;
-
         Terminate();
-     }
-
-    public void Terminate()
-    {
-        Terminated?.Invoke(this);
     }
+
+    public void Terminate() => Terminated?.Invoke(this);
 }

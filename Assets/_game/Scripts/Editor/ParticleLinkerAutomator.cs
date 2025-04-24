@@ -71,7 +71,7 @@ public static class ParticleLinkerAutomator
         Undo.RecordObject(linker, "Update Particle Weapon Links");
 
         var so = new SerializedObject(linker);
-        var arrayProp = so.FindProperty("_linkedParticles");
+        var arrayProp = so.FindProperty("_linkedPairs");
         arrayProp.ClearArray();
 
         for (int i = 0; i < pairs.Count; i++)

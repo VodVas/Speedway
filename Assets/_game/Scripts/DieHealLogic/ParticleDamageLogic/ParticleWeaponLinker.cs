@@ -1,34 +1,48 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ParticleWeaponLinker : MonoBehaviour
 {
-    [SerializeField] private WeaponParticlePair[] _linkedParticles;
+    [SerializeField] private WeaponParticlePair[] _linkedPairs;
 
-    private Dictionary<ParticleSystem, IWeapon> _particleWeaponMap;
+    private int[] _particleInstanceIDs;
+    private ParticleSystem[] _particleSystems;
+    private IWeapon[] _weapons;
+    private int _count;
 
     private void Awake()
     {
-        InitializeWeaponMap();
-    }
+        _count = _linkedPairs.Length;
+        _particleInstanceIDs = new int[_count];
+        _particleSystems = new ParticleSystem[_count];
+        _weapons = new IWeapon[_count];
 
-    private void InitializeWeaponMap()
-    {
-        _particleWeaponMap = new Dictionary<ParticleSystem, IWeapon>(_linkedParticles.Length);
-
-        for (int i = 0; i < _linkedParticles.Length; i++)
+        for (int i = 0; i < _count; i++)
         {
-            var pair = _linkedParticles[i];
+            var pair = _linkedPairs[i];
+            var go = pair.ParticleSystem.gameObject;
 
-            if (pair.ParticleSystem != null && pair.Weapon != null)
-            {
-                _particleWeaponMap[pair.ParticleSystem] = pair.Weapon;
-            }
+            _particleInstanceIDs[i] = go.GetInstanceID();
+            _particleSystems[i] = pair.ParticleSystem;
+            _weapons[i] = pair.Weapon;
         }
     }
 
-    public bool TryGetWeapon(ParticleSystem particle, out IWeapon weapon)
+    public bool TryGetWeapon(GameObject particleOwner, out IWeapon weapon, out ParticleSystem particle)
     {
-        return _particleWeaponMap.TryGetValue(particle, out weapon);
+        int searchID = particleOwner.GetInstanceID();
+
+        for (int i = 0; i < _count; i++)
+        {
+            if (_particleInstanceIDs[i] == searchID)
+            {
+                weapon = _weapons[i];
+                particle = _particleSystems[i];
+                return true;
+            }
+        }
+
+        weapon = null;
+        particle = null;
+        return false;
     }
 }

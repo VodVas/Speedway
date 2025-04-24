@@ -4658,7 +4658,7 @@ GameObject:
   - component: {fileID: 4269557066927296619}
   - component: {fileID: 8244631941289733714}
   - component: {fileID: 3137429580001843206}
-  - component: {fileID: 8533723660765639648}
+  - component: {fileID: 7605954458282350840}
   m_Layer: 0
   m_Name: FX_Fireball_Shooting_Explosion_Core_01
   m_TagString: Untagged
@@ -9294,7 +9294,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &8533723660765639648
+--- !u!114 &7605954458282350840
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9303,9 +9303,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4114388842193556554}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2218774431d3b14990f043cc1017c72, type: 3}
+  m_Script: {fileID: 11500000, guid: ac4909e7ed3a16240b7847ba729dcd31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Damage>k__BackingField: 50
 --- !u!1 &6113561450894996712
 GameObject:
   m_ObjectHideFlags: 0
@@ -9454,8 +9455,8 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6723238289278027104}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
@@ -9466,7 +9467,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d82630c95af72ef439a97df3f1f4d651, type: 2}
+  - {fileID: 2100000, guid: 7c26cf0bfe31c4247ad0de127e8e305f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9500,7 +9501,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f56f8f1f8efcf2d4d8262ba773ddd765, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objects: []
+  _objects:
+  - {fileID: 6113561450894996712}
   _blinkDuration: 0.5
   _blinkInterval: 1
 --- !u!135 &5761146296097773940
@@ -9537,6 +9539,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _explosion: {fileID: 7337039368304503847}
-  _explosionMarker: {fileID: 8533723660765639648}
+  _mineExplosionMarker: {fileID: 7605954458282350840}
   _delayAfterExplosion: 0.5
-  <DamageAmount>k__BackingField: 20
