@@ -5637,6 +5637,7 @@ GameObject:
   - component: {fileID: 4269628125356945925}
   - component: {fileID: 6179421206076528020}
   - component: {fileID: 3424798201172986330}
+  - component: {fileID: 535407519803422984}
   m_Layer: 7
   m_Name: Vortex
   m_TagString: Untagged
@@ -5697,7 +5698,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _minSpeed: 0.1
-  _maxSpeedCap: 300
+  _maxSpeedCap: 600
   movementMode: 0
   GroundCheck: 0
   drivableSurface:
@@ -5799,7 +5800,7 @@ MonoBehaviour:
   _minSpeedThreshold: 0.1
   carVelocity: {x: 0, y: 0, z: 0}
   skidWidth: 0
-  _forwardBackTiltAmount: 5
+  _forwardBackTiltAmount: 0
   BodyTilt: 10
   <SkidMarksFadeDuration>k__BackingField: 2
   _speedStepForMultiplier: 20
@@ -6114,12 +6115,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <CarName>k__BackingField: Vortex
-  <Price>k__BackingField: 100
+  <Price>k__BackingField: 3000
   <Id>k__BackingField: 13
   <Speed>k__BackingField: 120
-  <Acceleration>k__BackingField: 15
-  <Turn>k__BackingField: 15
-  <Armor>k__BackingField: 150
+  <Acceleration>k__BackingField: 10
+  <Turn>k__BackingField: 20
+  <Armor>k__BackingField: 225
 --- !u!114 &2998639506686292397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6184,6 +6185,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58e1aad2ade7b22488332c7c58882dc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _desktopEffects: {fileID: 0}
+  _mobileEffects: {fileID: 0}
+  _dirtParticle: {fileID: 0}
+--- !u!114 &535407519803422984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4786225700687181318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a608c6d18e96504595d52ee10fe27d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weaponLinker: {fileID: 0}
 --- !u!1 &4913600638329511466
 GameObject:
   m_ObjectHideFlags: 0
@@ -21645,6 +21662,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8893688678017096972}
     m_Modifications:
+    - target: {fileID: 237794891922948032, guid: b6f8d6d826a970649acc24c25073e93e, type: 3}
+      propertyPath: _valuePerUnit
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3002284024140682886, guid: b6f8d6d826a970649acc24c25073e93e, type: 3}
+      propertyPath: _valuePerUnit
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3961345771594530165, guid: b6f8d6d826a970649acc24c25073e93e, type: 3}
       propertyPath: _targetRenderer
       value: 
@@ -21653,6 +21678,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Modifications NewSystem (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 5715169427240316358, guid: b6f8d6d826a970649acc24c25073e93e, type: 3}
+      propertyPath: _valuePerUnit
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7021911866381243141, guid: b6f8d6d826a970649acc24c25073e93e, type: 3}
+      propertyPath: _targetRenderer
+      value: 
+      objectReference: {fileID: 5971769699687495678}
     - target: {fileID: 7584598358545456983, guid: b6f8d6d826a970649acc24c25073e93e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.419006

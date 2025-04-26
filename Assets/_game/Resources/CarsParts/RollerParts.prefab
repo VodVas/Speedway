@@ -428,7 +428,6 @@ GameObject:
   - component: {fileID: 8959562232929701969}
   - component: {fileID: 5846442825237034280}
   - component: {fileID: 950739810610648760}
-  - component: {fileID: -5639681020300565334}
   m_Layer: 0
   m_Name: RollerParts
   m_TagString: Untagged
@@ -455,6 +454,7 @@ Transform:
   - {fileID: 1348014234530548167}
   - {fileID: 3551219840483705791}
   - {fileID: 6208737291792912739}
+  - {fileID: 5410013642963338354}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5846442825237034280
@@ -494,7 +494,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 250
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -569,19 +569,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &-5639681020300565334
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7572404518923288349}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1f13896be505614f9cd7089a52271b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isEnablePlay: 0
 --- !u!1 &8428740123195194839
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,3 +652,65 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &549689059604896580
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8959562232929701969}
+    m_Modifications:
+    - target: {fileID: 5527282298182164278, guid: 65d3c4ac6cbf7d7409432549a555d610, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5527282298182164278, guid: 65d3c4ac6cbf7d7409432549a555d610, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5527282298182164278, guid: 65d3c4ac6cbf7d7409432549a555d610, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5527282298182164278, guid: 65d3c4ac6cbf7d7409432549a555d610, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5527282298182164278, guid: 65d3c4ac6cbf7d7409432549a555d610, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5527282298182164278, guid: 65d3c4ac6cbf7d7409432549a555d610, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5527282298182164278, guid: 65d3c4ac6cbf7d7409432549a555d610, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5527282298182164278, guid: 65d3c4ac6cbf7d7409432549a555d610, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5527282298182164278, guid: 65d3c4ac6cbf7d7409432549a555d610, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5527282298182164278, guid: 65d3c4ac6cbf7d7409432549a555d610, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5530029301298640956, guid: 65d3c4ac6cbf7d7409432549a555d610, type: 3}
+      propertyPath: m_Name
+      value: FX_Fireball_Shooting_Explosion_01
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 65d3c4ac6cbf7d7409432549a555d610, type: 3}
+--- !u!4 &5410013642963338354 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5527282298182164278, guid: 65d3c4ac6cbf7d7409432549a555d610, type: 3}
+  m_PrefabInstance: {fileID: 549689059604896580}
+  m_PrefabAsset: {fileID: 0}

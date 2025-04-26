@@ -277,7 +277,6 @@ GameObject:
   - component: {fileID: 3471901891905957557}
   - component: {fileID: 5165306991865775812}
   - component: {fileID: 7787465448210040968}
-  - component: {fileID: -2754380203489839877}
   m_Layer: 0
   m_Name: CrossroadParts
   m_TagString: Untagged
@@ -344,7 +343,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 250
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -419,19 +418,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &-2754380203489839877
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3848334145863260700}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1f13896be505614f9cd7089a52271b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isEnablePlay: 0
 --- !u!1 &5029283910567238097
 GameObject:
   m_ObjectHideFlags: 0

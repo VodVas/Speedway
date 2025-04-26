@@ -20929,6 +20929,7 @@ GameObject:
   - component: {fileID: -8282368395805417115}
   - component: {fileID: 8785885583537939285}
   - component: {fileID: 4425342938892575468}
+  - component: {fileID: 3967555050398631207}
   m_Layer: 7
   m_Name: BUGgy
   m_TagString: Untagged
@@ -20994,15 +20995,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _minSpeed: 0.1
-  _maxSpeedCap: 300
+  _maxSpeedCap: 400
   movementMode: 0
   GroundCheck: 0
   drivableSurface:
     serializedVersion: 2
     m_Bits: 64
-  MaxSpeed: 110
+  MaxSpeed: 100
   acceleration: 10
-  turn: 15
+  turn: 5
   gravity: 7
   downforce: 5
   AirControl: 1
@@ -21451,9 +21452,9 @@ MonoBehaviour:
   <CarName>k__BackingField: BUGgy
   <Price>k__BackingField: 100
   <Id>k__BackingField: 0
-  <Speed>k__BackingField: 120
-  <Acceleration>k__BackingField: 20
-  <Turn>k__BackingField: 10
+  <Speed>k__BackingField: 100
+  <Acceleration>k__BackingField: 10
+  <Turn>k__BackingField: 5
   <Armor>k__BackingField: 100
 --- !u!114 &8785885583537939285
 MonoBehaviour:
@@ -21484,6 +21485,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58e1aad2ade7b22488332c7c58882dc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _desktopEffects: {fileID: 0}
+  _mobileEffects: {fileID: 0}
+  _dirtParticle: {fileID: 0}
+--- !u!114 &3967555050398631207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7785104520783736772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a608c6d18e96504595d52ee10fe27d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weaponLinker: {fileID: 0}
 --- !u!1 &8728708258273903365
 GameObject:
   m_ObjectHideFlags: 0
@@ -22183,6 +22200,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7131264477548794664}
     m_Modifications:
+    - target: {fileID: 3002284024140682886, guid: b6f8d6d826a970649acc24c25073e93e, type: 3}
+      propertyPath: _valuePerUnit
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3961345771594530165, guid: b6f8d6d826a970649acc24c25073e93e, type: 3}
       propertyPath: _targetRenderer
       value: 
@@ -22191,6 +22212,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Modifications NewSystem
       objectReference: {fileID: 0}
+    - target: {fileID: 5715169427240316358, guid: b6f8d6d826a970649acc24c25073e93e, type: 3}
+      propertyPath: _valuePerUnit
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7021911866381243141, guid: b6f8d6d826a970649acc24c25073e93e, type: 3}
+      propertyPath: _targetRenderer
+      value: 
+      objectReference: {fileID: 1057126802338942642}
     - target: {fileID: 7584598358545456983, guid: b6f8d6d826a970649acc24c25073e93e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.419006

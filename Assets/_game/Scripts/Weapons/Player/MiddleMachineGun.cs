@@ -11,14 +11,22 @@ public class MiddleMachineGun : ParticleWeapon
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             PlayParticleEffect();
-            _shaker.enabled = IsParticlePlay;
-            _isShakeActive = IsParticlePlay;
+
+            if (_shaker != null)
+            {
+                _shaker.enabled = IsParticlePlay;
+                _isShakeActive = IsParticlePlay;
+            }
         }
 
         if (_isShakeActive && !IsParticlePlay)
         {
             _shaker.StopShakeImmediately();
-            _isShakeActive = false;
+
+            if (_shaker != null)
+            {
+                _isShakeActive = false;
+            }
         }
     }
 }

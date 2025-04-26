@@ -543,7 +543,6 @@ GameObject:
   - component: {fileID: 2165209805207302071}
   - component: {fileID: 6546680608034628749}
   - component: {fileID: 6984562016623103422}
-  - component: {fileID: 6247720243184109927}
   m_Layer: 0
   m_Name: IceCreamerParts
   m_TagString: Untagged
@@ -613,7 +612,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 250
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -688,19 +687,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6247720243184109927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2368237085930973381}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1f13896be505614f9cd7089a52271b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isEnablePlay: 0
 --- !u!1 &2384214656083596266
 GameObject:
   m_ObjectHideFlags: 0

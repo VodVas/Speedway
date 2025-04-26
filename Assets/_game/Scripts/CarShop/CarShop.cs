@@ -177,10 +177,6 @@ public class CarShop : MonoBehaviour
         _carShopUI.UpdatePlayerMoney(YandexGame.savesData.Money);
 
         bool isEpic = _selectionCycler.IsCurrentCarEpic();
-        Debug.Log($"[CarShop] Текущая машина: {currentCar.CarName} (ID: {currentCar.Id})");
-        Debug.Log($"[CarShop] Это эпическая машина: {isEpic}");
-        Debug.Log($"[CarShop] Разблок: {_epicCarsDatabase.IsCarUnlocked(currentCar.Id)}");
-
         bool isUnlocked = !isEpic || _epicCarsDatabase.IsCarUnlocked(currentCar.Id);
 
         _carShopUI.SetBuyButtonInteractable(isUnlocked && YandexGame.savesData.Money >= currentCar.Price);

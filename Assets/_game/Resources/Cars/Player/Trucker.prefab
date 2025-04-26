@@ -5610,6 +5610,7 @@ GameObject:
   - component: {fileID: 1753767437317790541}
   - component: {fileID: 6461724881292444041}
   - component: {fileID: 1501716992195901761}
+  - component: {fileID: 7506752209512144791}
   m_Layer: 7
   m_Name: Trucker
   m_TagString: Untagged
@@ -5670,7 +5671,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _minSpeed: 0.1
-  _maxSpeedCap: 400
+  _maxSpeedCap: 600
   movementMode: 0
   GroundCheck: 0
   drivableSurface:
@@ -6013,12 +6014,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <CarName>k__BackingField: Trucker
-  <Price>k__BackingField: 100
+  <Price>k__BackingField: 3000
   <Id>k__BackingField: 18
   <Speed>k__BackingField: 120
-  <Acceleration>k__BackingField: 15
-  <Turn>k__BackingField: 15
-  <Armor>k__BackingField: 150
+  <Acceleration>k__BackingField: 10
+  <Turn>k__BackingField: 30
+  <Armor>k__BackingField: 200
 --- !u!114 &6089242271353856844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6164,6 +6165,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58e1aad2ade7b22488332c7c58882dc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _desktopEffects: {fileID: 0}
+  _mobileEffects: {fileID: 0}
+  _dirtParticle: {fileID: 0}
+--- !u!114 &7506752209512144791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3972290477881782948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a608c6d18e96504595d52ee10fe27d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weaponLinker: {fileID: 0}
 --- !u!1 &4230214423728230244
 GameObject:
   m_ObjectHideFlags: 0
@@ -22072,6 +22089,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5467567017339446077}
     m_Modifications:
+    - target: {fileID: 237794891922948032, guid: b6f8d6d826a970649acc24c25073e93e, type: 3}
+      propertyPath: _valuePerUnit
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3002284024140682886, guid: b6f8d6d826a970649acc24c25073e93e, type: 3}
+      propertyPath: _valuePerUnit
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3961345771594530165, guid: b6f8d6d826a970649acc24c25073e93e, type: 3}
       propertyPath: _targetRenderer
       value: 
@@ -22080,6 +22105,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Modifications NewSystem (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 5715169427240316358, guid: b6f8d6d826a970649acc24c25073e93e, type: 3}
+      propertyPath: _valuePerUnit
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7021911866381243141, guid: b6f8d6d826a970649acc24c25073e93e, type: 3}
+      propertyPath: _targetRenderer
+      value: 
+      objectReference: {fileID: 3387420988065754789}
     - target: {fileID: 7584598358545456983, guid: b6f8d6d826a970649acc24c25073e93e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.419006
@@ -22119,6 +22152,10 @@ PrefabInstance:
     - target: {fileID: 7584598358545456983, guid: b6f8d6d826a970649acc24c25073e93e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8372440277896890102, guid: b6f8d6d826a970649acc24c25073e93e, type: 3}
+      propertyPath: _valuePerUnit
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

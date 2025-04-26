@@ -17000,6 +17000,7 @@ GameObject:
   - component: {fileID: 2588855924452689584}
   - component: {fileID: 5911746567523884964}
   - component: {fileID: 2879353195354949809}
+  - component: {fileID: 2408095827260291111}
   m_Layer: 7
   m_Name: Roadkill
   m_TagString: Untagged
@@ -17060,7 +17061,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _minSpeed: 0.1
-  _maxSpeedCap: 300
+  _maxSpeedCap: 550
   movementMode: 0
   GroundCheck: 0
   drivableSurface:
@@ -17071,7 +17072,7 @@ MonoBehaviour:
   turn: 10
   gravity: 7
   downforce: 5
-  AirControl: 0
+  AirControl: 1
   kartLike: 0
   driftMultiplier: 1.5
   rb: {fileID: 924665525911916296}
@@ -17403,12 +17404,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <CarName>k__BackingField: Roadkill
-  <Price>k__BackingField: 100
+  <Price>k__BackingField: 2000
   <Id>k__BackingField: 11
-  <Speed>k__BackingField: 120
-  <Acceleration>k__BackingField: 15
-  <Turn>k__BackingField: 15
-  <Armor>k__BackingField: 150
+  <Speed>k__BackingField: 115
+  <Acceleration>k__BackingField: 10
+  <Turn>k__BackingField: 10
+  <Armor>k__BackingField: 175
 --- !u!114 &2627101391010150680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17552,6 +17553,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58e1aad2ade7b22488332c7c58882dc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _desktopEffects: {fileID: 0}
+  _mobileEffects: {fileID: 0}
+  _dirtParticle: {fileID: 0}
+--- !u!114 &2408095827260291111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8019414115580497968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a608c6d18e96504595d52ee10fe27d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weaponLinker: {fileID: 0}
 --- !u!1 &8222193240031561260
 GameObject:
   m_ObjectHideFlags: 0
@@ -22848,6 +22865,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6081016358097144766}
     m_Modifications:
+    - target: {fileID: 3002284024140682886, guid: b6f8d6d826a970649acc24c25073e93e, type: 3}
+      propertyPath: _valuePerUnit
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3961345771594530165, guid: b6f8d6d826a970649acc24c25073e93e, type: 3}
       propertyPath: _targetRenderer
       value: 
@@ -22856,6 +22877,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Modifications NewSystem (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 5715169427240316358, guid: b6f8d6d826a970649acc24c25073e93e, type: 3}
+      propertyPath: _valuePerUnit
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7021911866381243141, guid: b6f8d6d826a970649acc24c25073e93e, type: 3}
+      propertyPath: _targetRenderer
+      value: 
+      objectReference: {fileID: 5052367002135465299}
     - target: {fileID: 7584598358545456983, guid: b6f8d6d826a970649acc24c25073e93e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.419006

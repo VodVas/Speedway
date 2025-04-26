@@ -69,8 +69,6 @@ MonoBehaviour:
   _desktopHealthBarDisplay: {fileID: 0}
   _mobileUICounter: {fileID: 0}
   _desktopUICounter: {fileID: 0}
-  _desktopEffectOnScreenUIApplier: {fileID: 0}
-  _mobileEffectOnScreenUIApplier: {fileID: 0}
 --- !u!114 &6484509871263786133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,12 +102,18 @@ MonoBehaviour:
   _newsVanParts: {fileID: 5868475140483715000, guid: 0c23e96709fac1a4681bdffaa9ae5309, type: 3}
   _elvisParts: {fileID: 231065053580264977, guid: ade3ad31b9590984e9bc9572ccb6da00, type: 3}
   _tubParts: {fileID: 2498865438934783005, guid: ec01bc76dff6a294a901ed6bb05ce16c, type: 3}
-  _novaParts: {fileID: 0}
-  _phantomParts: {fileID: 0}
-  _fireflyParts: {fileID: 0}
-  _roadkillParts: {fileID: 0}
-  "_ice\u0421reamerParts": {fileID: 0}
-  _rollerParts: {fileID: 0}
+  _novaParts: {fileID: 64293623565675379, guid: 8b99ffd32fe8f6641bfb830c1c860dcb, type: 3}
+  _phantomParts: {fileID: 404191891598176431, guid: bfd5e9c133474fa408f3ad76e53be3ec, type: 3}
+  _fireflyParts: {fileID: 8345103817351467498, guid: cfa1e5b07a4abff4c949522803ca787e, type: 3}
+  _roadkillParts: {fileID: 8585684278364200213, guid: 227267cb570ece04e8972071d4686826, type: 3}
+  "_ice\u0421reamerParts": {fileID: 6546680608034628749, guid: 2fba7ddf7c1947846880adb7df7a994c, type: 3}
+  _rollerParts: {fileID: 5846442825237034280, guid: af471e3e7db42aa4eb64c6734e05b8cc, type: 3}
+  _vortexParts: {fileID: 8068756737592779991, guid: 67240bbfd867bb34bba517920414e30d, type: 3}
+  _harleyParts: {fileID: 2976404694709931243, guid: cc5279e6dcf91d74f9cf74b8fd3f1487, type: 3}
+  _madMaxParts: {fileID: 7565297916238389034, guid: 16316a5f0a62cf8478ffd5515f70049b, type: 3}
+  _undertakerParts: {fileID: 6235856388453722628, guid: 4854b053ba8f53e46ba2d2efd915f76c, type: 3}
+  _truckerParts: {fileID: 923168895332139770, guid: 758bd2b191003f64b81cce6c60c3dda7, type: 3}
+  _trainParts: {fileID: 1152698222157447265, guid: 667ef3bb11b91f044a22a24acf4bb105, type: 3}
 --- !u!114 &8936724569114032865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,6 +131,7 @@ MonoBehaviour:
   _carRespawner: {fileID: 0}
   _playerCarSelector: {fileID: 0}
   _rewardHandler: {fileID: 0}
+  _weaponLinker: {fileID: 0}
 --- !u!114 &5178499863258909721
 MonoBehaviour:
   m_ObjectHideFlags: 0

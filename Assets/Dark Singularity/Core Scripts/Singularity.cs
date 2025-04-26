@@ -30,7 +30,7 @@ public class Singularity : MonoBehaviour
     [SerializeField] private float _lerpDuration = 3f;
 
     [Header("Lerp With Delay Mode")]
-    [SerializeField] private float _delayAtStart = 1f; //TODO: добавить шейдер дыма на машину // добавить ко всем ошибкам this (Debug.LogWarning("Explosion sound clip is not assigned!", this);)
+    [SerializeField] private float _delayAtStart = 1f;
     [SerializeField] private float _delayAtEnd = 1f;
 
     [Header("Light Settings")]

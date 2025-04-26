@@ -1,13 +1,14 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public sealed class RacerDataContainer : System.IDisposable
+[Serializable]
+public class RacerDataContainer : IDisposable
 {
     [SerializeField] private DamageHandler[] _damageHandlers;
 
-    public event System.Action OnDataChanged;
-    public event System.Action<int> OnKill;
+    public event Action OnDataChanged;
+    public event Action<int> OnKill;
 
     private RacerState[] _racerStates;
     private bool[] _isActive;

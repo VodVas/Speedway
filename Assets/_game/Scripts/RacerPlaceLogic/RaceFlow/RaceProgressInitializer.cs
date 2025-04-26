@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class RaceProgressInitializer
@@ -39,8 +40,6 @@ public class RaceProgressInitializer
             Debug.LogWarning(WarningNoPlayerCar);
             return;
         }
-
-        racer.RacerId = _playerId;
 
         if (_racers == null || _racers.Length == 0)
         {

@@ -1075,7 +1075,6 @@ GameObject:
   - component: {fileID: 4588025331425239534}
   - component: {fileID: 5868475140483715000}
   - component: {fileID: 2758689633803038361}
-  - component: {fileID: -9173267105593310719}
   m_Layer: 0
   m_Name: NewsVanParts
   m_TagString: Untagged
@@ -1144,7 +1143,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 250
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -1219,19 +1218,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &-9173267105593310719
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8279388198318678404}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1f13896be505614f9cd7089a52271b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isEnablePlay: 0
 --- !u!1001 &8366604639005298552
 PrefabInstance:
   m_ObjectHideFlags: 0

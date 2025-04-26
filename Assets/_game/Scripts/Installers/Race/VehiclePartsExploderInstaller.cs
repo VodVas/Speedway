@@ -19,12 +19,18 @@ public class VehiclePartsExploderInstaller : MonoBehaviour, IInstaller
     [SerializeField] private VehiclePartsExploder _roadkillParts;
     [SerializeField] private VehiclePartsExploder _ice—reamerParts;
     [SerializeField] private VehiclePartsExploder _rollerParts;
+    [SerializeField] private VehiclePartsExploder _vortexParts;
+    [SerializeField] private VehiclePartsExploder _harleyParts;
+    [SerializeField] private VehiclePartsExploder _madMaxParts;
+    [SerializeField] private VehiclePartsExploder _undertakerParts;
+    [SerializeField] private VehiclePartsExploder _truckerParts;
+    [SerializeField] private VehiclePartsExploder _trainParts;
 
     private void Awake()
     {
         if (_buggyParts == null || _hotRodParts == null || _crossroadParts == null || _mustangParts == null || _redNeckParts == null || _newsVanParts == null ||
             _elvisParts == null || _tubParts == null || _ice—reamerParts == null || _rollerParts == null || _novaParts == null || _phantomParts == null || _fireflyParts == null
-            || _roadkillParts == null)
+            || _roadkillParts == null || _vortexParts == null || _harleyParts == null || _madMaxParts == null || _undertakerParts == null || _truckerParts == null || _trainParts == null)
         {
             Debug.LogError("One or more VehiclePartsExploder components are not assigned.");
             enabled = false;
@@ -50,6 +56,12 @@ public class VehiclePartsExploderInstaller : MonoBehaviour, IInstaller
             { typeof(Roadkill), _roadkillParts },
             { typeof(IceCreamer), _ice—reamerParts },
             { typeof(Roller), _rollerParts },
+            { typeof(Vortex), _vortexParts },
+            { typeof(Harley), _harleyParts },
+            { typeof(MadMax), _madMaxParts },
+            { typeof(Undertaker), _undertakerParts },
+            { typeof(Trucker), _truckerParts },
+            { typeof(Train), _trainParts },
         };
 
         builder.AddSingleton(partsDictionary);

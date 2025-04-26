@@ -73,17 +73,19 @@ public class DriftScoreUIDisplayer : MonoBehaviour
         {
             Debug.LogError(ERROR_NULL_PLAYER, this);
             enabled = false;
+
             return;
         }
 
         bool assigned = false;
+
         for (int i = 0; i < _carUIDataArray.Length; i++)
         {
             if (_carUIDataArray[i].AiCar == null)
             {
                 _carUIDataArray[i].PlayerCar = newPlayerCar;
                 assigned = true;
-                //Debug.Log($"Player car assigned to slot {i}");
+
                 break;
             }
         }
@@ -98,25 +100,10 @@ public class DriftScoreUIDisplayer : MonoBehaviour
         for (int i = 0; i < _carUIDataArray.Length; i++)
         {
             infos[i] = _carUIDataArray[i].GetRacerInfo();
-            Debug.Log($"Racer {i}: Name={infos[i].Name}, IsPlayer={infos[i].IsPlayer}");
         }
+
         return infos;
     }
-
-    //public RacerInfo[] CollectAllRacerInfo()
-    //{
-    //    if (_carUIDataArray == null) return Array.Empty<RacerInfo>();
-
-    //    var infos = new RacerInfo[_carUIDataArray.Length];
-
-    //    for (int i = 0; i < _carUIDataArray.Length; i++)
-    //    {
-    //        infos[i] = _carUIDataArray[i].GetRacerInfo();
-    //        Debug.Log($"Collected racer info: Name={infos[i].Name}, Score={infos[i].Score}");
-    //    }
-
-    //    return infos;
-    //}
 
     public void ValidatePlayerAssignment()
     {
@@ -129,16 +116,4 @@ public class DriftScoreUIDisplayer : MonoBehaviour
             }
         }
     }
-
-    //public float[] CollectAllScores()
-    //{
-    //    if (_carUIDataArray == null) return Array.Empty<float>();
-
-    //    var scores = new float[_carUIDataArray.Length];
-    //    for (int i = 0; i < _carUIDataArray.Length; i++)
-    //    {
-    //        scores[i] = _carUIDataArray[i].GetRacerInfo().Score;
-    //    }
-    //    return scores;
-    //}
 }

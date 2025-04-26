@@ -5471,6 +5471,7 @@ GameObject:
   - component: {fileID: 7056925526047895306}
   - component: {fileID: 523367318487008627}
   - component: {fileID: 4171354707930143176}
+  - component: {fileID: 9179454390911920589}
   m_Layer: 7
   m_Name: Elvis
   m_TagString: Untagged
@@ -5531,7 +5532,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _minSpeed: 0.1
-  _maxSpeedCap: 300
+  _maxSpeedCap: 500
   movementMode: 0
   GroundCheck: 0
   drivableSurface:
@@ -5632,7 +5633,7 @@ MonoBehaviour:
   _outOfBoundsTimeout: 2
   _minSpeedThreshold: 0.1
   carVelocity: {x: 0, y: 0, z: 0}
-  skidWidth: 0.24668413
+  skidWidth: 0.2
   _forwardBackTiltAmount: 0
   BodyTilt: 10
   <SkidMarksFadeDuration>k__BackingField: 2
@@ -5874,12 +5875,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <CarName>k__BackingField: Elvis
-  <Price>k__BackingField: 100
+  <Price>k__BackingField: 1000
   <Id>k__BackingField: 2
   <Speed>k__BackingField: 110
-  <Acceleration>k__BackingField: 15
+  <Acceleration>k__BackingField: 10
   <Turn>k__BackingField: 10
-  <Armor>k__BackingField: 120
+  <Armor>k__BackingField: 150
 --- !u!114 &7441487387070938666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6024,6 +6025,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58e1aad2ade7b22488332c7c58882dc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _desktopEffects: {fileID: 0}
+  _mobileEffects: {fileID: 0}
+  _dirtParticle: {fileID: 0}
+--- !u!114 &9179454390911920589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3557641302005795811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a608c6d18e96504595d52ee10fe27d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weaponLinker: {fileID: 0}
 --- !u!1 &4043623506858924904
 GameObject:
   m_ObjectHideFlags: 0
@@ -21624,7 +21641,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shakeAxes: {x: 1, y: 1, z: 1}
   _maxAmplitude: 0.01
-  _frequency: 1
+  _frequency: 100
 --- !u!114 &7934644721244284440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22392,6 +22409,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8707394876729526818}
     m_Modifications:
+    - target: {fileID: 3002284024140682886, guid: b6f8d6d826a970649acc24c25073e93e, type: 3}
+      propertyPath: _valuePerUnit
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3961345771594530165, guid: b6f8d6d826a970649acc24c25073e93e, type: 3}
       propertyPath: _targetRenderer
       value: 
@@ -22400,6 +22421,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Modifications NewSystem (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 5715169427240316358, guid: b6f8d6d826a970649acc24c25073e93e, type: 3}
+      propertyPath: _valuePerUnit
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7021911866381243141, guid: b6f8d6d826a970649acc24c25073e93e, type: 3}
+      propertyPath: _targetRenderer
+      value: 
+      objectReference: {fileID: 991316534059529934}
     - target: {fileID: 7584598358545456983, guid: b6f8d6d826a970649acc24c25073e93e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.419006

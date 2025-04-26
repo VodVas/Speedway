@@ -27,7 +27,7 @@ public class ParticleWeaponLinker : MonoBehaviour
         }
     }
 
-    public bool TryGetWeapon(GameObject particleOwner, out IWeapon weapon, out ParticleSystem particle)
+    public bool TryGetWeapon(GameObject particleOwner, out IWeapon weapon, out ParticleSystem particle) //TODO: шадоукаст откл у всех. В UI откл рейкасты и маски
     {
         int searchID = particleOwner.GetInstanceID();
 

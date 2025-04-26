@@ -1075,7 +1075,6 @@ GameObject:
   - component: {fileID: 7647071615382473385}
   - component: {fileID: 231065053580264977}
   - component: {fileID: 5543961711287344807}
-  - component: {fileID: -4792655800427994447}
   m_Layer: 0
   m_Name: ElvisParts
   m_TagString: Untagged
@@ -1146,7 +1145,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 250
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -1221,19 +1220,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &-4792655800427994447
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7581110136736010049}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1f13896be505614f9cd7089a52271b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isEnablePlay: 0
 --- !u!1 &8395198410504211817
 GameObject:
   m_ObjectHideFlags: 0

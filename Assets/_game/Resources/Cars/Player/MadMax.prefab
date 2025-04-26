@@ -191,6 +191,7 @@ GameObject:
   - component: {fileID: 7796741006702639042}
   - component: {fileID: 3015037178457416}
   - component: {fileID: 5513203648969600060}
+  - component: {fileID: 4151468805966779534}
   m_Layer: 7
   m_Name: MadMax
   m_TagString: Untagged
@@ -258,8 +259,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   MaxSpeed: 120
-  acceleration: 15
-  turn: 15
+  acceleration: 10
+  turn: 10
   gravity: 7
   downforce: 5
   AirControl: 1
@@ -357,7 +358,7 @@ MonoBehaviour:
   _minSpeedThreshold: 0.1
   carVelocity: {x: 0, y: 0, z: 0}
   skidWidth: 0.2
-  _forwardBackTiltAmount: 5
+  _forwardBackTiltAmount: 0
   BodyTilt: 10
   <SkidMarksFadeDuration>k__BackingField: 2
   _speedStepForMultiplier: 20
@@ -402,7 +403,7 @@ AudioSource:
   m_GameObject: {fileID: 274422325392513669}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5855251610057139803, guid: 589367c5050e471478c52d314b8c768c, type: 2}
   m_audioClip: {fileID: 8300000, guid: 0b2844ba13c61eb459484abc96bde242, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -414,9 +415,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 250
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -425,7 +426,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.5244789
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -498,9 +499,9 @@ AudioSource:
   m_GameObject: {fileID: 274422325392513669}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5855251610057139803, guid: 589367c5050e471478c52d314b8c768c, type: 2}
   m_audioClip: {fileID: 8300000, guid: a0212963d11a06c4caa454df8e2a2a57, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
@@ -510,9 +511,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 250
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -520,8 +521,8 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 1
+      time: 0.0038909912
+      value: 0.51874924
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -672,12 +673,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <CarName>k__BackingField: MadMax
-  <Price>k__BackingField: 120
+  <Price>k__BackingField: 3000
   <Id>k__BackingField: 14
   <Speed>k__BackingField: 120
-  <Acceleration>k__BackingField: 15
-  <Turn>k__BackingField: 15
-  <Armor>k__BackingField: 150
+  <Acceleration>k__BackingField: 10
+  <Turn>k__BackingField: 10
+  <Armor>k__BackingField: 200
 --- !u!114 &5262167255753751676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -750,6 +751,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58e1aad2ade7b22488332c7c58882dc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _desktopEffects: {fileID: 0}
+  _mobileEffects: {fileID: 0}
+  _dirtParticle: {fileID: 0}
+--- !u!114 &4151468805966779534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 274422325392513669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a608c6d18e96504595d52ee10fe27d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weaponLinker: {fileID: 0}
 --- !u!1 &437345726048041243
 GameObject:
   m_ObjectHideFlags: 0
@@ -22764,6 +22781,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5140472133414569316}
     m_Modifications:
+    - target: {fileID: 3002284024140682886, guid: b6f8d6d826a970649acc24c25073e93e, type: 3}
+      propertyPath: _valuePerUnit
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3961345771594530165, guid: b6f8d6d826a970649acc24c25073e93e, type: 3}
       propertyPath: _targetRenderer
       value: 
@@ -22772,6 +22793,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Modifications NewSystem (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 5715169427240316358, guid: b6f8d6d826a970649acc24c25073e93e, type: 3}
+      propertyPath: _valuePerUnit
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7021911866381243141, guid: b6f8d6d826a970649acc24c25073e93e, type: 3}
+      propertyPath: _targetRenderer
+      value: 
+      objectReference: {fileID: 8725053183221170066}
     - target: {fileID: 7584598358545456983, guid: b6f8d6d826a970649acc24c25073e93e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.419006

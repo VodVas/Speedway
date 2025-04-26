@@ -10,10 +10,12 @@ public class PlayerCarSelector : MonoBehaviour
     [Serializable]
     private class SceneCarReference
     {
-        [field: SerializeField] public CarData CarData;
-        [field: SerializeField] public GameObject CarObject;
+        [SerializeField] private CarData _carData;
+        [SerializeField] private GameObject _carObject;
 
-        public int Id => CarData ? CarData.Id : -1;
+        public CarData CarData => _carData;
+        public GameObject CarObject => _carObject;
+        public int Id => _carData ? _carData.Id : -1;
     }
 
     [SerializeField] private List<SceneCarReference> _sceneCars = new List<SceneCarReference>();
@@ -22,6 +24,7 @@ public class PlayerCarSelector : MonoBehaviour
     [SerializeField] private UiCarBinder _mobileUICarBinder = null;
     [SerializeField] private DriftScoreUIDisplayer _desktopDriftScoreUIDisplayer;
     [SerializeField] private DriftScoreUIDisplayer _mobileDriftScoreUIDisplayer;
+    [SerializeField] private Transform _carsContainer;
 
     [Inject] private SmoothSliderHealthBarDisplay _desktopHealthBarDisplay;
     [Inject] private SmoothSliderHealthBarDisplay _mobileHealthBarDisplay;
@@ -32,6 +35,8 @@ public class PlayerCarSelector : MonoBehaviour
     private bool _isMobile;
 
     public event Action CarActivated;
+
+    public Transform CarsContainer => _carsContainer;
 
     private void Start()
     {

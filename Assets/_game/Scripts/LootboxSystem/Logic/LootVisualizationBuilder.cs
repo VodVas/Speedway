@@ -12,7 +12,7 @@ public class LootVisualizationBuilder : MonoBehaviour
     [SerializeField] private Transform[] _carPoints = new Transform[CARDS_COUNT];
     [SerializeField] private CardLootSpheresSpawner _sphereSpawner;
     [SerializeField] private CardLootCarSpawner _carSpawner;
-    [SerializeField] private OnceSoundPlayer _soundPlayer;
+    [SerializeField] private SoundOnButtonClickPlayer _soundPlayer;
 
     private LootPaintSphere[] _spheres = new LootPaintSphere[CARDS_COUNT];
     private LootCar[] _cars = new LootCar[CARDS_COUNT];

@@ -15215,6 +15215,7 @@ GameObject:
   - component: {fileID: 3884738362540183293}
   - component: {fileID: 1612258112723221390}
   - component: {fileID: 6983396838596756778}
+  - component: {fileID: 513478103510081046}
   m_Layer: 7
   m_Name: NewsVan
   m_TagString: Untagged
@@ -15275,7 +15276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _minSpeed: 0.1
-  _maxSpeedCap: 320
+  _maxSpeedCap: 450
   movementMode: 0
   GroundCheck: 0
   drivableSurface:
@@ -15286,7 +15287,7 @@ MonoBehaviour:
   turn: 10
   gravity: 7
   downforce: 5
-  AirControl: 0
+  AirControl: 1
   kartLike: 0
   driftMultiplier: 1.5
   rb: {fileID: 8800435442288555030}
@@ -15376,7 +15377,7 @@ MonoBehaviour:
   _outOfBoundsTimeout: 2
   _minSpeedThreshold: 0.1
   carVelocity: {x: 0, y: 0, z: 0}
-  skidWidth: 0.3987867
+  skidWidth: 0.2
   _forwardBackTiltAmount: 0
   BodyTilt: 10
   <SkidMarksFadeDuration>k__BackingField: 2
@@ -15618,12 +15619,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <CarName>k__BackingField: NewsVan
-  <Price>k__BackingField: 100
+  <Price>k__BackingField: 500
   <Id>k__BackingField: 8
-  <Speed>k__BackingField: 0
-  <Acceleration>k__BackingField: 0
-  <Turn>k__BackingField: 0
-  <Armor>k__BackingField: 0
+  <Speed>k__BackingField: 105
+  <Acceleration>k__BackingField: 10
+  <Turn>k__BackingField: 10
+  <Armor>k__BackingField: 125
 --- !u!114 &8644169658283215334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15757,6 +15758,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58e1aad2ade7b22488332c7c58882dc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _desktopEffects: {fileID: 0}
+  _mobileEffects: {fileID: 0}
+  _dirtParticle: {fileID: 0}
+--- !u!114 &513478103510081046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3192235052076520041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a608c6d18e96504595d52ee10fe27d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weaponLinker: {fileID: 0}
 --- !u!1 &3769786591120552260
 GameObject:
   m_ObjectHideFlags: 0
@@ -22308,6 +22325,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5937299038639804966}
     m_Modifications:
+    - target: {fileID: 3002284024140682886, guid: b6f8d6d826a970649acc24c25073e93e, type: 3}
+      propertyPath: _valuePerUnit
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3961345771594530165, guid: b6f8d6d826a970649acc24c25073e93e, type: 3}
       propertyPath: _targetRenderer
       value: 
@@ -22316,6 +22337,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Modifications NewSystem (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5715169427240316358, guid: b6f8d6d826a970649acc24c25073e93e, type: 3}
+      propertyPath: _valuePerUnit
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7021911866381243141, guid: b6f8d6d826a970649acc24c25073e93e, type: 3}
+      propertyPath: _targetRenderer
+      value: 
+      objectReference: {fileID: 7831592041747787768}
     - target: {fileID: 7584598358545456983, guid: b6f8d6d826a970649acc24c25073e93e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.419006
