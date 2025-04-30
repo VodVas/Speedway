@@ -2667,6 +2667,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ad Notification
       objectReference: {fileID: 0}
+    - target: {fileID: 3210080493073549191, guid: 44b91ba5f28f4ba4d9d62f6ee52d0673, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

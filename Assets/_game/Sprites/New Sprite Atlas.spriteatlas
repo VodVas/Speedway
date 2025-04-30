@@ -1,0 +1,113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: New Sprite Atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 4096
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_IgnorePlatformSupport: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 678cb6c5bcdbb2449bcb496f4f41bd87, type: 3}
+    - {fileID: 2800000, guid: 8444730eddfad4e44bd2710cfa4e1f31, type: 3}
+    - {fileID: 2800000, guid: 90746042e93e5ec46bbb85761d4fcbff, type: 3}
+    - {fileID: 2800000, guid: b59381ad3812e014993d237e0206a44b, type: 3}
+    - {fileID: 2800000, guid: 3501739f431ab164d8e82014ba84c310, type: 3}
+    - {fileID: 2800000, guid: 37a7691fd57495149935ba1b532b23b9, type: 3}
+    - {fileID: 2800000, guid: 46a9f09da854b6b43a8ce3b7283b66ba, type: 3}
+    - {fileID: 2800000, guid: ba624d941d7284e49b803c08d6458b90, type: 3}
+    - {fileID: 2800000, guid: d6463b75d0d1a144db92b9b21541bace, type: 3}
+    - {fileID: 2800000, guid: 9e23dcaefb483d54daa1dd29f489a9f1, type: 3}
+    - {fileID: 2800000, guid: 10eb05e98e33dc148a4ebd087545b471, type: 3}
+    - {fileID: 2800000, guid: 7fceb0f4ebb3dde4ba46141586003b18, type: 3}
+    - {fileID: 2800000, guid: c3ed76af5fdf4c7458bd2d8e3fe65746, type: 3}
+    - {fileID: 2800000, guid: 39c56c036f389ca48928f9c7c286dc5b, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - 90746042e93e5ec46bbb85761d4fcbff: 21300000
+    - 39c56c036f389ca48928f9c7c286dc5b: 21300000
+    - ba624d941d7284e49b803c08d6458b90: 21300000
+    - 7fceb0f4ebb3dde4ba46141586003b18: 21300000
+    - d6463b75d0d1a144db92b9b21541bace: 21300000
+    - 678cb6c5bcdbb2449bcb496f4f41bd87: 21300000
+    - 10eb05e98e33dc148a4ebd087545b471: 21300000
+    - 46a9f09da854b6b43a8ce3b7283b66ba: 21300000
+    - b59381ad3812e014993d237e0206a44b: 21300000
+    - 8444730eddfad4e44bd2710cfa4e1f31: 21300000
+    - 9e23dcaefb483d54daa1dd29f489a9f1: 21300000
+    - 37a7691fd57495149935ba1b532b23b9: 21300000
+    - 3501739f431ab164d8e82014ba84c310: 21300000
+    - c3ed76af5fdf4c7458bd2d8e3fe65746: 21300000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 90746042e93e5ec46bbb85761d4fcbff, type: 3}
+  - {fileID: 21300000, guid: 39c56c036f389ca48928f9c7c286dc5b, type: 3}
+  - {fileID: 21300000, guid: ba624d941d7284e49b803c08d6458b90, type: 3}
+  - {fileID: 21300000, guid: 7fceb0f4ebb3dde4ba46141586003b18, type: 3}
+  - {fileID: 21300000, guid: d6463b75d0d1a144db92b9b21541bace, type: 3}
+  - {fileID: 21300000, guid: 678cb6c5bcdbb2449bcb496f4f41bd87, type: 3}
+  - {fileID: 21300000, guid: 10eb05e98e33dc148a4ebd087545b471, type: 3}
+  - {fileID: 21300000, guid: 46a9f09da854b6b43a8ce3b7283b66ba, type: 3}
+  - {fileID: 21300000, guid: b59381ad3812e014993d237e0206a44b, type: 3}
+  - {fileID: 21300000, guid: 8444730eddfad4e44bd2710cfa4e1f31, type: 3}
+  - {fileID: 21300000, guid: 9e23dcaefb483d54daa1dd29f489a9f1, type: 3}
+  - {fileID: 21300000, guid: 37a7691fd57495149935ba1b532b23b9, type: 3}
+  - {fileID: 21300000, guid: 3501739f431ab164d8e82014ba84c310, type: 3}
+  - {fileID: 21300000, guid: c3ed76af5fdf4c7458bd2d8e3fe65746, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - SPR_Apocalypse_Greeble_Wires_Clump02
+  - SPR_Apocalypse_Greeble_Wires_Clump03
+  - SPR_Apocalypse_Dial_Background_Solid
+  - SPR_Apocalypse_Box_MetalWiresLrg01
+  - SPR_Apocalypse_Greeble_Mechanism02
+  - SPR_Apocalypse_Dial_Fuelcap01
+  - SPR_Apocalypse_Greeble_Clamp03
+  - SPR_Apocalypse_Dial_Background_Shadowed
+  - _SPR_Apocalypse_Greeble_Wires_Dangling01
+  - _SPR_Apocalypse_Greeble_LightsAngled01
+  - SPR_Apocalypse_Greeble_Screws01
+  - glass_damage
+  - _SPR_Apocalypse_Greeble_Capacitor01
+  - SPR_Apocalypse_Box_Metal01
+  m_RenderDataMap: {}
+  m_Tag: New Sprite Atlas
+  m_IsVariant: 0

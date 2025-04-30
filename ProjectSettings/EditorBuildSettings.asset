@@ -36,6 +36,9 @@ EditorBuildSettings:
     path: Assets/_game/Scenes/World_2/Garage2.unity
     guid: f8bcbc57bd46d9743af93eb2c60509a9
   - enabled: 1
+    path: Assets/_game/Scenes/World_2/BossBattle2.unity
+    guid: 6845f0d00ce95754297a7a0d282d3ba4
+  - enabled: 1
     path: Assets/_game/Scenes/World_2/HubWorld2.unity
     guid: b4501c526aaf714458cb47f3a3ffd73f
   - enabled: 1
@@ -44,9 +47,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_game/Scenes/World_2/IceDrift.unity
     guid: babf5c248eb7b4c4a94a330c6f143452
-  - enabled: 1
-    path: Assets/_game/Scenes/World_2/BossBattle2.unity
-    guid: cfc61dd0496706741b60e7ba82eeacfd
   - enabled: 1
     path: Assets/_game/Scenes/World_3/HubWorld3.unity
     guid: 6caec92a07413324db1cd5955e5d4097

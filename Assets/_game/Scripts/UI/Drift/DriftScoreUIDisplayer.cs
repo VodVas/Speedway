@@ -3,67 +3,65 @@ using UnityEngine;
 
 public class DriftScoreUIDisplayer : MonoBehaviour
 {
-    private const string ERROR_NO_DATA = "[DriftScoreUIDisplayer] Нет данных для UI (carUIDataArray). Отключаю компонент.";
-    private const string ERROR_NULL_DATA = "[DriftScoreUIDisplayer] Один из CarUIData равен null. Отключаю компонент.";
-    private const string ERROR_NO_SCORE_TEXT = "[DriftScoreUIDisplayer] Не назначен ScoreText в одном из CarUIData. Отключаю компонент.";
-    private const string ERROR_NULL_PLAYER = "[DriftScoreUIDisplayer] Передана null-ссылка в SetPlayerCar!";
-    private const string WARNING_NO_SLOT = "[DriftScoreUIDisplayer] Не найден слот для игрока (AiCar == null). Машина не была назначена.";
+    private const string ERROR_NO_DATA = "[DriftScoreUIDisplayer] No data available for UI (carUIDataArray). Disabling the component.";
+    private const string ERROR_NULL_DATA = "[DriftScoreUIDisplayer] Null reference in carUIDataArray. Disabling the component.";
+    private const string ERROR_NO_SCORE_TEXT = "[DriftScoreUIDisplayer] ScoreText is not assigned. Disabling the component.";
+    private const string ERROR_NULL_PLAYER = "[DriftScoreUIDisplayer] Attempt to assign a null player!";
+    private const string WARNING_NO_SLOT = "[DriftScoreUIDisplayer] No available slots for the player.";
 
     [SerializeField] private CarUIData[] _carUIDataArray;
 
     private void Awake()
     {
-        for (int i = 0; i < _carUIDataArray.Length; i++)
+        ValidateAndInitialize();
+    }
+
+    private void ValidateAndInitialize()
+    {
+        if (!ValidateData()) return;
+
+        foreach (var carData in _carUIDataArray)
         {
-            _carUIDataArray[i].CacheComponents();
+            carData.CacheComponents();
+            carData.CacheAiRacer();
+        }
+    }
+
+    private bool ValidateData()
+    {
+        if (_carUIDataArray == null || _carUIDataArray.Length == 0)
+        {
+            Debug.LogError(ERROR_NO_DATA, this);
+            enabled = false;
+            return false;
         }
 
-        ValidateData();
-        CacheInitialRacers();
+        foreach (var carData in _carUIDataArray)
+        {
+            if (carData == null)
+            {
+                Debug.LogError(ERROR_NULL_DATA, this);
+                enabled = false;
+                return false;
+            }
+
+            if (carData.ScoreText == null)
+            {
+                Debug.LogError(ERROR_NO_SCORE_TEXT, this);
+                enabled = false;
+                return false;
+            }
+        }
+        return true;
     }
 
     private void Update()
     {
         if (!enabled) return;
 
-        for (int i = 0; i < _carUIDataArray.Length; i++)
+        foreach (var carData in _carUIDataArray)
         {
-            _carUIDataArray[i].UpdateScoreDisplay();
-        }
-    }
-
-    private void ValidateData()
-    {
-        if (_carUIDataArray == null || _carUIDataArray.Length == 0)
-        {
-            Debug.LogError(ERROR_NO_DATA, this);
-            enabled = false;
-            return;
-        }
-
-        for (int i = 0; i < _carUIDataArray.Length; i++)
-        {
-            if (_carUIDataArray[i] == null)
-            {
-                Debug.LogError(ERROR_NULL_DATA, this);
-                enabled = false;
-                return;
-            }
-
-            if (_carUIDataArray[i].ScoreText == null)
-            {
-                Debug.LogError(ERROR_NO_SCORE_TEXT, this);
-                enabled = false;
-                return;
-            }
-        }
-    }
-
-    private void CacheInitialRacers()
-    {
-        for (int i = 0; i < _carUIDataArray.Length; i++)
-        {
-            _carUIDataArray[i].CacheAiRacer();
+            carData.UpdateScoreDisplay();
         }
     }
 
@@ -73,47 +71,37 @@ public class DriftScoreUIDisplayer : MonoBehaviour
         {
             Debug.LogError(ERROR_NULL_PLAYER, this);
             enabled = false;
-
             return;
         }
 
-        bool assigned = false;
-
-        for (int i = 0; i < _carUIDataArray.Length; i++)
+        foreach (var carData in _carUIDataArray)
         {
-            if (_carUIDataArray[i].AiCar == null)
-            {
-                _carUIDataArray[i].PlayerCar = newPlayerCar;
-                assigned = true;
+            if (carData.AiCar != null) continue;
 
-                break;
-            }
+            carData.PlayerCar = newPlayerCar;
+            enabled = true;
+            return;
         }
 
-        if (!assigned) Debug.LogWarning(WARNING_NO_SLOT, this);
+        Debug.LogWarning(WARNING_NO_SLOT, this);
     }
 
     public RacerInfo[] CollectAllRacerInfo()
     {
         var infos = new RacerInfo[_carUIDataArray.Length];
-
         for (int i = 0; i < _carUIDataArray.Length; i++)
-        {
             infos[i] = _carUIDataArray[i].GetRacerInfo();
-        }
-
         return infos;
     }
 
+#if UNITY_EDITOR
     public void ValidatePlayerAssignment()
     {
-        for (int i = 0; i < _carUIDataArray.Length; i++)
+        foreach (var carData in _carUIDataArray)
         {
-            bool isPlayer = _carUIDataArray[i].PlayerCar != null;
-            if (isPlayer)
-            {
-                Debug.Log($"Найден игрок в слоте {i}, имя: {_carUIDataArray[i].GetRacerInfo().Name}");
-            }
+            if (carData.PlayerCar != null)
+                Debug.Log($"Player not found: {carData.GetRacerInfo().Name}");
         }
     }
+#endif
 }

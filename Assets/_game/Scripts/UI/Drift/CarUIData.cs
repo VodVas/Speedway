@@ -6,24 +6,30 @@ using UnityEngine;
 [Serializable]
 public class CarUIData
 {
+    private const string UnknownRacerName = "Unknown Racer";
+    private static readonly string ScoreFormat = "{0} - {1:F0}";
+
     [SerializeField] private TextMeshProUGUI _scoreText;
     [SerializeField] private ArcadeAiVehicleController _aiCar;
 
     private ArcadeVehicleController _playerCar;
     private Racer _cachedRacer;
     private bool _isPlayer;
+    private string _lastName = string.Empty;
+    private float _lastScore = -1f;
 
     public TextMeshProUGUI ScoreText => _scoreText;
     public ArcadeAiVehicleController AiCar => _aiCar;
 
     public ArcadeVehicleController PlayerCar
     {
-        get => _playerCar;
+        get { return _playerCar; }
         set
         {
             _playerCar = value;
             _isPlayer = _playerCar != null;
-            if (_isPlayer) CacheRacerComponent();
+            _cachedRacer = _isPlayer ? _playerCar.GetComponent<Racer>() : null;
+            _lastName = string.Empty;
         }
     }
 
@@ -32,7 +38,6 @@ public class CarUIData
         if (_aiCar != null)
         {
             _cachedRacer = _aiCar.GetComponent<Racer>();
-            Debug.Log($"Cached AI racer: {_cachedRacer?.Name ?? "null"}");
         }
     }
 
@@ -40,192 +45,68 @@ public class CarUIData
     {
         if (_scoreText == null) return;
 
-        float score = GetCurrentScore();
-        _scoreText.text = $"{score:F0}";
+        var currentName = GetRacerName();
+        var currentScore = GetCurrentScore();
+
+        if (NeedsUpdate(currentName, currentScore))
+        {
+            UpdateText(currentName, currentScore);
+        }
     }
 
     public RacerInfo GetRacerInfo()
     {
-        bool isCurrentlyPlayer = _playerCar != null;
-
         return new RacerInfo(
             GetRacerName(),
             GetCurrentScore(),
-            isCurrentlyPlayer
+            _isPlayer
         );
+    }
+
+    private bool NeedsUpdate(string name, float score)
+    {
+        return !string.Equals(_lastName, name)
+            || !Mathf.Approximately(_lastScore, score);
+    }
+
+    private void UpdateText(string name, float score)
+    {
+        _scoreText.SetText(string.Format(ScoreFormat, name, score));
+        _lastName = name;
+        _lastScore = score;
     }
 
     private string GetRacerName()
     {
-        if (_cachedRacer == null) CacheRacerComponent();
-        return _cachedRacer?.Name ?? "Unknown Racer";
+        if (_cachedRacer == null)
+        {
+            _cachedRacer = _isPlayer
+                ? _playerCar?.GetComponent<Racer>()
+                : _aiCar?.GetComponent<Racer>();
+        }
+
+        return _cachedRacer?.Name ?? UnknownRacerName;
     }
 
     private float GetCurrentScore()
     {
-        if (_isPlayer && _playerCar != null)
+        if (_isPlayer)
         {
-            float score = _playerCar.PlayerDriftScore;
-            Debug.Log($"GetCurrentScore дл€ игрока: {score} (контроллер: {_playerCar.name})");
-            return score;
-        }
-        else if (!_isPlayer && _aiCar != null)
-        {
-            float score = _aiCar.EnemyDriftScore;
-            //Debug.Log($"GetCurrentScore дл€ AI {_aiCar.name}: {score}");
-            return score;
+            return _playerCar != null
+                ? _playerCar.PlayerDriftScore
+                : 0f;
         }
 
-        Debug.LogWarning($"GetCurrentScore: Ќе удалось получить счет ({(_isPlayer ? "player" : "AI")}, playerCar={_playerCar != null}, aiCar={_aiCar != null})");
-        return 0f;
-    }
-
-    private void CacheRacerComponent()
-    {
-        if (!_isPlayer || _playerCar == null) return;
-
-        _cachedRacer = _playerCar.GetComponent<Racer>();
-        //Debug.Log($"Cached player racer: {_cachedRacer?.Name ?? "null"}");
+        return _aiCar != null
+            ? _aiCar.EnemyDriftScore
+            : 0f;
     }
 
     public void CacheAiRacer()
     {
-        if (_aiCar != null) _cachedRacer = _aiCar.GetComponent<Racer>();
-    }
-
-    public void ValidateRacer()
-    {
-        if (_cachedRacer != null) return;
-
-        if (_isPlayer && _playerCar != null)
-        {
-            _cachedRacer = _playerCar.GetComponent<Racer>();
-        }
-        else if (!_isPlayer && _aiCar != null)
+        if (_aiCar != null)
         {
             _cachedRacer = _aiCar.GetComponent<Racer>();
         }
-        Debug.Log($"Validated {(_isPlayer ? "player" : "AI")} racer: {_cachedRacer?.Name ?? "null"}");
     }
 }
-
-
-
-
-
-
-
-
-
-
-//public class CarUIData
-//{
-//    [SerializeField] private TextMeshProUGUI _scoreText;
-//    [SerializeField] private ArcadeAiVehicleController _aiCar;
-
-//    private ArcadeVehicleController _playerCar;
-//    private Racer _cachedRacer;
-//    private bool _isPlayer;
-
-//    public TextMeshProUGUI ScoreText => _scoreText;
-//    public ArcadeAiVehicleController AiCar => _aiCar;
-
-//    public ArcadeVehicleController PlayerCar
-//    {
-//        set
-//        {
-//            _playerCar = value;
-//            _isPlayer = _playerCar != null;
-//            if (_isPlayer)
-//            {
-//                _cachedRacer = _playerCar.GetComponent<Racer>();
-//            }
-//        }
-//    }
-
-//    public void CacheComponents()
-//    {
-//        if (_aiCar != null)
-//        {
-//            _cachedRacer = _aiCar.GetComponent<Racer>();
-//            Debug.Log($"Cached AI racer: {_cachedRacer?.Name ?? "null"}");
-//        }
-//    }
-
-//    public void CacheAiRacer()
-//    {
-//        if (_aiCar != null) _cachedRacer = _aiCar.GetComponent<Racer>();
-//    }
-
-//    public void UpdateScoreDisplay()
-//    {
-//        if (_scoreText == null) return;
-
-//        float score = GetCurrentScore();
-//        _scoreText.text = $"{score:F0}";
-//    }
-
-//    public RacerInfo GetRacerInfo()
-//    {
-//        return new RacerInfo(
-//            GetRacerName(),
-//            GetCurrentScore(),
-//            _isPlayerCached
-//        );
-//    }
-
-//    private string GetRacerName()
-//    {
-//        if (_cachedRacer == null) CacheRacerComponent();
-//        return _cachedRacer?.Name ?? "Unknown Racer";
-//    }
-
-//    private float GetCurrentScore()
-//    {
-//        if (_isPlayerCached)
-//            return _playerCar != null ? _playerCar.PlayerDriftScore : 0f;
-
-//        return _aiCar != null ? _aiCar.EnemyDriftScore : 0f;
-//    }
-
-//    private void CacheRacerComponent()
-//    {
-//        if (_isPlayerCached && _playerCar != null)
-//        {
-//            _cachedRacer = _playerCar.GetComponent<Racer>();
-//            Debug.Log($"Cached player racer: {_cachedRacer?.Name ?? "null"}");
-//        }
-//    }
-
-//    public bool IsPlayerCar()
-//    {
-//        return PlayerCar != null;
-//    }
-
-//    public void ValidateRacer()
-//    {
-//        if (_cachedRacer != null) return;
-
-//        if (_isPlayer && _playerCar != null)
-//        {
-//            _cachedRacer = _playerCar.GetComponent<Racer>();
-//            Debug.Log($"Validated player racer: {(_cachedRacer != null ? _cachedRacer.Name : "null")}");
-//        }
-//        else if (!_isPlayer && _aiCar != null)
-//        {
-//            _cachedRacer = _aiCar.GetComponent<Racer>();
-//            Debug.Log($"Validated AI racer: {(_cachedRacer != null ? _cachedRacer.Name : "null")}");
-//        }
-//    }
-
-//    //private float GetCurrentScore()
-//    //{
-//    //    if (_isPlayer && _playerCar != null)
-//    //        return _playerCar.PlayerDriftScore;
-
-//    //    if (!_isPlayer && _aiCar != null)
-//    //        return _aiCar.EnemyDriftScore;
-
-//    //    return 0f;
-//    //}
-//}
