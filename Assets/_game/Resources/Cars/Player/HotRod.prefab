@@ -10119,12 +10119,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _upgradeRoot: {fileID: 2398225950538344032}
+  _upgradeName: {fileID: 0}
+  _upgradeDescription: {fileID: 0}
   <UpgradeId>k__BackingField: 2
-  <UpgradeName>k__BackingField: "\u041D\u0430\u0433\u043D\u0435\u0442\u0430\u0442\u0435\u043B\u044C"
   <Price>k__BackingField: 100
   <UpgradeType>k__BackingField: 1
   <UpgradeValue>k__BackingField: 5
-  <UpgradeDescription>k__BackingField: 
 --- !u!114 &7090967124541598730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10391,12 +10391,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _upgradeRoot: {fileID: 3067995301649273215}
+  _upgradeName: {fileID: 0}
+  _upgradeDescription: {fileID: 0}
   <UpgradeId>k__BackingField: 0
-  <UpgradeName>k__BackingField: "\u0411\u0440\u043E\u043D\u044F"
   <Price>k__BackingField: 100
   <UpgradeType>k__BackingField: 4
   <UpgradeValue>k__BackingField: 10
-  <UpgradeDescription>k__BackingField: 
 --- !u!1 &3095715239574647531
 GameObject:
   m_ObjectHideFlags: 0
@@ -21563,12 +21563,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _upgradeRoot: {fileID: 6875876109934565544}
+  _upgradeName: {fileID: 0}
+  _upgradeDescription: {fileID: 0}
   <UpgradeId>k__BackingField: 3
-  <UpgradeName>k__BackingField: "\u041F\u043B\u0443\u0433"
   <Price>k__BackingField: 100
   <UpgradeType>k__BackingField: 0
   <UpgradeValue>k__BackingField: 30
-  <UpgradeDescription>k__BackingField: "\u0422\u0430\u0440\u0430\u043D"
 --- !u!1 &7025789384421968152
 GameObject:
   m_ObjectHideFlags: 0
@@ -21954,12 +21954,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _upgradeRoot: {fileID: 8031644053885784619}
+  _upgradeName: {fileID: 0}
+  _upgradeDescription: {fileID: 0}
   <UpgradeId>k__BackingField: 1
-  <UpgradeName>k__BackingField: "\u0411\u0440\u043E\u043D\u044F \u043D\u0430 \u0441\u0442\u0435\u043A\u043B\u043E"
   <Price>k__BackingField: 100
   <UpgradeType>k__BackingField: 4
   <UpgradeValue>k__BackingField: 10
-  <UpgradeDescription>k__BackingField: 
 --- !u!1 &8064744425218406027
 GameObject:
   m_ObjectHideFlags: 0
@@ -22139,12 +22139,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _upgradeRoot: {fileID: 4710081356694459134}
+  _upgradeName: {fileID: 0}
+  _upgradeDescription: {fileID: 0}
   <UpgradeId>k__BackingField: 5
-  <UpgradeName>k__BackingField: "\u0413\u0440\u0430\u043D\u0430\u0442\u043E\u043C\u0435\u0442"
   <Price>k__BackingField: 100
   <UpgradeType>k__BackingField: 0
   <UpgradeValue>k__BackingField: 50
-  <UpgradeDescription>k__BackingField: 
 --- !u!1001 &2938393103050768558
 PrefabInstance:
   m_ObjectHideFlags: 0

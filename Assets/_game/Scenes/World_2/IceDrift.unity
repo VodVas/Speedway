@@ -62965,7 +62965,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2486076791599308041, guid: 64b3ca6065eac6440b3d05bf45f512ad, type: 3}
       propertyPath: _totalLaps
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2486076791599308041, guid: 64b3ca6065eac6440b3d05bf45f512ad, type: 3}
       propertyPath: _rewardCanvas

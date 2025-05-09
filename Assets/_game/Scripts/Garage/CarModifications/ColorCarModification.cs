@@ -27,6 +27,8 @@ public class ColorCarModification : BaseCarModification
         }
     }
 
+    public override string GetEffectDescription() => _localization.GetPhrase("ColorEffect");
+
     public void RefreshMaterials(PaintIntegrationSystem paintSystem)
     {
         if (paintSystem == null)
@@ -61,5 +63,5 @@ public class ColorCarModification : BaseCarModification
     public Renderer TargetRenderer => _targetRenderer;
     public Material[] DefaultMaterials => _defaultMaterials;
 
-    public override string GetEffectDescription() => "Custom color";
+    //public override string GetEffectDescription() => "Custom color";
 }

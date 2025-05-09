@@ -20,12 +20,23 @@ public class GarageNavigator : MonoBehaviour
 
     private void Start()
     {
+        if (YandexGame.SDKEnabled)
+            InitializeGarageSystem();
+        else
+            YandexGame.GetDataEvent += OnYGSdkInitialized;
+
+        //InitializeGarageSystem();
+    }
+
+    private void OnYGSdkInitialized()
+    {
+        YandexGame.GetDataEvent -= OnYGSdkInitialized;
         InitializeGarageSystem();
     }
 
     private void InitializeGarageSystem()
     {
-        if (!ValidateCarsList()) return;
+        if (!ValidateCarsList() || !CheckYandexDataReady()) return;
 
         CacheReferences();
         FilterPurchasedCars();
@@ -36,6 +47,16 @@ public class GarageNavigator : MonoBehaviour
         HandleLastUsedCar();
         InitializeCarSystems();
         NotifyGarageReady();
+    }
+
+    private bool CheckYandexDataReady()
+    {
+        if (YandexGame.SDKEnabled && YandexGame.savesData != null)
+            return true;
+
+        Debug.Log("[Garage] Waiting for Yandex SDK initialization", this);
+        enabled = false;
+        return false;
     }
 
     private bool ValidateCarsList()

@@ -1076,7 +1076,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1778568187411447720}
   - component: {fileID: 8585684278364200213}
-  - component: {fileID: 5781655404830482469}
   m_Layer: 7
   m_Name: RoadkillParts
   m_TagString: Untagged
@@ -1129,102 +1128,20 @@ MonoBehaviour:
   _explosionForce: 25
   _horizontalExplosionRange: {x: -1, y: 1}
   _verticalExplosionRange: {x: 0, y: 1}
---- !u!82 &5781655404830482469
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3770379543209238629}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 5855251610057139803, guid: 589367c5050e471478c52d314b8c768c, type: 2}
-  m_audioClip: {fileID: 8300000, guid: a566940fa670ad541ad7aac7ce46bbef, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 250
-  Pan2D: 0
-  rolloffMode: 2
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0.013233185
-      value: 0.5083351
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  _childRigidbodies:
+  - {fileID: 2927551647993444241}
+  - {fileID: 2753555481835323480}
+  - {fileID: 3034849614210823957}
+  - {fileID: 8862339746716560302}
+  - {fileID: 4574527927304944797}
+  - {fileID: 4310828121264047846}
+  - {fileID: 7439428502773468342}
+  - {fileID: 5516435347784987267}
+  - {fileID: 5279093690919212893}
+  - {fileID: 3213937688806437068}
+  - {fileID: 3633146167684648679}
+  - {fileID: 7004304634160804512}
+  - {fileID: 2943696995725398930}
 --- !u!1 &4835967385464728720
 GameObject:
   m_ObjectHideFlags: 0

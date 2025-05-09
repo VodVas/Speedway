@@ -33,10 +33,19 @@ public class StatsCarModification : BaseCarModification
 
     public override string GetEffectDescription() => _targetStat switch
     {
-        StatType.Speed => $"Скорость +{_valuePerUnit}",
-        StatType.Acceleration => $"Ускорение +{_valuePerUnit}",
-        StatType.Turn => $"Поворот +{_valuePerUnit}",
-        StatType.Health => $"Жизни +{_valuePerUnit}",
-        _ => "Неизвестный эффект"
+        StatType.Speed => _localization.GetPhrase("SpeedEffect", _valuePerUnit),
+        StatType.Acceleration => _localization.GetPhrase("AccelerationEffect", _valuePerUnit),
+        StatType.Turn => _localization.GetPhrase("TurnEffect", _valuePerUnit),
+        StatType.Health => _localization.GetPhrase("HealthEffect", _valuePerUnit),
+        _ => _localization.GetPhrase("UnknownEffect")
     };
+
+    //public override string GetEffectDescription() => _targetStat switch
+    //{
+    //    StatType.Speed => $"Скорость +{_valuePerUnit}",
+    //    StatType.Acceleration => $"Ускорение +{_valuePerUnit}",
+    //    StatType.Turn => $"Поворот +{_valuePerUnit}",
+    //    StatType.Health => $"Жизни +{_valuePerUnit}",
+    //    _ => "Неизвестный эффект"
+    //};
 }

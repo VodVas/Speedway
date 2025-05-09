@@ -19,6 +19,9 @@ public class GarageUpgradeUI : MonoBehaviour
     [SerializeField] private Button _prevCarButton;
     [SerializeField] private Button _buyButton;
 
+    [Header("Localization")]
+    [SerializeField] private SystemLocalization _localization;
+
     [SerializeField] private GarageNavigator _navigator;
 
     private int _currentUpgradeIndex = 0;
@@ -51,7 +54,6 @@ public class GarageUpgradeUI : MonoBehaviour
         {
             _navigator.NextCar();
             _currentUpgradeIndex = 0;
-
             UpdateUI();
         });
 
@@ -59,7 +61,6 @@ public class GarageUpgradeUI : MonoBehaviour
         {
             _navigator.PrevCar();
             _currentUpgradeIndex = 0;
-
             UpdateUI();
         });
     }
@@ -78,54 +79,37 @@ public class GarageUpgradeUI : MonoBehaviour
         }
 
         _currentUpgradeIndex = Mathf.Clamp(_currentUpgradeIndex, 0, carUpgrades.Upgrades.Count - 1);
-
         CarUpgrade upgrade = carUpgrades.Upgrades[_currentUpgradeIndex];
 
         _upgradeNameText.text = upgrade.UpgradeName;
         _upgradePriceText.text = upgrade.Price.ToString();
 
-        string effectDescription = "";
-
-        switch (upgrade.UpgradeType)
+        string effectKey = upgrade.UpgradeType switch
         {
-            case CarUpgrade.CarUpgradeType.Weapon:
-                effectDescription = $"Урон {upgrade.UpgradeValue}";
-                break;
-            case CarUpgrade.CarUpgradeType.Acceleration:
-                effectDescription = $"Ускорение +{upgrade.UpgradeValue}";
-                break;
-            case CarUpgrade.CarUpgradeType.Turn:
-                effectDescription = $"Поворот +{upgrade.UpgradeValue}";
-                break;
-            case CarUpgrade.CarUpgradeType.Health:
-                effectDescription = $"Броня +{upgrade.UpgradeValue}";
-                break;
-        }
+            CarUpgrade.CarUpgradeType.Weapon => "WeaponEffect",
+            CarUpgrade.CarUpgradeType.Speed => "SpeedEffect",
+            CarUpgrade.CarUpgradeType.Acceleration => "AccelerationEffect",
+            CarUpgrade.CarUpgradeType.Turn => "TurnEffect",
+            CarUpgrade.CarUpgradeType.Health => "HealthEffect",
+            _ => "DefaultEffect"
+        };
 
-        _upgradeEffectText.text = effectDescription;
+        _upgradeEffectText.text = _localization.GetPhrase(effectKey, upgrade.UpgradeValue);
         _upgradeDescriptionText.text = upgrade.UpgradeDescription;
 
-        if (YandexGame.savesData.HasCarUpgrade(carUpgrades.CarId, upgrade.UpgradeId))
-        {
-            _buyButton.interactable = false;
-            _feedbackText.text = "Уже куплено!";
-        }
-        else
-        {
-            _buyButton.interactable = true;
-            _feedbackText.text = "";
-        }
+        bool hasUpgrade = YandexGame.savesData.HasCarUpgrade(carUpgrades.CarId, upgrade.UpgradeId);
+        _buyButton.interactable = !hasUpgrade;
+        _feedbackText.text = hasUpgrade ?
+            _localization.GetPhrase("AlreadyPurchased") :
+            string.Empty;
 
         foreach (var carUpgrade in carUpgrades.Upgrades)
         {
-            if (!YandexGame.savesData.HasCarUpgrade(carUpgrades.CarId, carUpgrade.UpgradeId))
-            {
-                carUpgrade.SetActive(false);
-            }
-            else
-            {
-                carUpgrade.SetActive(true);
-            }
+            bool purchased = YandexGame.savesData.HasCarUpgrade(
+                carUpgrades.CarId,
+                carUpgrade.UpgradeId
+            );
+            carUpgrade.SetActive(purchased);
         }
 
         upgrade.SetActive(true);
@@ -141,7 +125,7 @@ public class GarageUpgradeUI : MonoBehaviour
 
         if (YandexGame.savesData.HasCarUpgrade(carId, upgrade.UpgradeId))
         {
-            _feedbackText.text = "Уже куплено!";
+            _feedbackText.text = _localization.GetPhrase("AlreadyPurchased");
             return;
         }
 
@@ -149,14 +133,12 @@ public class GarageUpgradeUI : MonoBehaviour
         {
             YandexGame.savesData.AddCarUpgrade(carId, upgrade.UpgradeId);
             YandexGame.SaveProgress();
-
             upgrade.SetActive(true);
-
-            _feedbackText.text = $"Куплено: {upgrade.UpgradeName}";
+            _feedbackText.text = _localization.GetPhrase("Purchased", upgrade.UpgradeName);
         }
         else
         {
-            _feedbackText.text = "Недостаточно средств!";
+            _feedbackText.text = _localization.GetPhrase("NotEnoughMoney");
         }
 
         UpdateUI();
@@ -165,24 +147,18 @@ public class GarageUpgradeUI : MonoBehaviour
     private void OnNextUpgrade()
     {
         var carUpgrades = _navigator.GetCurrentCarUpgrades();
-
-        if (carUpgrades == null || carUpgrades.Upgrades.Count == 0)
-            return;
+        if (carUpgrades == null || carUpgrades.Upgrades.Count == 0) return;
 
         _currentUpgradeIndex = (_currentUpgradeIndex + 1) % carUpgrades.Upgrades.Count;
-
         UpdateUI();
     }
 
     private void OnPrevUpgrade()
     {
         var carUpgrades = _navigator.GetCurrentCarUpgrades();
-
-        if (carUpgrades == null || carUpgrades.Upgrades.Count == 0)
-            return;
+        if (carUpgrades == null || carUpgrades.Upgrades.Count == 0) return;
 
         _currentUpgradeIndex = (_currentUpgradeIndex - 1 + carUpgrades.Upgrades.Count) % carUpgrades.Upgrades.Count;
-
         UpdateUI();
     }
 }

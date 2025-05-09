@@ -4,49 +4,104 @@ using UnityEngine.UI;
 
 public class CarShopUI : MonoBehaviour
 {
-    [SerializeField] private TextMeshPro _carNameText = null;
-    [SerializeField] private TextMeshPro _carPriceText = null;
-    [SerializeField] private TextMeshProUGUI _playerMoneyText = null;
-    [SerializeField] private TextMeshProUGUI _SpeedText = null;
-    [SerializeField] private TextMeshProUGUI _AccelerationText = null;
-    [SerializeField] private TextMeshProUGUI _TurnText = null;
-    [SerializeField] private TextMeshProUGUI _ArmorText = null;
+    private const string EpicCarLocked = "EpicCarLocked";
+    private const string PriceFormat = "PriceFormat";
+    private const string NoCarsAvailable = "NoCarsAvailable";
+    private const string CarNotFound = "CarNotFound";
+    private const string DefaultPrice = "DefaultPrice";
+    private const string DefaultStatValue = "DefaultStatValue";
+    private const string MoneyFormat = "MoneyFormat";
+
+    [Header("Localization")]
+    [SerializeField] private SystemLocalization _localization;
+
+    [Header("UI Elements")]
+    [SerializeField] private TextMeshProUGUI _carNameText;
+    [SerializeField] private TextMeshProUGUI _carPriceText;
+    [SerializeField] private TextMeshProUGUI _playerMoneyText;
+    [SerializeField] private TextMeshProUGUI _SpeedText;
+    [SerializeField] private TextMeshProUGUI _AccelerationText;
+    [SerializeField] private TextMeshProUGUI _TurnText;
+    [SerializeField] private TextMeshProUGUI _ArmorText;
     [SerializeField] private GameObject _lockPanel;
     [SerializeField] private Button _buyButton;
 
     private void Awake()
     {
+        ValidateLocalization();
+        InitializeLockState();
+    }
+
+    private void ValidateLocalization()
+    {
+        if (_localization == null)
+            _localization = GetComponentInParent<SystemLocalization>();
+
+        if (_localization == null)
+            Debug.LogError("[CarShopUI] SystemLocalization not found!");
+    }
+
+    private void InitializeLockState()
+    {
         if (_lockPanel != null)
+        {
             _lockPanel.SetActive(false);
+            UpdateLockPanelText();
+        }
+    }
+
+    private void UpdateLockPanelText()
+    {
+        var textComponent = _lockPanel.GetComponentInChildren<TextMeshProUGUI>();
+        if (textComponent != null)
+            textComponent.text = _localization.GetPhrase("EpicCarLocked");
     }
 
     public void DisplayCarData(CarData carData)
     {
-        _carNameText.text = carData.CarName;
-        _carPriceText.text = carData.Price.ToString();
-        _SpeedText.text = carData.Speed.ToString();
-        _AccelerationText.text = carData.Acceleration.ToString();
-        _TurnText.text = carData.Turn.ToString();
-        _ArmorText.text = carData.Armor.ToString();
+        _carNameText.text = _localization.GetPhrase(carData.CarName);
+        //_carNameText.text = carData.CarName;
+        _carPriceText.text = FormatPrice(carData.Price);
+        UpdateStatDisplays(carData);
         HideLockedState();
+    }
+
+    private string FormatPrice(int price) =>
+        _localization.GetPhrase("PriceFormat", price);
+
+    private void UpdateStatDisplays(CarData data)
+    {
+        _SpeedText.text = data.Speed.ToString();
+        _AccelerationText.text = data.Acceleration.ToString();
+        _TurnText.text = data.Turn.ToString();
+        _ArmorText.text = data.Armor.ToString();
     }
 
     public void DisplayNoCarsAvailable()
     {
-        _carNameText.text = "Машин нет!";
-        _carPriceText.text = "0";
-        _SpeedText.text = "0";
-        _AccelerationText.text = "0";
-        _TurnText.text = "0";
-        _ArmorText.text = "0";
-        HideLockedState();
+        SetDefaultState(_localization.GetPhrase("NoCarsAvailable"));
     }
 
     public void DisplayCarNotFound()
     {
-        _carNameText.text = "Машина не найдена";
-        _carPriceText.text = "0";
+        SetDefaultState(_localization.GetPhrase("CarNotFound"));
+    }
+
+    private void SetDefaultState(string message)
+    {
+        _carNameText.text = message;
+        _carPriceText.text = _localization.GetPhrase("DefaultPrice");
+        ResetStatsDisplay();
         HideLockedState();
+    }
+
+    private void ResetStatsDisplay()
+    {
+        string defaultValue = _localization.GetPhrase("DefaultStatValue");
+        _SpeedText.text = defaultValue;
+        _AccelerationText.text = defaultValue;
+        _TurnText.text = defaultValue;
+        _ArmorText.text = defaultValue;
     }
 
     public void DisplayEpicCarLocked()
@@ -70,17 +125,13 @@ public class CarShopUI : MonoBehaviour
     public void SetBuyButtonInteractable(bool interactable)
     {
         if (_buyButton != null)
-        {
             _buyButton.interactable = interactable;
-        }
         else
-        {
-            Debug.LogWarning("[CarShopUI] Кнопка покупки не назначена!", this);
-        }
+            Debug.LogWarning("[CarShopUI] Buy button reference missing!");
     }
 
     public void UpdatePlayerMoney(int money)
     {
-        _playerMoneyText.text = money.ToString();
+        _playerMoneyText.text = _localization.GetPhrase("MoneyFormat", money);
     }
 }

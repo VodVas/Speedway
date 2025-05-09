@@ -54,7 +54,7 @@ EditorBuildSettings:
     path: Assets/_game/Scenes/World_3/TornadoRace.unity
     guid: f73e239f64110934eb60c183ba53c26b
   - enabled: 1
-    path: Assets/_game/Scenes/World_3/BossBattle3.unity
+    path: Assets/_game/Scenes RAW/BossBattle3OLD.unity
     guid: df1906b9ab1074647bba2879d4e84618
   - enabled: 1
     path: Assets/_game/Scenes/World_3/GravityDeathMatch.unity

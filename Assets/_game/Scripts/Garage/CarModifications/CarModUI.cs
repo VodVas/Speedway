@@ -3,7 +3,9 @@ using TMPro;
 using UnityEngine.UI;
 using YG;
 using System.Collections;
-
+using Cysharp.Threading.Tasks;
+using System.Threading;
+using System;
 
 public class CarModUI : MonoBehaviour
 {
@@ -27,8 +29,12 @@ public class CarModUI : MonoBehaviour
     [SerializeField] private GameObject _colorButtonsGroup;
     [SerializeField] private GameObject _buyButtonGO;
 
+    [Header("Localization")]
+    [SerializeField] private SystemLocalization _localization;
+
     private int _currentModIndex;
     private BaseCarModification[] _currentMods;
+    private CancellationTokenSource _feedbackCts;
 
     private void Awake()
     {
@@ -105,11 +111,13 @@ public class CarModUI : MonoBehaviour
 
         _countText.text = $"{selectedIndex + 1}/{mod.MaterialsCount}";
         ApplyPreviewMaterial(mod, selectedIndex);
+
+        _countText.text = _localization.GetPhrase("SelectedMaterial", selectedIndex + 1, mod.MaterialsCount);
     }
 
     private IEnumerator HandleCarChangedRoutine()
     {
-        yield return null; // Ждём один кадр для активации объектов
+        yield return null;
         InitializeUI();
         _currentModIndex = 0;
         UpdateUI();
@@ -125,6 +133,8 @@ public class CarModUI : MonoBehaviour
         _countText.text = $"{purchased}/5";
         _priceText.text = mod.Price.ToString();
         _buyButton.interactable = purchased < 5;
+
+        _countText.text = _localization.GetPhrase("PurchasedCount", purchased, 5);
     }
 
     private void ApplyPreviewMaterial(ColorCarModification mod, int index)
@@ -143,7 +153,7 @@ public class CarModUI : MonoBehaviour
     {
         if (_currentMods == null || _currentModIndex >= _currentMods.Length)
         {
-            _feedbackText.text = "Ошибка: модификация не найдена";
+            _feedbackText.text = _localization.GetPhrase("ModificationError");
             return;
         }
 
@@ -153,7 +163,7 @@ public class CarModUI : MonoBehaviour
         if (mod is StatsCarModification statsMod)
             HandleStatsPurchase(statsMod, carId);
         else
-            _feedbackText.text = "Фидбэк";
+            _feedbackText.text = _localization.GetPhrase("DefaultFeedback");
     }
 
     private void HandleStatsPurchase(StatsCarModification mod, int carId)
@@ -162,13 +172,13 @@ public class CarModUI : MonoBehaviour
 
         if (purchased >= 5)
         {
-            _feedbackText.text = "Максимум куплено (5)";
+            _feedbackText.text = _localization.GetPhrase("MaxPurchased", 5);
             return;
         }
 
         if (YandexGame.savesData.Money < mod.Price)
         {
-            _feedbackText.text = "Недостаточно денег!";
+            _feedbackText.text = _localization.GetPhrase("NotEnoughMoney");
             return;
         }
 
@@ -176,8 +186,37 @@ public class CarModUI : MonoBehaviour
         YandexGame.savesData.AddCarModification(carId, mod.ModificationId);
         YandexGame.SaveProgress();
 
-        _feedbackText.text = $"Успешно куплено: {mod.ModificationName}";
+        ShowTemporaryFeedback(_localization.GetPhrase("Purchased", mod.ModificationName)).Forget();
         UpdateUI();
+    }
+
+    private async UniTaskVoid ShowTemporaryFeedback(string message)
+    {
+        _feedbackCts?.Cancel();
+        _feedbackCts?.Dispose();
+
+        _feedbackCts = CancellationTokenSource.CreateLinkedTokenSource(
+            this.GetCancellationTokenOnDestroy(),
+            destroyCancellationToken
+        );
+
+        try
+        {
+            _feedbackText.text = message;
+
+            await UniTask.Delay(500, cancellationToken: _feedbackCts.Token);
+
+            _feedbackText.text = string.Empty;
+        }
+        catch (OperationCanceledException)
+        {
+            _feedbackText.text = string.Empty;
+        }
+        finally
+        {
+            _feedbackCts?.Dispose();
+            _feedbackCts = null;
+        }
     }
 
     private void NextMod() => ChangeModIndex(1);
@@ -214,10 +253,10 @@ public class CarModUI : MonoBehaviour
 
     private void SetEmptyState()
     {
-        _modNameText.text = "0";
+        _modNameText.text = _localization.GetPhrase("NoModifications");
         _priceText.text = "0";
-        _countText.text = "0/0";
-        _effectText.text = "No modifications";
+        _countText.text = _localization.GetPhrase("EmptyCount");
+        _effectText.text = _localization.GetPhrase("NoEffects");
         _feedbackText.text = string.Empty;
     }
 }
