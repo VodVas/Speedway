@@ -1,9 +1,10 @@
 using TMPro;
 using UnityEngine;
 
-public sealed class ScoreboardView : MonoBehaviour
+public class ScoreboardView : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _scoreboardText;
+
     private RacerDataContainer _racerData;
     private readonly System.Text.StringBuilder _sb = new(128);
 

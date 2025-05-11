@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public sealed class ResultsProcessor : MonoBehaviour
+public class ResultsProcessor : MonoBehaviour
 {
     [SerializeField] private RaceRewardHandler _rewardHandler;
 

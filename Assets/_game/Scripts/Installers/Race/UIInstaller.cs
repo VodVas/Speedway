@@ -7,16 +7,15 @@ public class UIInstaller : MonoBehaviour, IInstaller
 
     [SerializeField] private UiCarBinder _desktopUICarBinder = null;
     [SerializeField] private UiCarBinder _mobileUICarBinder = null;
-    [SerializeField] private SmoothSliderHealthBarDisplay _mobileHealthBarDisplay = null;
-    [SerializeField] private SmoothSliderHealthBarDisplay _desktopHealthBarDisplay = null;
     [SerializeField] private GameObject _mobileUICounter = null;
     [SerializeField] private GameObject _desktopUICounter = null;
+    [SerializeField] private SystemLocalization _localization;
+    [SerializeField] private MobileInputController _mobileInput;
 
     private void Awake()
     {
         if (_desktopUICarBinder == null || _mobileUICarBinder == null ||
-        _mobileHealthBarDisplay == null || _desktopHealthBarDisplay == null ||
-        _mobileUICounter == null || _desktopUICounter == null)
+        _mobileUICounter == null || _desktopUICounter == null || _localization == null || _mobileInput == null)
         {
             Debug.Log(ErrorMissingField, this);
             enabled = false;
@@ -28,9 +27,9 @@ public class UIInstaller : MonoBehaviour, IInstaller
     {
         builder.AddSingleton(_desktopUICarBinder, typeof(UiCarBinder));
         builder.AddSingleton(_mobileUICarBinder, typeof(UiCarBinder));
-        builder.AddSingleton(_mobileHealthBarDisplay, typeof(SmoothSliderHealthBarDisplay));
-        builder.AddSingleton(_desktopHealthBarDisplay, typeof(SmoothSliderHealthBarDisplay));
         builder.AddSingleton(_mobileUICounter, typeof(GameObject));
         builder.AddSingleton(_desktopUICounter, typeof(GameObject));
+        builder.AddSingleton(_localization, typeof(SystemLocalization));
+        builder.AddSingleton(_mobileInput, typeof(MobileInputController));
     }
 }

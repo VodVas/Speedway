@@ -44,6 +44,17 @@ public class RacerDataContainer : IDisposable
         OnDataChanged?.Invoke();
     }
 
+    public void RefreshActiveStates()
+    {
+        for (int i = 0; i < _damageHandlers.Length; i++)
+        {
+            _isActive[i] = _damageHandlers[i] != null && _damageHandlers[i].isActiveAndEnabled;
+        }
+
+        UpdateActiveRacersCache();
+        OnDataChanged?.Invoke();
+    }
+
     private void OnVehicleKilled(Vehicle victim, IWeapon killer)
     {
         if (killer?.OwnerVehicle == null) return;
@@ -87,6 +98,7 @@ public class RacerDataContainer : IDisposable
             if (_damageHandlers[i])
                 _damageHandlers[i].VehicleKilled -= OnVehicleKilled;
         }
+
         _vehicleToRacerId.Clear();
     }
 }

@@ -35,10 +35,12 @@ public class CarShopUI : MonoBehaviour
     private void ValidateLocalization()
     {
         if (_localization == null)
-            _localization = GetComponentInParent<SystemLocalization>();
+        {
+            Debug.Log("[CarShopUI] SystemLocalization not found!");
+            enabled = false;
+            return;
+        }
 
-        if (_localization == null)
-            Debug.LogError("[CarShopUI] SystemLocalization not found!");
     }
 
     private void InitializeLockState()
@@ -54,20 +56,20 @@ public class CarShopUI : MonoBehaviour
     {
         var textComponent = _lockPanel.GetComponentInChildren<TextMeshProUGUI>();
         if (textComponent != null)
-            textComponent.text = _localization.GetPhrase("EpicCarLocked");
+            textComponent.text = _localization.GetPhrase(EpicCarLocked);
     }
 
     public void DisplayCarData(CarData carData)
     {
         _carNameText.text = _localization.GetPhrase(carData.CarName);
-        //_carNameText.text = carData.CarName;
         _carPriceText.text = FormatPrice(carData.Price);
+
         UpdateStatDisplays(carData);
         HideLockedState();
     }
 
     private string FormatPrice(int price) =>
-        _localization.GetPhrase("PriceFormat", price);
+        _localization.GetPhrase(PriceFormat, price);
 
     private void UpdateStatDisplays(CarData data)
     {
@@ -79,25 +81,25 @@ public class CarShopUI : MonoBehaviour
 
     public void DisplayNoCarsAvailable()
     {
-        SetDefaultState(_localization.GetPhrase("NoCarsAvailable"));
+        SetDefaultState(_localization.GetPhrase(NoCarsAvailable));
     }
 
     public void DisplayCarNotFound()
     {
-        SetDefaultState(_localization.GetPhrase("CarNotFound"));
+        SetDefaultState(_localization.GetPhrase(CarNotFound));
     }
 
     private void SetDefaultState(string message)
     {
         _carNameText.text = message;
-        _carPriceText.text = _localization.GetPhrase("DefaultPrice");
+        _carPriceText.text = _localization.GetPhrase(DefaultPrice);
         ResetStatsDisplay();
         HideLockedState();
     }
 
     private void ResetStatsDisplay()
     {
-        string defaultValue = _localization.GetPhrase("DefaultStatValue");
+        string defaultValue = _localization.GetPhrase(DefaultStatValue);
         _SpeedText.text = defaultValue;
         _AccelerationText.text = defaultValue;
         _TurnText.text = defaultValue;
@@ -132,6 +134,6 @@ public class CarShopUI : MonoBehaviour
 
     public void UpdatePlayerMoney(int money)
     {
-        _playerMoneyText.text = _localization.GetPhrase("MoneyFormat", money);
+        _playerMoneyText.text = _localization.GetPhrase(MoneyFormat, money);
     }
 }

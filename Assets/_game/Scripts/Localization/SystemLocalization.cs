@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using YG;
 
-[Serializable]
 public class SystemLocalization : MonoBehaviour
 {
     [Serializable]
@@ -43,14 +42,18 @@ public class SystemLocalization : MonoBehaviour
 
     public string GetPhrase(string key, params object[] args)
     {
-        if (_phrasesDict == null) InitializeDictionary();
+        if (_phrasesDict == null)
+            InitializeDictionary();
 
         string lang = YandexGame.EnvironmentData.language;
-        if (string.IsNullOrEmpty(lang)) lang = "en";
+
+        if (string.IsNullOrEmpty(lang))
+            lang = "en";
 
         if (!_phrasesDict.TryGetValue(key, out var translations))
         {
-            Debug.LogError($"Localization key not found: {key}");
+            Debug.Log($"Localization key not found: {key}", this);
+            enabled = false;
             return $"#{key}#";
         }
 

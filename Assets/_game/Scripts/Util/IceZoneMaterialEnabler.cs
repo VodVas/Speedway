@@ -8,7 +8,6 @@ public sealed class IceZoneMaterialEnabler : MonoBehaviour
 
     [SerializeField] private PhysicMaterial _iceMaterial;
     [SerializeField] private PhysicMaterial _defaultMaterial;
-    [SerializeField] private bool _isEntranceZone;
 
     private void OnTriggerEnter(Collider other)
     {

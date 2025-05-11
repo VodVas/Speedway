@@ -6,15 +6,30 @@ public class DeathMatchKillManager : MonoBehaviour
     [SerializeField] private ScoreboardView _scoreboardView;
     [SerializeField] private MatchRules _matchRules;
     [SerializeField] private ResultsProcessor _resultsProcessor;
+    [SerializeField] private PlayerCarSelector _carSelector;
 
     private void Start()
     {
+        _carSelector.CarActivated += OnCarActivated;
+
         _racerData.Initialize();
         _matchRules.Configure(_racerData, _resultsProcessor);
         _scoreboardView.Initialize(_racerData);
     }
 
     private void OnDestroy() => _racerData.Dispose();
+
+    private void OnCarActivated()
+    {
+        _racerData.RefreshActiveStates();
+        _scoreboardView.UpdateView();
+    }
+
+    private void OnDisable()
+    {
+        _carSelector.CarActivated -= OnCarActivated;
+        _racerData.Dispose();
+    }
 }
 
 

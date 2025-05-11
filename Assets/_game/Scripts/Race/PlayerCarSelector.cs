@@ -25,14 +25,15 @@ public class PlayerCarSelector : MonoBehaviour
     [SerializeField] private DriftScoreUIDisplayer _desktopDriftScoreUIDisplayer;
     [SerializeField] private DriftScoreUIDisplayer _mobileDriftScoreUIDisplayer;
     [SerializeField] private Transform _carsContainer;
+    [SerializeField] private SmoothSliderHealthBarDisplay _desktopHealthBarDisplay;
+    [SerializeField] private SmoothSliderHealthBarDisplay _mobileHealthBarDisplay;
 
-    [Inject] private SmoothSliderHealthBarDisplay _desktopHealthBarDisplay;
-    [Inject] private SmoothSliderHealthBarDisplay _mobileHealthBarDisplay;
     [Inject] private DeadCarRespawner _deadCarRespawner;
 
     private GameObject _activeCar;
     private Racer _playerRacer;
     private bool _isMobile;
+    private bool _isDesktop;
 
     public event Action CarActivated;
 
@@ -41,6 +42,7 @@ public class PlayerCarSelector : MonoBehaviour
     private void Start()
     {
         _isMobile = YandexGame.EnvironmentData.isMobile;
+        _isDesktop = YandexGame.EnvironmentData.isDesktop;
 
         if (_validateOnStart && !ValidateCarSetup())
         {
@@ -58,6 +60,12 @@ public class PlayerCarSelector : MonoBehaviour
         if (_sceneCars.Count == 0)
         {
             Debug.LogError("No cars assigned in Scene Cars list!", this);
+            return false;
+        }
+
+        if (_desktopHealthBarDisplay == null && _mobileHealthBarDisplay == null)
+        {
+            Debug.LogError("HealthBarDisplays not assigned", this);
             return false;
         }
 
@@ -227,7 +235,8 @@ public class PlayerCarSelector : MonoBehaviour
             _mobileDriftScoreUIDisplayer.SetPlayerCar(vehicle);
             _mobileUICarBinder.BindPlayerCar(rb, health, _activeCar.transform);
         }
-        else
+
+        if(_isDesktop)
         {
             _desktopHealthBarDisplay.Initialize(health);
             _desktopDriftScoreUIDisplayer.SetPlayerCar(vehicle);

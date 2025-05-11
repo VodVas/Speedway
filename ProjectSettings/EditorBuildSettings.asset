@@ -30,10 +30,10 @@ EditorBuildSettings:
     path: Assets/_game/Scenes/World_1/BossBattle.unity
     guid: 7277ee146abb5c849a31f9b5cf07e3eb
   - enabled: 1
-    path: Assets/_game/Scenes/World_2/CarShop2.unity
+    path: Assets/_game/SnenesCopy/Scenes RAW/CarShop2Old.unity
     guid: 4bbd60821b4cf614db0b416c637ce436
   - enabled: 1
-    path: Assets/_game/Scenes/World_2/Garage2.unity
+    path: Assets/_game/SnenesCopy/Scenes RAW/Garage2Old.unity
     guid: f8bcbc57bd46d9743af93eb2c60509a9
   - enabled: 1
     path: Assets/_game/Scenes/World_2/BossBattle2.unity
@@ -54,7 +54,7 @@ EditorBuildSettings:
     path: Assets/_game/Scenes/World_3/TornadoRace.unity
     guid: f73e239f64110934eb60c183ba53c26b
   - enabled: 1
-    path: Assets/_game/Scenes RAW/BossBattle3OLD.unity
+    path: Assets/_game/SnenesCopy/Scenes RAW/BossBattle3OLD.unity
     guid: df1906b9ab1074647bba2879d4e84618
   - enabled: 1
     path: Assets/_game/Scenes/World_3/GravityDeathMatch.unity

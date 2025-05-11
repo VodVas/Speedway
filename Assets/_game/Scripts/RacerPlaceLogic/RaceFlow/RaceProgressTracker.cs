@@ -191,7 +191,7 @@ public class RaceProgressTracker : MonoBehaviour
 
         if (_raceCarSelector == null)
         {
-            Debug.LogError("RaceProgressTracker: RaceCarManager не назначен!", this);
+            Debug.LogError("RaceProgressTracker: RaceCarSelector не назначен!", this);
             isValid = false;
         }
 

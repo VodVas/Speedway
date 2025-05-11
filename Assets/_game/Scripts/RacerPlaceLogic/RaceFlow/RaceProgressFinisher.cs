@@ -47,7 +47,7 @@ public class RaceProgressFinisher
             if (racer != null && textField != null)
             {
                 int reward = GetRewardForPosition(racer.Position);
-                textField.text = $"{racer.Position}. {racer.Name} {reward}$";
+                textField.text = $"{racer.Position}.{racer.Name} {reward}$";
             }
         }
     }

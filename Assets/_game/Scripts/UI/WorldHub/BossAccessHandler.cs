@@ -6,11 +6,13 @@ using YG;
 [RequireComponent(typeof(Button))]
 public class BossAccessHandler : MonoBehaviour
 {
+    private const string RequireRank = "RequireRank";
+
     [SerializeField] private int _requiredRespect = 100;
     [SerializeField] private GameObject _lockPanel;
     [SerializeField] private TextMeshProUGUI _requirementText;
     [SerializeField] private int _furyTest = 50;
-
+    [SerializeField] private SystemLocalization _localization;
 
     private Button _button;
     private bool _componentsCached;
@@ -26,8 +28,9 @@ public class BossAccessHandler : MonoBehaviour
         UpdateAllElements();
     }
 
-    [ContextMenu("FuryTest")]
-    public void FuryTest()
+#if UNITY_EDITOR
+    [ContextMenu("RespectTest")]
+    public void RespectTest()
     {
         if (YandexGame.savesData == null)
         {
@@ -39,8 +42,9 @@ public class BossAccessHandler : MonoBehaviour
         YandexGame.SaveProgress();
         UpdateAllElements();
 
-        Debug.Log($"Current fury after test: {YandexGame.savesData.GetRespect()}");
+        Debug.Log($"Current respect after test: {YandexGame.savesData.GetRespect()}");
     }
+#endif
 
     private void CacheComponents()
     {
@@ -67,7 +71,7 @@ public class BossAccessHandler : MonoBehaviour
 
     private void InitializeElements()
     {
-        _requirementText.text = $"Требует\nранг:{_requiredRespect}";
+        _requirementText.text = _localization.GetPhrase(RequireRank, _requiredRespect.ToString());
     }
 
     private void UpdateAllElements()

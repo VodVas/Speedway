@@ -2,25 +2,26 @@ using UnityEngine;
 using TMPro;
 using YG;
 using System;
+using Reflex.Attributes;
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
 public class RaceRewardHandler : MonoBehaviour
 {
-    private const string ERROR_REWARDS_SIZE = "RaceRewardHandler: Количество наград ({0}) должно совпадать с количеством гонщиков ({1})!";
-    private const string ERROR_PENALTIES_LENGTH = "RaceRewardHandler: Должно быть 3 элемента штрафов!";
-    private const string ERROR_REWARDS_EMPTY = "RaceRewardHandler: Награды не заданы!";
-    private const string ERROR_CANVASES_NULL = "RaceRewardHandler: Reward canvases не назначены!";
-    private const string ERROR_UI_ELEMENTS = "RaceRewardHandler: Элементы UI игрока не назначены!";
-    private const string ERROR_PAUSE_MANAGER = "RaceRewardHandler: Pause manager не назначен!";
-    private const string ERROR_RESPECT_REWARDS = "RaceRewardHandler: Должно быть 3 элемента наград!";
-    private const string RESPECT_FORMAT = "Ранг {0}{1}";
-    private const string POSITIVE_SIGN = "+";
-    private const string NEGATIVE_SIGN = "-";
-    private const int NORMAL_RACE_SIZE = 6;
-    private const int BOSS_BATTLE_SIZE = 2;
-
+    private const string ErrorRewardsSize = "Number of rewards ({0}) must match the number of racers ({1})!";
+    private const string ErrorPenaltiesLength = "There must be exactly 3 penalty elements!";
+    private const string ErrorRewardsEmpty = "Rewards are not set!";
+    private const string ErrorCanvasesNull = "Reward canvases are not assigned!";
+    private const string ErrorUiElements = "Player UI elements are not assigned!";
+    private const string ErrorPauseManager = "Pause manager is not assigned!";
+    private const string ErrorRespectRewards = "There must be exactly 3 reward elements!";
+    private const string PositiveSign = "+";
+    private const string NegativeSign = "-";
+    private const string Rank = "Rank";
+    private const int NormalRaceSize = 6;
+    private const int BossBattleSize = 2;
 
     [Serializable]
     private class RacerDisplayData
@@ -51,29 +52,25 @@ public class RaceRewardHandler : MonoBehaviour
     [SerializeField] private GameObject _desktopRewardMenu;
     [SerializeField] private GameObject[] _desktopPlayerDisabledUIElements;
     [SerializeField] private RacerDisplayData[] _desktopRacerDisplays = new RacerDisplayData[6];
-
     [Space(1)]
-
     [Header("Mobile settings")]
     [SerializeField] private GameObject _mobileRewardMenu;
     [SerializeField] private GameObject[] _mobilePlayerDisabledUIElements;
     [SerializeField] private RacerDisplayData[] _mobileRacerDisplays = new RacerDisplayData[6];
 
     [Header("Respect Settings")]
-    [SerializeField]
-    [HideInInspector]
-    private int[] _respectRewards = new int[3] { 50, 30, 10 };
+    [SerializeField] private int[] _respectRewards = new int[3] { 50, 30, 10 };
 
     [Header("Penalty Settings")]
-    [SerializeField]
-    [HideInInspector]
-    private int[] _positionPenalties = new int[3] { 10, 20, 30 };
+    [SerializeField] private int[] _positionPenalties = new int[3] { 10, 20, 30 };
 
     private RaceProgressFinisher _finisher;
     private GameObject[] _currentPlayerUIElements;
     private GameObject _currentRewardCanvas;
     private RacerDisplayData[] _currentRacerDisplays;
     private bool _isRewardGiven;
+
+    [Inject] private SystemLocalization _localization;
 
 #if UNITY_EDITOR
     private void OnValidate()
@@ -99,17 +96,17 @@ public class RaceRewardHandler : MonoBehaviour
 
             EditorUtility.SetDirty(this);
 
-            if (_positionRewards != null && _positionRewards.Length != BOSS_BATTLE_SIZE)
+            if (_positionRewards != null && _positionRewards.Length != BossBattleSize)
             {
-                Array.Resize(ref _positionRewards, BOSS_BATTLE_SIZE);
+                Array.Resize(ref _positionRewards, BossBattleSize);
                 Debug.Log("Boss battle mode: Position rewards resized to 2 elements");
             }
         }
         else
         {
-            if (_positionRewards != null && _positionRewards.Length != NORMAL_RACE_SIZE)
+            if (_positionRewards != null && _positionRewards.Length != NormalRaceSize)
             {
-                Array.Resize(ref _positionRewards, NORMAL_RACE_SIZE);
+                Array.Resize(ref _positionRewards, NormalRaceSize);
                 Debug.Log("Normal race mode: Position rewards resized to 6 elements");
             }
         }
@@ -132,7 +129,7 @@ public class RaceRewardHandler : MonoBehaviour
 
     public bool ValidateRewardsSize(int racersCount)
     {
-        if (_isBossBattle && racersCount != BOSS_BATTLE_SIZE)
+        if (_isBossBattle && racersCount != BossBattleSize)
         {
             Debug.LogError("Boss battle should have exactly 2 participants!", this);
             return false;
@@ -140,7 +137,7 @@ public class RaceRewardHandler : MonoBehaviour
 
         if (!_isBossBattle && _positionRewards.Length != racersCount)
         {
-            Debug.LogError(string.Format(ERROR_REWARDS_SIZE, _positionRewards.Length, racersCount), this);
+            Debug.LogError(string.Format(ErrorRewardsSize, _positionRewards.Length, racersCount), this);
             return false;
         }
 
@@ -183,7 +180,7 @@ public class RaceRewardHandler : MonoBehaviour
 
     private TextMeshProUGUI[] GetResultTextsArray()
     {
-        int arraySize = _isBossBattle ? BOSS_BATTLE_SIZE : _currentRacerDisplays.Length;
+        int arraySize = _isBossBattle ? BossBattleSize : _currentRacerDisplays.Length;
         TextMeshProUGUI[] resultTexts = new TextMeshProUGUI[arraySize];
 
         for (int i = 0; i < arraySize; i++)
@@ -254,11 +251,10 @@ public class RaceRewardHandler : MonoBehaviour
             _currentRacerDisplays[index].RespectText.gameObject.SetActive(true);
 
             bool isPositive = respectChange > 0;
-            string sign = isPositive ? POSITIVE_SIGN : NEGATIVE_SIGN;
+            string sign = isPositive ? PositiveSign : NegativeSign;
             int absValue = Mathf.Abs(respectChange);
 
-            _currentRacerDisplays[index].RespectText.text = string.Format(RESPECT_FORMAT, sign, absValue);
-            _currentRacerDisplays[index].RespectText.ForceMeshUpdate();
+            _currentRacerDisplays[index].RespectText.text = _localization.GetPhrase(Rank, sign, absValue);
         }
         else
         {
@@ -277,9 +273,9 @@ public class RaceRewardHandler : MonoBehaviour
                 Debug.Log($"Applied respect change for position {position}: {respectChange}");
             }
         }
-        catch (Exception ex)
+        catch (Exception exception)
         {
-            Debug.LogError($"Error applying respect changes: {ex.Message}");
+            Debug.LogError($"Error applying respect changes: {exception.Message}");
         }
     }
 
@@ -311,9 +307,9 @@ public class RaceRewardHandler : MonoBehaviour
             int bossIndex = (int)_currentBoss;
             YandexGame.savesData.SetBossDefeated(bossIndex);
         }
-        catch (Exception ex)
+        catch (Exception exception)
         {
-            Debug.LogError($"Error saving boss victory: {ex.Message}");
+            Debug.LogError($"Error saving boss victory: {exception.Message}");
         }
     }
 
@@ -325,24 +321,24 @@ public class RaceRewardHandler : MonoBehaviour
         {
             if (_respectRewards == null || _respectRewards.Length != 3)
             {
-                Debug.LogError(ERROR_RESPECT_REWARDS, this);
+                Debug.LogError(ErrorRespectRewards, this);
                 isValid = false;
             }
 
             if (_positionPenalties == null || _positionPenalties.Length != 3)
             {
-                Debug.LogError(ERROR_PENALTIES_LENGTH, this);
+                Debug.LogError(ErrorPenaltiesLength, this);
                 isValid = false;
             }
         }
 
         if (_positionRewards == null || _positionRewards.Length == 0)
         {
-            Debug.LogError(ERROR_REWARDS_EMPTY, this);
+            Debug.LogError(ErrorRewardsEmpty, this);
             isValid = false;
         }
 
-        if (_isBossBattle && _positionRewards.Length != BOSS_BATTLE_SIZE)
+        if (_isBossBattle && _positionRewards.Length != BossBattleSize)
         {
             Debug.LogError("Boss battle requires exactly 2 position rewards!", this);
             isValid = false;
@@ -350,20 +346,20 @@ public class RaceRewardHandler : MonoBehaviour
 
         if (_desktopRewardMenu == null || _mobileRewardMenu == null)
         {
-            Debug.LogError(ERROR_CANVASES_NULL, this);
+            Debug.LogError(ErrorCanvasesNull, this);
             isValid = false;
         }
 
         if (_desktopPlayerDisabledUIElements == null || _desktopPlayerDisabledUIElements.Length == 0 ||
             _mobilePlayerDisabledUIElements == null || _mobilePlayerDisabledUIElements.Length == 0)
         {
-            Debug.LogError(ERROR_UI_ELEMENTS, this);
+            Debug.LogError(ErrorUiElements, this);
             isValid = false;
         }
 
         if (_pauseManager == null)
         {
-            Debug.LogError(ERROR_PAUSE_MANAGER, this);
+            Debug.LogError(ErrorPauseManager, this);
             isValid = false;
         }
 

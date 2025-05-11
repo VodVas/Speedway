@@ -14,7 +14,7 @@ public class RespectAddTestEditor : Editor
         GUILayout.Space(10);
         if (GUILayout.Button("Test Respect", GUILayout.Height(30)))
         {
-            handler.FuryTest();
+            handler.RespectTest();
         }
     }
 }

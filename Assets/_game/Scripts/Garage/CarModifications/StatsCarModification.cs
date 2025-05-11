@@ -39,13 +39,4 @@ public class StatsCarModification : BaseCarModification
         StatType.Health => _localization.GetPhrase("HealthEffect", _valuePerUnit),
         _ => _localization.GetPhrase("UnknownEffect")
     };
-
-    //public override string GetEffectDescription() => _targetStat switch
-    //{
-    //    StatType.Speed => $"Скорость +{_valuePerUnit}",
-    //    StatType.Acceleration => $"Ускорение +{_valuePerUnit}",
-    //    StatType.Turn => $"Поворот +{_valuePerUnit}",
-    //    StatType.Health => $"Жизни +{_valuePerUnit}",
-    //    _ => "Неизвестный эффект"
-    //};
 }

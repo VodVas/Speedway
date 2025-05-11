@@ -3,19 +3,21 @@ using UnityEngine;
 
 public class LootVisualizationBuilder : MonoBehaviour
 {
-    private const int CARDS_COUNT = 3;
+    private const int CardCount = 3;
 
-    [SerializeField] private MoneyLootCardController[] _moneyCards = new MoneyLootCardController[CARDS_COUNT];
-    [SerializeField] private PaintLootCardController[] _paintCards = new PaintLootCardController[CARDS_COUNT];
-    [SerializeField] private CarLootCardController[] _carCards = new CarLootCardController[CARDS_COUNT];
-    [SerializeField] private Transform[] _spherePoints = new Transform[CARDS_COUNT];
-    [SerializeField] private Transform[] _carPoints = new Transform[CARDS_COUNT];
+    [SerializeField] private MoneyLootCardController[] _moneyCards = new MoneyLootCardController[CardCount];
+    [SerializeField] private PaintLootCardController[] _paintCards = new PaintLootCardController[CardCount];
+    [SerializeField] private CarLootCardController[] _carCards = new CarLootCardController[CardCount];
+    [SerializeField] private Transform[] _spherePoints = new Transform[CardCount];
+    [SerializeField] private Transform[] _carPoints = new Transform[CardCount];
     [SerializeField] private CardLootSpheresSpawner _sphereSpawner;
     [SerializeField] private CardLootCarSpawner _carSpawner;
     [SerializeField] private SoundOnButtonClickPlayer _soundPlayer;
+    [SerializeField] private SystemLocalization _localization;
 
-    private LootPaintSphere[] _spheres = new LootPaintSphere[CARDS_COUNT];
-    private LootCar[] _cars = new LootCar[CARDS_COUNT];
+    private IRarityLocalization _rarityLocalization;
+    private LootPaintSphere[] _spheres = new LootPaintSphere[CardCount];
+    private LootCar[] _cars = new LootCar[CardCount];
     private int _sphereCount;
     private int _carCount;
 
@@ -23,14 +25,32 @@ public class LootVisualizationBuilder : MonoBehaviour
 
     private void Awake()
     {
-        if (!ValidateComponents()) enabled = false;
+        if (!ValidateComponents())
+        { 
+            enabled = false;
+            return;
+        }
+
+        _rarityLocalization = new RarityLocalization(_localization);
+
+        InitializeCards();
+    }
+
+    private void InitializeCards()
+    {
+        for (int i = 0; i < CardCount; i++)
+        {
+            if (_moneyCards[i]) _moneyCards[i].Initialize(_rarityLocalization);
+            if (_paintCards[i]) _paintCards[i].Initialize(_rarityLocalization);
+            if (_carCards[i]) _carCards[i].Initialize(_rarityLocalization);
+        }
     }
 
     private bool ValidateComponents()
     {
         if (!_sphereSpawner || !_carSpawner || !_soundPlayer) return false;
 
-        for (var i = 0; i < CARDS_COUNT; i++)
+        for (var i = 0; i < CardCount; i++)
         {
             if (!_moneyCards[i] || !_paintCards[i] || !_carCards[i] ||
                 !_spherePoints[i] || !_carPoints[i]) return false;
@@ -77,7 +97,7 @@ public class LootVisualizationBuilder : MonoBehaviour
 
     public void ResetAllVisuals()
     {
-        for (var i = 0; i < CARDS_COUNT; i++)
+        for (var i = 0; i < CardCount; i++)
         {
             _moneyCards[i].gameObject.SetActive(false);
             _paintCards[i].gameObject.SetActive(false);
@@ -88,8 +108,7 @@ public class LootVisualizationBuilder : MonoBehaviour
         ReleaseObjects(_spheres, ref _sphereCount);
     }
 
-    private void StoreAndShow<T>(int index, T obj, T[] array, ref int count,
-    MonoBehaviour card, object item) where T : Component
+    private void StoreAndShow<T>(int index, T obj, T[] array, ref int count, MonoBehaviour card, object item) where T : Component
     {
         array[count++] = obj;
         card.gameObject.SetActive(true);
@@ -118,7 +137,7 @@ public class LootVisualizationBuilder : MonoBehaviour
 
     private bool IsValidRequest<T>(int index, T item)
     {
-        if (index < 0 || index >= CARDS_COUNT || item == null)
+        if (index < 0 || index >= CardCount || item == null)
         {
             Debug.LogError($"Invalid request: {typeof(T).Name}");
             return false;

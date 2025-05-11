@@ -1,8 +1,9 @@
 using UnityEngine;
 
-public sealed class MatchRules : MonoBehaviour
+public class MatchRules : MonoBehaviour
 {
     [SerializeField] private int _requiredKills = 10;
+
     private RacerDataContainer _racerData;
     private ResultsProcessor _resultsProcessor;
 
@@ -10,10 +11,10 @@ public sealed class MatchRules : MonoBehaviour
     {
         _racerData = data;
         _resultsProcessor = processor;
-        _racerData.OnKill += OnKillOccured;
+        _racerData.OnKill += OnKillOccurred;
     }
 
-    private void OnKillOccured(int killerId) => CheckForMatchEnd(killerId);
+    private void OnKillOccurred(int killerId) => CheckForMatchEnd(killerId);
 
     private void CheckForMatchEnd(int killerId)
     {
@@ -32,6 +33,6 @@ public sealed class MatchRules : MonoBehaviour
     private void OnDestroy()
     {
         if (_racerData != null)
-            _racerData.OnKill -= OnKillOccured;
+            _racerData.OnKill -= OnKillOccurred;
     }
 }

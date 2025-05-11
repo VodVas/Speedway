@@ -20,8 +20,10 @@ public class RaceStartTimeCounter : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _desktopCountText;
     [SerializeField] private Image[] _desktopLights;
 
-    [Inject] private GameObject _mobileUICounter;
-    [Inject] private GameObject _desktopUICounter;
+    [Header("UI Time Counters")]
+    [SerializeField] private GameObject _mobileUICounter;
+    [SerializeField] private GameObject _desktopUICounter;
+
     [Inject] private AiStuckHelper _aiStuckHelper;
 
     private TextMeshProUGUI _currentCountText;
@@ -43,15 +45,34 @@ public class RaceStartTimeCounter : MonoBehaviour
     private void InitializePlatformSpecificComponents()
     {
         bool isMobile = YandexGame.EnvironmentData.isMobile;
+        bool isDesktop = YandexGame.EnvironmentData.isDesktop;
 
         _currentCountText = isMobile ? _mobileCountText : _desktopCountText;
         _currentLights = isMobile ? _mobileLights : _desktopLights;
         _currentUICounter = isMobile ? _mobileUICounter : _desktopUICounter;
 
         if (_mobileUICounter != null)
+        {
             _mobileUICounter.SetActive(isMobile);
+        }
+        else
+        {
+            Debug.Log("_mobileUICounter not assigned", this);
+            enabled = false;
+            return;
+        }
+
+
         if (_desktopUICounter != null)
-            _desktopUICounter.SetActive(!isMobile);
+        {
+            _desktopUICounter.SetActive(isDesktop);
+        }
+        else
+        {
+            Debug.Log("_desktopUICounter not assigned", this);
+            enabled = false;
+            return;
+        }
     }
 
     private void InitializeWaitObjects()

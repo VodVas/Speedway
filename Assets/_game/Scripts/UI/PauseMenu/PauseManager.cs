@@ -7,7 +7,6 @@ public class PauseManager : MonoBehaviour
     [SerializeField] private GameObject _mobilePauseMenu;
     [SerializeField] private Player[] _playerCars;
     [SerializeField] private GameObject[] _forceDisableObjects;
-    //[SerializeField] private AudioListener _audioListener;
 
     private bool _isPaused;
     private bool[] _cachedStates;
@@ -54,8 +53,6 @@ public class PauseManager : MonoBehaviour
     {
         Time.timeScale = 0f;
 
-        //_audioListener.enabled = false;
-
         SetPlayersActive(false);
         SetGroupActive(_forceDisableObjects, false);
 
@@ -74,7 +71,6 @@ public class PauseManager : MonoBehaviour
     private void UnPause()
     {
         Time.timeScale = 1f;
-        //_audioListener.enabled = true;
 
         RestorePlayersState();
         SetGroupActive(_forceDisableObjects, true);

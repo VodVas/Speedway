@@ -14,6 +14,14 @@ public abstract class BaseLootCardController : MonoBehaviour
     private int _lootLayer;
     private int _originalLayer;
     private GameObject _currentObject;
+    private IRarityLocalization _rarityLocalization;
+
+    public void Initialize(IRarityLocalization rarityLocalization)
+    {
+        _rarityLocalization = rarityLocalization;
+        _lootLayer = LayerMask.NameToLayer(LootLayerName);
+        InitializeCamera();
+    }
 
     protected void AwakeBase()
     {
@@ -55,10 +63,24 @@ public abstract class BaseLootCardController : MonoBehaviour
         SetTextActive(_rarityText, !isEpic);
     }
 
-    protected void SetText(string text)
+    protected void SetText(Rarity rarity)
     {
-        if (_rarityText) _rarityText.text = text;
-        if (_epicRarityText) _epicRarityText.text = text;
+        string localizedText = _rarityLocalization.GetLocalizedRarityText(rarity);
+        if (_rarityText) _rarityText.text = localizedText;
+        if (_epicRarityText) _epicRarityText.text = localizedText;
+    }
+
+    protected void SetRarityText(Rarity rarity)
+    {
+        string localizedText = _rarityLocalization.GetLocalizedRarityText(rarity);
+        if (_rarityText) _rarityText.text = localizedText;
+        if (_epicRarityText) _epicRarityText.text = localizedText;
+    }
+
+    protected void SetItemName(string itemName)
+    {
+        if (_rarityText) _rarityText.text = itemName;
+        if (_epicRarityText) _epicRarityText.text = itemName;
     }
 
     protected void SetBackground(Sprite sprite)

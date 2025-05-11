@@ -196,8 +196,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -19, y: -295}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 19.5619, y: -295}
+  m_SizeDelta: {x: 277.1235, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &42100889
 MonoBehaviour:
@@ -219,8 +219,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0422\u0440\u0435\u0431\u0443\u0435\u0442\n\u0440\u0430\u043D\u0433:
-    100"
+  m_text: "\u0422\u0440\u0435\u0431\u0443\u0435\u0442 \u0440\u0430\u043D\u0433: 100"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 95ab8e1dfc9df0140afdde6c8aa1bbde, type: 2}
   m_sharedMaterial: {fileID: 9197510476733001565, guid: 95ab8e1dfc9df0140afdde6c8aa1bbde, type: 2}
@@ -263,7 +262,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -314,9 +313,9 @@ MonoBehaviour:
   textLComponent: {fileID: 0}
   infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
   text: 
-  ru: "\u0422\u0440\u0435\u0431\u0443\u0435\u0442\n\u0440\u0430\u043D\u0433: 100"
-  en: "Requires \nrank: 100"
-  tr: "Gereken \nr\xFCtbe: 100"
+  ru: "\u0422\u0440\u0435\u0431\u0443\u0435\u0442 \u0440\u0430\u043D\u0433: 100"
+  en: 'Requires rank: 100'
+  tr: "Gereken r\xFCtbe: 100"
   az: 
   be: 
   he: 
@@ -1290,8 +1289,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 16.9, y: -2.7000122}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 5.6, y: -2.7000122}
+  m_SizeDelta: {x: 229.5959, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &290620887
 MonoBehaviour:
@@ -3644,6 +3643,7 @@ MonoBehaviour:
   _lockPanel: {fileID: 1566283149}
   _requirementText: {fileID: 42100889}
   _furyTest: 10
+  _localization: {fileID: 1564955846}
 --- !u!1 &1067623956
 GameObject:
   m_ObjectHideFlags: 0
@@ -4168,7 +4168,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 38.05, y: -0.000012398}
+  m_AnchoredPosition: {x: 3.1, y: -0.000012398}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1214868629
@@ -5413,6 +5413,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1564955846 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2865451277609441163, guid: 4877538a58b0e10469238891f4d6be0e, type: 3}
+  m_PrefabInstance: {fileID: 5777737019124968468}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1a7fc54f959d1d4487abb5873317d6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1566283149
 GameObject:
   m_ObjectHideFlags: 0
@@ -6617,6 +6628,63 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _loadMode: 1
   _sceneName: HubWorld2
+--- !u!1001 &5777737019124968468
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3635936899467336360, guid: 4877538a58b0e10469238891f4d6be0e, type: 3}
+      propertyPath: m_Name
+      value: SystemLocalizationHub
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701468920576895468, guid: 4877538a58b0e10469238891f4d6be0e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1525.5159
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701468920576895468, guid: 4877538a58b0e10469238891f4d6be0e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 206.11339
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701468920576895468, guid: 4877538a58b0e10469238891f4d6be0e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.3337841
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701468920576895468, guid: 4877538a58b0e10469238891f4d6be0e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701468920576895468, guid: 4877538a58b0e10469238891f4d6be0e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701468920576895468, guid: 4877538a58b0e10469238891f4d6be0e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701468920576895468, guid: 4877538a58b0e10469238891f4d6be0e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701468920576895468, guid: 4877538a58b0e10469238891f4d6be0e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701468920576895468, guid: 4877538a58b0e10469238891f4d6be0e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701468920576895468, guid: 4877538a58b0e10469238891f4d6be0e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4877538a58b0e10469238891f4d6be0e, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -6626,3 +6694,4 @@ SceneRoots:
   - {fileID: 711934016}
   - {fileID: 932795328}
   - {fileID: 808998877}
+  - {fileID: 5777737019124968468}

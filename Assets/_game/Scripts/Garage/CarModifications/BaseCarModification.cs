@@ -15,7 +15,8 @@ public abstract class BaseCarModification : MonoBehaviour
     {
         InitializeLocalization();
 
-        ModificationName = _name.text;
+        if (_name != null)
+            ModificationName = _name.text;
 
         if (ModificationId < 0)
         {
